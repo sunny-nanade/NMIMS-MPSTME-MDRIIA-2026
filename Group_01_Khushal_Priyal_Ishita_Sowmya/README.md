@@ -61,12 +61,19 @@ Group_01_Khushal_Priyal_Ishita_Sowmya/
 |-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md  <- Complete technical dossier, kinematic proofs, and viva defense
 |-- docs/
 |   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Detailed analysis of 5 papers & gap matrix
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md       <- Full 4-page IEEE/ACM paper template with Tables 1 & 2
+|   |-- figures/
+|   |   |-- figure1_system_architecture.png          <- Publication-ready Figure 1
+|   |   |-- figure2_kinematic_telemetry.png          <- Publication-ready Figure 2
+|   |   `-- figure3_comparative_performance.png      <- Publication-ready Figure 3
 |   `-- TEAM_ROSTER.json                  <- Commit attribution registry
 |-- models/
 |   `-- icu_medicine_amr.xml              <- Physical MuJoCo MJCF model
 |-- src/
-|   `-- icu_amr_controller.py             <- Kinematic simulation loop and telemetry logger
+|   |-- icu_amr_controller.py             <- Kinematic simulation loop and telemetry logger
+|   `-- test_env.py                       <- Local toolchain verification script
 `-- analytics/
+    |-- generate_paper_figures.py         <- Python script generating all 3 publication figures
     `-- icu_labor_roi.py                  <- CSBS dimensionless technoeconomic model
 ```
 
