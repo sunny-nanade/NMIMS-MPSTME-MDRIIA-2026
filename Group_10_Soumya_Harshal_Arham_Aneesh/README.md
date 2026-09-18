@@ -1,50 +1,62 @@
-# Group 10: Group_10_Soumya_Harshal_Arham_Aneesh
-**Course:** Modern Day Robotics & Its Industrial Applications (MDRIIA - 702CO0E012)  
-**Academic Year:** 2026–2027 Odd Semester  
-**Department:** Computer Science & Business Systems (CSBS)  
-**Domain Track:** Intelligent robotics assistant for precision surgical task  
+# Research Project Group 10: 7-DOF Surgical Manipulator with Damped Least Squares IK and Physiological Tremor Filtering
+
+## Academic Cohort: Robotics and Business Systems Engineering (PBL Track)
 
 ---
 
-## 🎯 Authorized Research Title
-> **"How can a 7-DOF surgical manipulator simulated in MuJoCo implement inverse kinematics Jacobian damping and low-pass tremor filtering to achieve sub-0.5 mm needle placement accuracy under simulated physiological surgeon hand tremor?"**
+## 1. Executive Research Charter
 
-### Pedagogical & Scientific Objectives
-* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body physics simulation.
-* **Autonomous Control:** Closed-loop Python PID / obstacle avoidance state machine.
-* **CSBS Business Model:** Technoeconomic evaluation based on dimensionless operational metrics, labor reallocation, and payback parity.
+### Primary Research Problem
+How can a 7-DOF surgical manipulator simulated in MuJoCo implement inverse kinematics Jacobian damping and low-pass tremor filtering to achieve sub-0.5 mm needle placement accuracy under simulated physiological surgeon hand tremor?
+
+### Core Investigation Domains
+1. **Redundant Manipulator Kinematics & Singularity Avoidance:** Implementing a 7-DOF articulated kinematic chain in MuJoCo utilizing Damped Least Squares (Levenberg-Marquardt) to prevent extreme joint velocities near kinematic singularities.
+2. **Digital Signal Processing for Physiological Tremor Suppression:** Characterizing 8-12 Hz hand tremor signals, designing low-latency discrete-time filtering (<25 ms phase lag), and executing real-time trajectory smoothing.
+3. **Sub-Millimeter Surgical Precision & Healthcare Economics:** Quantifying needle placement Root Mean Square Error (RMSE), operating room turnaround efficiency, and complication reduction using dimensionless economic metrics.
 
 ---
 
-## 👥 Student Engineering Team Matrix
+## 2. Student Engineering Matrix
 
-| Roll No | SAP ID | Student Name | Technical Specialization | Assigned Branch |
+| Roll No | Name | Technical Role | Branch Responsibility | Core Viva Defense Area |
 | :--- | :--- | :--- | :--- | :--- |
-| `E071` | `70362400085` | **Soumya Singh** | Lead Surgical Kinematics, Damped Least Squares IK & MuJoCo Modeler | `feat/e071-lead-surgical-kinema` |
-| `E033` | `70362400064` | **Harshal Khandekar** | Digital Signal Processing, Tremor Modeling & Kalman Filtering Lead | `feat/e033-digital-signal-proce` |
-| `E069` | `70362300012` | **Arham Khan** | End-Effector Precision Telemetry & Sub-Millimeter Calibration Specialist | `feat/e069-end-effector-precisi` |
-| `E076` | `70362300030` | **Aneesh Kumar** | CSBS Surgical Clinical Economics & OR Utilization Business Analyst | `feat/e076-csbs-surgical-clinic` |
-
+| **E071** | **Soumya Singh** | Lead Surgical Kinematics & Damped Least Squares IK Modeler | `feat/e071-lead-surgical-kinema` | 7-DOF redundant Jacobian, DLS damping factor, null-space projection |
+| **E033** | **Harshal Khandekar** | DSP Tremor Modeling & Discrete-Time Filtering Lead | `feat/e033-digital-signal-proce` | 8-12 Hz bandpass characterization, phase lag compensation, filter stability |
+| **E069** | **Arham Khan** | End-Effector Precision Telemetry & Sub-Millimeter Calibration | `feat/e069-end-effector-precisi` | Needle tip target registration, contact mechanics, sub-0.5 mm verification |
+| **E076** | **Aneesh Kumar** | CSBS Surgical Clinical Economics & OR Utilization Analyst | `feat/e076-csbs-surgical-clinic` | OR time cost parity, procedure revision avoidance, capital amortization |
 
 ---
 
-## 📁 Directory Structure
+## 3. Directory Architecture
+
 ```
 Group_10_Soumya_Harshal_Arham_Aneesh/
-├── README.md               <- Group research charter and milestone status
+├── README.md                                      <- Master project engineering charter
+├── RESEARCH_AND_IMPLEMENTATION_GUIDE.md           <- In-depth technical specifications and student boundaries
 ├── docs/
-│   └── TEAM_ROSTER.json    <- Machine-readable commit attribution registry
+│   ├── TEAM_ROSTER.json                           <- Machine-readable Git attribution schema
+│   ├── LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Exhaustive review of 5 peer-reviewed benchmark papers
+│   ├── RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md     <- 4-page IEEE conference publication template
+│   └── figures/                                   <- High-resolution publication diagrams (300 DPI)
+│       ├── figure1_system_architecture.png
+│       ├── figure2_kinematic_telemetry.png
+│       └── figure3_comparative_performance.png
+├── models/
+│   └── surgical_7dof_robot.xml                    <- MuJoCo MJCF 7-DOF surgical arm with needle end-effector
 ├── src/
-│   └── test_env.py         <- Local toolchain and MuJoCo verification script
-├── models/                 <- MuJoCo MJCF XML models and textures
-└── analytics/              <- CSV telemetry data and CSBS business ROI calculations
+│   ├── test_env.py                                <- Sprint 0 environment and physics compiler validator
+│   └── surgical_tremor_controller.py              <- 7-DOF kinematics, tremor injection, and filtering state machine
+└── analytics/
+    ├── surgical_or_economics.py                   <- CSBS operating room economics and procedure payback model
+    ├── generate_paper_figures.py                  <- 300 DPI visualization engine and benchmark dataset generator
+    └── surgical_precision_benchmark.csv           <- 100-trial experimental benchmark dataset
 ```
 
 ---
 
-## 📅 Sprint Onboarding Checklist (Sprint 0)
-- [ ] Every team member clones repository locally.
-- [ ] Each student creates their assigned branch (`feat/<roll_no>-...`).
-- [ ] Execute `python src/test_env.py` and confirm all checks pass.
-- [ ] Update `docs/TEAM_ROSTER.json` with actual GitHub usernames.
-- [ ] Submit and merge Sprint 0 Pull Request into `main`.
+## 4. Key Academic & Industry Milestones
+
+- **Milestone 1 (Sprint 0-1):** 7-DOF MJCF validation, joint limit verification, and zero-gravity forward kinematics tests.
+- **Milestone 2 (Sprint 2-3):** Implementation of Damped Least Squares IK, 8-12 Hz tremor injection, and low-pass filtering.
+- **Milestone 3 (Sprint 4):** 100-trial Monte Carlo benchmark evaluating sub-0.5 mm needle accuracy across filter configurations.
+- **Milestone 4 (Sprint 5):** Manuscript compilation following IEEE conference standards and reproducible Git audit defense.

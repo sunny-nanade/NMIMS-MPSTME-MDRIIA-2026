@@ -1,155 +1,123 @@
-# PBL Research & Implementation Guide — Group 10
-## 7-DOF Surgical Robotic Assistant with Tremor Low-Pass Filter
-### Modern Day Robotics & Its Industrial Applications (MDRIIA - 702CO0E012)
-**Academic Year:** 2026–2027 Odd Semester  
-**Department:** Computer Science & Business Systems (CSBS), SVKM's NMIMS MPSTME  
-**Governance Oversight:** Institutional Leadership & Academic Directorate  
+# Research and Implementation Guide: 7-DOF Surgical Manipulator with Tremor Filtering
+
+## Project: MDRIIA Group 10
+## Target Venue: IEEE TBME / IEEE CASE / AIR Conference Track
 
 ---
 
-## 🎯 Executive Problem Deconstruction & Scientific Interrogative
+## 1. Mathematical and Algorithmic Formulation
 
-### Authorized Aalborg Interrogative Research Title
-> **"How can a 7-DOF surgical manipulator simulated in MuJoCo implement inverse kinematics Jacobian damping and low-pass tremor filtering to achieve sub-0.5 mm needle placement accuracy under simulated physiological surgeon hand tremor?"**
+### 1.1 Redundant 7-DOF Kinematics & Damped Least Squares (DLS)
+The 7-DOF manipulator possesses kinematically redundant degrees of freedom for 6-DOF task space positioning:
 
-### 1. Scientific Hypotheses
-* **Null Hypothesis ($H_0$):** A 7-DOF surgical manipulator implementing Damped Least Squares IK and Butterworth/Kalman tremor filtering does not achieve sub-0.5 mm needle positioning accuracy under 8-12 Hz physiological hand tremor compared to unfiltered manual input (p >= 0.05).
-* **Alternative Hypothesis ($H_1$):** A 7-DOF redundant surgical manipulator simulated in MuJoCo utilizing Damped Least Squares inverse kinematics and an adaptive 2nd-order Butterworth low-pass filter (cutoff fc = 3.5 Hz) attenuates 8-12 Hz hand tremor by >= 85%, achieving sub-0.35 mm needle tip targeting error during simulated stereotactic neurosurgery.
+$$x_e = f(q), \quad q = [q_1, q_2, \dots, q_7]^T \in \mathbb{R}^7, \quad x_e \in SE(3)$$
 
-### 2. Experimental Variable Decomposition
-* **Independent Variables:** Tremor filtering architecture (unfiltered raw input vs 2nd-order Butterworth low-pass filter vs steady-state Kalman filter), tremor amplitude (0.5 to 2.5 mm peak-to-peak at 8-12 Hz), and singularity proximity (manipulator Jacobian manipulability index).
-* **Dependent Variables:** Needle tip positioning error (mm), root-mean-square tracking error (RMSE in mm), joint velocity saturation events, and simulated surgical precision score.
-* **Governing Academic & Industrial Standards:** IEC 60601-1 (Medical electrical equipment), ISO 80601-2-77 (Medical electrical equipment - Particular requirements for robotically assisted surgical equipment), and Riviere physiological microsurgical tremor model.
+The relationship between end-effector velocity $\dot{x}_e$ and joint velocities $\dot{q}$ is:
 
----
+$$\dot{x}_e = J(q) \dot{q}, \quad J(q) \in \mathbb{R}^{6 \times 7}$$
 
-## 👥 Student Engineering Matrix & Commit Attribution
+Near kinematic singularities, standard pseudoinverse inversion $J^\dagger = J^T (J J^T)^{-1}$ produces unbounded joint velocities. To guarantee bounded, smooth control, we employ Damped Least Squares (Levenberg-Marquardt):
 
-| Roll No | SAP ID | Student Name | Assigned Engineering Role | Git Feature Branch |
-| :--- | :--- | :--- | :--- | :--- |
-| `E071` | `70362400071` | **Soumya Singh** | Lead Surgical Kinematics, Damped Least Squares IK & MuJoCo Modeler | `feat/e071-surgical-ik` |
-| `E033` | `70362400033` | **Harshal Khandekar** | Digital Signal Processing, Tremor Modeling & Kalman Filtering Lead | `feat/e033-tremor-filter` |
-| `E069` | `70362400069` | **Arham Khan** | End-Effector Precision Telemetry & Sub-Millimeter Calibration Specialist | `feat/e069-precision-telemetry` |
-| `E076` | `70362400076` | **Aneesh Kumar** | CSBS Surgical Clinical Economics & OR Utilization Analyst | `feat/e076-surgical-economics` |
+$$J^* = J^T (J J^T + \lambda^2 I)^{-1}$$
 
+where $\lambda$ is dynamically adjusted using the manipulability measure $w(q) = \sqrt{\det(J J^T)}$:
 
----
+$$\lambda^2 = \begin{cases} 0 & \text{if } w(q) \ge w_0 \\ \lambda_0^2 \left(1 - \frac{w(q)}{w_0}\right)^2 & \text{if } w(q) < w_0 \end{cases}$$
 
-## 📦 Minimum Viable Research & Simulation Deliverables (Scope Guard)
+Joint velocities are then computed with null-space projection for secondary joint limit avoidance:
 
-To ensure high scientific rigor without overburdening 3rd-year undergraduate engineers, Group 10 must build and commit the following **4 core deliverables**:
+$$\dot{q} = J^* (\dot{x}_{\text{des}} + K_p (x_{\text{des}} - x_e)) + (I - J^* J) \dot{q}_{\text{null}}$$
 
-1. **MuJoCo MJCF Model (`simulation/mjcf/surgical_7dof_robot.xml`): 7-DOF redundant serial manipulator arm (mass = 12.5 kg, 7 revolute joints with realistic limits and damping), surgical needle end-effector (length = 0.15m, tip site with sub-millimeter coordinates), and target cranial tissue entry site.**
-2. **Python Redundant Kinematics & DSP Controller (`simulation/src/surgical_tremor_controller.py`): Kinematic control implementing Damped Least Squares (DLS) IK: delta_q = J^T * (J * J^T + lambda^2 * I)^(-1) * delta_x paired with a 2nd-order digital Butterworth low-pass filter (fc = 3.5 Hz) filtering surgeon input trajectories.**
-3. **CSBS Operating Room Economics Model (`business_model/economic_model.py`): Formulation of surgical complication avoidance ratio, operating room turnover efficiency, and clinical revision procedure reduction without currency symbols.**
-4. **Sub-Millimeter Telemetry Logger (`simulation/telemetry/sample_data/surgical_precision_telemetry.csv`): 1000 Hz logger recording needle tip position (x,y,z in mm), target trajectory error, joint torques, manipulability measure, and filtered vs unfiltered tremor amplitude.**
+### 1.2 Physiological Hand Tremor Signal Modeling
+Surgeon hand tremor combines voluntary movement with an involuntary narrowband physiological oscillation centered between 8 Hz and 12 Hz:
 
+$$p_{\text{surgeon}}(t) = p_{\text{voluntary}}(t) + p_{\text{tremor}}(t)$$
 
----
+$$p_{\text{tremor}}(t) = \sum_{k=1}^{M} A_k \sin(2\pi f_k t + \phi_k) + \eta(t)$$
 
-## 🔬 Calibrated Evaluation Scale & Sample Size Framework
+where $f_k \in [8.0, 12.0]$ Hz, $A_k \sim \mathcal{N}(0.45, 0.12)$ mm, and $\eta(t)$ is Gaussian white noise.
 
-* **Empirical Testing Scale:** N = 60 Monte Carlo simulation runs across randomized surgeon tremor noise profiles (frequencies 8 to 12 Hz, amplitudes 0.8 to 2.2 mm). Paired Student's t-test comparing needle tip targeting error with and without DLS-DSP filtering.
-* **Statistical Rigor Mandate:** Report both statistical significance ($p < 0.05$) and practical effect size (Cohen's $d > 0.8$ or $\eta^2$). Provide 95% confidence intervals on all primary telemetry metrics.
+### 1.3 Discrete-Time Low-Pass Filtering & Phase Delay Constraint
+To suppress the 8-12 Hz tremor without introducing destabilizing latency into surgical teleoperation, the filter must satisfy a strict phase delay constraint:
 
----
+$$\tau_{\text{lag}} = -\left. \frac{d\phi(\omega)}{d\omega} \right|_{\omega \to 0} \le 25 \text{ ms}$$
 
-## 📊 Publication-Ready Figures & Tables Blueprint
+A 2nd-order Butterworth low-pass digital filter is implemented:
 
-Every paper targeting IEEE/ACM conferences must incorporate these **3 figures** and **2 tables**:
+$$H(z) = \frac{b_0 + b_1 z^{-1} + b_2 z^{-2}}{1 + a_1 z^{-1} + a_2 z^{-2}}$$
 
-### Figure Specifications
-1. **Figure 1 (System Block Architecture):** Surgical Robotic Control Architecture: Tele-manipulation surgeon input master, Digital low-pass tremor filter, Damped Least Squares redundant IK solver, MuJoCo 7-DOF arm plant, and needle tracking telemetry.
-2. **Figure 2 (Kinematic Telemetry Timeseries):** Tremor Attenuation Frequency Response & Timeseries: Power spectral density (PSD) and time-domain signal showing elimination of 8-12 Hz physiological tremor while preserving deliberate slow surgical motion (< 2 Hz).
-3. **Figure 3 (Comparative Performance Plot):** Needle Targeting Error Distribution: Scatter plot of 3D needle tip trajectory around the target center, proving that 98% of positioning errors remain within the sub-0.5 mm stereotactic boundary.
+with cutoff frequency $f_c = 3.5$ Hz, providing over $18$ dB of attenuation across the 8-12 Hz band.
 
-### Table Specifications
-1. **Table 1 (Physics & Control Calibration Parameters):** 7-DOF Manipulator D-H Parameters & Filter Coefficients: Link lengths, joint torque limits, DLS damping factor (lambda = 0.05), filter cutoff frequency (fc = 3.5 Hz), sampling rate (1000 Hz), and needle geometry.
-2. **Table 2 (Comparative Performance Benchmark):** Surgical Precision Comparative Matrix: Unfiltered Surgeon Tremor vs Low-Pass Filter vs Proposed DLS-DSP System reporting Mean Tip Error (mm), Maximum Deviation (mm), Tremor Rejection Ratio (dB), and Singularity Avoidance Score.
+### 1.4 Needle Placement Accuracy Benchmark
+Needle tip position error $e_i = \|p_{\text{tip}}(i) - p_{\text{target}}\|$ is evaluated across $N$ discrete time samples:
+
+$$\text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} e_i^2} \le 0.50 \text{ mm}$$
+
+### 1.5 CSBS Operating Room Clinical Economics
+Clinical economic impact is formulated as dimensionless cost parity $\kappa$:
+
+$$\kappa = \frac{\text{OpEx}_{\text{robot}}}{\text{OpEx}_{\text{conventional}}} = \frac{C_{\text{maintenance}} + C_{\text{sterilization}} + C_{\text{technician}}}{C_{\text{revision\_procedures}} + C_{\text{or\_delay\_overhead}}}$$
+
+The capital amortization payback horizon in operational months is:
+
+$$\text{Payback Months} = \frac{K_{\text{capex}}}{1 - \kappa} \times 12$$
 
 ---
 
-## 📚 Curated Benchmark of 5 Authentic Published Papers (2021–2026)
+## 2. Individual Student Work Boundaries & Responsibilities
 
-Students must thoroughly read, cite, and benchmark their work against these **5 peer-reviewed publications**:
-
-### Paper 1: Adaptive canceling of physiological tremor for microsurgery using active instrumentation
-* **Authors:** C. N. Riviere, R. S. Rader, and N. V. Thakor
-* **Publication:** *IEEE Transactions on Biomedical Engineering, vol. 45, no. 7, pp. 839-846* (1998)
-* **DOI:** [10.1109/10.686791](https://doi.org/10.1109/10.686791)
-* **Key Takeaway & Integration in Your Project:** The gold-standard empirical model defining 8-12 Hz human hand physiological tremor spectral characteristics and adaptive filtering.
-
-### Paper 2: Micron: An actively stabilized handheld instrument for microsurgery
-* **Authors:** R. A. MacLachlan, B. C. Becker, J. C. Cuevas, and C. N. Riviere
-* **Publication:** *IEEE Transactions on Robotics, vol. 28, no. 1, pp. 195-212* (2012)
-* **DOI:** [10.1109/TRO.2011.2169634](https://doi.org/10.1109/TRO.2011.2169634)
-* **Key Takeaway & Integration in Your Project:** Supplies target sub-millimeter precision metrics and piezoelectric actuation principles for surgical tremor nullification.
-
-### Paper 3: Introduction to inverse kinematics with Jacobian transpose, pseudoinverse and damped least squares methods
-* **Authors:** S. R. Buss
-* **Publication:** *IEEE Journal of Robotics and Automation, vol. 17, no. 1-19* (2004)
-* **DOI:** [10.1109/MRA.2004.1337825](https://doi.org/10.1109/MRA.2004.1337825)
-* **Key Takeaway & Integration in Your Project:** Provides the explicit Damped Least Squares (DLS) mathematical derivation to prevent joint velocity blowups near kinematic singularities.
-
-### Paper 4: Real-time tremor attenuation using Kalman filtering and Stewart platform for robotic microsurgery
-* **Authors:** H. Song, Y. Zhang, and Z. Chen
-* **Publication:** *IEEE/ASME Transactions on Mechatronics, vol. 27, no. 5, pp. 3110-3121* (2022)
-* **DOI:** [10.1109/TMECH.2021.3134210](https://doi.org/10.1109/TMECH.2021.3134210)
-* **Key Takeaway & Integration in Your Project:** Modern comparative benchmarks for low-latency digital filtering in robotic microsurgery under 1000 Hz control loops.
-
-### Paper 5: Haptic feedback and precision dexterity in robot-assisted minimally invasive surgery
-* **Authors:** A. M. Okamura
-* **Publication:** *Current Opinion in Urology, vol. 19, no. 1, pp. 102-107* (2009)
-* **DOI:** [10.1097/MOU.0b013e32831a478c](https://doi.org/10.1097/MOU.0b013e32831a478c)
-* **Key Takeaway & Integration in Your Project:** Supplies clinical justification for sub-0.5 mm precision in delicate neurosurgical and retinal procedures.
-
-
----
-
-## 📈 2024–2026 Review Trends & Conference Target Matrix
-
-### What Premier Peer-Reviewers Are Seeking
-* IEEE TBME and IEEE BioRob reviewers demand (1) mathematically rigorous singularity avoidance (proving joint velocities do not explode), (2) sub-millimeter precision validation against real physiological tremor datasets, and (3) latency < 10ms to prevent surgeon disorientation.
-* **CSBS Technoeconomic Rigor:** All economic and operational models must be **dimensionless** (e.g. labor reallocation percentages, payback cycles, operational cost-parity ratios). Never include raw currency amounts.
-
-### Target Publication Venues
-* **Primary (National / Scopus):** Primary: IEEE INDICON / AIR
-* **Aspirant (International / IEEE CORE):**  Aspirant: IEEE International Conference on Biomedical Robotics and Biomechatronics (BioRob - CORE B) or IEEE Transactions on Biomedical Engineering.
-
----
-
-## 🤖 Tailored AI Research & Development Prompt (Copy-Paste)
-
-Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, or **Claude** to generate and refine their specific simulation code, MJCF XML, and mathematical derivations without receiving hallucinated literature:
-
-```text
-Act as a Medical Robotics and Surgical Control Specialist. Create a MuJoCo 3.x MJCF model of a 7-DOF redundant surgical serial manipulator (12.5 kg) with a 0.15m needle end-effector operating near an anatomical target tissue. In Python, simulate a surgeon's hand motion corrupted by 8-12 Hz physiological tremor (1.5 mm amplitude). Implement Damped Least Squares inverse kinematics with a 2nd-order Butterworth low-pass filter (fc = 3.5 Hz) to eliminate tremor while maintaining deliberate trajectory tracking with sub-0.5 mm accuracy. Output a 1000 Hz CSV telemetry stream recording needle tip position (mm), tracking error, and joint velocities. Exclude monetary figures.
+```
+===================================================================================================
+Student Roll & Name        Assigned Technical Module                       Primary Deliverable
+===================================================================================================
+E071 - Soumya Singh        7-DOF Kinematics & Damped Least Squares IK      models/surgical_7dof_robot.xml
+                                                                           (MJCF Robot & DLS IK Engine)
+E033 - Harshal Khandekar   DSP Tremor Modeling & Digital Filtering         src/surgical_tremor_controller.py
+                                                                           (8-12 Hz Generator & Filter)
+E069 - Arham Khan          Needle Placement Accuracy & Telemetry           src/surgical_tremor_controller.py
+                                                                           (Sub-0.5 mm RMSE Calibration)
+E076 - Aneesh Kumar        CSBS Operating Room Economics & Utilization     analytics/surgical_or_economics.py
+                                                                           (OR Payback & Revision Model)
+===================================================================================================
 ```
 
+### 2.1 E071 - Soumya Singh (Kinematics & DLS IK)
+- Build the 7-DOF articulated robot arm MJCF XML model with anatomically appropriate link lengths and joint limits.
+- Implement singularity-robust Damped Least Squares inverse kinematics with null-space optimization.
+- **Git Branch:** `feat/e071-lead-surgical-kinema`
+
+### 2.2 E033 - Harshal Khandekar (DSP Tremor & Filtering)
+- Implement the 8-12 Hz physiological tremor signal synthesizer.
+- Design and tune the 2nd-order Butterworth / exponential smoothing low-pass filter satisfying $\tau < 25$ ms.
+- **Git Branch:** `feat/e033-digital-signal-proce`
+
+### 2.3 E069 - Arham Khan (Accuracy & Telemetry)
+- Formulate target tissue registration and needle tip positioning error metrics.
+- Record 3D trajectory telemetry and verify sub-0.5 mm RMSE under simulated physiological tremor.
+- **Git Branch:** `feat/e069-end-effector-precisi`
+
+### 2.4 E076 - Aneesh Kumar (CSBS OR Economics)
+- Formulate operating room throughput models and procedure revision avoidance analytics.
+- Execute statistical hypothesis tests (Student's t-test, Cohen's d).
+- Compute dimensionless OpEx savings and capital payback horizons across surgical case volumes.
+- **Git Branch:** `feat/e076-csbs-surgical-clinic`
 
 ---
 
-## 🎓 Individual Oral Viva Defense & Technical Accountability
+## 3. Step-by-Step Implementation Roadmap
 
-During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
-
-### Soumya Bhattacharya (`B004` | SAP: `70362400054`)
-* **Specialization:** 7-DOF Serial Manipulator Kinematics & Jacobians
-* **Defense Question 1:** Explain how damped least squares (DLS) resolves kinematic singularities in redundant 7-DOF surgical arms.
-* **Defense Question 2:** How do joint limits guarantee patient safety in constrained surgical cavities?
-
-### Harshal Dharmik (`B012` | SAP: `70362400019`)
-* **Specialization:** Physiological Tremor Filtering & Kalman Filtering Lead
-* **Defense Question 1:** How does a real-time Butterworth/Kalman filter isolate 8-12 Hz hand tremor from intended surgical trajectory?
-* **Defense Question 2:** What phase lag constraints must be met to avoid surgeon tele-operation instability?
-
-### Arham Doshi (`B014` | SAP: `70362400020`)
-* **Specialization:** Haptic Force Feedback & Tissue Compliance Modeler
-* **Defense Question 1:** How do you model non-linear soft tissue elasticity and puncture resistance in MuJoCo?
-* **Defense Question 2:** Explain how force-limiting prevents accidental organ puncture.
-
-### Aneesh Manish Nadkarni (`B038` | SAP: `70362400008`)
-* **Specialization:** CSBS Surgical Efficiency & Clinical Outcome Analyst
-* **Defense Question 1:** Model the statistical reduction in surgical revision rates due to sub-millimeter precision.
-* **Defense Question 2:** Derive the operating room utilization efficiency gain.
-
+1. **Sprint 0: Setup & Verification**
+   - Run `python src/test_env.py` to confirm Python 3.9+, NumPy, SciPy, and Matplotlib.
+   - Compile `models/surgical_7dof_robot.xml` in MuJoCo.
+2. **Sprint 1: Forward Kinematics & DLS Inversion**
+   - Verify 7-DOF forward kinematics and Jacobian matrix rank.
+   - Run reaching trajectories across surgical workspace limits without singularity blow-ups.
+3. **Sprint 2: Tremor Simulation & Filter Evaluation**
+   - Run `python src/surgical_tremor_controller.py` to compare unfiltered vs filtered needle trajectories.
+   - Confirm tremor attenuation $> 15$ dB with phase latency $< 25$ ms.
+4. **Sprint 3: Benchmarking and Economics Simulation**
+   - Run `python analytics/generate_paper_figures.py` to produce benchmark CSV and 300 DPI figures.
+   - Run `python analytics/surgical_or_economics.py` to evaluate operating room economics.
+5. **Sprint 4: Paper Preparation & Git Push**
+   - Draft manuscript sections using `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`.
+   - Run audit script to guarantee zero emojis, zero currency, and strict compliance.
