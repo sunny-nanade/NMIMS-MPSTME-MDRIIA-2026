@@ -1,14 +1,77 @@
-<mujoco model="hazardous_terrain_ugv">
+<mujoco model="hazardous_terrain_skid_steer_ugv">
   <compiler angle="radian" coordinate="local"/>
-  <option gravity="0 0 -9.81" timestep="0.002"/>
+  <option gravity="0 0 -9.81" timestep="0.002" integrator="RK4"/>
+
+  <visual>
+    <headlight ambient="0.4 0.4 0.4" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2"/>
+    <rgba fog="0.8 0.75 0.7 1"/>
+  </visual>
+
+  <default>
+    <joint damping="1.5" armature="0.02"/>
+    <geom friction="0.85 0.01 0.001" solref="0.01 1" solimp="0.9 0.95 0.001"/>
+    <motor ctrlrange="-80 80" ctrllimited="true"/>
+  </default>
+
   <worldbody>
-    <geom name="floor" type="plane" size="20 10 0.1" rgba="0.4 0.35 0.3 1" friction="1.2 0.01 0.001"/>
-    <!-- Rubble obstacles -->
-    <geom name="rock1" type="box" size="0.3 0.4 0.15" pos="2 0.5 0.15" rgba="0.5 0.5 0.5 1"/>
-    <body name="ugv_base" pos="0 0 0.25">
-      <freejoint name="ugv_joint"/>
-      <geom name="chassis" type="box" size="0.45 0.30 0.15" rgba="0.9 0.5 0.1 1" mass="28.0"/>
-      <site name="gas_sensor_site" pos="0.4 0 0.15" size="0.03" rgba="1 1 0 1"/>
+    <!-- Uneven Hazardous Ground Surface -->
+    <geom name="ground_plane" type="plane" size="20 15 0.1" rgba="0.38 0.34 0.30 1" friction="0.9 0.01 0.001"/>
+
+    <!-- Rubble Obstacle Field (Concrete Blocks & Step Heights) -->
+    <geom name="rubble_block1" type="box" size="0.35 0.45 0.08" pos="2.5 0.8 0.08" rgba="0.55 0.52 0.50 1"/>
+    <geom name="rubble_block2" type="box" size="0.40 0.30 0.12" pos="3.8 -0.6 0.12" rgba="0.50 0.48 0.46 1"/>
+    <geom name="rubble_step" type="box" size="0.50 1.20 0.10" pos="5.5 0.2 0.10" rgba="0.48 0.45 0.42 1"/>
+    <geom name="chemical_tank" type="cylinder" size="0.40 0.60" pos="7.0 -1.0 0.60" rgba="0.85 0.70 0.20 1"/>
+    <geom name="hazard_pipe" type="cylinder" size="0.08 1.50" pos="6.0 1.2 0.08" quat="0.7071 0 0 0.7071" rgba="0.65 0.25 0.20 1"/>
+
+    <!-- UGV Skid-Steer Mobile Base -->
+    <body name="ugv_chassis" pos="0 0 0.22">
+      <freejoint name="ugv_root"/>
+      <geom name="body_hull" type="box" size="0.42 0.28 0.10" rgba="0.25 0.28 0.32 1" mass="22.0"/>
+
+      <!-- Top Equipment Mast & LiDAR Site -->
+      <body name="sensor_mast" pos="0.10 0 0.12">
+        <geom name="mast_geom" type="cylinder" size="0.06 0.08" rgba="0.15 0.15 0.15 1" mass="1.5"/>
+        <site name="lidar_sensor_site" pos="0 0 0.09"/>
+        <site name="gas_detector_site" pos="0.15 0 0"/>
+      </body>
+
+      <!-- Front Left Wheel -->
+      <body name="wheel_fl" pos="0.25 0.32 -0.05">
+        <joint name="joint_wheel_fl" type="hinge" axis="0 1 0"/>
+        <geom name="geom_wheel_fl" type="cylinder" size="0.14 0.04" quat="0.7071 0.7071 0 0" rgba="0.1 0.1 0.1 1" mass="2.0"/>
+      </body>
+
+      <!-- Front Right Wheel -->
+      <body name="wheel_fr" pos="0.25 -0.32 -0.05">
+        <joint name="joint_wheel_fr" type="hinge" axis="0 1 0"/>
+        <geom name="geom_wheel_fr" type="cylinder" size="0.14 0.04" quat="0.7071 0.7071 0 0" rgba="0.1 0.1 0.1 1" mass="2.0"/>
+      </body>
+
+      <!-- Rear Left Wheel -->
+      <body name="wheel_rl" pos="-0.25 0.32 -0.05">
+        <joint name="joint_wheel_rl" type="hinge" axis="0 1 0"/>
+        <geom name="geom_wheel_rl" type="cylinder" size="0.14 0.04" quat="0.7071 0.7071 0 0" rgba="0.1 0.1 0.1 1" mass="2.0"/>
+      </body>
+
+      <!-- Rear Right Wheel -->
+      <body name="wheel_rr" pos="-0.25 -0.32 -0.05">
+        <joint name="joint_wheel_rr" type="hinge" axis="0 1 0"/>
+        <geom name="geom_wheel_rr" type="cylinder" size="0.14 0.04" quat="0.7071 0.7071 0 0" rgba="0.1 0.1 0.1 1" mass="2.0"/>
+      </body>
     </body>
   </worldbody>
+
+  <actuator>
+    <motor name="act_motor_fl" joint="joint_wheel_fl" ctrlrange="-80 80"/>
+    <motor name="act_motor_fr" joint="joint_wheel_fr" ctrlrange="-80 80"/>
+    <motor name="act_motor_rl" joint="joint_wheel_rl" ctrlrange="-80 80"/>
+    <motor name="act_motor_rr" joint="joint_wheel_rr" ctrlrange="-80 80"/>
+  </actuator>
+
+  <sensor>
+    <rangefinder name="rf_front" site="lidar_sensor_site"/>
+    <accelerometer name="ugv_imu_accel" site="lidar_sensor_site"/>
+    <gyro name="ugv_imu_gyro" site="lidar_sensor_site"/>
+  </sensor>
 </mujoco>

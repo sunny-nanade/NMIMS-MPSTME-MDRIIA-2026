@@ -1,49 +1,61 @@
-# Group 09: Group_09_Arnav_Vihan_Pratik
-**Course:** Modern Day Robotics & Its Industrial Applications (MDRIIA - 702CO0E012)  
-**Academic Year:** 2026–2027 Odd Semester  
-**Department:** Computer Science & Business Systems (CSBS)  
-**Domain Track:** UGV for defence and hazardous applications  
+# Research Project Group 09: Autonomous Hazardous Terrain UGV with LiDAR Traversability Cost-Mapping
+
+## Academic Cohort: Robotics and Business Systems Engineering (PBL Track)
 
 ---
 
-## 🎯 Authorized Research Title
-> **"How can an autonomous ground vehicle utilizing simulated LiDAR rangefinders and traversability cost-mapping in MuJoCo navigate unknown unstructured hazardous terrain while reducing teleoperation cognitive workload and communication latency?"**
+## 1. Executive Research Charter
 
-### Pedagogical & Scientific Objectives
-* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body physics simulation.
-* **Autonomous Control:** Closed-loop Python PID / obstacle avoidance state machine.
-* **CSBS Business Model:** Technoeconomic evaluation based on dimensionless operational metrics, labor reallocation, and payback parity.
+### Primary Research Problem
+How can an autonomous ground vehicle utilizing simulated LiDAR rangefinders and traversability cost-mapping in MuJoCo navigate unknown unstructured hazardous terrain while reducing teleoperation cognitive workload and communication latency?
+
+### Core Investigation Domains
+1. **Skid-Steer Multi-Body Physics & Terrain Dynamics:** Simulating 4-wheel/tracked vehicle mobility across uneven rubble, sharp grade transitions, and varying friction interfaces inside MuJoCo.
+2. **LiDAR Elevation Mapping & Traversability Estimation:** Real-time geometric ground filtering, slope and step-height extraction, and 2.5D traversability cost-grid generation.
+3. **Shared Autonomy & Human-in-the-Loop Operations:** Quantifying operator cognitive workload reduction (NASA-TLX metrics) and teleoperation performance degradation under variable network communication latency.
 
 ---
 
-## 👥 Student Engineering Team Matrix
+## 2. Student Engineering Matrix
 
-| Roll No | SAP ID | Student Name | Technical Specialization | Assigned Branch |
+| Roll No | Name | Technical Role | Branch Responsibility | Core Viva Defense Area |
 | :--- | :--- | :--- | :--- | :--- |
-| `E064` | `70362400067` | **Arnav Saurabh Surve** | Lead UGV Skid-Steer Dynamics & MuJoCo Terrain Modeler | `feat/e064-lead-ugv-skid-steer-` |
-| `E070` | `70362400086` | **Vihan Shripad Joshi** | LiDAR Perception, 3D Elevation Mapping & Obstacle Segmentation Lead | `feat/e070-lidar-perception-3d-` |
-| `E073` | `70362300032` | **Pratik Mangesh Gaikwad** | CSBS Hazardous Operations Safety & Teleoperation Latency Analyst | `feat/e073-csbs-hazardous-opera` |
-
+| **E064** | **Arnav Saurabh Surve** | Lead UGV Skid-Steer Dynamics & MuJoCo Terrain Modeler | `feat/e064-lead-ugv-skid-steer-` | Skid-steer contact dynamics, wheel slippage, pitch/roll stability |
+| **E070** | **Vihan Shripad Joshi** | LiDAR Perception, 3D Elevation Mapping & Obstacle Segmentation Lead | `feat/e070-lidar-perception-3d-` | Raycast processing, 2.5D elevation grid, traversability cost metrics |
+| **E073** | **Pratik Mangesh Gaikwad** | CSBS Hazardous Operations Safety & Teleoperation Latency Analyst | `feat/e073-csbs-hazardous-opera` | Shared autonomy supervisory control, latency injection, NASA-TLX economics |
 
 ---
 
-## 📁 Directory Structure
+## 3. Directory Architecture
+
 ```
 Group_09_Arnav_Vihan_Pratik/
-├── README.md               <- Group research charter and milestone status
+├── README.md                                      <- Master project engineering charter
+├── RESEARCH_AND_IMPLEMENTATION_GUIDE.md           <- In-depth technical specifications and student boundaries
 ├── docs/
-│   └── TEAM_ROSTER.json    <- Machine-readable commit attribution registry
+│   ├── TEAM_ROSTER.json                           <- Machine-readable Git attribution schema
+│   ├── LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Exhaustive review of 5 peer-reviewed benchmark papers
+│   ├── RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md     <- 4-page IEEE conference publication template
+│   └── figures/                                   <- High-resolution publication diagrams (300 DPI)
+│       ├── figure1_system_architecture.png
+│       ├── figure2_kinematic_telemetry.png
+│       └── figure3_comparative_performance.png
+├── models/
+│   └── hazardous_terrain_ugv.xml                  <- MuJoCo MJCF UGV simulation with uneven rubble terrain
 ├── src/
-│   └── test_env.py         <- Local toolchain and MuJoCo verification script
-├── models/                 <- MuJoCo MJCF XML models and textures
-└── analytics/              <- CSV telemetry data and CSBS business ROI calculations
+│   ├── test_env.py                                <- Sprint 0 environment and physics compiler validator
+│   └── rough_terrain_recon_controller.py          <- UGV navigation, LiDAR mapping, and shared autonomy loop
+└── analytics/
+    ├── hazardous_recon_economics.py               <- CSBS industrial safety, cognitive workload & cost parity
+    ├── generate_paper_figures.py                  <- 300 DPI visualization engine and benchmark dataset generator
+    └── ugv_traversability_benchmark.csv           <- 100-trial experimental benchmark dataset
 ```
 
 ---
 
-## 📅 Sprint Onboarding Checklist (Sprint 0)
-- [ ] Every team member clones repository locally.
-- [ ] Each student creates their assigned branch (`feat/<roll_no>-...`).
-- [ ] Execute `python src/test_env.py` and confirm all checks pass.
-- [ ] Update `docs/TEAM_ROSTER.json` with actual GitHub usernames.
-- [ ] Submit and merge Sprint 0 Pull Request into `main`.
+## 4. Key Academic & Industry Milestones
+
+- **Milestone 1 (Sprint 0-1):** UGV chassis and multi-body terrain MJCF validation, wheel friction calibration, and kinematic unit tests.
+- **Milestone 2 (Sprint 2-3):** Implementation of LiDAR rangefinder raycasting, local 2.5D elevation mapping, and cost-grid generation.
+- **Milestone 3 (Sprint 4):** 100-trial Monte Carlo benchmark evaluation across benign, moderate, and extreme terrain roughness.
+- **Milestone 4 (Sprint 5):** Manuscript compilation following IEEE conference standards and reproducible Git audit defense.
