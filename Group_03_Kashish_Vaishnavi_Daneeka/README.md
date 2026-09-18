@@ -1,108 +1,110 @@
-# Autonomous Last-Mile Ground AED Delivery Robot for Sudden Cardiac Arrest
-
-## Project Charter and Research Scaffolding
-**Group ID:** MDRIIA Group 03  
-**Project Track:** Modern Day Robotics and Industrial Applications  
+# MDRIIA_GROUP_03: Autonomous Last-Mile Ground AED Delivery Robot for Sudden Cardiac Arrest
 
 ---
 
-## 1. Problem Statement and Interrogative Research Question
+## 1. Authorized Research Title & Problem Statement
 
-Out-of-hospital cardiac arrest (OHCA) is a time-critical medical emergency where bystander defibrillation before emergency medical service (EMS) arrival is the single greatest determinant of survival. In dense metropolitan areas, roadway traffic congestion routinely extends ambulance response intervals to 15 to 22 minutes. Because myocardial viability and resuscitation probability decay at 7% to 10% per minute without defibrillation, conventional roadway ambulances cannot reach victims within the critical 5-minute resuscitation window in over 85% of urban incidents.
+> "Can an autonomous last-mile ground AED delivery vehicle simulated in MuJoCo reduce time-to-first-shock below urban ambulance congestion delays (15-20 minutes), given that sudden cardiac arrest survival drops 7-10% for every minute without defibrillation?"
 
-### Aalborg Interrogative Research Title
-> **"Can an autonomous last-mile ground AED delivery vehicle simulated in MuJoCo reduce time-to-first-shock below urban ambulance congestion delays (15-20 minutes), given that sudden cardiac arrest survival drops 7-10% for every minute without defibrillation?"**
-
----
-
-## 2. Research Hypotheses and Engineering Scope
-
-### Scientific Hypotheses
-* **Null Hypothesis (H0):** An autonomous ground AED delivery vehicle with independent suspension cannot navigate simulated urban obstacles, curbs, and pedestrian corridors to achieve delivery times statistically superior to congested roadway ambulances (p >= 0.05).
-* **Alternative Hypothesis (H1):** An autonomous ground AED delivery vehicle simulated in MuJoCo successfully negotiates urban sidewalk geometry, climbs 12 cm vertical curbs, maintains payload acceleration shock below 3.0g, and delivers an AED within 5.0 minutes, yielding an estimated survival probability improvement exceeding 250% relative to roadway ambulance dispatch (p < 0.001).
+### Core Engineering Focus
+* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body dynamic physics simulation (`models/aed_delivery_amr.xml`).
+* **Autonomous Control:** Closed-loop Python control architecture with student implementation boundaries (`src/aed_navigation_controller.py`).
+* **Technoeconomic Evaluation:** Dimensionless CSBS operational economics and return on investment model (`analytics/cardiac_survival_economics.py`).
+* **Empirical Validation:** Reproducible benchmark trials and statistical hypothesis testing (`analytics/aed_delivery_benchmark.csv`).
 
 ---
 
-## 3. Foundational Literature Benchmarks
+## 2. Student Engineering Team Matrix
 
-The research foundation for this project is established upon five peer-reviewed publications:
-
-1. **Schierbeck et al. (2023)** - *The Lancet Digital Health*  
-   *Title:* Drone delivery of automated external defibrillators compared with ambulance arrival in real-life suspected out-of-hospital cardiac arrests: a prospective observational study  
-   *DOI:* [10.1016/S2589-7500(23)00161-9](https://doi.org/10.1016/S2589-7500(23)00161-9)  
-   *Key Baseline:* Real-world automated AED delivery arrived before EMS in 67% of cases, saving 1 min 52 s in transit; highlights the need for all-weather ground delivery where drones cannot fly.
-
-2. **Tsao et al. (2023)** - *Circulation (American Heart Association)*  
-   *Title:* Heart Disease and Stroke Statistics—2023 Update: A Report From the American Heart Association  
-   *DOI:* [10.1161/CIR.0000000000001123](https://doi.org/10.1161/CIR.0000000000001123)  
-   *Key Baseline:* Quantifies cardiac arrest survival decay of 7% to 10% per minute of defibrillation delay.
-
-3. **Naess et al. (2024)** - *PLOS ONE*  
-   *Title:* Using machine learning to assess the extent of busy ambulances and its impact on ambulance response times: A retrospective observational study  
-   *DOI:* [10.1371/journal.pone.0296308](https://doi.org/10.1371/journal.pone.0296308)  
-   *Key Baseline:* Demonstrates 35.0% urban ambulance unavailability and median response delays of 15.0 to 22.0 minutes during high congestion.
-
-4. **Weinberg et al. (2023)** - *Multimodal Technologies and Interaction*  
-   *Title:* Sharing the Sidewalk: Observing Delivery Robot Interactions with Pedestrians during a Pilot in Pittsburgh, PA  
-   *DOI:* [10.3390/mti7050053](https://doi.org/10.3390/mti7050053)  
-   *Key Baseline:* Analyzes sidewalk delivery vehicle clearances (0.60 to 1.20 m) and pedestrian avoidance dynamics.
-
-5. **Larsen et al. (1993)** - *Annals of Emergency Medicine*  
-   *Title:* Predicting survival from out-of-hospital cardiac arrest: A graphic model  
-   *DOI:* [10.1016/s0196-0644(05)81302-2](https://doi.org/10.1016/s0196-0644(05)81302-2)  
-   *Key Baseline:* Defines mathematical resuscitation survival decay: P(survival) = 0.67 - 0.023 * t_CPR - 0.046 * t_defib.
-
----
-
-## 4. Student Engineering Team Matrix
-
-| Roll No | SAP ID | Student Name | Assigned Engineering Role | Git Feature Branch | Individual Deliverable Focus |
+| Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **E026** | `70362400060` | Kashish Praveen Jain | Lead Vehicle Suspension Dynamics & MuJoCo Modeler | `feat/e026-suspension-amr` | MJCF 4-wheel chassis, suspension spring-dampers, curb contact dynamics |
-| **E046** | `70362400074` | Vaishnavi Parashar | Navigation, Curb-Climbing & Obstacle Guidance Lead | `feat/e046-curb-navigation` | Reactive APF/VFH navigation, torque-vectoring curb climbing, telemetry logger |
-| **E057** | `70362400081` | Daneeka Abhijeet Roy | Emergency Medical Logistics & Survival Decay Analyst | `feat/e057-cardiac-survival` | Larsen survival model, congestion delay distributions, QALY economics |
+| `E026` | `70362400060` | **Kashish Praveen Jain** | Lead Autonomous Navigation & Traffic Congestion Modeling Specialist | `feat/e026-lead-autonomous-navi` | Sidewalk navigation dynamics, pedestrian crowd evasion, dynamic routing through urban choke points, and arrival latency budgets. |
+| `E046` | `70362400074` | **Vaishnavi Parashar** | MuJoCo Dynamic Chassis Modeler & Path Optimization Engineer | `feat/e046-mujoco-dynamic-chass` | Four-wheel independent suspension, curb-climbing dynamics, shock isolation for biphasic AED pads, and contact friction stability. |
+| `E057` | `70362400081` | **Daneeka Abhijeet Roy** | Emergency Medical Logistics & Cost-Effectiveness Business Analyst | `feat/e057-emergency-medical-lo` | Cardiac arrest survival decay modeling (7-10%/min), time-to-first-shock reduction, EMS fleet offloading ratios, and payback parity. |
 
 ---
 
-## 5. Repository Directory Architecture
+## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+
+The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
+
+| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Schierbeck et al. (2023)** | *Drone delivery of automated external defibrillators compared with ambulance arrival in out-of-hospital cardiac arrest* | The Lancet Digital Health | [https://doi.org/10.1016/S2589-7500(23)00161-9](https://doi.org/10.1016/S2589-7500(23)00161-9) | `Median time savings $\Delta t = 1\text{ min }...` | Daneeka Abhijeet Roy (E057) |
+| 2 | **Tsao et al. (2023)** | *Heart Disease and Stroke Statistics-2023 Update: A Report From the American Heart Association* | Circulation | [https://doi.org/10.1161/CIR.0000000000001123](https://doi.org/10.1161/CIR.0000000000001123) | `Resuscitation decay rate $\frac{dS}{dt} = -k ...` | Daneeka Abhijeet Roy (E057) & Kashish Praveen Jain (E026) |
+| 3 | **Naess et al. (2024)** | *Using machine learning to assess the extent of busy ambulance delays* | PLOS ONE | [https://doi.org/10.1371/journal.pone.0296308](https://doi.org/10.1371/journal.pone.0296308) | `Urban delay distribution $P(t_{\text{EMS}} > ...` | Kashish Praveen Jain (E026) |
+| 4 | **Weinberg et al. (2023)** | *Sharing the Sidewalk: Observing Delivery Robot Interactions with Pedestrians* | Multimodal Technologies and Interaction | [https://doi.org/10.3390/mti7050053](https://doi.org/10.3390/mti7050053) | `Comfort lateral separation $d_{\text{sep}} \g...` | Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046) |
+| 5 | **Larsen et al. (1993)** | *Predicting survival from out-of-hospital cardiac arrest: A graphic model* | Annals of Emergency Medicine | [https://doi.org/10.1016/s0196-0644(05)81302-2](https://doi.org/10.1016/s0196-0644(05)81302-2) | `Survival model: $S(t_{\text{cpr}}, t_{\text{d...` | Vaishnavi Parashar (E046) & Daneeka Abhijeet Roy (E057) |
+| 6 | **Tripathi et al. (2020)** | *Circadian variation of in-hospital cardiac arrest* | Resuscitation | [https://doi.org/10.1016/j.resuscitation.2020.08.014](https://doi.org/10.1016/j.resuscitation.2020.08.014) | `Adjusted survival odds ratio $\text{OR} = \ex...` | Vaishnavi Parashar (E046) & Kashish Praveen Jain (E026) |
+
+For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
+* [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
+* [`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`](docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md)
+
+---
+
+## 4. Repository Directory Architecture
 
 ```
-Group_03_Kashish_Vaishnavi_Daneeka/
-|-- README.md                                  <- Project charter, literature, and student matrix
-|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md       <- Physics formulations, control equations, viva prep
+.
+|-- README.md                                          <- Front-page research charter, student roster & literature
+|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md               <- Comprehensive technical engineering guide
 |-- docs/
-|   |-- TEAM_ROSTER.json                       <- Machine-readable member identity schema
-|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Exhaustive review of 5 verified papers
-|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md <- IEEE/ACM 4-page conference template
+|   |-- TEAM_ROSTER.json                               <- Machine-readable team configuration
+|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md   <- Exhaustive literature dossier (6 verified papers)
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md         <- 4-page IEEE conference manuscript blueprint
 |   `-- figures/
-|       |-- figure1_system_architecture.png    <- High-res system block diagram
-|       |-- figure2_kinematic_telemetry.png    <- High-res curb traversal & shock plot
-|       `-- figure3_comparative_performance.png <- High-res survival curve & latency comparison
+|       |-- figure1_system_architecture.png            <- 300 DPI system architecture diagram
+|       |-- figure2_kinematic_telemetry.png            <- 300 DPI kinematics and simulation telemetry
+|       `-- figure3_comparative_performance.png        <- 300 DPI comparative benchmark visualization
 |-- models/
-|   `-- aed_delivery_amr.xml                   <- MuJoCo MJCF physics model with suspension & curb
+|   |-- .gitkeep
+|   `-- aed_delivery_amr.xml                                    <- MuJoCo MJCF simulation model
 |-- src/
-|   |-- aed_navigation_controller.py           <- Closed-loop control script with student TODO blocks
-|   `-- test_env.py                            <- Toolchain verification and test step script
+|   |-- test_env.py                                    <- Physics validation & environment tester
+|   `-- aed_navigation_controller.py                                      <- Autonomous control loop (# TODO student boundaries)
 `-- analytics/
-    |-- aed_delivery_benchmark.csv             <- N=80 trial simulation dataset
-    |-- cardiac_survival_economics.py          <- Health economics & survival decay analysis
-    `-- generate_paper_figures.py              <- Automation script generating publication figures
+    |-- .gitkeep
+    |-- cardiac_survival_economics.py                                      <- CSBS dimensionless technoeconomic model
+    |-- generate_paper_figures.py                      <- Standalone 300 DPI publication figure generator
+    `-- aed_delivery_benchmark.csv                                    <- Empirical benchmark trial dataset
 ```
 
 ---
 
-## 6. Pedagogical Boundaries: Guidance vs Student Ownership
+## 5. Pedagogical Boundaries: Guidance vs Student Ownership
 
-To ensure academic integrity and genuine engineering development:
+To ensure academic rigor and authentic student learning, this repository enforces strict boundaries between scaffolding and student deliverables:
 
-1. **Provided Scaffolding:**
-   * Mathematical foundations, kinematic equations, and survival decay models.
-   * Curated literature dossier with verified DOIs and benchmark parameters.
-   * Starter MuJoCo MJCF physics model skeleton and toolchain verification script.
-   * Manuscript blueprint and figure templates for IEEE/ACM publication.
+* **Provided by Course Scaffolding:**
+  * Validated physical model architecture in MuJoCo MJCF (`models/aed_delivery_amr.xml`).
+  * Verification toolchain and smoke test script (`src/test_env.py`).
+  * Literature foundation, mathematical formulations, and conference paper blueprint (`docs/`).
+  * Dimensionless technoeconomic framework (`analytics/cardiac_survival_economics.py`).
+* **Student Technical Deliverables (Required for Evaluation):**
+  * Implement and tune the control algorithm in `src/aed_navigation_controller.py` (filling all marked `# TODO [Student Roll / Name]` blocks).
+  * Run physics simulation trials to collect and expand empirical data in `analytics/aed_delivery_benchmark.csv`.
+  * Re-run `analytics/generate_paper_figures.py` to regenerate publication figures with live experimental telemetry.
+  * Author the final 4-page IEEE conference paper in `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend individual Git commits during the oral viva.
 
-2. **Mandatory Student Contributions (Students Must Implement and Commit):**
-   * Students must implement their respective `# TODO` algorithmic blocks in `src/aed_navigation_controller.py`.
-   * Students must tune suspension damping (`cs`), spring stiffness (`ks`), and tire friction in `models/aed_delivery_amr.xml`.
-   * Students must execute Monte Carlo simulation runs ($N \ge 80$), record actual physical telemetry, and update `analytics/aed_delivery_benchmark.csv`.
-   * Students must draft and complete the full text of `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend it in oral vivas.
+---
+
+## 6. Sprint 0 Onboarding & Physics Environment Verification
+
+Verify your local Python and MuJoCo simulation environment:
+
+```powershell
+# Step 1: Clone repository and navigate to group directory
+git clone <repository_url>
+cd <repository_root>/Group_03_Kashish_Vaishnavi_Daneeka
+
+# Step 2: Checkout your individual feature branch
+# Example for lead student:
+git checkout -b feat/e026-lead-autonomous-navi
+
+# Step 3: Run environment smoke test
+python src/test_env.py
+
+# Step 4: Verify 300 DPI publication figures
+python analytics/generate_paper_figures.py
+```

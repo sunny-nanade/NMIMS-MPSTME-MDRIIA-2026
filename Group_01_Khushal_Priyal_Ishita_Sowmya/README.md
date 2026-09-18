@@ -1,88 +1,111 @@
-# Group 01: Autonomous Robot for Delivery of Critical Medicines in ICUs
+# MDRIIA_GROUP_01: Autonomous Mobile Robot for Critical Medicine Delivery in ICUs
 
 ---
 
-## 1. Authorized Research Title
+## 1. Authorized Research Title & Problem Statement
+
 > "To what extent can an autonomous mobile medicine-delivery robot (simulated in MuJoCo with dynamic obstacle avoidance) reduce ICU nurses' non-patient-facing logistics transit time and optimize labor reallocation, where clinical studies document nurses spending approximately 28% of their shift on supply retrieval?"
 
 ### Core Engineering Focus
-* Physics and Kinematics: Google DeepMind MuJoCo multi-body physics simulation with unicycle drive, passive casters, and anti-slosh liquid payload dynamics.
-* Autonomous Control: Dynamic Window Approach (DWA) local trajectory planning, four-quadrant heading error normalization, and dynamic pedestrian evasion.
-* CSBS Technoeconomic Analysis: Clinical workflow model, nursing transit time reduction, dimensionless operational cost parity ratio, and capital payback horizon.
+* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body dynamic physics simulation (`models/icu_medicine_amr.xml`).
+* **Autonomous Control:** Closed-loop Python control architecture with student implementation boundaries (`src/icu_amr_controller.py`).
+* **Technoeconomic Evaluation:** Dimensionless CSBS operational economics and return on investment model (`analytics/icu_labor_roi.py`).
+* **Empirical Validation:** Reproducible benchmark trials and statistical hypothesis testing (`analytics/icu_medicine_delivery_benchmark.csv`).
 
 ---
 
 ## 2. Student Engineering Team Matrix
 
-| Roll No | SAP ID | Student Name | Technical Specialization | Assigned Branch |
-| :--- | :--- | :--- | :--- | :--- |
-| `E006` | `70362400061` | **Khushal Asnani** | Lead Robotics Systems Architect & MuJoCo Physics Modeler | `feat/e006-amr-chassis` |
-| `E016` | `70362400041` | **Priyal Kaushal Deputy** | Autonomous Navigation & Obstacle Avoidance Specialist | `feat/e016-navigation-planner` |
-| `E054` | `70362400038` | **Ishita Ranjan** | CSBS Healthcare Systems & Time-Motion Workflow Analyst | `feat/e054-csbs-workflow` |
-| `E060` | `70362400055` | **Sowmya Satish** | Telemetry, Quality Assurance & Empirical Validation Lead | `feat/e060-validation-qa` |
+| Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `E006` | `70362400061` | **Khushal Asnani** | Lead Robotics Systems Architect & MuJoCo Physics Modeler | `feat/e006-lead-robotics-system` | Differential drive chassis dynamics, passive caster ball friction, and anti-slosh liquid medicine payload mechanics. |
+| `E016` | `70362400041` | **Priyal Kaushal Deputy** | Autonomous Navigation, SLAM & Dynamic Collision Avoidance Specialist | `feat/e016-autonomous-navigatio` | Dynamic Window Approach (DWA) local trajectory planning, four-quadrant heading error normalization, and reactive clearance in crowded ICU corridors. |
+| `E054` | `70362400038` | **Ishita Ranjan** | CSBS Clinical Workflow & Time-Motion ROI Business Analyst | `feat/e054-csbs-clinical-workfl` | Time-and-motion clinical workflow modeling, non-patient-facing transit reduction, and operational cost parity. |
+| `E060` | `70362400055` | **Sowmya Satish** | Sensor Telemetry, Quality Assurance & Empirical Validation Lead | `feat/e060-sensor-telemetry-qua` | Telemetry logging, sensor noise modeling (ultrasonic/LiDAR), and statistical hypothesis testing (N >= 50 runs). |
 
 ---
 
-## 3. Foundational Literature and Academic Benchmarks (5 Verified Papers)
+## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
 
-Students must study, benchmark against, and cite these 5 authentic peer-reviewed papers. See [docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md](./docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md) for the complete mathematical extraction and gap analysis.
+The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
-1. **Hospital Logistics AMR Architecture (2026):**
-   * *Dei et al.*, "Design and Performance Evaluation of a Modular Mobile Robot for Autonomous Hospital Logistics", *IEEE Transactions on Automation Science and Engineering*, vol. 23, pp. 7748–7763, 2026.
-   * DOI: [10.1109/TASE.2026.3674356](https://doi.org/10.1109/TASE.2026.3674356)
-   * Focus: Physical modular HOSBOT chassis, doorway clearance bounds (1.20 m), docking repeatability (+/- 15 mm).
+| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Sujan et al. (2024)** | *Navigation benchmarking for autonomous mobile robots in hospital environment* | Scientific Reports | [https://doi.org/10.1038/s41598-024-69040-z](https://doi.org/10.1038/s41598-024-69040-z) | `Path curvature $\kappa(s) = \frac{x'y'' - y'x...` | Khushal Asnani (E006) & Priyal Kaushal Deputy (E016) |
+| 2 | **Alonso-Mora et al. (2023)** | *The Multi-Trip Autonomous Mobile Robot Scheduling Problem with Time Windows in a Hospital Environment* | Applied Sciences | [https://doi.org/10.3390/app13179879](https://doi.org/10.3390/app13179879) | `$\min \sum_{k \in K} \sum_{(i,j) \in A} c_{ij...` | Ishita Ranjan (E054) & Sowmya Satish (E060) |
+| 3 | **Terashima et al. (2020)** | *Controlling Liquid Slosh by Applying Optimal Operating-Speed-Dependent Motion Profiles* | Robotics | [https://doi.org/10.3390/robotics9010018](https://doi.org/10.3390/robotics9010018) | `Slosh angle dynamics $\ddot{\theta} + \frac{g...` | Khushal Asnani (E006) |
+| 4 | **Bekker et al. (2021)** | *How do nurses spend their time? A time and motion analysis of nursing activities in an internal medicine ward* | Journal of Advanced Nursing | [https://doi.org/10.1111/jan.14935](https://doi.org/10.1111/jan.14935) | `Transit fraction $\Phi_{\text{transit}} = \fr...` | Ishita Ranjan (E054) |
+| 5 | **Fox, Burgard, & Thrun (1997)** | *The dynamic window approach to collision avoidance* | IEEE Robotics & Automation Magazine | [https://doi.org/10.1109/100.580977](https://doi.org/10.1109/100.580977) | `$G(v, \omega) = \sigma(\alpha \cdot \text{hea...` | Priyal Kaushal Deputy (E016) |
+| 6 | **Primatesta et al. (2016)** | *Dynamic trajectory planning for mobile robot navigation in crowded environments* | IEEE Emerging Technologies and Factory Automation (ETFA) | [https://doi.org/10.1109/ETFA.2016.7733510](https://doi.org/10.1109/ETFA.2016.7733510) | `Collision risk metric $R(p, v) = \int_0^T \ma...` | Priyal Kaushal Deputy (E016) & Sowmya Satish (E060) |
 
-2. **Hospital AMR Navigation Benchmarking (2024):**
-   * *Rondoni et al.*, "Navigation benchmarking for autonomous mobile robots in hospital environment", *Scientific Reports (Nature Portfolio)*, vol. 14, art. no. 18334, 2024.
-   * DOI: [10.1038/s41598-024-69040-z](https://doi.org/10.1038/s41598-024-69040-z)
-   * Focus: Standardized multi-tier hospital benchmarking under ISO 13482:2014, path smoothness metrics, pedestrian avoidance.
-
-3. **Stochastic AMR Scheduling with Time Windows (2023):**
-   * *Cheng et al.*, "The Multi-Trip Autonomous Mobile Robot Scheduling Problem with Time Windows in a Stochastic Environment at Smart Hospitals", *Applied Sciences*, vol. 13, no. 17, art. no. 9879, 2023.
-   * DOI: [10.3390/app13179879](https://doi.org/10.3390/app13179879)
-   * Focus: Mixed-integer dispatch optimization, stochastic hallway delay distributions, delivery time windows.
-
-4. **Liquid Anti-Slosh Motion Profiles (2020):**
-   * *Terashima et al.*, "Optimal operating-speed-dependent motion profiles to reduce liquid slosh", *Robotics*, vol. 9, no. 1, art. no. 18, 2020.
-   * DOI: [10.3390/robotics9010018](https://doi.org/10.3390/robotics9010018)
-   * Focus: Centripetal lateral acceleration thresholding ($a_{\text{lat}} \le 0.40\text{ m/s}^2$) and total jerk bound ($\|\mathbf{j}\| \le 1.20\text{ m/s}^3$).
-
-5. **Clinical Time-and-Motion Nursing Baseline (2021):**
-   * *Michel et al.*, "How do nurses spend their time? A time and motion analysis of nursing activities in an internal medicine unit", *Journal of Advanced Nursing*, vol. 77, no. 11, pp. 4459–4470, 2021.
-   * DOI: [10.1111/jan.14935](https://doi.org/10.1111/jan.14935)
-   * Focus: Real-world empirical ground truth documenting 28% shift time spent on non-patient-facing transit (3.36 h/shift).
+For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
+* [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
+* [`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`](docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md)
 
 ---
 
-## 4. Directory Structure
+## 4. Repository Directory Architecture
+
 ```
-Group_01_Khushal_Priyal_Ishita_Sowmya/
-|-- README.md                             <- Group research charter, literature matrix, and status
-|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md  <- Complete technical dossier, kinematic proofs, and viva defense
+.
+|-- README.md                                          <- Front-page research charter, student roster & literature
+|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md               <- Comprehensive technical engineering guide
 |-- docs/
-|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Detailed analysis of 5 papers & gap matrix
-|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md       <- Full 4-page IEEE/ACM paper template with Tables 1 & 2
-|   |-- figures/
-|   |   |-- figure1_system_architecture.png          <- Publication-ready Figure 1
-|   |   |-- figure2_kinematic_telemetry.png          <- Publication-ready Figure 2
-|   |   `-- figure3_comparative_performance.png      <- Publication-ready Figure 3
-|   `-- TEAM_ROSTER.json                  <- Commit attribution registry
+|   |-- TEAM_ROSTER.json                               <- Machine-readable team configuration
+|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md   <- Exhaustive literature dossier (6 verified papers)
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md         <- 4-page IEEE conference manuscript blueprint
+|   `-- figures/
+|       |-- figure1_system_architecture.png            <- 300 DPI system architecture diagram
+|       |-- figure2_kinematic_telemetry.png            <- 300 DPI kinematics and simulation telemetry
+|       `-- figure3_comparative_performance.png        <- 300 DPI comparative benchmark visualization
 |-- models/
-|   `-- icu_medicine_amr.xml              <- Physical MuJoCo MJCF model
+|   |-- .gitkeep
+|   `-- icu_medicine_amr.xml                                    <- MuJoCo MJCF simulation model
 |-- src/
-|   |-- icu_amr_controller.py             <- Kinematic simulation loop and telemetry logger
-|   `-- test_env.py                       <- Local toolchain verification script
+|   |-- test_env.py                                    <- Physics validation & environment tester
+|   `-- icu_amr_controller.py                                      <- Autonomous control loop (# TODO student boundaries)
 `-- analytics/
-    |-- generate_paper_figures.py         <- Python script generating all 3 publication figures
-    `-- icu_labor_roi.py                  <- CSBS dimensionless technoeconomic model
+    |-- .gitkeep
+    |-- icu_labor_roi.py                                      <- CSBS dimensionless technoeconomic model
+    |-- generate_paper_figures.py                      <- Standalone 300 DPI publication figure generator
+    `-- icu_medicine_delivery_benchmark.csv                                    <- Empirical benchmark trial dataset
 ```
 
 ---
 
-## 5. Sprint Onboarding Checklist (Sprint 0)
-- [ ] Every team member clones repository locally.
-- [ ] Each student creates their assigned feature branch (`feat/<roll_no>-...`).
-- [ ] Study assigned research paper in [docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md](./docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md).
-- [ ] Execute `python src/icu_amr_controller.py` and confirm clean execution.
-- [ ] Update `docs/TEAM_ROSTER.json` with verified GitHub usernames.
-- [ ] Submit and merge Sprint 0 Pull Request into `main`.
+## 5. Pedagogical Boundaries: Guidance vs Student Ownership
+
+To ensure academic rigor and authentic student learning, this repository enforces strict boundaries between scaffolding and student deliverables:
+
+* **Provided by Course Scaffolding:**
+  * Validated physical model architecture in MuJoCo MJCF (`models/icu_medicine_amr.xml`).
+  * Verification toolchain and smoke test script (`src/test_env.py`).
+  * Literature foundation, mathematical formulations, and conference paper blueprint (`docs/`).
+  * Dimensionless technoeconomic framework (`analytics/icu_labor_roi.py`).
+* **Student Technical Deliverables (Required for Evaluation):**
+  * Implement and tune the control algorithm in `src/icu_amr_controller.py` (filling all marked `# TODO [Student Roll / Name]` blocks).
+  * Run physics simulation trials to collect and expand empirical data in `analytics/icu_medicine_delivery_benchmark.csv`.
+  * Re-run `analytics/generate_paper_figures.py` to regenerate publication figures with live experimental telemetry.
+  * Author the final 4-page IEEE conference paper in `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend individual Git commits during the oral viva.
+
+---
+
+## 6. Sprint 0 Onboarding & Physics Environment Verification
+
+Verify your local Python and MuJoCo simulation environment:
+
+```powershell
+# Step 1: Clone repository and navigate to group directory
+git clone <repository_url>
+cd <repository_root>/Group_01_Khushal_Priyal_Ishita_Sowmya
+
+# Step 2: Checkout your individual feature branch
+# Example for lead student:
+git checkout -b feat/e006-lead-robotics-system
+
+# Step 3: Run environment smoke test
+python src/test_env.py
+
+# Step 4: Verify 300 DPI publication figures
+python analytics/generate_paper_figures.py
+```

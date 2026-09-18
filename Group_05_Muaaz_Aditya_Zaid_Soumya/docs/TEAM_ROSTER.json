@@ -1,40 +1,96 @@
 {
   "group_id": "MDRIIA_GROUP_05",
   "folder_name": "Group_05_Muaaz_Aditya_Zaid_Soumya",
-  "domain": "Autonomous Collaborative Dual-UAV Campus Perimeter Surveillance",
+  "domain": "Collaborative Dual-UAV Campus Perimeter Patrol and Surveillance",
   "authorized_title": "To what extent can a collaborative dual-UAV surveillance system simulated in MuJoCo optimize campus perimeter patrol cycle time and OpenCV human detection latency compared to static security guard patrols?",
   "members": [
     {
       "roll_no": "E043",
-      "sap_id": "70362400058",
+      "sap_id": "70362400030",
       "name": "Muaaz Mohammed Iqbal Shaikh",
       "role": "Lead UAV Flight Dynamics, Path Planner & Coordinated Fleet Architect",
       "assigned_branch": "feat/e043-lead-uav-flight-dyna",
-      "github_username": ""
+      "viva_focus": "Dual-quadrotor 6-DOF aerodynamics, thrust-to-weight modeling, waypoint coverage optimization, and inter-UAV collision avoidance."
     },
     {
       "roll_no": "E051",
-      "sap_id": "70362400040",
+      "sap_id": "70362400067",
       "name": "Aditya Rajkumar",
       "role": "Computer Vision, OpenCV Human Detection & Tracking Specialist",
       "assigned_branch": "feat/e051-computer-vision-open",
-      "github_username": ""
+      "viva_focus": "Downward aerial OpenCV human detection pipeline, bounding box latency, false alarm mitigation, and target handoff tracking."
     },
     {
       "roll_no": "E075",
-      "sap_id": "70362300055",
+      "sap_id": "70362400003",
       "name": "Zaid Rezaur Rahman",
       "role": "Restricted-Zone Geo-Fencing & Intrusion Telemetry Lead",
       "assigned_branch": "feat/e075-restricted-zone-geo-",
-      "github_username": ""
+      "viva_focus": "Ray-casting point-in-polygon geo-fencing, simulated GPS/IMU noise injection, and real-time perimeter breach logging."
     },
     {
       "roll_no": "E077",
-      "sap_id": "70362300043",
+      "sap_id": "70362400080",
       "name": "Soumya Subhankar Ranasingh",
       "role": "CSBS Campus Security Operations & OpEx Payback Analyst",
       "assigned_branch": "feat/e077-csbs-campus-security",
-      "github_username": ""
+      "viva_focus": "Guard labor substitution modeling, patrol cycle acceleration (from 45 to 8.5 min), and multi-year drone fleet OpEx payback analysis."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Guerrero-Bonilla et al.",
+      "year": 2021,
+      "title": "Perimeter Surveillance Based on Set-Invariance",
+      "venue": "IEEE Robotics and Automation Letters",
+      "doi": "https://doi.org/10.1109/LRA.2020.3028055",
+      "lead": "Muaaz Mohammed Iqbal Shaikh (E043) & Zaid Rezaur Rahman (E075)"
+    },
+    {
+      "id": 2,
+      "authors": "Javaid et al.",
+      "year": 2023,
+      "title": "Communication and Control in Collaborative UAVs: Recent Advances and Future Trends",
+      "venue": "IEEE Transactions on Intelligent Transportation Systems",
+      "doi": "https://doi.org/10.1109/TITS.2023.3248841",
+      "lead": "Muaaz Mohammed Iqbal Shaikh (E043)"
+    },
+    {
+      "id": 3,
+      "authors": "Wu et al.",
+      "year": 2024,
+      "title": "Multi-UAV Collaborative Dynamic Task Allocation Method Based on ISOM and Attention Mechanism",
+      "venue": "IEEE Transactions on Vehicular Technology",
+      "doi": "https://doi.org/10.1109/TVT.2023.3341878",
+      "lead": "Soumya Subhankar Ranasingh (E077) & Muaaz Shaikh (E043)"
+    },
+    {
+      "id": 4,
+      "authors": "Cabreira et al.",
+      "year": 2019,
+      "title": "Survey on Coverage Path Planning with Unmanned Aerial Vehicles",
+      "venue": "Drones",
+      "doi": "https://doi.org/10.3390/drones3010004",
+      "lead": "Zaid Rezaur Rahman (E075) & Aditya Rajkumar (E051)"
+    },
+    {
+      "id": 5,
+      "authors": "Mittal et al.",
+      "year": 2020,
+      "title": "Deep learning-based object detection in low-altitude UAV datasets: A survey",
+      "venue": "Image and Vision Computing",
+      "doi": "https://doi.org/10.1016/j.imavis.2020.104046",
+      "lead": "Aditya Rajkumar (E051)"
+    },
+    {
+      "id": 6,
+      "authors": "Agmon et al.",
+      "year": 2008,
+      "title": "Multi-robot perimeter patrol in adversarial settings",
+      "venue": "IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "https://doi.org/10.1109/ROBOT.2008.4543563",
+      "lead": "Muaaz Shaikh (E043) & Soumya Subhankar Ranasingh (E077)"
     }
   ]
 }

@@ -1,62 +1,111 @@
-# Research Project Group 08: Autonomous Vision-Guided Multirotor UAV for Flood Disaster Emergency Supply Delivery
-
-## Academic Cohort: Robotics and Business Systems Engineering (PBL Track)
+# MDRIIA_GROUP_08: Autonomous Multirotor UAV for Medical Relief Air-Drop in Flood Operations
 
 ---
 
-## 1. Executive Research Charter
+## 1. Authorized Research Title & Problem Statement
 
-### Primary Research Problem
-To what extent can an autonomous vision-guided multirotor UAV simulated in MuJoCo for payload-range trade-offs optimize last-mile medical relief drop accuracy during flood disaster relief operations while establishing fleet utilization payback parity against conventional boat and ground transport?
+> "To what extent can an autonomous vision-guided multirotor UAV simulated in MuJoCo for payload-range trade-offs optimize last-mile medical relief drop accuracy during NDRF flood operations while establishing fleet utilization payback parity against ground transport?"
 
-### Core Investigation Domains
-1. **Multirotor Flight Dynamics & Slung-Load Physics:** Simulating 6-DOF aerial vehicle aerodynamics coupled with cable-suspended emergency medical kits under turbulent crosswind gusts.
-2. **Vision-Guided Precision Winch Delivery:** Real-time visual servoing, downward fiducial marker tracking, and active swing-damping winch release mechanisms.
-3. **Disaster Logistics & Cost-Parity Modeling:** Formulating emergency supply chain routing, response latency reduction in inundated zones, and dimensionless fleet amortization.
-
----
-
-## 2. Student Engineering Matrix
-
-| Roll No | Name | Technical Role | Branch Responsibility | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- |
-| **E056** | **Manikya Rathore** | Lead UAV Aerodynamics, Payload Physics & MuJoCo Modeler | `feat/e056-lead-uav-aerodynamic` | Multirotor thrust dynamics, slung-load pendulum physics, cable tension |
-| **E020** | **Shourya Garg** | Vision Target Detection & Winch Drop Specialist | `feat/e020-computer-vision-ther` | Visual targeting, altitude estimation, winch brake triggering |
-| **E032** | **Keswani Laksh** | Flight Path Optimization & Wind Gust Disturbance Control Lead | `feat/e032-flight-path-optimiza` | Waypoint navigation, L1 adaptive guidance, Dryden gust rejection |
-| **E067** | **Vora Jash** | CSBS Disaster Logistics, Fleet Economics & Cost-Parity Analyst | `feat/e067-csbs-disaster-logist` | Queue-based relief delivery, payload-range energy trade-off, payback parity |
+### Core Engineering Focus
+* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body dynamic physics simulation (`models/skyhydro_flood_uav.xml`).
+* **Autonomous Control:** Closed-loop Python control architecture with student implementation boundaries (`src/flood_relief_drop_sim.py`).
+* **Technoeconomic Evaluation:** Dimensionless CSBS operational economics and return on investment model (`analytics/disaster_relief_logistics.py`).
+* **Empirical Validation:** Reproducible benchmark trials and statistical hypothesis testing (`analytics/flood_relief_benchmark.csv`).
 
 ---
 
-## 3. Directory Architecture
+## 2. Student Engineering Team Matrix
+
+| Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `E056` | `70362400045` | **Manikya Rathore** | Lead UAV Aerodynamics, Payload Physics & MuJoCo Modeler | `feat/e056-lead-uav-aerodynamic` | 6-DOF quadrotor aerodynamics, cable-suspended payload pendulum dynamics, rotor thrust-to-weight scaling, and air-drop release mechanics. |
+| `E020` | `70362400015` | **Shourya Garg** | Computer Vision, Thermal Survivor Detection & Winch Drop Specialist | `feat/e020-computer-vision-ther` | Vision-based target tracking, circular landing/drop zone identification, downwash compensation, and payload release timing. |
+| `E032` | `70362400072` | **Keswani Laksh** | Flight Path Optimization & Wind Gust Disturbance Control Lead | `feat/e032-flight-path-optimiza` | Dryden wind turbulence modeling, payload swing attenuation, LQR attitude stabilization, and flight envelope bounds. |
+| `E067` | `70362400020` | **Vora Jash** | CSBS Disaster Logistics, Fleet Economics & Cost-Parity Analyst | `feat/e067-csbs-disaster-logist` | Disaster relief supply chain modeling, payload-range battery trade-offs, NDRF boat replacement ratios, and fleet amortization models. |
+
+---
+
+## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+
+The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
+
+| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Dorling et al. (2017)** | *Vehicle Routing Problems for Drone Delivery* | IEEE Transactions on Systems, Man, and Cybernetics: Systems | [https://doi.org/10.1109/TSMC.2016.2582745](https://doi.org/10.1109/TSMC.2016.2582745) | `Power consumption model $P(m) = (m_{\text{dro...` | Vora Jash (E067) & Manikya Rathore (E056) |
+| 2 | **Chowdhury et al. (2017)** | *Drones for disaster response and relief operations: A continuous approximation model* | International Journal of Production Economics | [https://doi.org/10.1016/j.ijpe.2017.03.024](https://doi.org/10.1016/j.ijpe.2017.03.024) | `Fleet demand coverage $D(x,y) = \int \int \rh...` | Vora Jash (E067) |
+| 3 | **Zhang et al. (2023)** | *Real-Time Local Obstacle Avoidance and Trajectory Tracking Control of Quadrotor UAVs With Suspended Payload in Complex Environments* | IEEE Access | [https://doi.org/10.1109/ACCESS.2023.3344578](https://doi.org/10.1109/ACCESS.2023.3344578) | `Cable swing dynamics $\ddot{\alpha} + \frac{g...` | Manikya Rathore (E056) & Keswani Laksh (E032) |
+| 4 | **Falanga et al. (2017)** | *Vision-based autonomous quadrotor landing on a moving platform* | IEEE International Symposium on Safety, Security and Rescue Robotics (SSRR) | [https://doi.org/10.1109/SSRR.2017.8088164](https://doi.org/10.1109/SSRR.2017.8088164) | `Visual error vector $\mathbf{e}_v = \mathbf{p...` | Shourya Garg (E020) |
+| 5 | **Scholten, Fumagalli et al. (2013)** | *Interaction control of an UAV endowed with a manipulator* | IEEE International Conference on Robotics and Automation (ICRA) | [https://doi.org/10.1109/ICRA.2013.6631278](https://doi.org/10.1109/ICRA.2013.6631278) | `Coupled mass matrix $\begin{bmatrix} M_{uu} &...` | Manikya Rathore (E056) & Shourya Garg (E020) |
+| 6 | **Kamal et al. (2018)** | *Using crowdsourcing to identify critical affected areas for rapid damage assessment: Hurricane Matthew case study* | International Journal of Disaster Risk Reduction | [https://doi.org/10.1016/j.ijdrr.2018.02.003](https://doi.org/10.1016/j.ijdrr.2018.02.003) | `Isolation index $\Omega = \frac{T_{\text{subm...` | Keswani Laksh (E032) & Vora Jash (E067) |
+
+For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
+* [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
+* [`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`](docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md)
+
+---
+
+## 4. Repository Directory Architecture
 
 ```
-Group_08_Manikya_Shourya_Keswani_Vora/
-├── README.md                                      <- Master project engineering charter
-├── RESEARCH_AND_IMPLEMENTATION_GUIDE.md           <- In-depth technical specifications and student boundaries
-├── docs/
-│   ├── TEAM_ROSTER.json                           <- Machine-readable Git attribution schema
-│   ├── LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Exhaustive review of 5 peer-reviewed benchmark papers
-│   ├── RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md     <- 4-page IEEE conference publication template
-│   └── figures/                                   <- High-resolution publication diagrams (300 DPI)
-│       ├── figure1_system_architecture.png
-│       ├── figure2_kinematic_telemetry.png
-│       └── figure3_comparative_performance.png
-├── models/
-│   └── skyhydro_flood_uav.xml                     <- MuJoCo MJCF quadrotor model with cable-suspended payload
-├── src/
-│   ├── test_env.py                                <- Sprint 0 environment and physics compiler validator
-│   └── flood_relief_drop_sim.py                   <- Quadrotor flight control and winch drop state machine
-└── analytics/
-    ├── disaster_relief_logistics.py               <- CSBS fleet routing, response latency, and cost-parity model
-    ├── generate_paper_figures.py                  <- 300 DPI visualization engine and benchmark dataset generator
-    └── flood_relief_benchmark.csv                 <- 100-trial experimental benchmark dataset
+.
+|-- README.md                                          <- Front-page research charter, student roster & literature
+|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md               <- Comprehensive technical engineering guide
+|-- docs/
+|   |-- TEAM_ROSTER.json                               <- Machine-readable team configuration
+|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md   <- Exhaustive literature dossier (6 verified papers)
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md         <- 4-page IEEE conference manuscript blueprint
+|   `-- figures/
+|       |-- figure1_system_architecture.png            <- 300 DPI system architecture diagram
+|       |-- figure2_kinematic_telemetry.png            <- 300 DPI kinematics and simulation telemetry
+|       `-- figure3_comparative_performance.png        <- 300 DPI comparative benchmark visualization
+|-- models/
+|   |-- .gitkeep
+|   `-- skyhydro_flood_uav.xml                                    <- MuJoCo MJCF simulation model
+|-- src/
+|   |-- test_env.py                                    <- Physics validation & environment tester
+|   `-- flood_relief_drop_sim.py                                      <- Autonomous control loop (# TODO student boundaries)
+`-- analytics/
+    |-- .gitkeep
+    |-- disaster_relief_logistics.py                                      <- CSBS dimensionless technoeconomic model
+    |-- generate_paper_figures.py                      <- Standalone 300 DPI publication figure generator
+    `-- flood_relief_benchmark.csv                                    <- Empirical benchmark trial dataset
 ```
 
 ---
 
-## 4. Key Academic & Industry Milestones
+## 5. Pedagogical Boundaries: Guidance vs Student Ownership
 
-- **Milestone 1 (Sprint 0-1):** Quadrotor MJCF validation, cable stiffness tuning, and aerodynamic drag verification.
-- **Milestone 2 (Sprint 2-3):** Implementation of attitude PID, winch deployment logic, and visual target descent.
-- **Milestone 3 (Sprint 4):** 100-trial Monte Carlo benchmark evaluation across calm, moderate, and severe crosswind conditions.
-- **Milestone 4 (Sprint 5):** Manuscript compilation following IEEE conference standards and reproducible Git audit defense.
+To ensure academic rigor and authentic student learning, this repository enforces strict boundaries between scaffolding and student deliverables:
+
+* **Provided by Course Scaffolding:**
+  * Validated physical model architecture in MuJoCo MJCF (`models/skyhydro_flood_uav.xml`).
+  * Verification toolchain and smoke test script (`src/test_env.py`).
+  * Literature foundation, mathematical formulations, and conference paper blueprint (`docs/`).
+  * Dimensionless technoeconomic framework (`analytics/disaster_relief_logistics.py`).
+* **Student Technical Deliverables (Required for Evaluation):**
+  * Implement and tune the control algorithm in `src/flood_relief_drop_sim.py` (filling all marked `# TODO [Student Roll / Name]` blocks).
+  * Run physics simulation trials to collect and expand empirical data in `analytics/flood_relief_benchmark.csv`.
+  * Re-run `analytics/generate_paper_figures.py` to regenerate publication figures with live experimental telemetry.
+  * Author the final 4-page IEEE conference paper in `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend individual Git commits during the oral viva.
+
+---
+
+## 6. Sprint 0 Onboarding & Physics Environment Verification
+
+Verify your local Python and MuJoCo simulation environment:
+
+```powershell
+# Step 1: Clone repository and navigate to group directory
+git clone <repository_url>
+cd <repository_root>/Group_08_Manikya_Shourya_Keswani_Vora
+
+# Step 2: Checkout your individual feature branch
+# Example for lead student:
+git checkout -b feat/e056-lead-uav-aerodynamic
+
+# Step 3: Run environment smoke test
+python src/test_env.py
+
+# Step 4: Verify 300 DPI publication figures
+python analytics/generate_paper_figures.py
+```

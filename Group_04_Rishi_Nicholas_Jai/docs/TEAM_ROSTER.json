@@ -1,32 +1,88 @@
 {
   "group_id": "MDRIIA_GROUP_04",
   "folder_name": "Group_04_Rishi_Nicholas_Jai",
-  "domain": "Space Junk Collector",
+  "domain": "Multi-Arm Robotic Gripper for Non-Cooperative Space Debris Capture in LEO",
   "authorized_title": "How can a multi-arm robotic gripper mechanism simulated in MuJoCo utilize impedance contact control to synchronize with and capture tumbling non-cooperative orbital debris in LEO while mitigating collision impulse and momentum transfer?",
   "members": [
     {
       "roll_no": "E034",
-      "sap_id": "70362400032",
+      "sap_id": "70362400049",
       "name": "Rishi Vinod Koli",
       "role": "Lead Orbital Dynamics & MuJoCo Multi-Body Physics Architect",
       "assigned_branch": "feat/e034-lead-orbital-dynamic",
-      "github_username": ""
+      "viva_focus": "Zero-gravity multi-body spacecraft dynamics, Generalized Jacobian Matrix (GJM), and momentum transfer during contact."
     },
     {
       "roll_no": "E035",
-      "sap_id": "70362400029",
+      "sap_id": "70362400032",
       "name": "Nicholas Lewis",
       "role": "Impedance Contact Control & Robotic Kinematics Engineer",
       "assigned_branch": "feat/e035-impedance-contact-co",
-      "github_username": ""
+      "viva_focus": "Cartesian impedance force control, tumbling satellite spin matching, and post-contact detumbling damping."
     },
     {
       "roll_no": "E036",
-      "sap_id": "70362400014",
+      "sap_id": "70362400083",
       "name": "Jai Maini",
       "role": "CSBS Commercial Space Economics & Satellite De-Orbiting Business Analyst",
       "assigned_branch": "feat/e036-csbs-commercial-spac",
-      "github_username": ""
+      "viva_focus": "LEO orbital slot preservation economics, Kessler syndrome collision risk reduction, and multi-mission ADR amortization models."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Yan et al.",
+      "year": 2020,
+      "title": "Multi-objective configuration optimization for coordinated capture of dual-arm space robot",
+      "venue": "Acta Astronautica",
+      "doi": "https://doi.org/10.1016/j.actaastro.2019.11.002",
+      "lead": "Rishi Vinod Koli (E034)"
+    },
+    {
+      "id": 2,
+      "authors": "Rybus et al.",
+      "year": 2022,
+      "title": "Optimal collision-free path planning of a free-floating space robot using splines",
+      "venue": "Acta Astronautica",
+      "doi": "https://doi.org/10.1016/j.actaastro.2021.10.012",
+      "lead": "Rishi Vinod Koli (E034) & Nicholas Lewis (E035)"
+    },
+    {
+      "id": 3,
+      "authors": "Han et al.",
+      "year": 2020,
+      "title": "Combined spacecraft stabilization control after multiple impacts during the capture of non-cooperative targets",
+      "venue": "Acta Astronautica",
+      "doi": "https://doi.org/10.1016/j.actaastro.2020.05.035",
+      "lead": "Nicholas Lewis (E035)"
+    },
+    {
+      "id": 4,
+      "authors": "Wang et al.",
+      "year": 2021,
+      "title": "A strategy to decelerate and capture a spinning object by a dual-arm space robot",
+      "venue": "Aerospace Science and Technology",
+      "doi": "https://doi.org/10.1016/j.ast.2021.106682",
+      "lead": "Nicholas Lewis (E035) & Jai Maini (E036)"
+    },
+    {
+      "id": 5,
+      "authors": "Tao et al.",
+      "year": 2021,
+      "title": "Impedance-Sliding Mode Control With Force Constraints for Space Robots Capturing Non-Cooperative Targets",
+      "venue": "IEEE Access",
+      "doi": "https://doi.org/10.1109/ACCESS.2021.3129835",
+      "lead": "Jai Maini (E036) & Nicholas Lewis (E035)"
+    },
+    {
+      "id": 6,
+      "authors": "Luo et al.",
+      "year": 2017,
+      "title": "A review of uncertainty propagation in orbital mechanics",
+      "venue": "Progress in Aerospace Sciences",
+      "doi": "https://doi.org/10.1016/j.paerosci.2016.12.002",
+      "lead": "Rishi Vinod Koli (E034) & Jai Maini (E036)"
     }
   ]
 }

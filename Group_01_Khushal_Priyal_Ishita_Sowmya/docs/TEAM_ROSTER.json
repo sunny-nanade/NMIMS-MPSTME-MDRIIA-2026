@@ -1,7 +1,7 @@
 {
   "group_id": "MDRIIA_GROUP_01",
   "folder_name": "Group_01_Khushal_Priyal_Ishita_Sowmya",
-  "domain": "Autonomous robot for delivery of critical medicines for ICUs",
+  "domain": "Autonomous Mobile Robot for Critical Medicine Delivery in ICUs",
   "authorized_title": "To what extent can an autonomous mobile medicine-delivery robot (simulated in MuJoCo with dynamic obstacle avoidance) reduce ICU nurses' non-patient-facing logistics transit time and optimize labor reallocation, where clinical studies document nurses spending approximately 28% of their shift on supply retrieval?",
   "members": [
     {
@@ -10,7 +10,7 @@
       "name": "Khushal Asnani",
       "role": "Lead Robotics Systems Architect & MuJoCo Physics Modeler",
       "assigned_branch": "feat/e006-lead-robotics-system",
-      "github_username": ""
+      "viva_focus": "Differential drive chassis dynamics, passive caster ball friction, and anti-slosh liquid medicine payload mechanics."
     },
     {
       "roll_no": "E016",
@@ -18,15 +18,15 @@
       "name": "Priyal Kaushal Deputy",
       "role": "Autonomous Navigation, SLAM & Dynamic Collision Avoidance Specialist",
       "assigned_branch": "feat/e016-autonomous-navigatio",
-      "github_username": ""
+      "viva_focus": "Dynamic Window Approach (DWA) local trajectory planning, four-quadrant heading error normalization, and reactive clearance in crowded ICU corridors."
     },
     {
       "roll_no": "E054",
-      "sap_id": "70362400039",
+      "sap_id": "70362400038",
       "name": "Ishita Ranjan",
       "role": "CSBS Clinical Workflow & Time-Motion ROI Business Analyst",
       "assigned_branch": "feat/e054-csbs-clinical-workfl",
-      "github_username": ""
+      "viva_focus": "Time-and-motion clinical workflow modeling, non-patient-facing transit reduction, and operational cost parity."
     },
     {
       "roll_no": "E060",
@@ -34,7 +34,63 @@
       "name": "Sowmya Satish",
       "role": "Sensor Telemetry, Quality Assurance & Empirical Validation Lead",
       "assigned_branch": "feat/e060-sensor-telemetry-qua",
-      "github_username": ""
+      "viva_focus": "Telemetry logging, sensor noise modeling (ultrasonic/LiDAR), and statistical hypothesis testing (N >= 50 runs)."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Sujan et al.",
+      "year": 2024,
+      "title": "Navigation benchmarking for autonomous mobile robots in hospital environment",
+      "venue": "Scientific Reports",
+      "doi": "https://doi.org/10.1038/s41598-024-69040-z",
+      "lead": "Khushal Asnani (E006) & Priyal Kaushal Deputy (E016)"
+    },
+    {
+      "id": 2,
+      "authors": "Alonso-Mora et al.",
+      "year": 2023,
+      "title": "The Multi-Trip Autonomous Mobile Robot Scheduling Problem with Time Windows in a Hospital Environment",
+      "venue": "Applied Sciences",
+      "doi": "https://doi.org/10.3390/app13179879",
+      "lead": "Ishita Ranjan (E054) & Sowmya Satish (E060)"
+    },
+    {
+      "id": 3,
+      "authors": "Terashima et al.",
+      "year": 2020,
+      "title": "Controlling Liquid Slosh by Applying Optimal Operating-Speed-Dependent Motion Profiles",
+      "venue": "Robotics",
+      "doi": "https://doi.org/10.3390/robotics9010018",
+      "lead": "Khushal Asnani (E006)"
+    },
+    {
+      "id": 4,
+      "authors": "Bekker et al.",
+      "year": 2021,
+      "title": "How do nurses spend their time? A time and motion analysis of nursing activities in an internal medicine ward",
+      "venue": "Journal of Advanced Nursing",
+      "doi": "https://doi.org/10.1111/jan.14935",
+      "lead": "Ishita Ranjan (E054)"
+    },
+    {
+      "id": 5,
+      "authors": "Fox, Burgard, & Thrun",
+      "year": 1997,
+      "title": "The dynamic window approach to collision avoidance",
+      "venue": "IEEE Robotics & Automation Magazine",
+      "doi": "https://doi.org/10.1109/100.580977",
+      "lead": "Priyal Kaushal Deputy (E016)"
+    },
+    {
+      "id": 6,
+      "authors": "Primatesta et al.",
+      "year": 2016,
+      "title": "Dynamic trajectory planning for mobile robot navigation in crowded environments",
+      "venue": "IEEE Emerging Technologies and Factory Automation (ETFA)",
+      "doi": "https://doi.org/10.1109/ETFA.2016.7733510",
+      "lead": "Priyal Kaushal Deputy (E016) & Sowmya Satish (E060)"
     }
   ]
 }

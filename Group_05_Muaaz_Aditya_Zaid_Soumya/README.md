@@ -1,107 +1,111 @@
-# Collaborative Dual-UAV Autonomous Surveillance System for Campus Perimeter Security
-
-## Project Charter and Research Scaffolding
-**Group ID:** MDRIIA Group 05  
-**Project Track:** Modern Day Robotics and Industrial Applications  
+# MDRIIA_GROUP_05: Collaborative Dual-UAV Campus Perimeter Patrol and Surveillance
 
 ---
 
-## 1. Problem Statement and Interrogative Research Question
+## 1. Authorized Research Title & Problem Statement
 
-Institutional campus physical security frequently relies on manual security guard foot patrols that require 45 to 60 minutes per sweep and static closed-circuit television (CCTV) cameras that leave more than 35% of blind-spot zones unmonitored. This temporal latency and spatial occlusion expose physical boundaries to undetected intrusions. Autonomous aerial robotic swarms offer a high-speed, flexible surveillance alternative. However, collaborative multi-UAV perimeter patrol introduces complex engineering challenges in 6-DOF flight dynamics, inter-UAV collision avoidance, downward camera target detection under varied illumination, and real-time geofencing.
+> "To what extent can a collaborative dual-UAV surveillance system simulated in MuJoCo optimize campus perimeter patrol cycle time and OpenCV human detection latency compared to static security guard patrols?"
 
-### Aalborg Interrogative Research Title
-> **"To what extent can a collaborative dual-UAV surveillance system simulated in MuJoCo optimize campus perimeter patrol cycle time and OpenCV human detection latency compared to static security guard patrols?"**
-
----
-
-## 2. Research Hypotheses and Engineering Scope
-
-### Scientific Hypotheses
-* **Null Hypothesis (H0):** A collaborative dual-UAV surveillance system simulated in MuJoCo achieves no statistically significant reduction in perimeter patrol sweep cycle time (min) or human intrusion detection latency (s) compared to conventional manual guard patrols (p >= 0.05).
-* **Alternative Hypothesis (H1):** A collaborative dual-UAV surveillance system in MuJoCo reduces perimeter patrol cycle time by > 75%, maintains inter-UAV separation >= 2.5 m using Artificial Potential Fields (APF), and achieves real-time OpenCV human detection latency < 50 ms across illumination levels down to 5 lx, significantly outperforming foot-patrol baselines (p < 0.001).
+### Core Engineering Focus
+* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body dynamic physics simulation (`models/campus_perimeter_patrol.xml`).
+* **Autonomous Control:** Closed-loop Python control architecture with student implementation boundaries (`src/aerial_patrol_swarm.py`).
+* **Technoeconomic Evaluation:** Dimensionless CSBS operational economics and return on investment model (`analytics/campus_security_economics.py`).
+* **Empirical Validation:** Reproducible benchmark trials and statistical hypothesis testing (`analytics/campus_patrol_benchmark.csv`).
 
 ---
 
-## 3. Foundational Literature Benchmarks
+## 2. Student Engineering Team Matrix
 
-The research foundation for this project is established upon five peer-reviewed publications:
-
-1. **Guerrero-Bonilla & Dimarogonas (2021)** - *IEEE Robotics and Automation Letters*  
-   *Title:* Perimeter surveillance based on set-invariance  
-   *DOI:* [10.1109/LRA.2020.3028055](https://doi.org/10.1109/LRA.2020.3028055)  
-   *Key Baseline:* Establishes set-invariance control laws for multi-robot perimeter coverage and intruder interception.
-
-2. **Javaid, Saeed, Qadir, Fahim, He, Song, & Bilal (2023)** - *IEEE Transactions on Intelligent Transportation Systems*  
-   *Title:* Communication and Control in Collaborative UAVs: Recent Advances and Future Trends  
-   *DOI:* [10.1109/TITS.2023.3248841](https://doi.org/10.1109/TITS.2023.3248841)  
-   *Key Baseline:* Surveys decentralized coordination, dynamic flight control, and communication constraints for multi-UAV swarms.
-
-3. **Wu, Zhang, Sun, Li, Gao, & Han (2024)** - *IEEE Transactions on Vehicular Technology*  
-   *Title:* Multi-UAV Collaborative Dynamic Task Allocation Method Based on ISOM and Attention Mechanism  
-   *DOI:* [10.1109/TVT.2023.3341878](https://doi.org/10.1109/TVT.2023.3341878)  
-   *Key Baseline:* Models dynamic task allocation and spatial sector partitioning for cooperative aerial surveillance.
-
-4. **Cabreira, Brisolara, & Ferreira (2019)** - *Drones*  
-   *Title:* Survey on Coverage Path Planning with Unmanned Aerial Vehicles  
-   *DOI:* [10.3390/drones3010004](https://doi.org/10.3390/drones3010004)  
-   *Key Baseline:* Evaluates optimal aerial coverage path planning algorithms across complex geometric boundaries.
-
-5. **Mittal, Singh, & Sharma (2020)** - *Image and Vision Computing*  
-   *Title:* Deep learning-based object detection in low-altitude UAV datasets: A survey  
-   *DOI:* [10.1016/j.imavis.2020.104046](https://doi.org/10.1016/j.imavis.2020.104046)  
-   *Key Baseline:* Analyzes aerial object detection throughput, small-target resolution, and lighting variation challenges.
-
----
-
-## 4. Student Engineering Team Matrix
-
-| Roll No | SAP ID | Student Name | Assigned Engineering Role | Git Feature Branch | Individual Deliverable Focus |
+| Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **E043** | `70362400058` | Muaaz Mohammed Iqbal Shaikh | Lead UAV Flight Dynamics, Path Planner & Coordinated Fleet Architect | `feat/e043-lead-uav-flight-dyna` | 6-DOF Newton-Euler dynamics, cascaded PID attitude/position control, APF separation |
-| **E051** | `70362400040` | Aditya Rajkumar | Computer Vision, OpenCV Human Detection & Tracking Specialist | `feat/e051-computer-vision-open` | MuJoCo camera rendering, OpenCV HSV/contour extraction, inverse pinhole ground projection |
-| **E075** | `70362300055` | Zaid Rezaur Rahman | Restricted-Zone Geo-Fencing & Intrusion Telemetry Lead | `feat/e075-restricted-zone-geo-` | 3D polygonal geofencing, 4-tier alert state machine, JSON/CSV telemetry streaming |
-| **E077** | `70362300043` | Soumya Subhankar Ranasingh | CSBS Campus Security Operations & OpEx Payback Analyst | `feat/e077-csbs-campus-security` | Time-motion patrol model, security labor reallocation matrix, dimensionless OpEx payback |
+| `E043` | `70362400030` | **Muaaz Mohammed Iqbal Shaikh** | Lead UAV Flight Dynamics, Path Planner & Coordinated Fleet Architect | `feat/e043-lead-uav-flight-dyna` | Dual-quadrotor 6-DOF aerodynamics, thrust-to-weight modeling, waypoint coverage optimization, and inter-UAV collision avoidance. |
+| `E051` | `70362400067` | **Aditya Rajkumar** | Computer Vision, OpenCV Human Detection & Tracking Specialist | `feat/e051-computer-vision-open` | Downward aerial OpenCV human detection pipeline, bounding box latency, false alarm mitigation, and target handoff tracking. |
+| `E075` | `70362400003` | **Zaid Rezaur Rahman** | Restricted-Zone Geo-Fencing & Intrusion Telemetry Lead | `feat/e075-restricted-zone-geo-` | Ray-casting point-in-polygon geo-fencing, simulated GPS/IMU noise injection, and real-time perimeter breach logging. |
+| `E077` | `70362400080` | **Soumya Subhankar Ranasingh** | CSBS Campus Security Operations & OpEx Payback Analyst | `feat/e077-csbs-campus-security` | Guard labor substitution modeling, patrol cycle acceleration (from 45 to 8.5 min), and multi-year drone fleet OpEx payback analysis. |
 
 ---
 
-## 5. Repository Directory Architecture
+## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+
+The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
+
+| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Guerrero-Bonilla et al. (2021)** | *Perimeter Surveillance Based on Set-Invariance* | IEEE Robotics and Automation Letters | [https://doi.org/10.1109/LRA.2020.3028055](https://doi.org/10.1109/LRA.2020.3028055) | `Control Barrier Function $h(x) \ge 0$; barrie...` | Muaaz Mohammed Iqbal Shaikh (E043) & Zaid Rezaur Rahman (E075) |
+| 2 | **Javaid et al. (2023)** | *Communication and Control in Collaborative UAVs: Recent Advances and Future Trends* | IEEE Transactions on Intelligent Transportation Systems | [https://doi.org/10.1109/TITS.2023.3248841](https://doi.org/10.1109/TITS.2023.3248841) | `Network consensus equation $\dot{x}_i = -\sum...` | Muaaz Mohammed Iqbal Shaikh (E043) |
+| 3 | **Wu et al. (2024)** | *Multi-UAV Collaborative Dynamic Task Allocation Method Based on ISOM and Attention Mechanism* | IEEE Transactions on Vehicular Technology | [https://doi.org/10.1109/TVT.2023.3341878](https://doi.org/10.1109/TVT.2023.3341878) | `Task allocation utility $U = \sum_{i} (w_1 T_...` | Soumya Subhankar Ranasingh (E077) & Muaaz Shaikh (E043) |
+| 4 | **Cabreira et al. (2019)** | *Survey on Coverage Path Planning with Unmanned Aerial Vehicles* | Drones | [https://doi.org/10.3390/drones3010004](https://doi.org/10.3390/drones3010004) | `Coverage time $T_{\text{cov}} = \frac{A}{w_{\...` | Zaid Rezaur Rahman (E075) & Aditya Rajkumar (E051) |
+| 5 | **Mittal et al. (2020)** | *Deep learning-based object detection in low-altitude UAV datasets: A survey* | Image and Vision Computing | [https://doi.org/10.1016/j.imavis.2020.104046](https://doi.org/10.1016/j.imavis.2020.104046) | `Mean Average Precision $\text{mAP} = \frac{1}...` | Aditya Rajkumar (E051) |
+| 6 | **Agmon et al. (2008)** | *Multi-robot perimeter patrol in adversarial settings* | IEEE International Conference on Robotics and Automation (ICRA) | [https://doi.org/10.1109/ROBOT.2008.4543563](https://doi.org/10.1109/ROBOT.2008.4543563) | `Maximum patrol time lag $T_{\text{lag}} = \ma...` | Muaaz Shaikh (E043) & Soumya Subhankar Ranasingh (E077) |
+
+For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
+* [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
+* [`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`](docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md)
+
+---
+
+## 4. Repository Directory Architecture
 
 ```
-Group_05_Muaaz_Aditya_Zaid_Soumya/
-|-- README.md                                  <- Project charter, literature, and student matrix
-|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md       <- Flight dynamics, vision equations, viva prep
+.
+|-- README.md                                          <- Front-page research charter, student roster & literature
+|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md               <- Comprehensive technical engineering guide
 |-- docs/
-|   |-- TEAM_ROSTER.json                       <- Machine-readable member identity schema
-|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Detailed analysis of 5 verified papers
-|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md <- IEEE/ACM 4-page conference template
+|   |-- TEAM_ROSTER.json                               <- Machine-readable team configuration
+|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md   <- Exhaustive literature dossier (6 verified papers)
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md         <- 4-page IEEE conference manuscript blueprint
 |   `-- figures/
-|       |-- figure1_system_architecture.png    <- High-res system block diagram
-|       |-- figure2_kinematic_telemetry.png    <- High-res flight path & inter-UAV separation
-|       `-- figure3_comparative_performance.png <- High-res patrol cycle time & vision latency
+|       |-- figure1_system_architecture.png            <- 300 DPI system architecture diagram
+|       |-- figure2_kinematic_telemetry.png            <- 300 DPI kinematics and simulation telemetry
+|       `-- figure3_comparative_performance.png        <- 300 DPI comparative benchmark visualization
 |-- models/
-|   `-- campus_perimeter_patrol.xml            <- MuJoCo MJCF dual-UAV environment with cameras
+|   |-- .gitkeep
+|   `-- campus_perimeter_patrol.xml                                    <- MuJoCo MJCF simulation model
 |-- src/
-|   |-- aerial_patrol_swarm.py                 <- Swarm patrol controller with student TODO blocks
-|   `-- test_env.py                            <- Toolchain verification and test step script
+|   |-- test_env.py                                    <- Physics validation & environment tester
+|   `-- aerial_patrol_swarm.py                                      <- Autonomous control loop (# TODO student boundaries)
 `-- analytics/
-    |-- campus_security_economics.py           <- CSBS security operations & OpEx payback analysis
-    |-- generate_paper_figures.py              <- Automation script generating publication figures
-    `-- campus_patrol_benchmark.csv            <- N=80 trial simulation dataset
+    |-- .gitkeep
+    |-- campus_security_economics.py                                      <- CSBS dimensionless technoeconomic model
+    |-- generate_paper_figures.py                      <- Standalone 300 DPI publication figure generator
+    `-- campus_patrol_benchmark.csv                                    <- Empirical benchmark trial dataset
 ```
 
 ---
 
-## 6. Pedagogical Boundaries: Guidance vs Student Ownership
+## 5. Pedagogical Boundaries: Guidance vs Student Ownership
 
-1. **Provided Scaffolding:**
-   * 6-DOF quadrotor equations of motion and cascaded PID control architecture.
-   * Curated literature review of 5 verified papers with active DOIs.
-   * Baseline dual-UAV MuJoCo MJCF model with campus perimeter boundaries and target avatar.
-   * 4-page conference manuscript blueprint and figure rendering scripts.
+To ensure academic rigor and authentic student learning, this repository enforces strict boundaries between scaffolding and student deliverables:
 
-2. **Mandatory Student Contributions (Students Must Implement and Commit):**
-   * Students must implement their respective `# TODO` blocks in `src/aerial_patrol_swarm.py`.
-   * Students must tune PID gains ($K_p, K_i, K_d$) for stable flight under dynamic cross-winds.
-   * Students must execute Monte Carlo simulation runs ($N \ge 80$), log actual flight and vision telemetry, and update `analytics/campus_patrol_benchmark.csv`.
-   * Students must complete the full text of `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend it in oral vivas.
+* **Provided by Course Scaffolding:**
+  * Validated physical model architecture in MuJoCo MJCF (`models/campus_perimeter_patrol.xml`).
+  * Verification toolchain and smoke test script (`src/test_env.py`).
+  * Literature foundation, mathematical formulations, and conference paper blueprint (`docs/`).
+  * Dimensionless technoeconomic framework (`analytics/campus_security_economics.py`).
+* **Student Technical Deliverables (Required for Evaluation):**
+  * Implement and tune the control algorithm in `src/aerial_patrol_swarm.py` (filling all marked `# TODO [Student Roll / Name]` blocks).
+  * Run physics simulation trials to collect and expand empirical data in `analytics/campus_patrol_benchmark.csv`.
+  * Re-run `analytics/generate_paper_figures.py` to regenerate publication figures with live experimental telemetry.
+  * Author the final 4-page IEEE conference paper in `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend individual Git commits during the oral viva.
+
+---
+
+## 6. Sprint 0 Onboarding & Physics Environment Verification
+
+Verify your local Python and MuJoCo simulation environment:
+
+```powershell
+# Step 1: Clone repository and navigate to group directory
+git clone <repository_url>
+cd <repository_root>/Group_05_Muaaz_Aditya_Zaid_Soumya
+
+# Step 2: Checkout your individual feature branch
+# Example for lead student:
+git checkout -b feat/e043-lead-uav-flight-dyna
+
+# Step 3: Run environment smoke test
+python src/test_env.py
+
+# Step 4: Verify 300 DPI publication figures
+python analytics/generate_paper_figures.py
+```

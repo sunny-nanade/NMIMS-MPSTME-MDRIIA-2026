@@ -1,32 +1,88 @@
 {
   "group_id": "MDRIIA_GROUP_06",
   "folder_name": "Group_06_Arush_Ronit_Harshvardhan",
-  "domain": "Solar Panel Cleaning",
+  "domain": "Autonomous Crawler Cleaning Robot for Rooftop Commercial Solar Arrays",
   "authorized_title": "How can an autonomous crawler cleaning robot simulated in MuJoCo recover soiling-induced energy losses (15-18% monthly) on inclined commercial rooftop solar arrays while reducing cleaning cycle operational expenditure compared to manual labor?",
   "members": [
     {
       "roll_no": "E048",
-      "sap_id": "70362400013",
+      "sap_id": "70362400010",
       "name": "Arush Ashish Patil",
       "role": "Lead Tracked Crawler Chassis & MuJoCo Adhesion Modeler",
       "assigned_branch": "feat/e048-lead-tracked-crawler",
-      "github_username": ""
+      "viva_focus": "Tracked mobile base kinematics on 15-35 degree inclined solar panels, normal contact force distribution, and anti-slip friction bounds."
     },
     {
       "roll_no": "E052",
-      "sap_id": "70362400001",
+      "sap_id": "70362400058",
       "name": "Ronit Rajput",
       "role": "Waterless Rotary Brush Actuation & Cleaning Efficiency Engineer",
       "assigned_branch": "feat/e052-waterless-rotary-bru",
-      "github_username": ""
+      "viva_focus": "Rotary brush contact mechanics, normal force regulation, dust particulate displacement efficiency, and surface micro-scratch prevention."
     },
     {
       "roll_no": "E058",
-      "sap_id": "70362400031",
+      "sap_id": "70362400007",
       "name": "Harshvardhan Sahi",
       "role": "CSBS Photovoltaic Degradation & CapEx/OpEx Payback Analyst",
       "assigned_branch": "feat/e058-csbs-photovoltaic-de",
-      "github_username": ""
+      "viva_focus": "Soiling degradation kinetics (15-18% monthly loss), Levelized Cost of Electricity (LCOE) impact, and autonomous vs manual labor cost parity."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Figgis et al.",
+      "year": 2023,
+      "title": "PV module vibration by robotic cleaning",
+      "venue": "Solar Energy",
+      "doi": "https://doi.org/10.1016/j.solener.2022.12.049",
+      "lead": "Arush Ashish Patil (E048)"
+    },
+    {
+      "id": 2,
+      "authors": "Song et al.",
+      "year": 2021,
+      "title": "Air pollution and soiling implications for solar photovoltaic power generation: A comprehensive review",
+      "venue": "Applied Energy",
+      "doi": "https://doi.org/10.1016/j.apenergy.2021.117247",
+      "lead": "Harshvardhan Sahi (E058)"
+    },
+    {
+      "id": 3,
+      "authors": "Figgis et al.",
+      "year": 2023,
+      "title": "Effect of cleaning robot's moving shadow on PV string",
+      "venue": "Solar Energy",
+      "doi": "https://doi.org/10.1016/j.solener.2023.03.003",
+      "lead": "Harshvardhan Sahi (E058) & Ronit Rajput (E052)"
+    },
+    {
+      "id": 4,
+      "authors": "Ghodki",
+      "year": 2022,
+      "title": "An infrared based dust mitigation system operated by the robotic arm for performance improvement of the solar panel",
+      "venue": "Solar Energy",
+      "doi": "https://doi.org/10.1016/j.solener.2022.08.064",
+      "lead": "Ronit Rajput (E052)"
+    },
+    {
+      "id": 5,
+      "authors": "Wang et al.",
+      "year": 2022,
+      "title": "A Hybrid Cleaning Scheduling Framework for Operations and Maintenance of Photovoltaic Systems",
+      "venue": "IEEE Transactions on Systems, Man, and Cybernetics: Systems",
+      "doi": "https://doi.org/10.1109/TSMC.2021.3131031",
+      "lead": "Harshvardhan Sahi (E058) & Arush Patil (E048)"
+    },
+    {
+      "id": 6,
+      "authors": "Yuan et al.",
+      "year": 2024,
+      "title": "An analysis of surface-soiling and self-cleaning of photovoltaic panel under condensation",
+      "venue": "Solar Energy",
+      "doi": "https://doi.org/10.1016/j.solener.2024.113014",
+      "lead": "Ronit Rajput (E052) & Arush Patil (E048)"
     }
   ]
 }

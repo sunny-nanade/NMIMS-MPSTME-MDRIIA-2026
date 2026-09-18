@@ -1,40 +1,96 @@
 {
   "group_id": "MDRIIA_GROUP_08",
   "folder_name": "Group_08_Manikya_Shourya_Keswani_Vora",
-  "domain": "UAV for emergency supply delivery in floods (SkyHydro)",
+  "domain": "Autonomous Multirotor UAV for Medical Relief Air-Drop in Flood Operations",
   "authorized_title": "To what extent can an autonomous vision-guided multirotor UAV simulated in MuJoCo for payload-range trade-offs optimize last-mile medical relief drop accuracy during NDRF flood operations while establishing fleet utilization payback parity against ground transport?",
   "members": [
     {
       "roll_no": "E056",
-      "sap_id": "70362400057",
+      "sap_id": "70362400045",
       "name": "Manikya Rathore",
       "role": "Lead UAV Aerodynamics, Payload Physics & MuJoCo Modeler",
       "assigned_branch": "feat/e056-lead-uav-aerodynamic",
-      "github_username": ""
+      "viva_focus": "6-DOF quadrotor aerodynamics, cable-suspended payload pendulum dynamics, rotor thrust-to-weight scaling, and air-drop release mechanics."
     },
     {
       "roll_no": "E020",
-      "sap_id": "70362400047",
+      "sap_id": "70362400015",
       "name": "Shourya Garg",
       "role": "Computer Vision, Thermal Survivor Detection & Winch Drop Specialist",
       "assigned_branch": "feat/e020-computer-vision-ther",
-      "github_username": ""
+      "viva_focus": "Vision-based target tracking, circular landing/drop zone identification, downwash compensation, and payload release timing."
     },
     {
       "roll_no": "E032",
-      "sap_id": "70362400048",
+      "sap_id": "70362400072",
       "name": "Keswani Laksh",
       "role": "Flight Path Optimization & Wind Gust Disturbance Control Lead",
       "assigned_branch": "feat/e032-flight-path-optimiza",
-      "github_username": ""
+      "viva_focus": "Dryden wind turbulence modeling, payload swing attenuation, LQR attitude stabilization, and flight envelope bounds."
     },
     {
       "roll_no": "E067",
-      "sap_id": "70362400015",
+      "sap_id": "70362400020",
       "name": "Vora Jash",
       "role": "CSBS Disaster Logistics, Fleet Economics & Cost-Parity Analyst",
       "assigned_branch": "feat/e067-csbs-disaster-logist",
-      "github_username": ""
+      "viva_focus": "Disaster relief supply chain modeling, payload-range battery trade-offs, NDRF boat replacement ratios, and fleet amortization models."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Dorling et al.",
+      "year": 2017,
+      "title": "Vehicle Routing Problems for Drone Delivery",
+      "venue": "IEEE Transactions on Systems, Man, and Cybernetics: Systems",
+      "doi": "https://doi.org/10.1109/TSMC.2016.2582745",
+      "lead": "Vora Jash (E067) & Manikya Rathore (E056)"
+    },
+    {
+      "id": 2,
+      "authors": "Chowdhury et al.",
+      "year": 2017,
+      "title": "Drones for disaster response and relief operations: A continuous approximation model",
+      "venue": "International Journal of Production Economics",
+      "doi": "https://doi.org/10.1016/j.ijpe.2017.03.024",
+      "lead": "Vora Jash (E067)"
+    },
+    {
+      "id": 3,
+      "authors": "Zhang et al.",
+      "year": 2023,
+      "title": "Real-Time Local Obstacle Avoidance and Trajectory Tracking Control of Quadrotor UAVs With Suspended Payload in Complex Environments",
+      "venue": "IEEE Access",
+      "doi": "https://doi.org/10.1109/ACCESS.2023.3344578",
+      "lead": "Manikya Rathore (E056) & Keswani Laksh (E032)"
+    },
+    {
+      "id": 4,
+      "authors": "Falanga et al.",
+      "year": 2017,
+      "title": "Vision-based autonomous quadrotor landing on a moving platform",
+      "venue": "IEEE International Symposium on Safety, Security and Rescue Robotics (SSRR)",
+      "doi": "https://doi.org/10.1109/SSRR.2017.8088164",
+      "lead": "Shourya Garg (E020)"
+    },
+    {
+      "id": 5,
+      "authors": "Scholten, Fumagalli et al.",
+      "year": 2013,
+      "title": "Interaction control of an UAV endowed with a manipulator",
+      "venue": "IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "https://doi.org/10.1109/ICRA.2013.6631278",
+      "lead": "Manikya Rathore (E056) & Shourya Garg (E020)"
+    },
+    {
+      "id": 6,
+      "authors": "Kamal et al.",
+      "year": 2018,
+      "title": "Using crowdsourcing to identify critical affected areas for rapid damage assessment: Hurricane Matthew case study",
+      "venue": "International Journal of Disaster Risk Reduction",
+      "doi": "https://doi.org/10.1016/j.ijdrr.2018.02.003",
+      "lead": "Keswani Laksh (E032) & Vora Jash (E067)"
     }
   ]
 }

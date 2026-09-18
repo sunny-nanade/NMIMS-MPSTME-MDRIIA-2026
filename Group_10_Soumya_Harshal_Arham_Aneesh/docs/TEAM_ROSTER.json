@@ -1,40 +1,96 @@
 {
   "group_id": "MDRIIA_GROUP_10",
   "folder_name": "Group_10_Soumya_Harshal_Arham_Aneesh",
-  "domain": "Intelligent robotics assistant for precision surgical task",
+  "domain": "7-DOF Surgical Robotic Manipulator with Physiological Tremor Compensation",
   "authorized_title": "How can a 7-DOF surgical manipulator simulated in MuJoCo implement inverse kinematics Jacobian damping and low-pass tremor filtering to achieve sub-0.5 mm needle placement accuracy under simulated physiological surgeon hand tremor?",
   "members": [
     {
       "roll_no": "E071",
-      "sap_id": "70362400085",
+      "sap_id": "70362400034",
       "name": "Soumya Singh",
       "role": "Lead Surgical Kinematics, Damped Least Squares IK & MuJoCo Modeler",
       "assigned_branch": "feat/e071-lead-surgical-kinema",
-      "github_username": ""
+      "viva_focus": "7-DOF redundant manipulator kinematics, Damped Least Squares (DLS) Jacobian pseudo-inverse, singularity robustness, and joint velocity bounds."
     },
     {
       "roll_no": "E033",
-      "sap_id": "70362400064",
+      "sap_id": "70362400028",
       "name": "Harshal Khandekar",
       "role": "Digital Signal Processing, Tremor Modeling & Kalman Filtering Lead",
       "assigned_branch": "feat/e033-digital-signal-proce",
-      "github_username": ""
+      "viva_focus": "Physiological surgeon tremor modeling (8-12 Hz Gaussian bandpass noise), discrete Butterworth/Kalman filter implementation, and phase lag minimization."
     },
     {
       "roll_no": "E069",
-      "sap_id": "70362300012",
+      "sap_id": "70362400047",
       "name": "Arham Khan",
       "role": "End-Effector Precision Telemetry & Sub-Millimeter Calibration Specialist",
       "assigned_branch": "feat/e069-end-effector-precisi",
-      "github_username": ""
+      "viva_focus": "End-effector tip position telemetry, Euclidean trajectory tracking error, needle insertion target accuracy (< 0.5 mm), and overshoot suppression."
     },
     {
       "roll_no": "E076",
-      "sap_id": "70362300030",
+      "sap_id": "70362400019",
       "name": "Aneesh Kumar",
       "role": "CSBS Surgical Clinical Economics & OR Utilization Business Analyst",
       "assigned_branch": "feat/e076-csbs-surgical-clinic",
-      "github_username": ""
+      "viva_focus": "Operating room cost structure, surgical revision rate reduction, surgeon fatigue mitigation, and robotic precision capital amortization."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Yang et al.",
+      "year": 2015,
+      "title": "Manipulator Design and Operation of a Six-Degree-of-Freedom Handheld Tremor-Canceling Microsurgical Instrument",
+      "venue": "IEEE/ASME Transactions on Mechatronics",
+      "doi": "https://doi.org/10.1109/TMECH.2014.2320858",
+      "lead": "Soumya Singh (E071) & Arham Khan (E069)"
+    },
+    {
+      "id": 2,
+      "authors": "Taylor & Stoianovici",
+      "year": 2003,
+      "title": "Medical robotics in computer-integrated surgery",
+      "venue": "IEEE Transactions on Robotics and Automation",
+      "doi": "https://doi.org/10.1109/TRA.2003.817058",
+      "lead": "Soumya Singh (E071)"
+    },
+    {
+      "id": 3,
+      "authors": "Chiaverini",
+      "year": 1997,
+      "title": "Singularity-robust task-priority redundancy resolution for real-time kinematic control of robot manipulators",
+      "venue": "IEEE Transactions on Robotics and Automation",
+      "doi": "https://doi.org/10.1109/70.585902",
+      "lead": "Soumya Singh (E071) & Arham Khan (E069)"
+    },
+    {
+      "id": 4,
+      "authors": "Riviere & Thakor",
+      "year": 1998,
+      "title": "Adaptive cancelling of physiological tremor for improved precision in microsurgery",
+      "venue": "IEEE Transactions on Biomedical Engineering",
+      "doi": "https://doi.org/10.1109/10.686791",
+      "lead": "Harshal Khandekar (E033)"
+    },
+    {
+      "id": 5,
+      "authors": "Childers & Maggard-Gibbons",
+      "year": 2018,
+      "title": "Understanding Costs of Care in the Operating Room",
+      "venue": "JAMA Surgery",
+      "doi": "https://doi.org/10.1001/jamasurg.2017.6233",
+      "lead": "Aneesh Kumar (E076)"
+    },
+    {
+      "id": 6,
+      "authors": "Riviere et al.",
+      "year": 2003,
+      "title": "Toward active tremor canceling in handheld microsurgical instruments",
+      "venue": "IEEE Transactions on Robotics and Automation",
+      "doi": "https://doi.org/10.1109/TRA.2003.817506",
+      "lead": "Harshal Khandekar (E033) & Aneesh Kumar (E076)"
     }
   ]
 }

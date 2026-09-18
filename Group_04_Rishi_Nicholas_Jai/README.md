@@ -1,106 +1,110 @@
-# Multi-Arm Robotic Gripper for Non-Cooperative Space Debris Capture in LEO
-
-## Project Charter and Research Scaffolding
-**Group ID:** MDRIIA Group 04  
-**Project Track:** Modern Day Robotics and Industrial Applications  
+# MDRIIA_GROUP_04: Multi-Arm Robotic Gripper for Non-Cooperative Space Debris Capture in LEO
 
 ---
 
-## 1. Problem Statement and Interrogative Research Question
+## 1. Authorized Research Title & Problem Statement
 
-The proliferation of orbital debris in Low Earth Orbit (LEO) poses an escalating threat to commercial satellite constellations and crewed space missions. Active Debris Removal (ADR) requires an autonomous servicer spacecraft to synchronize with and capture non-cooperative, tumbling orbital targets without prior mechanical mating fixtures. Conventional rigid position-controlled robotic manipulators impart severe collision impulses upon initial contact, often rebounding the target into unpredictable trajectories or inducing critical base attitude instabilities on the free-floating servicer bus.
+> "How can a multi-arm robotic gripper mechanism simulated in MuJoCo utilize impedance contact control to synchronize with and capture tumbling non-cooperative orbital debris in LEO while mitigating collision impulse and momentum transfer?"
 
-### Aalborg Interrogative Research Title
-> **"How can a multi-arm robotic gripper mechanism simulated in MuJoCo utilize impedance contact control to synchronize with and capture tumbling non-cooperative orbital debris in LEO while mitigating collision impulse and momentum transfer?"**
-
----
-
-## 2. Research Hypotheses and Engineering Scope
-
-### Scientific Hypotheses
-* **Null Hypothesis (H0):** A multi-arm robotic gripper utilizing Cartesian impedance control achieves no statistically significant reduction in peak contact impulse (N) and no improvement in capture success rate (%) compared to conventional rigid proportional-derivative (PD) grasping during non-cooperative tumbling target capture (p >= 0.05).
-* **Alternative Hypothesis (H1):** A multi-arm robotic gripper utilizing Cartesian operational space impedance contact control in MuJoCo reduces peak contact impulse by > 50%, suppresses servicer base attitude disturbance below 3.5 degrees, and achieves a capture success rate > 90% across debris tumble velocities up to 15 deg/s (p < 0.001).
+### Core Engineering Focus
+* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body dynamic physics simulation (`models/space_debris_gripper.xml`).
+* **Autonomous Control:** Closed-loop Python control architecture with student implementation boundaries (`src/debris_capture_controller.py`).
+* **Technoeconomic Evaluation:** Dimensionless CSBS operational economics and return on investment model (`analytics/constellation_economics.py`).
+* **Empirical Validation:** Reproducible benchmark trials and statistical hypothesis testing (`analytics/space_debris_capture_benchmark.csv`).
 
 ---
 
-## 3. Foundational Literature Benchmarks
+## 2. Student Engineering Team Matrix
 
-The research foundation for this project is established upon five peer-reviewed publications:
-
-1. **Yan, Xu, Hu, & Liang (2020)** - *Acta Astronautica*  
-   *Title:* Multi-objective configuration optimization for coordinated capture of dual-arm space robot  
-   *DOI:* [10.1016/j.actaastro.2019.11.002](https://doi.org/10.1016/j.actaastro.2019.11.002)  
-   *Key Baseline:* Establishes dual-arm coordinated kinematics and base disturbance minimization for space manipulators.
-
-2. **Rybus, Wojtunik, & Basmadji (2022)** - *Acta Astronautica*  
-   *Title:* Optimal collision-free path planning of a free-floating space robot using spline-based trajectories  
-   *DOI:* [10.1016/j.actaastro.2021.10.012](https://doi.org/10.1016/j.actaastro.2021.10.012)  
-   *Key Baseline:* Models base reaction displacement of free-floating space robots and collision-free approach trajectory generation.
-
-3. **Han, Huang, Liu, & Yang (2020)** - *Acta Astronautica*  
-   *Title:* Combined spacecraft stabilization control after multiple impacts during the capture of a tumbling target by a space robot  
-   *DOI:* [10.1016/j.actaastro.2020.05.035](https://doi.org/10.1016/j.actaastro.2020.05.035)  
-   *Key Baseline:* Investigates post-impact dynamic coupling and stabilization of tumbling target-spacecraft coupled systems.
-
-4. **Wang, Shi, & Katupitiya (2021)** - *Aerospace Science and Technology*  
-   *Title:* A Strategy to Decelerate and Capture a Spinning Object by a Dual-Arm Space Robot  
-   *DOI:* [10.1016/j.ast.2021.106682](https://doi.org/10.1016/j.ast.2021.106682)  
-   *Key Baseline:* Supplies multi-phase deceleration and synchronization contact strategies for spinning targets.
-
-5. **Tao, Zhang, Chu, Zhou, & Zhao (2021)** - *IEEE Access*  
-   *Title:* Impedance-Sliding Mode Control with Force Constraints for Space Robots Capturing Non-Cooperative Objects  
-   *DOI:* [10.1109/ACCESS.2021.3129835](https://doi.org/10.1109/ACCESS.2021.3129835)  
-   *Key Baseline:* Formulates operational space impedance control with contact force bounds to eliminate contact rebound.
-
----
-
-## 4. Student Engineering Team Matrix
-
-| Roll No | SAP ID | Student Name | Assigned Engineering Role | Git Feature Branch | Individual Deliverable Focus |
+| Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **E034** | `70362400032` | Rishi Vinod Koli | Lead Orbital Dynamics & MuJoCo Multi-Body Physics Architect | `feat/e034-lead-orbital-dynamic` | Microgravity MJCF modeling, freejoint servicer base, tumbling target dynamics |
-| **E035** | `70362400029` | Nicholas Lewis | Impedance Contact Control & Robotic Kinematics Engineer | `feat/e035-impedance-contact-co` | Cartesian impedance control law, phase synchronization, contact force absorption |
-| **E036** | `70362400014` | Jai Maini | CSBS Commercial Space Economics & Satellite De-Orbiting Business Analyst | `feat/e036-csbs-commercial-spac` | Multi-target ADR cost recovery ratio, constellation asset preservation, FCC/ESA compliance |
+| `E034` | `70362400049` | **Rishi Vinod Koli** | Lead Orbital Dynamics & MuJoCo Multi-Body Physics Architect | `feat/e034-lead-orbital-dynamic` | Zero-gravity multi-body spacecraft dynamics, Generalized Jacobian Matrix (GJM), and momentum transfer during contact. |
+| `E035` | `70362400032` | **Nicholas Lewis** | Impedance Contact Control & Robotic Kinematics Engineer | `feat/e035-impedance-contact-co` | Cartesian impedance force control, tumbling satellite spin matching, and post-contact detumbling damping. |
+| `E036` | `70362400083` | **Jai Maini** | CSBS Commercial Space Economics & Satellite De-Orbiting Business Analyst | `feat/e036-csbs-commercial-spac` | LEO orbital slot preservation economics, Kessler syndrome collision risk reduction, and multi-mission ADR amortization models. |
 
 ---
 
-## 5. Repository Directory Architecture
+## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+
+The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
+
+| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Yan et al. (2020)** | *Multi-objective configuration optimization for coordinated capture of dual-arm space robot* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2019.11.002](https://doi.org/10.1016/j.actaastro.2019.11.002) | `Generalized Jacobian $J_g = J_m - J_b I_b^{-1...` | Rishi Vinod Koli (E034) |
+| 2 | **Rybus et al. (2022)** | *Optimal collision-free path planning of a free-floating space robot using splines* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2021.10.012](https://doi.org/10.1016/j.actaastro.2021.10.012) | `Momentum conservation $I_s \omega_0 + \sum I_...` | Rishi Vinod Koli (E034) & Nicholas Lewis (E035) |
+| 3 | **Han et al. (2020)** | *Combined spacecraft stabilization control after multiple impacts during the capture of non-cooperative targets* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2020.05.035](https://doi.org/10.1016/j.actaastro.2020.05.035) | `Contact impulse equation $I_{\text{imp}} = \i...` | Nicholas Lewis (E035) |
+| 4 | **Wang et al. (2021)** | *A strategy to decelerate and capture a spinning object by a dual-arm space robot* | Aerospace Science and Technology | [https://doi.org/10.1016/j.ast.2021.106682](https://doi.org/10.1016/j.ast.2021.106682) | `Spin velocity matching $\lim_{t \to t_c} (\om...` | Nicholas Lewis (E035) & Jai Maini (E036) |
+| 5 | **Tao et al. (2021)** | *Impedance-Sliding Mode Control With Force Constraints for Space Robots Capturing Non-Cooperative Targets* | IEEE Access | [https://doi.org/10.1109/ACCESS.2021.3129835](https://doi.org/10.1109/ACCESS.2021.3129835) | `Target impedance dynamic $M_d \ddot{e} + D_d ...` | Jai Maini (E036) & Nicholas Lewis (E035) |
+| 6 | **Luo et al. (2017)** | *A review of uncertainty propagation in orbital mechanics* | Progress in Aerospace Sciences | [https://doi.org/10.1016/j.paerosci.2016.12.002](https://doi.org/10.1016/j.paerosci.2016.12.002) | `Clohessy-Wiltshire (CW) relative equations: $...` | Rishi Vinod Koli (E034) & Jai Maini (E036) |
+
+For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
+* [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
+* [`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`](docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md)
+
+---
+
+## 4. Repository Directory Architecture
 
 ```
-Group_04_Rishi_Nicholas_Jai/
-|-- README.md                                  <- Project charter, literature, and student matrix
-|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md       <- Orbital equations, impedance laws, viva prep
+.
+|-- README.md                                          <- Front-page research charter, student roster & literature
+|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md               <- Comprehensive technical engineering guide
 |-- docs/
-|   |-- TEAM_ROSTER.json                       <- Machine-readable member identity schema
-|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Detailed analysis of 5 verified papers
-|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md <- IEEE/ACM 4-page conference template
+|   |-- TEAM_ROSTER.json                               <- Machine-readable team configuration
+|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md   <- Exhaustive literature dossier (6 verified papers)
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md         <- 4-page IEEE conference manuscript blueprint
 |   `-- figures/
-|       |-- figure1_system_architecture.png    <- High-res system block diagram
-|       |-- figure2_kinematic_telemetry.png    <- High-res contact force and impulse plot
-|       `-- figure3_comparative_performance.png <- High-res capture success rate vs tumble rate
+|       |-- figure1_system_architecture.png            <- 300 DPI system architecture diagram
+|       |-- figure2_kinematic_telemetry.png            <- 300 DPI kinematics and simulation telemetry
+|       `-- figure3_comparative_performance.png        <- 300 DPI comparative benchmark visualization
 |-- models/
-|   `-- space_debris_gripper.xml               <- MuJoCo MJCF zero-G model with dual arms & target
+|   |-- .gitkeep
+|   `-- space_debris_gripper.xml                                    <- MuJoCo MJCF simulation model
 |-- src/
-|   |-- debris_capture_controller.py           <- Impedance control script with student TODO blocks
-|   `-- test_env.py                            <- Toolchain verification and test step script
+|   |-- test_env.py                                    <- Physics validation & environment tester
+|   `-- debris_capture_controller.py                                      <- Autonomous control loop (# TODO student boundaries)
 `-- analytics/
-    |-- constellation_economics.py             <- Commercial space economics & risk mitigation
-    |-- generate_paper_figures.py              <- Automation script generating publication figures
-    `-- space_debris_capture_benchmark.csv     <- N=80 trial simulation dataset
+    |-- .gitkeep
+    |-- constellation_economics.py                                      <- CSBS dimensionless technoeconomic model
+    |-- generate_paper_figures.py                      <- Standalone 300 DPI publication figure generator
+    `-- space_debris_capture_benchmark.csv                                    <- Empirical benchmark trial dataset
 ```
 
 ---
 
-## 6. Pedagogical Boundaries: Guidance vs Student Ownership
+## 5. Pedagogical Boundaries: Guidance vs Student Ownership
 
-1. **Provided Scaffolding:**
-   * Hill-Clohessy-Wiltshire orbital relative equations and Cartesian impedance formulation.
-   * Curated literature dossier with verified DOIs and benchmark parameters.
-   * Baseline microgravity MuJoCo MJCF model skeleton with dual 3-DOF arms.
-   * 4-page conference manuscript blueprint and figure generation scripts.
+To ensure academic rigor and authentic student learning, this repository enforces strict boundaries between scaffolding and student deliverables:
 
-2. **Mandatory Student Contributions (Students Must Implement and Commit):**
-   * Students must implement their respective `# TODO` blocks in `src/debris_capture_controller.py`.
-   * Students must tune virtual inertia ($M_d$), damping ($D_d$), and stiffness ($K_d$) parameters to achieve critical contact damping.
-   * Students must execute Monte Carlo simulation runs ($N \ge 80$), record actual physical contact telemetry, and update `analytics/space_debris_capture_benchmark.csv`.
-   * Students must draft and complete the full text of `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend it in oral vivas.
+* **Provided by Course Scaffolding:**
+  * Validated physical model architecture in MuJoCo MJCF (`models/space_debris_gripper.xml`).
+  * Verification toolchain and smoke test script (`src/test_env.py`).
+  * Literature foundation, mathematical formulations, and conference paper blueprint (`docs/`).
+  * Dimensionless technoeconomic framework (`analytics/constellation_economics.py`).
+* **Student Technical Deliverables (Required for Evaluation):**
+  * Implement and tune the control algorithm in `src/debris_capture_controller.py` (filling all marked `# TODO [Student Roll / Name]` blocks).
+  * Run physics simulation trials to collect and expand empirical data in `analytics/space_debris_capture_benchmark.csv`.
+  * Re-run `analytics/generate_paper_figures.py` to regenerate publication figures with live experimental telemetry.
+  * Author the final 4-page IEEE conference paper in `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend individual Git commits during the oral viva.
+
+---
+
+## 6. Sprint 0 Onboarding & Physics Environment Verification
+
+Verify your local Python and MuJoCo simulation environment:
+
+```powershell
+# Step 1: Clone repository and navigate to group directory
+git clone <repository_url>
+cd <repository_root>/Group_04_Rishi_Nicholas_Jai
+
+# Step 2: Checkout your individual feature branch
+# Example for lead student:
+git checkout -b feat/e034-lead-orbital-dynamic
+
+# Step 3: Run environment smoke test
+python src/test_env.py
+
+# Step 4: Verify 300 DPI publication figures
+python analytics/generate_paper_figures.py
+```

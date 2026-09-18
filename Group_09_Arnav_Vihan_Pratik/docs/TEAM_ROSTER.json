@@ -1,32 +1,88 @@
 {
   "group_id": "MDRIIA_GROUP_09",
   "folder_name": "Group_09_Arnav_Vihan_Pratik",
-  "domain": "UGV for defence and hazardous applications",
+  "domain": "Autonomous Ground Vehicle (AGV/UGV) for Unknown Hazardous Terrain Reconnaissance",
   "authorized_title": "How can an autonomous ground vehicle utilizing simulated LiDAR rangefinders and traversability cost-mapping in MuJoCo navigate unknown unstructured hazardous terrain while reducing teleoperation cognitive workload and communication latency?",
   "members": [
     {
       "roll_no": "E064",
-      "sap_id": "70362400067",
+      "sap_id": "70362400017",
       "name": "Arnav Saurabh Surve",
       "role": "Lead UGV Skid-Steer Dynamics & MuJoCo Terrain Modeler",
       "assigned_branch": "feat/e064-lead-ugv-skid-steer-",
-      "github_username": ""
+      "viva_focus": "Skid-steer 4-wheel slip dynamics, rough terrain contact normal forces, pitch/roll rollover stability, and torque distribution."
     },
     {
       "roll_no": "E070",
-      "sap_id": "70362400086",
+      "sap_id": "70362400063",
       "name": "Vihan Shripad Joshi",
       "role": "LiDAR Perception, 3D Elevation Mapping & Obstacle Segmentation Lead",
       "assigned_branch": "feat/e070-lidar-perception-3d-",
-      "github_username": ""
+      "viva_focus": "Multi-ray LiDAR point cloud filtering, 2.5D elevation grid mapping, slope/roughness traversability cost calculation, and path replanning."
     },
     {
       "roll_no": "E073",
-      "sap_id": "70362300032",
+      "sap_id": "70362400033",
       "name": "Pratik Mangesh Gaikwad",
       "role": "CSBS Hazardous Operations Safety & Teleoperation Latency Analyst",
       "assigned_branch": "feat/e073-csbs-hazardous-opera",
-      "github_username": ""
+      "viva_focus": "Operator cognitive workload metrics (NASA-TLX), teleoperation latency resilience, human risk mitigation, and industrial inspection payback."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Fankhauser et al.",
+      "year": 2018,
+      "title": "Probabilistic Terrain Mapping for Mobile Robots With Uncertain Localization",
+      "venue": "IEEE Robotics and Automation Letters",
+      "doi": "https://doi.org/10.1109/LRA.2018.2849506",
+      "lead": "Vihan Shripad Joshi (E070) & Arnav Saurabh Surve (E064)"
+    },
+    {
+      "id": 2,
+      "authors": "Chilian & Hirschmuller",
+      "year": 2009,
+      "title": "Stereo camera based navigation of mobile robots on rough terrain",
+      "venue": "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "doi": "https://doi.org/10.1109/IROS.2009.5354535",
+      "lead": "Vihan Shripad Joshi (E070)"
+    },
+    {
+      "id": 3,
+      "authors": "Kelly et al.",
+      "year": 2006,
+      "title": "Toward Reliable Off Road Autonomous Vehicles Operating in Challenging Environments",
+      "venue": "The International Journal of Robotics Research",
+      "doi": "https://doi.org/10.1177/0278364906065543",
+      "lead": "Arnav Saurabh Surve (E064)"
+    },
+    {
+      "id": 4,
+      "authors": "Chen et al.",
+      "year": 2007,
+      "title": "Human Performance Issues and User Interface Design for Teleoperated Robots",
+      "venue": "IEEE Transactions on Systems, Man and Cybernetics, Part C",
+      "doi": "https://doi.org/10.1109/TSMCC.2007.905819",
+      "lead": "Pratik Mangesh Gaikwad (E073)"
+    },
+    {
+      "id": 5,
+      "authors": "Casper & Murphy",
+      "year": 2003,
+      "title": "Human-robot interactions during the robot-assisted urban search and rescue response at the World Trade Center",
+      "venue": "IEEE Transactions on Systems, Man, and Cybernetics, Part B",
+      "doi": "https://doi.org/10.1109/TSMCB.2003.811794",
+      "lead": "Pratik Mangesh Gaikwad (E073) & Arnav Saurabh Surve (E064)"
+    },
+    {
+      "id": 6,
+      "authors": "Yu et al.",
+      "year": 2018,
+      "title": "Algorithms and experiments on routing of unmanned aerial vehicles for emergency reconnaissance",
+      "venue": "Journal of Field Robotics",
+      "doi": "https://doi.org/10.1002/rob.21856",
+      "lead": "Vihan Shripad Joshi (E070) & Pratik Mangesh Gaikwad (E073)"
     }
   ]
 }

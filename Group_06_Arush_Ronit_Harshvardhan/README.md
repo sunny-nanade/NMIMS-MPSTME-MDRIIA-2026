@@ -1,106 +1,110 @@
-# Autonomous Tracked Crawler Cleaning Robot for Inclined Photovoltaic Solar Arrays
-
-## Project Charter and Research Scaffolding
-**Group ID:** MDRIIA Group 06  
-**Project Track:** Modern Day Robotics and Industrial Applications  
+# MDRIIA_GROUP_06: Autonomous Crawler Cleaning Robot for Rooftop Commercial Solar Arrays
 
 ---
 
-## 1. Problem Statement and Interrogative Research Question
+## 1. Authorized Research Title & Problem Statement
 
-Atmospheric particulate accumulation and dust cementation on commercial rooftop photovoltaic (PV) installations degrade monthly power generation by 15% to 18% in high-pollution urban and industrial environments. Conventional manual wet cleaning relies on contracted human labor, presenting severe occupational slip-and-fall hazards on inclined roofs (10 to 30 degrees tilt) and consuming 3.5 to 5.0 liters of treated water per square meter. Water-free autonomous tracked crawler robots offer an environmentally sustainable alternative. However, continuous operation on inclined, low-friction borosilicate glass panels introduces critical dynamic challenges: maintaining tread adhesion without downhill slip, suppressing mechanical vibration to prevent solar cell micro-cracking, and executing comprehensive boustrophedon cleaning coverage.
+> "How can an autonomous crawler cleaning robot simulated in MuJoCo recover soiling-induced energy losses (15-18% monthly) on inclined commercial rooftop solar arrays while reducing cleaning cycle operational expenditure compared to manual labor?"
 
-### Aalborg Interrogative Research Title
-> **"How can an autonomous crawler cleaning robot simulated in MuJoCo recover soiling-induced energy losses (15-18% monthly) on inclined commercial rooftop solar arrays while reducing cleaning cycle operational expenditure compared to manual labor?"**
-
----
-
-## 2. Research Hypotheses and Engineering Scope
-
-### Scientific Hypotheses
-* **Null Hypothesis (H0):** An autonomous crawler cleaning robot traversing an inclined PV array (20-degree tilt) in MuJoCo exhibits significant downward slip (slip ratio > 15%), cannot achieve full surface coverage, and fails to yield a statistically significant reduction in cleaning cycle operational expenditure compared to manual labor (p >= 0.05).
-* **Alternative Hypothesis (H1):** An autonomous crawler cleaning robot utilizing high-friction EPDM tracks and slope-compensating velocity control achieves stable adhesion (slip ratio < 3.5%), executes 100% boustrophedon cleaning coverage, maintains vibration deflections below 1.0 mm (ISO/IEC compliance), recovers > 95% of soiling-induced power attenuation, and achieves a positive dimensionless economic payback in under 12 months (p < 0.001).
+### Core Engineering Focus
+* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body dynamic physics simulation (`models/solar_cleaning_crawler.xml`).
+* **Autonomous Control:** Closed-loop Python control architecture with student implementation boundaries (`src/crawler_cleaning_controller.py`).
+* **Technoeconomic Evaluation:** Dimensionless CSBS operational economics and return on investment model (`analytics/photovoltaic_degradation_economics.py`).
+* **Empirical Validation:** Reproducible benchmark trials and statistical hypothesis testing (`analytics/solar_cleaning_benchmark.csv`).
 
 ---
 
-## 3. Foundational Literature Benchmarks
+## 2. Student Engineering Team Matrix
 
-The research foundation for this project is established upon five peer-reviewed publications:
-
-1. **Figgis, Bermudez, & Garcia (2023)** - *Solar Energy*  
-   *Title:* PV module vibration by robotic cleaning  
-   *DOI:* [10.1016/j.solener.2022.12.049](https://doi.org/10.1016/j.solener.2022.12.049)  
-   *Key Baseline:* Establishes that robotic brush excitation (~7 Hz) causes module deflections < 1.0 mm, confirming mechanical safety against cell cracking.
-
-2. **Song, Liu, & Yang (2021)** - *Applied Energy*  
-   *Title:* Air pollution and soiling implications for solar photovoltaic power generation: A comprehensive review  
-   *DOI:* [10.1016/j.apenergy.2021.117247](https://doi.org/10.1016/j.apenergy.2021.117247)  
-   *Key Baseline:* Synthesizes dust deposition mechanics and quantifies regional soiling rates causing 15% to 18% monthly energy losses.
-
-3. **Al-Housani, Bicer, & Koc (2023)** - *Solar Energy*  
-   *Title:* Effect of cleaning Robot's moving shadow on PV string  
-   *DOI:* [10.1016/j.solener.2023.03.003](https://doi.org/10.1016/j.solener.2023.03.003)  
-   *Key Baseline:* Models transient shading effects of cleaning robots during active daylight maintenance.
-
-4. **Al-Neama, Farah, & Al-Habaibeh (2022)** - *Solar Energy*  
-   *Title:* An infrared based dust mitigation system operated by the robotic arm for performance improvement of the solar panel  
-   *DOI:* [10.1016/j.solener.2022.08.064](https://doi.org/10.1016/j.solener.2022.08.064)  
-   *Key Baseline:* Demonstrates dust removal efficiency metrics and electrical performance restoration.
-
-5. **Wang et al. (2022)** - *IEEE Transactions on Systems, Man, and Cybernetics: Systems*  
-   *Title:* A Hybrid Cleaning Scheduling Framework for Operations and Maintenance of Photovoltaic Systems  
-   *DOI:* [10.1109/TSMC.2021.3131031](https://doi.org/10.1109/TSMC.2021.3131031)  
-   *Key Baseline:* Supplies mathematical optimization formulations linking cleaning frequency to Levelized Cost of Energy (LCOE).
-
----
-
-## 4. Student Engineering Team Matrix
-
-| Roll No | SAP ID | Student Name | Assigned Engineering Role | Git Feature Branch | Individual Deliverable Focus |
+| Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **E048** | `70362400013` | Arush Ashish Patil | Lead Tracked Crawler Chassis & MuJoCo Adhesion Modeler | `feat/e048-lead-tracked-crawler` | Tracked chassis kinematics, Coulomb-Contensou friction calibration, edge-fall detection |
-| **E052** | `70362400001` | Ronit Rajput | Waterless Rotary Brush Actuation & Cleaning Efficiency Engineer | `feat/e052-waterless-rotary-bru` | High-speed cylindrical brush actuation, boustrophedon path planning, anti-slip control |
-| **E058** | `70362400031` | Harshvardhan Sahi | CSBS Photovoltaic Degradation & CapEx/OpEx Payback Analyst | `feat/e058-csbs-photovoltaic-de` | Mumbai particulate soiling kinetics, power recovery telemetry, dimensionless LCOE model |
+| `E048` | `70362400010` | **Arush Ashish Patil** | Lead Tracked Crawler Chassis & MuJoCo Adhesion Modeler | `feat/e048-lead-tracked-crawler` | Tracked mobile base kinematics on 15-35 degree inclined solar panels, normal contact force distribution, and anti-slip friction bounds. |
+| `E052` | `70362400058` | **Ronit Rajput** | Waterless Rotary Brush Actuation & Cleaning Efficiency Engineer | `feat/e052-waterless-rotary-bru` | Rotary brush contact mechanics, normal force regulation, dust particulate displacement efficiency, and surface micro-scratch prevention. |
+| `E058` | `70362400007` | **Harshvardhan Sahi** | CSBS Photovoltaic Degradation & CapEx/OpEx Payback Analyst | `feat/e058-csbs-photovoltaic-de` | Soiling degradation kinetics (15-18% monthly loss), Levelized Cost of Electricity (LCOE) impact, and autonomous vs manual labor cost parity. |
 
 ---
 
-## 5. Repository Directory Architecture
+## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+
+The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
+
+| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Figgis et al. (2023)** | *PV module vibration by robotic cleaning* | Solar Energy | [https://doi.org/10.1016/j.solener.2022.12.049](https://doi.org/10.1016/j.solener.2022.12.049) | `Vibration acceleration power spectral density...` | Arush Ashish Patil (E048) |
+| 2 | **Song et al. (2021)** | *Air pollution and soiling implications for solar photovoltaic power generation: A comprehensive review* | Applied Energy | [https://doi.org/10.1016/j.apenergy.2021.117247](https://doi.org/10.1016/j.apenergy.2021.117247) | `Soiling ratio $\text{SR}(t) = \frac{P_{\text{...` | Harshvardhan Sahi (E058) |
+| 3 | **Figgis et al. (2023)** | *Effect of cleaning robot's moving shadow on PV string* | Solar Energy | [https://doi.org/10.1016/j.solener.2023.03.003](https://doi.org/10.1016/j.solener.2023.03.003) | `String current under partial shading $I_{\tex...` | Harshvardhan Sahi (E058) & Ronit Rajput (E052) |
+| 4 | **Ghodki (2022)** | *An infrared based dust mitigation system operated by the robotic arm for performance improvement of the solar panel* | Solar Energy | [https://doi.org/10.1016/j.solener.2022.08.064](https://doi.org/10.1016/j.solener.2022.08.064) | `Dust removal efficiency $\eta_{\text{clean}} ...` | Ronit Rajput (E052) |
+| 5 | **Wang et al. (2022)** | *A Hybrid Cleaning Scheduling Framework for Operations and Maintenance of Photovoltaic Systems* | IEEE Transactions on Systems, Man, and Cybernetics: Systems | [https://doi.org/10.1109/TSMC.2021.3131031](https://doi.org/10.1109/TSMC.2021.3131031) | `Net economic benefit $\Pi = \int_0^T \left( P...` | Harshvardhan Sahi (E058) & Arush Patil (E048) |
+| 6 | **Yuan et al. (2024)** | *An analysis of surface-soiling and self-cleaning of photovoltaic panel under condensation* | Solar Energy | [https://doi.org/10.1016/j.solener.2024.113014](https://doi.org/10.1016/j.solener.2024.113014) | `Adhesion shear stress $\tau_{\text{shear}} = ...` | Ronit Rajput (E052) & Arush Patil (E048) |
+
+For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
+* [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
+* [`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`](docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md)
+
+---
+
+## 4. Repository Directory Architecture
 
 ```
-Group_06_Arush_Ronit_Harshvardhan/
-|-- README.md                                  <- Project charter, literature, and student matrix
-|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md       <- Friction laws, brush dynamics, viva prep
+.
+|-- README.md                                          <- Front-page research charter, student roster & literature
+|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md               <- Comprehensive technical engineering guide
 |-- docs/
-|   |-- TEAM_ROSTER.json                       <- Machine-readable member identity schema
-|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Detailed analysis of 5 verified papers
-|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md <- IEEE/ACM 4-page conference template
+|   |-- TEAM_ROSTER.json                               <- Machine-readable team configuration
+|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md   <- Exhaustive literature dossier (6 verified papers)
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md         <- 4-page IEEE conference manuscript blueprint
 |   `-- figures/
-|       |-- figure1_system_architecture.png    <- High-res system block diagram
-|       |-- figure2_kinematic_telemetry.png    <- High-res track slip & vibration deflection plot
-|       `-- figure3_comparative_performance.png <- High-res power recovery & OpEx amortization
+|       |-- figure1_system_architecture.png            <- 300 DPI system architecture diagram
+|       |-- figure2_kinematic_telemetry.png            <- 300 DPI kinematics and simulation telemetry
+|       `-- figure3_comparative_performance.png        <- 300 DPI comparative benchmark visualization
 |-- models/
-|   `-- solar_cleaning_crawler.xml             <- MuJoCo MJCF 20-deg inclined PV array and robot
+|   |-- .gitkeep
+|   `-- solar_cleaning_crawler.xml                                    <- MuJoCo MJCF simulation model
 |-- src/
-|   |-- crawler_cleaning_controller.py         <- Anti-slip control script with student TODO blocks
-|   `-- test_env.py                            <- Toolchain verification and test step script
+|   |-- test_env.py                                    <- Physics validation & environment tester
+|   `-- crawler_cleaning_controller.py                                      <- Autonomous control loop (# TODO student boundaries)
 `-- analytics/
-    |-- generate_paper_figures.py              <- Automation script generating publication figures
-    |-- photovoltaic_degradation_economics.py  <- CSBS soiling kinetics & LCOE payback analysis
-    `-- solar_cleaning_benchmark.csv           <- N=80 trial simulation dataset
+    |-- .gitkeep
+    |-- photovoltaic_degradation_economics.py                                      <- CSBS dimensionless technoeconomic model
+    |-- generate_paper_figures.py                      <- Standalone 300 DPI publication figure generator
+    `-- solar_cleaning_benchmark.csv                                    <- Empirical benchmark trial dataset
 ```
 
 ---
 
-## 6. Pedagogical Boundaries: Guidance vs Student Ownership
+## 5. Pedagogical Boundaries: Guidance vs Student Ownership
 
-1. **Provided Scaffolding:**
-   * Inclined plane multi-contact friction formulations and soiling degradation kinetics.
-   * Curated literature dossier of 5 verified papers with active DOIs.
-   * Baseline MuJoCo MJCF model with inclined solar array, perimeter framing, and crawler chassis.
-   * 4-page conference manuscript blueprint and publication figure generation scripts.
+To ensure academic rigor and authentic student learning, this repository enforces strict boundaries between scaffolding and student deliverables:
 
-2. **Mandatory Student Contributions (Students Must Implement and Commit):**
-   * Students must implement their respective `# TODO` blocks in `src/crawler_cleaning_controller.py`.
-   * Students must tune differential track velocities ($v_L, v_R$) and brush velocity setpoints ($900	ext{ RPM}$).
-   * Students must execute Monte Carlo simulation runs ($N \ge 80$), record actual physical slip and vibration telemetry, and update `analytics/solar_cleaning_benchmark.csv`.
-   * Students must complete the full text of `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend it in oral vivas.
+* **Provided by Course Scaffolding:**
+  * Validated physical model architecture in MuJoCo MJCF (`models/solar_cleaning_crawler.xml`).
+  * Verification toolchain and smoke test script (`src/test_env.py`).
+  * Literature foundation, mathematical formulations, and conference paper blueprint (`docs/`).
+  * Dimensionless technoeconomic framework (`analytics/photovoltaic_degradation_economics.py`).
+* **Student Technical Deliverables (Required for Evaluation):**
+  * Implement and tune the control algorithm in `src/crawler_cleaning_controller.py` (filling all marked `# TODO [Student Roll / Name]` blocks).
+  * Run physics simulation trials to collect and expand empirical data in `analytics/solar_cleaning_benchmark.csv`.
+  * Re-run `analytics/generate_paper_figures.py` to regenerate publication figures with live experimental telemetry.
+  * Author the final 4-page IEEE conference paper in `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend individual Git commits during the oral viva.
+
+---
+
+## 6. Sprint 0 Onboarding & Physics Environment Verification
+
+Verify your local Python and MuJoCo simulation environment:
+
+```powershell
+# Step 1: Clone repository and navigate to group directory
+git clone <repository_url>
+cd <repository_root>/Group_06_Arush_Ronit_Harshvardhan
+
+# Step 2: Checkout your individual feature branch
+# Example for lead student:
+git checkout -b feat/e048-lead-tracked-crawler
+
+# Step 3: Run environment smoke test
+python src/test_env.py
+
+# Step 4: Verify 300 DPI publication figures
+python analytics/generate_paper_figures.py
+```
