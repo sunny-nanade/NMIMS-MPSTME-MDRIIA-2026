@@ -1,0 +1,74 @@
+<mujoco model="solar_cleaning_crawler">
+  <compiler angle="radian" coordinate="local"/>
+  <option gravity="0 0 -9.81" timestep="0.002" solver="Newton" iterations="40"/>
+
+  <default>
+    <!-- High-friction EPDM rubber tread contact physics -->
+    <geom condim="4" friction="1.8 0.08 0.005" solref="0.005 1.0" solimp="0.9 0.95 0.001 0.5 2"/>
+    <motor ctrllimited="true"/>
+  </default>
+
+  <worldbody>
+    <!-- Ground Base Plane -->
+    <geom name="floor" type="plane" size="10 10 0.1" rgba="0.3 0.3 0.3 1"/>
+    <light directional="true" pos="0 0 10" dir="0 0 -1" castshadow="false"/>
+
+    <!-- =================================================================== -->
+    <!-- 20-DEGREE INCLINED SOLAR PANEL ARRAY RACK                          -->
+    <!-- Incline angle: 20 deg = 0.349066 rad about X-axis                   -->
+    <!-- =================================================================== -->
+    <body name="pv_array_rack" pos="0 0 1.2" euler="0.349066 0 0">
+      <!-- Tempered Glass Surface (6.0m x 4.0m) -->
+      <geom name="pv_glass_surface" type="box" size="3.0 2.0 0.02" rgba="0.1 0.18 0.32 0.9" friction="0.4 0.005 0.0001" mass="150.0"/>
+
+      <!-- Aluminum Perimeter Framing (0.035m height) -->
+      <geom name="frame_top"    type="box" size="3.05 0.025 0.035" pos="0 2.025 0.035" rgba="0.7 0.7 0.7 1"/>
+      <geom name="frame_bottom" type="box" size="3.05 0.025 0.035" pos="0 -2.025 0.035" rgba="0.7 0.7 0.7 1"/>
+      <geom name="frame_left"   type="box" size="0.025 2.05 0.035" pos="-3.025 0 0.035" rgba="0.7 0.7 0.7 1"/>
+      <geom name="frame_right"  type="box" size="0.025 2.05 0.035" pos="3.025 0 0.035" rgba="0.7 0.7 0.7 1"/>
+
+      <!-- ================================================================= -->
+      <!-- TRACKED CRAWLER CLEANING ROBOT (Mass: 8.5 kg, Low CoM: 0.04m)     -->
+      <!-- ================================================================= -->
+      <body name="crawler_chassis" pos="0 -1.5 0.08">
+        <freejoint name="crawler_root"/>
+        <!-- Main Chassis Body -->
+        <geom name="chassis_geom" type="box" size="0.22 0.18 0.04" rgba="0.9 0.5 0.1 1" mass="6.0"/>
+        <site name="chassis_imu" pos="0 0 0.02"/>
+
+        <!-- Left Track Geom -->
+        <geom name="track_left" type="box" size="0.22 0.04 0.03" pos="0 0.18 -0.02" rgba="0.15 0.15 0.15 1" mass="1.0"/>
+        <!-- Right Track Geom -->
+        <geom name="track_right" type="box" size="0.22 0.04 0.03" pos="0 -0.18 -0.02" rgba="0.15 0.15 0.15 1" mass="1.0"/>
+
+        <!-- Front Rotary Microfiber Cleaning Brush (0.55m width, 900 RPM) -->
+        <body name="rotary_brush" pos="0.28 0 -0.01">
+          <joint name="brush_hinge" type="hinge" axis="0 1 0" damping="0.05"/>
+          <geom name="brush_cylinder" type="cylinder" size="0.06 0.26" zaxis="0 1 0" rgba="0.2 0.6 0.9 0.8" mass="1.2"/>
+          <site name="brush_contact" pos="0 0 -0.06"/>
+        </body>
+
+        <!-- Tactile Limit Sensors at 4 Corners -->
+        <site name="bumper_fl" pos="0.25 0.20 0"/>
+        <site name="bumper_fr" pos="0.25 -0.20 0"/>
+        <site name="bumper_rl" pos="-0.25 0.20 0"/>
+        <site name="bumper_rr" pos="-0.25 -0.20 0"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <!-- Differential Drive Motors -->
+    <motor name="motor_track_left" body="crawler_chassis" gear="1 0 0 0 0 0" ctrlrange="-150 150"/>
+    <motor name="motor_track_right" body="crawler_chassis" gear="0 1 0 0 0 0" ctrlrange="-150 150"/>
+    <!-- Rotary Brush Velocity Motor (900 RPM = 94.2 rad/s) -->
+    <velocity name="motor_brush" joint="brush_hinge" kv="20.0" ctrlrange="-120 120"/>
+  </actuator>
+
+  <sensor>
+    <accelerometer name="crawler_accel" site="chassis_imu"/>
+    <gyro name="crawler_gyro" site="chassis_imu"/>
+    <touch name="touch_fl" site="bumper_fl"/>
+    <touch name="touch_fr" site="bumper_fr"/>
+  </sensor>
+</mujoco>
