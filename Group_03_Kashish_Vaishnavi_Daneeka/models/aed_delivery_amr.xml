@@ -1,15 +1,78 @@
 <mujoco model="aed_rapid_delivery_amr">
   <compiler angle="radian" coordinate="local"/>
-  <option gravity="0 0 -9.81" timestep="0.002" solver="Newton"/>
+  <option gravity="0 0 -9.81" timestep="0.002" solver="Newton" iterations="50"/>
+
+  <default>
+    <geom contype="1" conaffinity="1" condim="3" friction="1.1 0.01 0.005"/>
+  </default>
+
   <worldbody>
-    <geom name="floor" type="plane" size="20 10 0.1" rgba="0.3 0.3 0.3 1"/>
-    <light directional="true" pos="0 0 10" dir="0 0 -1"/>
-    <!-- Sidewalk curb step -->
-    <geom name="curb_step" type="box" size="5 0.5 0.075" pos="5 0 0.075" rgba="0.6 0.6 0.6 1"/>
-    <body name="amr_chassis" pos="-8 0 0.2">
+    <!-- Sidewalk Ground Plane -->
+    <geom name="floor" type="plane" size="30 15 0.1" rgba="0.35 0.35 0.35 1"/>
+    <light directional="true" pos="0 0 12" dir="0 0 -1" castshadow="false"/>
+
+    <!-- 12 cm Vertical Sidewalk Curb Obstacle -->
+    <geom name="curb_step" type="box" size="6 0.6 0.06" pos="6.0 0 0.06" rgba="0.55 0.55 0.55 1"/>
+
+    <!-- Pedestrian Dynamic Obstacle Placeholders -->
+    <body name="pedestrian_obs1" pos="3.0 0.8 0.85">
+      <geom name="ped_geom1" type="cylinder" size="0.25 0.85" rgba="0.2 0.4 0.8 1" mass="70.0"/>
+    </body>
+    <body name="pedestrian_obs2" pos="10.0 -0.6 0.85">
+      <geom name="ped_geom2" type="cylinder" size="0.25 0.85" rgba="0.2 0.7 0.4 1" mass="70.0"/>
+    </body>
+
+    <!-- 4-Wheel AMR Chassis -->
+    <body name="amr_chassis" pos="0 0 0.35">
       <freejoint name="amr_root"/>
-      <geom name="chassis_body" type="box" size="0.45 0.30 0.15" rgba="0.9 0.1 0.1 1" mass="26.0"/>
-      <geom name="aed_compartment" type="box" size="0.22 0.20 0.10" pos="0 0 0.2" rgba="1 1 1 1" mass="4.0"/>
+      <!-- Main Sprung Body (26.0 kg) -->
+      <geom name="chassis_geom" type="box" size="0.45 0.30 0.12" rgba="0.85 0.15 0.15 1" mass="26.0"/>
+
+      <!-- Secondary Viscoelastic AED Cradle Body (4.0 kg payload) -->
+      <body name="aed_payload" pos="0 0 0.18">
+        <joint name="aed_cradle_z" type="slide" axis="0 0 1" pos="0 0 0" limited="true" range="-0.04 0.04" damping="180.0" stiffness="2200.0"/>
+        <geom name="aed_box" type="box" size="0.20 0.16 0.08" rgba="1 1 1 1" mass="4.0"/>
+        <site name="payload_accelerometer" pos="0 0 0"/>
+      </body>
+
+      <!-- Front Left Wheel Assembly with Independent Suspension Slide Joint -->
+      <body name="wheel_fl" pos="0.35 0.32 -0.10">
+        <joint name="susp_fl" type="slide" axis="0 0 1" limited="true" range="-0.08 0.08" damping="350.0" stiffness="4500.0"/>
+        <geom name="wheel_fl_geom" type="cylinder" size="0.15 0.05" zaxis="0 1 0" rgba="0.1 0.1 0.1 1" mass="2.25"/>
+      </body>
+
+      <!-- Front Right Wheel Assembly -->
+      <body name="wheel_fr" pos="0.35 -0.32 -0.10">
+        <joint name="susp_fr" type="slide" axis="0 0 1" limited="true" range="-0.08 0.08" damping="350.0" stiffness="4500.0"/>
+        <geom name="wheel_fr_geom" type="cylinder" size="0.15 0.05" zaxis="0 1 0" rgba="0.1 0.1 0.1 1" mass="2.25"/>
+      </body>
+
+      <!-- Rear Left Wheel Assembly -->
+      <body name="wheel_rl" pos="-0.35 0.32 -0.10">
+        <joint name="susp_rl" type="slide" axis="0 0 1" limited="true" range="-0.08 0.08" damping="350.0" stiffness="4500.0"/>
+        <geom name="wheel_rl_geom" type="cylinder" size="0.15 0.05" zaxis="0 1 0" rgba="0.1 0.1 0.1 1" mass="2.25"/>
+      </body>
+
+      <!-- Rear Right Wheel Assembly -->
+      <body name="wheel_rr" pos="-0.35 -0.32 -0.10">
+        <joint name="susp_rr" type="slide" axis="0 0 1" limited="true" range="-0.08 0.08" damping="350.0" stiffness="4500.0"/>
+        <geom name="wheel_rr_geom" type="cylinder" size="0.15 0.05" zaxis="0 1 0" rgba="0.1 0.1 0.1 1" mass="2.25"/>
+      </body>
+
+      <!-- Sensor Sites -->
+      <site name="chassis_imu" pos="0 0 0"/>
+      <site name="lidar_site" pos="0.45 0 0.10"/>
     </body>
   </worldbody>
+
+  <actuator>
+    <!-- Sprung Drive Motors -->
+    <motor name="motor_drive" body="amr_chassis" gear="1 0 0 0 0 0" ctrllimited="true" ctrlrange="-300 300"/>
+    <motor name="motor_steer" body="amr_chassis" gear="0 0 0 0 0 1" ctrllimited="true" ctrlrange="-150 150"/>
+  </actuator>
+
+  <sensor>
+    <accelerometer name="aed_shock_sensor" site="payload_accelerometer"/>
+    <gyro name="chassis_gyro" site="chassis_imu"/>
+  </sensor>
 </mujoco>
