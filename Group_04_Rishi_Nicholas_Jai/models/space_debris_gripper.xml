@@ -1,0 +1,96 @@
+<mujoco model="leo_orbital_debris_capture">
+  <compiler angle="radian" coordinate="local" balanceinertia="true"/>
+
+  <!-- Microgravity Simulation: gravity="0 0 0", High-Precision Implicit Integrator -->
+  <option gravity="0 0 0" timestep="0.001" integrator="implicit" iterations="50" tolerance="1e-10"/>
+
+  <default>
+    <joint damping="0.08" armature="0.02"/>
+    <geom condim="4" friction="1.5 0.05 0.002" solref="0.004 1.0" solimp="0.9 0.95 0.001 0.5 2"/>
+    <motor ctrllimited="true"/>
+  </default>
+
+  <worldbody>
+    <light directional="true" diffuse="0.9 0.9 0.9" specular="0.3 0.3 0.3" pos="2 2 5" dir="-0.5 -0.5 -1"/>
+
+    <!-- =================================================================== -->
+    <!-- 1. SERVICER SPACECRAFT BUS (Free-Floating Base, Mass: 180 kg)        -->
+    <!-- =================================================================== -->
+    <body name="servicer_bus" pos="0 0 0">
+      <freejoint name="servicer_root"/>
+      <geom name="bus_geom" type="box" size="0.45 0.40 0.35" rgba="0.25 0.30 0.40 1.0" mass="150.0"/>
+      <site name="bus_imu" pos="0 0 0.35"/>
+
+      <!-- Arm 1 (Left Arm, 3-DOF articulated) -->
+      <body name="arm1_link1" pos="0.35 0.30 0.20">
+        <joint name="arm1_joint1" type="hinge" axis="0 0 1" range="-2.5 2.5"/>
+        <geom name="arm1_l1_geom" type="capsule" fromto="0 0 0 0.35 0 0" size="0.04" rgba="0.7 0.7 0.7 1" mass="4.0"/>
+
+        <body name="arm1_link2" pos="0.35 0 0">
+          <joint name="arm1_joint2" type="hinge" axis="0 1 0" range="-2.0 2.0"/>
+          <geom name="arm1_l2_geom" type="capsule" fromto="0 0 0 0.30 0 0" size="0.035" rgba="0.6 0.6 0.6 1" mass="3.5"/>
+
+          <body name="arm1_gripper" pos="0.30 0 0">
+            <joint name="arm1_joint3" type="hinge" axis="0 1 0" range="-1.8 1.8"/>
+            <geom name="arm1_palm" type="box" size="0.05 0.04 0.03" rgba="0.2 0.2 0.2 1" mass="1.5"/>
+            <geom name="arm1_finger_pad" type="box" size="0.04 0.02 0.02" pos="0.05 0 0" rgba="0.9 0.2 0.2 1" mass="0.5"/>
+            <site name="arm1_contact_sensor" pos="0.06 0 0"/>
+          </body>
+        </body>
+      </body>
+
+      <!-- Arm 2 (Right Arm, 3-DOF articulated) -->
+      <body name="arm2_link1" pos="0.35 -0.30 0.20">
+        <joint name="arm2_joint1" type="hinge" axis="0 0 1" range="-2.5 2.5"/>
+        <geom name="arm2_l1_geom" type="capsule" fromto="0 0 0 0.35 0 0" size="0.04" rgba="0.7 0.7 0.7 1" mass="4.0"/>
+
+        <body name="arm2_link2" pos="0.35 0 0">
+          <joint name="arm2_joint2" type="hinge" axis="0 1 0" range="-2.0 2.0"/>
+          <geom name="arm2_l2_geom" type="capsule" fromto="0 0 0 0.30 0 0" size="0.035" rgba="0.6 0.6 0.6 1" mass="3.5"/>
+
+          <body name="arm2_gripper" pos="0.30 0 0">
+            <joint name="arm2_joint3" type="hinge" axis="0 1 0" range="-1.8 1.8"/>
+            <geom name="arm2_palm" type="box" size="0.05 0.04 0.03" rgba="0.2 0.2 0.2 1" mass="1.5"/>
+            <geom name="arm2_finger_pad" type="box" size="0.04 0.02 0.02" pos="0.05 0 0" rgba="0.2 0.2 0.9 1" mass="0.5"/>
+            <site name="arm2_contact_sensor" pos="0.06 0 0"/>
+          </body>
+        </body>
+      </body>
+    </body>
+
+    <!-- =================================================================== -->
+    <!-- 2. TUMBLING NON-COOPERATIVE SATELLITE TARGET (Mass: 28.0 kg)        -->
+    <!-- =================================================================== -->
+    <body name="debris_target" pos="1.4 0 0.25">
+      <freejoint name="debris_root"/>
+      <geom name="debris_body" type="box" size="0.25 0.20 0.30" rgba="0.8 0.6 0.2 1.0" mass="22.0"/>
+      <!-- Asymmetric solar panel mock to generate unconstrained tumbling -->
+      <geom name="debris_panel_left" type="box" size="0.02 0.35 0.12" pos="0 0.40 0" rgba="0.1 0.3 0.6 1" mass="3.5"/>
+      <geom name="debris_panel_right" type="box" size="0.02 0.25 0.12" pos="0 -0.32 0" rgba="0.1 0.3 0.6 1" mass="2.5"/>
+      <site name="debris_grapple_fixture" pos="-0.26 0 0"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <!-- Arm 1 Actuators -->
+    <motor name="arm1_m1" joint="arm1_joint1" ctrlrange="-80 80"/>
+    <motor name="arm1_m2" joint="arm1_joint2" ctrlrange="-80 80"/>
+    <motor name="arm1_m3" joint="arm1_joint3" ctrlrange="-50 50"/>
+
+    <!-- Arm 2 Actuators -->
+    <motor name="arm2_m1" joint="arm2_joint1" ctrlrange="-80 80"/>
+    <motor name="arm2_m2" joint="arm2_joint2" ctrlrange="-80 80"/>
+    <motor name="arm2_m3" joint="arm2_joint3" ctrlrange="-50 50"/>
+
+    <!-- Reaction Wheel Bus Attitude Actuators -->
+    <motor name="bus_rw_pitch" body="servicer_bus" gear="0 1 0 0 0 0" ctrlrange="-10 10"/>
+    <motor name="bus_rw_yaw" body="servicer_bus" gear="0 0 1 0 0 0" ctrlrange="-10 10"/>
+  </actuator>
+
+  <sensor>
+    <accelerometer name="servicer_accel" site="bus_imu"/>
+    <gyro name="servicer_gyro" site="bus_imu"/>
+    <touch name="arm1_touch" site="arm1_contact_sensor"/>
+    <touch name="arm2_touch" site="arm2_contact_sensor"/>
+  </sensor>
+</mujoco>
