@@ -1,6 +1,6 @@
 """
 Sprint 0 Toolchain Verification Script
-Course: MDRIIA (702CO0E012) | Group: MDRIIA_GROUP_02
+Group: Group 02
 Project: How can a vision-based mobile companion robot in MuJoCo integrate MediaPipe fall-detection kinematics to reduce emergency dispatch latency within the critical 6-minute cardiac arrest survival window for elderly individuals living alone?
 """
 import sys

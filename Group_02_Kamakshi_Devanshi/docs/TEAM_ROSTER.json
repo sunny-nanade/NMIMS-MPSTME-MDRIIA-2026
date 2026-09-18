@@ -1,5 +1,5 @@
 {
-  "group_id": "MDRIIA_GROUP_02",
+  "group_id": "GROUP_02",
   "folder_name": "Group_02_Kamakshi_Devanshi",
   "domain": "AI companion robot for remote supervision, medication reminders and emergency response",
   "authorized_title": "How can a vision-based mobile companion robot in MuJoCo integrate MediaPipe fall-detection kinematics to reduce emergency dispatch latency within the critical 6-minute cardiac arrest survival window for elderly individuals living alone?",
@@ -8,16 +8,16 @@
       "roll_no": "E007",
       "sap_id": "70362400022",
       "name": "Kamakshi Bahuguna",
-      "role": "Computer Vision, Kinematic Pose Estimation & Alert Pipeline Lead",
-      "assigned_branch": "feat/e007-computer-vision-kine",
+      "role": "Computer Vision, Pose Kinematics & Edge Inference Specialist",
+      "assigned_branch": "feat/e007-vision-pose-kinematics",
       "github_username": ""
     },
     {
       "roll_no": "B029",
-      "sap_id": "70362400000",
+      "sap_id": "70362400037",
       "name": "Devanshi Sachin Kambli",
-      "role": "MuJoCo Mobile Base Modeler, Telemetry & CSBS Healthcare Economics Specialist",
-      "assigned_branch": "feat/b029-mujoco-mobile-base-m",
+      "role": "MuJoCo Physics, Domestic Navigation & Healthcare Economics Lead",
+      "assigned_branch": "feat/b029-mujoco-physics-navigation",
       "github_username": ""
     }
   ]
