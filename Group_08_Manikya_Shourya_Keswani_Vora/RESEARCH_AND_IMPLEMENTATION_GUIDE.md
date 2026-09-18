@@ -125,3 +125,31 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as an Aerial Robotics and GNC Research Specialist. Build a MuJoCo 3.x MJCF simulation of a heavy-lift hexarotor (6.8 kg) carrying a 3.0 kg emergency medical package via a 4.0m cable-suspended ball joint over a flood disaster scene. Develop a Python control script that applies Dryden wind gust forces (up to 14 m/s) and implements adaptive pitch/roll compensation to damp payload oscillation below 8 degrees. Trigger a winch release at 2.0m altitude to hit a ground target. Log 500 Hz telemetry (positions, swing angles, drop CEP) and compute fleet utilization break-even hours without monetary figures.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Manikya Rastogi (`B048` | SAP: `70362400016`)
+* **Specialization:** Hexacopter Aerodynamics & Heavy Lift Dynamics
+* **Defense Question 1:** How do you model center-of-gravity shifts during instantaneous 8kg payload release in MuJoCo?
+* **Defense Question 2:** Explain thrust-to-weight margin calculations during extreme monsoon gusts.
+
+### Shourya Roy (`B052` | SAP: `70362400049`)
+* **Specialization:** Precision Guided Airdrop & Winch Mechanism Lead
+* **Defense Question 1:** How does tether/winch cable damping prevent swinging pendulum resonance during supply lowering?
+* **Defense Question 2:** Explain ground wind drift compensation during emergency food drops.
+
+### Vansh Bhavesh Keswani (`B055` | SAP: `70362400076`)
+* **Specialization:** Telemetry & Real-Time Mission Tele-Operation Lead
+* **Defense Question 1:** What loss-of-link failsafe procedures are mandated by DGCA and ASTM F3381 regulations?
+* **Defense Question 2:** Explain high-bandwidth sensor telemetry logging for structural fatigue analysis.
+
+### Divyansh Vora (`B058` | SAP: `70362400045`)
+* **Specialization:** CSBS Disaster Supply Chain & Humanitarian Economics
+* **Defense Question 1:** Model the last-mile delivery timeline reduction comparing boat rescue against aerial UAV drops in inundated zones.
+* **Defense Question 2:** Derive the humanitarian logistics efficiency ratio.
+

@@ -124,3 +124,26 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as a Senior Vehicle Dynamics and Robotics Control Engineer. Construct a MuJoCo 3.x MJCF XML definition of a 4-wheel independent drive autonomous ground AMR designed for rapid emergency AED delivery. The chassis mass is 35 kg with independent suspension slide joints (k=4500 N/m, c=350 Ns/m) and an isolated internal cradle holding a 2.5 kg AED payload. Include an obstacle scene with a 0.12m vertical road curb. Write a Python controller utilizing potential fields for alleyway obstacle avoidance and torque vectoring to surmount the curb without exceeding 3.0g payload shock. Output a 500 Hz CSV telemetry stream and calculate cardiac survival probability using Larsen's exponential decay equation. Strictly exclude monetary figures.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Kashish Praveen Jain (`E026` | SAP: `70362400060`)
+* **Specialization:** Chassis Dynamics & Suspension Modeler
+* **Defense Question 1:** How does rocker-bogie or independent suspension in MuJoCo handle sidewalk curb impacts without dislodging sensitive defibrillator circuitry?
+* **Defense Question 2:** Explain the friction parameters chosen for wet urban asphalt surfaces.
+
+### Vaishnavi Parashar (`E046` | SAP: `70362400074`)
+* **Specialization:** Urban Pathfinding & Congestion Avoidance Lead
+* **Defense Question 1:** How does your route planner bypass peak urban gridlock to maintain transit latency under 4.5 minutes?
+* **Defense Question 2:** What safety braking protocol is enforced when encountering erratic pedestrian traffic under ISO 3691-4?
+
+### Daneeka Abhijeet Roy (`E057` | SAP: `70362400081`)
+* **Specialization:** CSBS Emergency Response Logistics & Survival Modeler
+* **Defense Question 1:** Formulate the mathematical relationship between time-to-first-shock and cardiac arrest survival probability based on AHA data.
+* **Defense Question 2:** Explain the dimensionless economic trade-off between dedicated full ambulance dispatch versus rapid autonomous AED pre-deployment.
+

@@ -125,3 +125,31 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as a Senior Autonomous Robotics Systems Engineer. Write a production-ready MuJoCo 3.x MJCF XML model and an accompanying Python 3 controller for a differential-drive hospital AMR delivering liquid pharmaceuticals in an ICU corridor. The AMR has a mass of 28 kg, track width of 0.52m, and dual caster wheels. The Python script must implement a non-holonomic unicycle closed-loop controller with an S-curve acceleration profile limiting jerk below 1.2 m/s^3 to prevent liquid medicine sloshing. Include a 3-ray rangefinder sensor suite and a 500 Hz CSV telemetry logger recording position, heading, velocity, lateral acceleration, and obstacle distance. Ensure zero monetary currency values and zero external dependencies beyond mujoco and numpy.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Khushal Asnani (`E006` | SAP: `70362400061`)
+* **Specialization:** Lead Robotics Systems Architect & MuJoCo Modeler
+* **Defense Question 1:** How does MuJoCo's elliptic friction cone formulation prevent unphysical wheel slip during emergency braking under ISO 3691-4?
+* **Defense Question 2:** Explain how you lowered the center of mass to prevent liquid vial tipping under lateral acceleration exceeding 0.4 m/s².
+
+### Priyal Kaushal Deputy (`E016` | SAP: `70362400041`)
+* **Specialization:** Autonomous Navigation & Collision Avoidance Lead
+* **Defense Question 1:** How does your heading error normalization avoid branch cut discontinuities across (-pi, pi] in the unicycle controller?
+* **Defense Question 2:** What failsafe state does your FSM transition to if all three rangefinder rays detect obstacles within 0.35m?
+
+### Ishita Ranjan (`E054` | SAP: `70362400038`)
+* **Specialization:** CSBS Clinical Workflow & Labor Reallocation Analyst
+* **Defense Question 1:** Explain the derivation of the operational cost parity ratio kappa and how it determines payback horizon without raw currency.
+* **Defense Question 2:** Why does a 28% reduction in nurse logistics transit translate into a 57.5% increase in direct bedside patient care?
+
+### Sowmya Satish (`E060` | SAP: `70362400055`)
+* **Specialization:** Sensor Telemetry & Statistical Validation Lead
+* **Defense Question 1:** Why was Welch's two-sample t-test selected over standard Student's t-test for evaluating transit latency variance?
+* **Defense Question 2:** What sampling frequency does your CSV telemetry logger achieve, and which ISO 13482 safety metrics are tracked?
+

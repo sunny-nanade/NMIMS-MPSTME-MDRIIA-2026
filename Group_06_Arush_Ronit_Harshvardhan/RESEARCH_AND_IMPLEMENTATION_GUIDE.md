@@ -124,3 +124,26 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as an Industrial Mechatronics and Robotics Simulation Specialist. Create a MuJoCo 3.x MJCF XML model of a tracked crawler robot (14.5 kg) operating on a solar panel array inclined at 25 degrees. The crawler features dual continuous rubber tracks and a rotating cylindrical front brush. Model realistic glass-rubber friction and an adhesion downward force. Write a Python script implementing serpentine raster path planning that ensures 100% panel coverage while compensating for gravitational downhill drift. Log 250 Hz telemetry (position, slip velocity, cleaning coverage rate) and formulate the PV energy recovery equation without monetary values.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Arush Dayal (`B010` | SAP: `70362400034`)
+* **Specialization:** Tread Kinematics & Inclined Plane Adhesion Modeler
+* **Defense Question 1:** How do you model static and dynamic dry friction in MuJoCo on glass panels tilted at 25 degrees?
+* **Defense Question 2:** Explain how vacuum suction or micro-spine adhesion prevents downhill slip.
+
+### Ronit Hemal Desai (`B011` | SAP: `70362400015`)
+* **Specialization:** Rotating Brush Actuation & Waterless Cleaning Lead
+* **Defense Question 1:** What torque and rotational velocity limits govern the microfiber brush roller?
+* **Defense Question 2:** How does dust accumulation feedback modulate crawler advance velocity?
+
+### Harshvardhan Rajesh Mishra (`B036` | SAP: `70362400025`)
+* **Specialization:** CSBS Photovoltaic Yield Optimization & ROI Modeler
+* **Defense Question 1:** Model the solar irradiance soiling loss degradation curve and recovery ratio.
+* **Defense Question 2:** Formulate waterless cleaning labor payback compared to manual hose-washing crews.
+

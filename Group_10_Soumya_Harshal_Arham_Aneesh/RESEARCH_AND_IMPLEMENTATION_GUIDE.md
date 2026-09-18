@@ -125,3 +125,31 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as a Medical Robotics and Surgical Control Specialist. Create a MuJoCo 3.x MJCF model of a 7-DOF redundant surgical serial manipulator (12.5 kg) with a 0.15m needle end-effector operating near an anatomical target tissue. In Python, simulate a surgeon's hand motion corrupted by 8-12 Hz physiological tremor (1.5 mm amplitude). Implement Damped Least Squares inverse kinematics with a 2nd-order Butterworth low-pass filter (fc = 3.5 Hz) to eliminate tremor while maintaining deliberate trajectory tracking with sub-0.5 mm accuracy. Output a 1000 Hz CSV telemetry stream recording needle tip position (mm), tracking error, and joint velocities. Exclude monetary figures.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Soumya Bhattacharya (`B004` | SAP: `70362400054`)
+* **Specialization:** 7-DOF Serial Manipulator Kinematics & Jacobians
+* **Defense Question 1:** Explain how damped least squares (DLS) resolves kinematic singularities in redundant 7-DOF surgical arms.
+* **Defense Question 2:** How do joint limits guarantee patient safety in constrained surgical cavities?
+
+### Harshal Dharmik (`B012` | SAP: `70362400019`)
+* **Specialization:** Physiological Tremor Filtering & Kalman Filtering Lead
+* **Defense Question 1:** How does a real-time Butterworth/Kalman filter isolate 8-12 Hz hand tremor from intended surgical trajectory?
+* **Defense Question 2:** What phase lag constraints must be met to avoid surgeon tele-operation instability?
+
+### Arham Doshi (`B014` | SAP: `70362400020`)
+* **Specialization:** Haptic Force Feedback & Tissue Compliance Modeler
+* **Defense Question 1:** How do you model non-linear soft tissue elasticity and puncture resistance in MuJoCo?
+* **Defense Question 2:** Explain how force-limiting prevents accidental organ puncture.
+
+### Aneesh Manish Nadkarni (`B038` | SAP: `70362400008`)
+* **Specialization:** CSBS Surgical Efficiency & Clinical Outcome Analyst
+* **Defense Question 1:** Model the statistical reduction in surgical revision rates due to sub-millimeter precision.
+* **Defense Question 2:** Derive the operating room utilization efficiency gain.
+

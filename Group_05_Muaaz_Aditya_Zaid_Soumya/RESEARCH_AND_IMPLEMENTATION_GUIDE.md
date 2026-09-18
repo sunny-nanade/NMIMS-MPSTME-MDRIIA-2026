@@ -125,3 +125,31 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as an Aerial Robotics and Autonomous Systems Specialist. Write a MuJoCo 3.x MJCF XML description of a campus perimeter environment featuring two autonomous quadcopters (2.4 kg each, thrust-to-weight 2.2). Develop a Python script executing a decentralized perimeter patrol state machine where UAV-1 and UAV-2 share boundary waypoints via rendezvous sync. Implement a cascaded PID flight controller (position, velocity, attitude) and integrate an OpenCV human detection pipeline that logs detection timestamps and coordinates upon sighting an intruder mesh. Output 100 Hz flight telemetry and calculate total patrol cycle time reduction. Exclude all currency symbols.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Mohammad Muaaz Mohammad Shahid Shaikh (`E030` | SAP: `70362400030`)
+* **Specialization:** Flight Dynamics & Rotor Aerodynamics Modeler
+* **Defense Question 1:** How do you model aerodynamic lift, drag, and gyroscopic precession in MuJoCo for quadrotor patrol?
+* **Defense Question 2:** Explain battery discharge modeling during cross-wind gust stabilization.
+
+### Aditya Nitin Sharma (`E036` | SAP: `70362400021`)
+* **Specialization:** Multi-Agent Patrol Coordination & Coverage Specialist
+* **Defense Question 1:** How does Voronoi tessellation optimize perimeter patrol coverage between dual UAVs?
+* **Defense Question 2:** What failsafe geofencing protocol is triggered on GPS packet degradation?
+
+### Mohamed Zaid Shakir (`E042` | SAP: `70362400057`)
+* **Specialization:** Edge Vision & Thermal Anomaly Detection Lead
+* **Defense Question 1:** How does onboard lightweight YOLO detect nocturnal unauthorized boundary incursions?
+* **Defense Question 2:** Explain the false positive filtering algorithm for campus wildlife and foliage.
+
+### Soumya Upadhyay (`E061` | SAP: `70362400062`)
+* **Specialization:** CSBS Campus Infrastructure & Security Economics Analyst
+* **Defense Question 1:** Model the human security patrol labor replacement ratio achieved by automated aerial surveillance.
+* **Defense Question 2:** Derive the operational cost parity ratio comparing drone battery maintenance against 24/7 manned security guards.
+

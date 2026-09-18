@@ -1,0 +1,15 @@
+<mujoco model="aed_rapid_delivery_amr">
+  <compiler angle="radian" coordinate="local"/>
+  <option gravity="0 0 -9.81" timestep="0.002" solver="Newton"/>
+  <worldbody>
+    <geom name="floor" type="plane" size="20 10 0.1" rgba="0.3 0.3 0.3 1"/>
+    <light directional="true" pos="0 0 10" dir="0 0 -1"/>
+    <!-- Sidewalk curb step -->
+    <geom name="curb_step" type="box" size="5 0.5 0.075" pos="5 0 0.075" rgba="0.6 0.6 0.6 1"/>
+    <body name="amr_chassis" pos="-8 0 0.2">
+      <freejoint name="amr_root"/>
+      <geom name="chassis_body" type="box" size="0.45 0.30 0.15" rgba="0.9 0.1 0.1 1" mass="26.0"/>
+      <geom name="aed_compartment" type="box" size="0.22 0.20 0.10" pos="0 0 0.2" rgba="1 1 1 1" mass="4.0"/>
+    </body>
+  </worldbody>
+</mujoco>

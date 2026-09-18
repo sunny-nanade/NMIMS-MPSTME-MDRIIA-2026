@@ -1,0 +1,26 @@
+<mujoco model="space_debris_manipulator">
+  <compiler angle="radian" coordinate="local"/>
+  <option gravity="0 0 0" timestep="0.001"/>
+  <worldbody>
+    <light directional="true" pos="0 0 10" dir="0 0 -1"/>
+    <!-- Tumbling Debris Target -->
+    <body name="debris" pos="1.5 0 0">
+      <freejoint name="debris_joint"/>
+      <geom name="debris_geom" type="box" size="0.2 0.2 0.2" rgba="0.7 0.5 0.2 1" mass="15.0"/>
+    </body>
+    <!-- Chaser Satellite Base -->
+    <body name="chaser_satellite" pos="0 0 0">
+      <freejoint name="chaser_joint"/>
+      <geom name="chaser_body" type="box" size="0.5 0.5 0.5" rgba="0.2 0.2 0.8 1" mass="120.0"/>
+      <!-- 3-Link Manipulator Arm -->
+      <body name="arm_link1" pos="0.5 0 0">
+        <joint name="shoulder_pitch" type="hinge" axis="0 1 0" range="-1.57 1.57"/>
+        <geom name="link1_geom" type="capsule" fromto="0 0 0 0.4 0 0" size="0.04" rgba="0.9 0.9 0.9 1" mass="4.0"/>
+        <body name="arm_link2" pos="0.4 0 0">
+          <joint name="elbow_pitch" type="hinge" axis="0 1 0" range="-2.0 2.0"/>
+          <geom name="link2_geom" type="capsule" fromto="0 0 0 0.4 0 0" size="0.03" rgba="0.8 0.8 0.8 1" mass="3.0"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

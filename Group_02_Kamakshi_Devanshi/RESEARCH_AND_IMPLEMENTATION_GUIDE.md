@@ -123,3 +123,21 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as a Senior Computer Vision and Assistive Robotics Researcher. Develop a Python script that integrates a simulated camera feed from a MuJoCo 3.x companion robot with MediaPipe Pose. The script must extract human skeletal joints, calculate the vertical velocity of the hip center-of-mass (vz), and monitor the bounding box aspect ratio (W/H). Formulate a dual-threshold state machine that triggers a confirmed fall emergency alert only when vz < -1.8 m/s and aspect ratio > 1.40 for longer than 1.5 seconds of quiescence. Output a 100 Hz CSV telemetry log with timestamp, casualty z-position, aspect ratio, and alert status. Provide the clean mathematical formulation and zero raw currency numbers.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Kamakshi Bahuguna (`E007` | SAP: `70362400022`)
+* **Specialization:** Computer Vision & Fall Kinematics Specialist
+* **Defense Question 1:** How does bounding box aspect ratio inversion combined with vertical centroid velocity distinguish true falls from tying shoelaces?
+* **Defense Question 2:** What edge compute latency bounds must be maintained to ensure SOS dispatch occurs within the critical 6-minute window?
+
+### Devanshi Sachin Kambli (`B029` | SAP: `70362400037`)
+* **Specialization:** MuJoCo Physics & Healthcare Economics Lead
+* **Defense Question 1:** How do you model floor surface friction and obstacle clutter to test companion robot navigation stability in domestic environments?
+* **Defense Question 2:** Explain how eliminating the 'long lie' (>1 hr) reduces acute geriatric hospitalization days from 18.4 to 4.2 days.
+

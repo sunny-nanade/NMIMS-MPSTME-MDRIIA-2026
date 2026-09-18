@@ -124,3 +124,26 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as a Mobile Manipulation and Robotics Simulation Specialist. Create a MuJoCo 3.x MJCF model combining an omnidirectional wheeled base (32 kg) with a 6-DOF articulated robotic arm and a parallel-jaw gripper. Populate a patient room scene with clutter objects (bottles, boxes) on the floor and bedside table. Write a Python script that computes base navigation to an object, executes damped least squares inverse kinematics for the 6-DOF arm, closes the gripper with force feedback, and places the object into a disposal receptacle. Log 500 Hz telemetry (joint torques, grasp force, cycle duration) and evaluate room turnover acceleration without currency values.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Soumil Nitin Agrawal (`B001` | SAP: `70362400078`)
+* **Specialization:** Robotic Arm Kinematics & Workspace Reachability
+* **Defense Question 1:** How do you avoid kinematic singularities in 6-DOF manipulation under tight hospital furniture constraints?
+* **Defense Question 2:** Explain joint velocity and torque limit safety enforcement.
+
+### Aditya Bikramjit Banerjee (`B005` | SAP: `70362400067`)
+* **Specialization:** Clutter Perception & Grasp Synthesis Lead
+* **Defense Question 1:** How does depth map segmentation identify obstacle grasp points amidst overlapping laundry and waste?
+* **Defense Question 2:** What grasp stability metric is evaluated in MuJoCo contact physics?
+
+### Priyansh Parakh (`B046` | SAP: `70362400077`)
+* **Specialization:** CSBS Healthcare Hygiene & Nosocomial Economics Lead
+* **Defense Question 1:** Model the statistical reduction in Hospital-Acquired Infections (HAIs) from standardized robotic sanitization.
+* **Defense Question 2:** Derive the dimensionless payback model comparing robot deployment against housekeeping turnover.
+

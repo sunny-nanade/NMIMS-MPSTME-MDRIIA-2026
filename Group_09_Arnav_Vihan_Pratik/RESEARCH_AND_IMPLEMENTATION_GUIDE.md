@@ -124,3 +124,26 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as a Field Robotics and Autonomous Ground Vehicle Specialist. Design a MuJoCo 3.x MJCF model of a 4-wheel skid-steer UGV (42 kg, track width 0.65m) operating on an unstructured rubble heightfield terrain with boulders and slopes up to 25 degrees. Equip the UGV with a 16-beam LiDAR rangefinder sensor array. Write a Python script that parses the rangefinder distance rays into a local 2.5D elevation grid, calculates cell traversability cost based on step height and slope, and executes collision-free path execution that avoids high-centering. Log 500 Hz telemetry (pose, tilt, slip ratio, costmap cell status) and evaluate teleoperation latency reduction without currency figures.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Arnav Ajay Anand (`E004` | SAP: `70362400007`)
+* **Specialization:** Skid-Steer Kinematics & High-Traction Modeler
+* **Defense Question 1:** How do you model terrain slip and track-ground shear stress in MuJoCo for uneven rubble?
+* **Defense Question 2:** Explain roll/pitch overturn stability envelopes under steep 35-degree inclines.
+
+### Vihan Vinit Kothari (`E028` | SAP: `70362400040`)
+* **Specialization:** Toxic Gas Sensing & LiDAR SLAM Specialist
+* **Defense Question 1:** How does sensor fusion combine thermal and gas concentration telemetry with 3D point clouds?
+* **Defense Question 2:** What path re-planning policy avoids hazardous high-temperature flare zones?
+
+### Pratik Hemang Rambhia (`E053` | SAP: `70362400033`)
+* **Specialization:** CSBS Plant Safety Economics & Worker Hazard Analyst
+* **Defense Question 1:** Quantify the reduction in high-risk human entry incidents into confined hazardous spaces.
+* **Defense Question 2:** Model the plant downtime prevention factor enabled by proactive autonomous inspection.
+

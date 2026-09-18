@@ -124,3 +124,26 @@ Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, o
 ```text
 Act as a Senior Space Robotics Guidance, Navigation & Control (GNC) Engineer. Construct a MuJoCo 3.x MJCF XML simulation of a free-floating orbital servicer (180 kg) in microgravity (gravity='0 0 0') equipped with dual 3-DOF compliant manipulator arms capturing a tumbling non-cooperative satellite (26 kg, rotating at 15 deg/s). Write a Python script implementing operational space Cartesian impedance control (Md, Kd=350 N/m, Dd=120 Ns/m) using transposed Generalized Jacobian mapping to minimize impact forces and spacecraft attitude kickback. Output a 1000 Hz CSV telemetry logger recording joint torques, end-effector contact force, and base angular deviation. Exclude monetary figures.
 ```
+
+
+---
+
+## 🎓 Individual Oral Viva Defense & Technical Accountability
+
+During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
+
+### Rishi Ashish Bhatt (`B003` | SAP: `70362400035`)
+* **Specialization:** Orbital Kinematics & Space Environment Modeler
+* **Defense Question 1:** How do you simulate microgravity dynamics (zero gravity, conservation of momentum) in MuJoCo?
+* **Defense Question 2:** How do non-cooperative tumbling targets affect reaction wheel torque limits on the servicing satellite?
+
+### Nicholas Francis Fernandes (`B018` | SAP: `70362400018`)
+* **Specialization:** Multi-Link Robotic Arm & Compliant Gripper Lead
+* **Defense Question 1:** Explain the impedance control formulation used during contact phase to prevent knocking the debris into a higher-velocity tumble.
+* **Defense Question 2:** Why are tendon equality constraints utilized in the capture end-effector?
+
+### Jai Sandeep Parikh (`B044` | SAP: `70362400010`)
+* **Specialization:** CSBS Orbital Asset Risk & Constellation Economics Lead
+* **Defense Question 1:** Formulate the Kessler Syndrome collision cascade probability model using NASA orbital debris metrics.
+* **Defense Question 2:** Explain the dimensionless insurance and constellation replacement asset protection factor.
+
