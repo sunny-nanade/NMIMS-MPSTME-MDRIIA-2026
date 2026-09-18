@@ -60,6 +60,11 @@ Group_02_Kamakshi_Devanshi/
 |-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md  <- Complete technical dossier, kinematic proofs, and viva defense
 |-- docs/
 |   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Detailed analysis of 5 papers & gap matrix
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md       <- Full 4-page IEEE/ACM paper template with Tables 1 & 2
+|   |-- figures/
+|   |   |-- figure1_system_architecture.png          <- Publication-ready Figure 1
+|   |   |-- figure2_kinematic_telemetry.png          <- Publication-ready Figure 2
+|   |   `-- figure3_diagnostic_performance_and_survival.png <- Publication-ready Figure 3
 |   `-- TEAM_ROSTER.json                  <- Commit attribution registry
 |-- models/
 |   `-- elderly_companion_base.xml        <- Physical MuJoCo MJCF model with elevated mast
@@ -67,6 +72,8 @@ Group_02_Kamakshi_Devanshi/
 |   |-- fall_detection_kinematics.py      <- MediaPipe pose kinematics and alert state machine
 |   `-- test_env.py                       <- Local toolchain verification script
 `-- analytics/
+    |-- fall_triage_benchmark.csv         <- N=100 experimental trial telemetry dataset
+    |-- generate_paper_figures.py         <- Python script generating all 3 publication figures
     `-- geriatric_care_economics.py       <- CSBS dimensionless healthcare economic model
 ```
 
