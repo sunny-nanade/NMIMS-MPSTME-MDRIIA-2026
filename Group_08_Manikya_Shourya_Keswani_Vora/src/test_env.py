@@ -1,44 +1,47 @@
-"""
-Sprint 0 Toolchain Verification Script
-Course: MDRIIA (702CO0E012) | Group: MDRIIA_GROUP_08
-Project: To what extent can an autonomous vision-guided multirotor UAV simulated in MuJoCo for payload-range trade-offs optimize last-mile medical relief drop accuracy during NDRF flood operations while establishing fleet utilization payback parity against ground transport?
-"""
-import sys
+# Sprint 0 Toolchain and MuJoCo Simulation Environment Verification
+# Group: MDRIIA Group 08
+# Domain: Flood Relief UAV Logistics & Precision Drops
 
-def verify_environment():
-    print(f"==================================================")
-    print(f"MDRIIA GROUP 08 - ENVIRONMENT VERIFICATION")
-    print(f"==================================================")
+import sys
+import os
+
+def run_environment_verification():
+    print("=" * 60)
+    print("MDRIIA GROUP 08 - TOOLCHAIN AND PHYSICS VERIFICATION")
+    print("=" * 60)
     print(f"[OK] Python Version: {sys.version.split()[0]}")
-    
-    try:
-        import numpy as np
-        print(f"[OK] NumPy Version: {np.__version__}")
-    except ImportError:
-        print("[ERROR] NumPy is not installed. Run: pip install numpy")
-        
-    try:
-        import scipy
-        print(f"[OK] SciPy Version: {scipy.__version__}")
-    except ImportError:
-        print("[ERROR] SciPy is not installed. Run: pip install scipy")
-        
+
+    # 1. Verify Scientific Stack
+    for pkg in ["numpy", "scipy", "matplotlib"]:
+        try:
+            mod = __import__(pkg)
+            print(f"[OK] {pkg.capitalize()} Version: {mod.__version__}")
+        except ImportError:
+            print(f"[ERROR] Required library missing: {pkg}. Run: pip install {pkg}")
+
+    # 2. Verify MuJoCo Physics Engine
     try:
         import mujoco
         print(f"[OK] MuJoCo Version: {mujoco.__version__}")
-        # Quick model verification
-        xml_test = """<mujoco><worldbody><body name="floor"><geom type="plane" size="1 1 0.1"/></body></worldbody></mujoco>"""
-        m = mujoco.MjModel.from_xml_string(xml_test)
-        d = mujoco.MjData(m)
-        mujoco.mj_step(m, d)
-        print("[SUCCESS] MuJoCo physics engine compiled and stepped successfully!")
-    except ImportError:
-        print("[ERROR] MuJoCo is not installed. Run: pip install mujoco")
-    except Exception as e:
-        print(f"[ERROR] MuJoCo test step failed: {e}")
 
-    print(f"==================================================")
-    print(f"Toolchain check complete for Group 08.")
+        model_path = os.path.join(os.path.dirname(__file__), "..", "models", "skyhydro_flood_uav.xml")
+        if os.path.exists(model_path):
+            m = mujoco.MjModel.from_xml_path(model_path)
+            d = mujoco.MjData(m)
+            mujoco.mj_step(m, d)
+            print(f"[SUCCESS] Successfully compiled MJCF model: {os.path.basename(model_path)}")
+            print(f"[INFO] System DoF: {m.nv}, Actuators: {m.nu}, Geoms: {m.ngeom}")
+        else:
+            print(f"[WARNING] Model file not found at {model_path}")
+    except ImportError:
+        print("[ERROR] MuJoCo library not installed. Run: pip install mujoco")
+        sys.exit(1)
+    except Exception as e:
+        print(f"[ERROR] MuJoCo model compilation error: {e}")
+        sys.exit(1)
+
+    print("=" * 60)
+    print("Sprint 0 toolchain check complete.")
 
 if __name__ == "__main__":
-    verify_environment()
+    run_environment_verification()
