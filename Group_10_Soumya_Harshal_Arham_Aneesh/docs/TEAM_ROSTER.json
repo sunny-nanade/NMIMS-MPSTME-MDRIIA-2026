@@ -1,0 +1,40 @@
+{
+  "group_id": "MDRIIA_GROUP_10",
+  "folder_name": "Group_10_Soumya_Harshal_Arham_Aneesh",
+  "domain": "Intelligent robotics assistant for precision surgical task",
+  "authorized_title": "How can a 7-DOF surgical manipulator simulated in MuJoCo implement inverse kinematics Jacobian damping and low-pass tremor filtering to achieve sub-0.5 mm needle placement accuracy under simulated physiological surgeon hand tremor?",
+  "members": [
+    {
+      "roll_no": "E071",
+      "sap_id": "70362400085",
+      "name": "Soumya Singh",
+      "role": "Lead Surgical Kinematics, Damped Least Squares IK & MuJoCo Modeler",
+      "assigned_branch": "feat/e071-lead-surgical-kinema",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E033",
+      "sap_id": "70362400064",
+      "name": "Harshal Khandekar",
+      "role": "Digital Signal Processing, Tremor Modeling & Kalman Filtering Lead",
+      "assigned_branch": "feat/e033-digital-signal-proce",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E069",
+      "sap_id": "70362300012",
+      "name": "Arham Khan",
+      "role": "End-Effector Precision Telemetry & Sub-Millimeter Calibration Specialist",
+      "assigned_branch": "feat/e069-end-effector-precisi",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E076",
+      "sap_id": "70362300030",
+      "name": "Aneesh Kumar",
+      "role": "CSBS Surgical Clinical Economics & OR Utilization Business Analyst",
+      "assigned_branch": "feat/e076-csbs-surgical-clinic",
+      "github_username": ""
+    }
+  ]
+}

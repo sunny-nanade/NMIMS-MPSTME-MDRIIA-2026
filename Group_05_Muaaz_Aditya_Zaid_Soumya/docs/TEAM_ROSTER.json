@@ -1,0 +1,40 @@
+{
+  "group_id": "MDRIIA_GROUP_05",
+  "folder_name": "Group_05_Muaaz_Aditya_Zaid_Soumya",
+  "domain": "MPSTME GUARDIAN",
+  "authorized_title": "To what extent can a collaborative dual-UAV surveillance system simulated in MuJoCo optimize campus perimeter patrol cycle time and OpenCV human detection latency compared to static security guard patrols?",
+  "members": [
+    {
+      "roll_no": "E043",
+      "sap_id": "70362400058",
+      "name": "Muaaz Mohammed Iqbal Shaikh",
+      "role": "Lead UAV Flight Dynamics, Path Planner & Coordinated Fleet Architect",
+      "assigned_branch": "feat/e043-lead-uav-flight-dyna",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E051",
+      "sap_id": "70362400040",
+      "name": "Aditya Rajkumar",
+      "role": "Computer Vision, OpenCV Human Detection & Tracking Specialist",
+      "assigned_branch": "feat/e051-computer-vision-open",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E075",
+      "sap_id": "70362300055",
+      "name": "Zaid Rezaur Rahman",
+      "role": "Restricted-Zone Geo-Fencing & Intrusion Telemetry Lead",
+      "assigned_branch": "feat/e075-restricted-zone-geo-",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E077",
+      "sap_id": "70362300043",
+      "name": "Soumya Subhankar Ranasingh",
+      "role": "CSBS Campus Security Operations & OpEx Payback Analyst",
+      "assigned_branch": "feat/e077-csbs-campus-security",
+      "github_username": ""
+    }
+  ]
+}

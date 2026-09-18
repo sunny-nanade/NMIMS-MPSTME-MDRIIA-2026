@@ -1,0 +1,32 @@
+{
+  "group_id": "MDRIIA_GROUP_03",
+  "folder_name": "Group_03_Kashish_Vaishnavi_Daneeka",
+  "domain": "Autonomous ambulance robot for medical emergencies",
+  "authorized_title": "Can an autonomous last-mile ground AED delivery vehicle simulated in MuJoCo reduce time-to-first-shock below urban ambulance congestion delays (15-20 minutes), given that sudden cardiac arrest survival drops 7-10% for every minute without defibrillation?",
+  "members": [
+    {
+      "roll_no": "E026",
+      "sap_id": "70362400060",
+      "name": "Kashish Praveen Jain",
+      "role": "Lead Autonomous Navigation & Traffic Congestion Modeling Specialist",
+      "assigned_branch": "feat/e026-lead-autonomous-navi",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E046",
+      "sap_id": "70362400074",
+      "name": "Vaishnavi Parashar",
+      "role": "MuJoCo Dynamic Chassis Modeler & Path Optimization Engineer",
+      "assigned_branch": "feat/e046-mujoco-dynamic-chass",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E057",
+      "sap_id": "70362400081",
+      "name": "Daneeka Abhijeet Roy",
+      "role": "Emergency Medical Logistics & Cost-Effectiveness Business Analyst",
+      "assigned_branch": "feat/e057-emergency-medical-lo",
+      "github_username": ""
+    }
+  ]
+}

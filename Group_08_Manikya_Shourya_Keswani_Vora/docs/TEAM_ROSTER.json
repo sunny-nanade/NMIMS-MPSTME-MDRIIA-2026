@@ -1,0 +1,40 @@
+{
+  "group_id": "MDRIIA_GROUP_08",
+  "folder_name": "Group_08_Manikya_Shourya_Keswani_Vora",
+  "domain": "UAV for emergency supply delivery in floods (SkyHydro)",
+  "authorized_title": "To what extent can an autonomous vision-guided multirotor UAV simulated in MuJoCo for payload-range trade-offs optimize last-mile medical relief drop accuracy during NDRF flood operations while establishing fleet utilization payback parity against ground transport?",
+  "members": [
+    {
+      "roll_no": "E056",
+      "sap_id": "70362400057",
+      "name": "Manikya Rathore",
+      "role": "Lead UAV Aerodynamics, Payload Physics & MuJoCo Modeler",
+      "assigned_branch": "feat/e056-lead-uav-aerodynamic",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E020",
+      "sap_id": "70362400047",
+      "name": "Shourya Garg",
+      "role": "Computer Vision, Thermal Survivor Detection & Winch Drop Specialist",
+      "assigned_branch": "feat/e020-computer-vision-ther",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E032",
+      "sap_id": "70362400048",
+      "name": "Keswani Laksh",
+      "role": "Flight Path Optimization & Wind Gust Disturbance Control Lead",
+      "assigned_branch": "feat/e032-flight-path-optimiza",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E067",
+      "sap_id": "70362400015",
+      "name": "Vora Jash",
+      "role": "CSBS Disaster Logistics, Fleet Economics & Cost-Parity Analyst",
+      "assigned_branch": "feat/e067-csbs-disaster-logist",
+      "github_username": ""
+    }
+  ]
+}

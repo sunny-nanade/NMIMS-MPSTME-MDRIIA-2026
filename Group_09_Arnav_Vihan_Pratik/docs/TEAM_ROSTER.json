@@ -1,0 +1,32 @@
+{
+  "group_id": "MDRIIA_GROUP_09",
+  "folder_name": "Group_09_Arnav_Vihan_Pratik",
+  "domain": "UGV for defence and hazardous applications",
+  "authorized_title": "How can an autonomous ground vehicle utilizing simulated LiDAR rangefinders and traversability cost-mapping in MuJoCo navigate unknown unstructured hazardous terrain while reducing teleoperation cognitive workload and communication latency?",
+  "members": [
+    {
+      "roll_no": "E064",
+      "sap_id": "70362400067",
+      "name": "Arnav Saurabh Surve",
+      "role": "Lead UGV Skid-Steer Dynamics & MuJoCo Terrain Modeler",
+      "assigned_branch": "feat/e064-lead-ugv-skid-steer-",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E070",
+      "sap_id": "70362400086",
+      "name": "Vihan Shripad Joshi",
+      "role": "LiDAR Perception, 3D Elevation Mapping & Obstacle Segmentation Lead",
+      "assigned_branch": "feat/e070-lidar-perception-3d-",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E073",
+      "sap_id": "70362300032",
+      "name": "Pratik Mangesh Gaikwad",
+      "role": "CSBS Hazardous Operations Safety & Teleoperation Latency Analyst",
+      "assigned_branch": "feat/e073-csbs-hazardous-opera",
+      "github_username": ""
+    }
+  ]
+}

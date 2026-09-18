@@ -1,0 +1,32 @@
+{
+  "group_id": "MDRIIA_GROUP_04",
+  "folder_name": "Group_04_Rishi_Nicholas_Jai",
+  "domain": "Space Junk Collector",
+  "authorized_title": "How can a multi-arm robotic gripper mechanism simulated in MuJoCo utilize impedance contact control to synchronize with and capture tumbling non-cooperative orbital debris in LEO while mitigating collision impulse and momentum transfer?",
+  "members": [
+    {
+      "roll_no": "E034",
+      "sap_id": "70362400032",
+      "name": "Rishi Vinod Koli",
+      "role": "Lead Orbital Dynamics & MuJoCo Multi-Body Physics Architect",
+      "assigned_branch": "feat/e034-lead-orbital-dynamic",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E035",
+      "sap_id": "70362400029",
+      "name": "Nicholas Lewis",
+      "role": "Impedance Contact Control & Robotic Kinematics Engineer",
+      "assigned_branch": "feat/e035-impedance-contact-co",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E036",
+      "sap_id": "70362400014",
+      "name": "Jai Maini",
+      "role": "CSBS Commercial Space Economics & Satellite De-Orbiting Business Analyst",
+      "assigned_branch": "feat/e036-csbs-commercial-spac",
+      "github_username": ""
+    }
+  ]
+}

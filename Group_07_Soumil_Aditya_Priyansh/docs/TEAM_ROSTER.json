@@ -1,0 +1,32 @@
+{
+  "group_id": "MDRIIA_GROUP_07",
+  "folder_name": "Group_07_Soumil_Aditya_Priyansh",
+  "domain": "Messy Room Cleaning",
+  "authorized_title": "How can an autonomous mobile manipulator simulated in MuJoCo for clutter classification and grasp planning reduce daily patient-room turnaround time for hospital housekeeping staff from the baseline 10-20 minutes per room?",
+  "members": [
+    {
+      "roll_no": "E050",
+      "sap_id": "70362400035",
+      "name": "Soumil Patro",
+      "role": "Lead Mobile Base Navigation & SLAM Engineer",
+      "assigned_branch": "feat/e050-lead-mobile-base-nav",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E062",
+      "sap_id": "70362400033",
+      "name": "Aditya Raju Shah",
+      "role": "Manipulator Arm Kinematics & Vision-Based Grasping Specialist",
+      "assigned_branch": "feat/e062-manipulator-arm-kine",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E066",
+      "sap_id": "70362400038",
+      "name": "Priyansh Thakkar",
+      "role": "CSBS Hospital Workflow Efficiency & Room Turnover Business Analyst",
+      "assigned_branch": "feat/e066-csbs-hospital-workfl",
+      "github_username": ""
+    }
+  ]
+}

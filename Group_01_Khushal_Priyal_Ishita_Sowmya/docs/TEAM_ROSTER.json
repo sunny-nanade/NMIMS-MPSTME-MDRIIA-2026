@@ -1,0 +1,40 @@
+{
+  "group_id": "MDRIIA_GROUP_01",
+  "folder_name": "Group_01_Khushal_Priyal_Ishita_Sowmya",
+  "domain": "Autonomous robot for delivery of critical medicines for ICUs",
+  "authorized_title": "To what extent can an autonomous mobile medicine-delivery robot (simulated in MuJoCo with dynamic obstacle avoidance) reduce ICU nurses' non-patient-facing logistics transit time and optimize labor reallocation, where clinical studies document nurses spending approximately 28% of their shift on supply retrieval?",
+  "members": [
+    {
+      "roll_no": "E006",
+      "sap_id": "70362400061",
+      "name": "Khushal Asnani",
+      "role": "Lead Robotics Systems Architect & MuJoCo Physics Modeler",
+      "assigned_branch": "feat/e006-lead-robotics-system",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E016",
+      "sap_id": "70362400041",
+      "name": "Priyal Kaushal Deputy",
+      "role": "Autonomous Navigation, SLAM & Dynamic Collision Avoidance Specialist",
+      "assigned_branch": "feat/e016-autonomous-navigatio",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E054",
+      "sap_id": "70362400039",
+      "name": "Ishita Ranjan",
+      "role": "CSBS Clinical Workflow & Time-Motion ROI Business Analyst",
+      "assigned_branch": "feat/e054-csbs-clinical-workfl",
+      "github_username": ""
+    },
+    {
+      "roll_no": "E060",
+      "sap_id": "70362400055",
+      "name": "Sowmya Satish",
+      "role": "Sensor Telemetry, Quality Assurance & Empirical Validation Lead",
+      "assigned_branch": "feat/e060-sensor-telemetry-qua",
+      "github_username": ""
+    }
+  ]
+}
