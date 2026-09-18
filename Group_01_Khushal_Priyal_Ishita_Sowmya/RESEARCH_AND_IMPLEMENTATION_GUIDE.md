@@ -258,7 +258,8 @@ Every conference submission must include the following 3 figures and 2 tables:
 
 ## 7. Curated Benchmark of 5 Authentic Published Papers (2020–2026)
 
-Students must cite and benchmark their findings against these 5 verified peer-reviewed articles:
+Students must cite and benchmark their findings against these 5 verified peer-reviewed articles. For an exhaustive, paper-by-paper comparative matrix, mathematical formula extractions, research gap analyses, and individual student literature viva defense responsibilities, refer directly to the dedicated dossier:
+`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`.
 
 ### Paper 1: Design and Performance Evaluation of a Modular Mobile Robot for Autonomous Hospital Logistics
 * **Authors:** Neri Niccolo Dei, Simona Gandah, Giorgia Spreafico, Andrea Firrincieli, Gastone Ciuti, et al.

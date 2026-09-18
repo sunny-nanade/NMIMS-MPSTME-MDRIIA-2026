@@ -1,6 +1,6 @@
 """
 Sprint 0 Toolchain Verification Script
-Course: MDRIIA (702CO0E012) | Group: MDRIIA_GROUP_01
+Group: Group 01
 Project: To what extent can an autonomous mobile medicine-delivery robot (simulated in MuJoCo with dynamic obstacle avoidance) reduce ICU nurses' non-patient-facing logistics transit time and optimize labor reallocation, where clinical studies document nurses spending approximately 28% of their shift on supply retrieval?
 """
 import sys
