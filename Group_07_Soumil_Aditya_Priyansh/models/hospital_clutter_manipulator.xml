@@ -1,0 +1,127 @@
+<mujoco model="hospital_clutter_mobile_manipulator">
+  <compiler angle="radian" coordinate="local" meshdir="meshes/"/>
+  <option gravity="0 0 -9.81" timestep="0.002" integrator="RK4"/>
+
+  <visual>
+    <headlight ambient="0.4 0.4 0.4" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2"/>
+    <rgba fog="0.9 0.9 0.95 1"/>
+  </visual>
+
+  <default>
+    <joint damping="1.0" armature="0.01"/>
+    <geom friction="0.8 0.01 0.001" solref="0.01 1" solimp="0.9 0.95 0.001"/>
+    <motor ctrlrange="-50 50" ctrllimited="true"/>
+  </default>
+
+  <worldbody>
+    <!-- Hospital Room Floor -->
+    <geom name="floor" type="plane" size="5 5 0.1" rgba="0.88 0.90 0.92 1"/>
+
+    <!-- Bedside Table -->
+    <body name="bedside_table" pos="1.2 0 0">
+      <geom name="table_top" type="box" size="0.4 0.6 0.03" pos="0 0 0.72" rgba="0.75 0.75 0.80 1"/>
+      <geom name="leg1" type="cylinder" size="0.025 0.35" pos="0.35 0.52 0.35" rgba="0.3 0.3 0.35 1"/>
+      <geom name="leg2" type="cylinder" size="0.025 0.35" pos="-0.35 0.52 0.35" rgba="0.3 0.3 0.35 1"/>
+      <geom name="leg3" type="cylinder" size="0.025 0.35" pos="0.35 -0.52 0.35" rgba="0.3 0.3 0.35 1"/>
+      <geom name="leg4" type="cylinder" size="0.025 0.35" pos="-0.35 -0.52 0.35" rgba="0.3 0.3 0.35 1"/>
+    </body>
+
+    <!-- Waste Receptacle Bin -->
+    <body name="waste_bin" pos="0.4 0.8 0">
+      <geom name="bin_base" type="cylinder" size="0.18 0.25" pos="0 0 0.25" rgba="0.2 0.5 0.2 0.8"/>
+    </body>
+
+    <!-- Clutter Objects on Bedside Table -->
+    <body name="clutter_cup" pos="1.1 0.15 0.78">
+      <freejoint name="cup_free"/>
+      <geom name="cup_geom" type="cylinder" size="0.035 0.055" rgba="0.9 0.3 0.2 1" mass="0.12"/>
+    </body>
+
+    <body name="clutter_bottle" pos="1.25 -0.1 0.80">
+      <freejoint name="bottle_free"/>
+      <geom name="bottle_geom" type="cylinder" size="0.03 0.075" rgba="0.2 0.4 0.8 1" mass="0.18"/>
+    </body>
+
+    <body name="clutter_box" pos="1.15 -0.3 0.76">
+      <freejoint name="box_free"/>
+      <geom name="box_geom" type="box" size="0.05 0.04 0.025" rgba="0.8 0.7 0.2 1" mass="0.09"/>
+    </body>
+
+    <!-- Mobile Manipulator Robot -->
+    <body name="mobile_base" pos="0 0 0.15">
+      <!-- 3-DOF Planar Mobile Base (X, Y, Yaw) -->
+      <joint name="base_x" type="slide" axis="1 0 0" range="-3 3"/>
+      <joint name="base_y" type="slide" axis="0 1 0" range="-3 3"/>
+      <joint name="base_yaw" type="hinge" axis="0 0 1" range="-3.1415 3.1415"/>
+      <geom name="base_chassis" type="cylinder" size="0.28 0.10" rgba="0.3 0.35 0.4 1" mass="25.0"/>
+      <geom name="wheel_left" type="cylinder" size="0.08 0.03" pos="0 0.22 -0.05" quat="0.7071 0.7071 0 0" rgba="0.1 0.1 0.1 1" mass="1.5"/>
+      <geom name="wheel_right" type="cylinder" size="0.08 0.03" pos="0 -0.22 -0.05" quat="0.7071 0.7071 0 0" rgba="0.1 0.1 0.1 1" mass="1.5"/>
+
+      <!-- Manipulator Base Pedestal -->
+      <body name="arm_base" pos="0.08 0 0.10">
+        <geom name="arm_pedestal" type="cylinder" size="0.08 0.08" rgba="0.4 0.45 0.5 1" mass="5.0"/>
+
+        <!-- Link 1 (Waist Yaw) -->
+        <body name="link1" pos="0 0 0.12">
+          <joint name="joint_waist" type="hinge" axis="0 0 1" range="-2.5 2.5"/>
+          <geom name="link1_geom" type="cylinder" size="0.06 0.08" rgba="0.5 0.55 0.6 1" mass="3.0"/>
+
+          <!-- Link 2 (Shoulder Pitch) -->
+          <body name="link2" pos="0 0 0.12">
+            <joint name="joint_shoulder" type="hinge" axis="0 1 0" range="-1.8 1.8"/>
+            <geom name="link2_geom" type="capsule" size="0.045 0.18" pos="0 0 0.18" rgba="0.6 0.65 0.7 1" mass="3.5"/>
+
+            <!-- Link 3 (Elbow Pitch) -->
+            <body name="link3" pos="0 0 0.36">
+              <joint name="joint_elbow" type="hinge" axis="0 1 0" range="-2.2 2.2"/>
+              <geom name="link3_geom" type="capsule" size="0.04 0.15" pos="0 0 0.15" rgba="0.5 0.55 0.6 1" mass="2.5"/>
+
+              <!-- Link 4 (Wrist Pitch) -->
+              <body name="link4" pos="0 0 0.30">
+                <joint name="joint_wrist_pitch" type="hinge" axis="0 1 0" range="-1.8 1.8"/>
+                <geom name="link4_geom" type="cylinder" size="0.035 0.04" rgba="0.4 0.45 0.5 1" mass="1.2"/>
+
+                <!-- Link 5 (Wrist Roll) & Gripper Assembly -->
+                <body name="gripper_base" pos="0 0 0.08">
+                  <joint name="joint_wrist_roll" type="hinge" axis="0 0 1" range="-3.14 3.14"/>
+                  <geom name="palm" type="box" size="0.05 0.06 0.02" rgba="0.25 0.25 0.3 1" mass="0.8"/>
+                  <site name="wrist_camera" pos="0 0 0.04" quat="0.7071 0 0.7071 0"/>
+                  <site name="gripper_center" pos="0 0 0.09"/>
+
+                  <!-- Left Gripper Finger -->
+                  <body name="finger_left" pos="0 0.04 0.04">
+                    <joint name="joint_finger_left" type="slide" axis="0 1 0" range="-0.04 0.0"/>
+                    <geom name="finger_l_geom" type="box" size="0.015 0.008 0.04" rgba="0.8 0.2 0.2 1" mass="0.1"/>
+                  </body>
+
+                  <!-- Right Gripper Finger -->
+                  <body name="finger_right" pos="0 -0.04 0.04">
+                    <joint name="joint_finger_right" type="slide" axis="0 1 0" range="0.0 0.04"/>
+                    <geom name="finger_r_geom" type="box" size="0.015 0.008 0.04" rgba="0.8 0.2 0.2 1" mass="0.1"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="act_base_x" joint="base_x" ctrlrange="-150 150"/>
+    <motor name="act_base_y" joint="base_y" ctrlrange="-150 150"/>
+    <motor name="act_base_yaw" joint="base_yaw" ctrlrange="-60 60"/>
+    <motor name="act_waist" joint="joint_waist" ctrlrange="-40 40"/>
+    <motor name="act_shoulder" joint="joint_shoulder" ctrlrange="-60 60"/>
+    <motor name="act_elbow" joint="joint_elbow" ctrlrange="-40 40"/>
+    <motor name="act_wrist_pitch" joint="joint_wrist_pitch" ctrlrange="-25 25"/>
+    <motor name="act_wrist_roll" joint="joint_wrist_roll" ctrlrange="-15 15"/>
+    <motor name="act_finger_left" joint="joint_finger_left" ctrlrange="-20 20"/>
+    <motor name="act_finger_right" joint="joint_finger_right" ctrlrange="-20 20"/>
+  </actuator>
+
+  <sensor>
+    <touch name="touch_finger_left" site="gripper_center"/>
+  </sensor>
+</mujoco>

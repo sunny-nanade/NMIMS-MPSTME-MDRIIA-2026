@@ -1,149 +1,110 @@
-# PBL Research & Implementation Guide — Group 07
-## Autonomous Mobile Manipulator Hospital Clutter Grasping
-### Modern Day Robotics & Its Industrial Applications (MDRIIA - 702CO0E012)
-**Academic Year:** 2026–2027 Odd Semester  
-**Department:** Computer Science & Business Systems (CSBS), SVKM's NMIMS MPSTME  
-**Governance Oversight:** Institutional Leadership & Academic Directorate  
+# Research and Implementation Guide: Autonomous Hospital Clutter Mobile Manipulator
+
+## Project: MDRIIA Group 07
+## Target Venue: IEEE CASE / IEEE ICRA / AIR Conference Track
 
 ---
 
-## 🎯 Executive Problem Deconstruction & Scientific Interrogative
+## 1. Mathematical and Algorithmic Formulation
 
-### Authorized Aalborg Interrogative Research Title
-> **"How can an autonomous mobile manipulator simulated in MuJoCo for clutter classification and grasp planning reduce daily patient-room turnaround time for hospital housekeeping staff from the baseline 10-20 minutes per room?"**
+### 1.1 Mobile Manipulator Kinematics
+The system consists of a mobile base possessing 3 degrees of freedom in SE(2) and an articulated manipulator with $n = 4$ to $6$ revolute joints. The combined generalized state vector is:
 
-### 1. Scientific Hypotheses
-* **Null Hypothesis ($H_0$):** An autonomous mobile manipulator simulated in MuJoCo cannot plan grasps or clear floor and table clutter within hospital patient rooms faster than human housekeeping staff (p >= 0.05).
-* **Alternative Hypothesis ($H_1$):** An autonomous mobile manipulator combining mobile base navigation with 6-DOF arm grasp planning clears domestic room clutter objects with >= 88% grasp success rate, compressing room turnover time by >= 45% and reducing housekeeping physical fatigue.
+$$q = [x_b, y_b, \theta_b, q_1, q_2, \dots, q_n]^T \in \mathbb{R}^{3+n}$$
 
-### 2. Experimental Variable Decomposition
-* **Independent Variables:** Clutter density (3 to 10 scattered objects including water bottles, slippers, medicine boxes, tissue cartons) and grasping strategy (heuristic suction/parallel-jaw grasp vs random pick).
-* **Dependent Variables:** Room clearing cycle time (min), grasp planning success rate (%), object drop frequency, and housekeeping labor hours saved per shift.
-* **Governing Academic & Industrial Standards:** ISO 13482:2014 (Personal care and service robots), CDC Environmental Infection Control Guidelines for Healthcare Facilities, and Dex-Net grasp quality metric standards.
+The operational end-effector pose $x_e = [p_e^T, \phi_e^T]^T \in SE(3)$ is related to joint velocities via the system Jacobian matrix $J(q)$:
 
----
+$$\dot{x}_e = J(q) \dot{q} = \begin{bmatrix} J_{\text{base}}(q) & J_{\text{arm}}(q) \end{bmatrix} \begin{bmatrix} \dot{q}_{\text{base}} \\ \dot{q}_{\text{arm}} \end{bmatrix}$$
 
-## 👥 Student Engineering Matrix & Commit Attribution
+To prevent algorithmic singularities during reaching trajectories near bedside boundaries, the controller employs Damped Least Squares (Levenberg-Marquardt) inverse kinematics:
 
-| Roll No | SAP ID | Student Name | Assigned Engineering Role | Git Feature Branch |
-| :--- | :--- | :--- | :--- | :--- |
-| `E050` | `70362400050` | **Soumil Patro** | Lead Mobile Base Navigation & SLAM Engineer | `feat/e050-mobile-base` |
-| `E062` | `70362400062` | **Aditya Raju Shah** | Manipulator Arm Kinematics & Vision-Based Grasping Specialist | `feat/e062-arm-grasping` |
-| `E066` | `70362400066` | **Priyansh Thakkar** | CSBS Hospital Workflow Efficiency & Room Turnover Analyst | `feat/e066-workflow-roi` |
+$$\dot{q} = J^T (J J^T + \lambda^2 I)^{-1} (\dot{x}_{\text{des}} + K_p (x_{\text{des}} - x_e))$$
 
+where $\lambda$ is the damping factor dynamically scaled by the manipulability index $w = \sqrt{\det(J J^T)}$:
 
----
+$$\lambda^2 = \begin{cases} 0 & \text{if } w \ge w_0 \\ \lambda_{\max}^2 \left(1 - \frac{w}{w_0}\right)^2 & \text{if } w < w_0 \end{cases}$$
 
-## 📦 Minimum Viable Research & Simulation Deliverables (Scope Guard)
+### 1.2 Grasp Quality Metric and Contact Mechanics
+The parallel-jaw gripper applies normal gripping forces $F_n$ at contact points. To ensure stable prehension without slipping or crushing delicate clinical items:
 
-To ensure high scientific rigor without overburdening 3rd-year undergraduate engineers, Group 07 must build and commit the following **4 core deliverables**:
+$$F_{\text{tangential}} \le \mu F_n$$
 
-1. **MuJoCo MJCF Model (`simulation/mjcf/hospital_manipulator.xml`): Omnidirectional mobile base (mass = 32 kg) mounted with a 6-DOF articulated robotic arm (UR5-like kinematic structure, reach = 0.85m), parallel-jaw two-finger gripper, wrist camera sensor site, and patient room scene with hospital bed, nightstand, and clutter geoms.**
-2. **Python Grasp & Motion Planner (`simulation/src/mobile_manipulation_controller.py`): Combined base positioning and inverse kinematics (IK) solver using damped least squares, with antipodal grasp synthesis for cylindrical and box objects.**
-3. **CSBS Healthcare Operations Model (`business_model/economic_model.py`): Housekeeping labor reallocation model calculating bed turnover acceleration Delta_T_turnaround and inpatient capacity utilization expansion without currency values.**
-4. **CSV Telemetry Logger (`simulation/telemetry/sample_data/hospital_manipulator_telemetry.csv`): 500 Hz telemetry capturing base coordinates, arm joint angles, gripper grip force (N), object classification ID, and pick-and-place cycle duration.**
+where $\mu$ is the Coulomb friction coefficient between the silicone gripper pads and the object material. The antipodal grasp condition requires:
 
+$$\mathbf{n}_1 \cdot \mathbf{n}_2 \le -\cos(2 \arctan \mu)$$
 
----
+where $\mathbf{n}_1, \mathbf{n}_2$ are the inward-pointing surface normal vectors at the contact patches.
 
-## 🔬 Calibrated Evaluation Scale & Sample Size Framework
+### 1.3 Hospital Room Turnaround Time Reduction Model
+Baseline manual room cleaning latency $T_{\text{manual}}$ is decomposed into clutter removal and terminal clinical disinfection:
 
-* **Empirical Testing Scale:** N = 60 Monte Carlo simulation trials across randomized clutter placements and orientations. Paired t-test comparing room cleaning time against manual human housekeeping baseline (15.0 min per room).
-* **Statistical Rigor Mandate:** Report both statistical significance ($p < 0.05$) and practical effect size (Cohen's $d > 0.8$ or $\eta^2$). Provide 95% confidence intervals on all primary telemetry metrics.
+$$T_{\text{manual}} = T_{\text{clutter\_manual}} + T_{\text{disinfect\_manual}}$$
 
----
+With the autonomous mobile manipulator deployed, clutter is cleared autonomously during the patient discharge and linen stripping phase:
 
-## 📊 Publication-Ready Figures & Tables Blueprint
+$$T_{\text{turnaround\_robot}} = \max(T_{\text{clutter\_robot}}, T_{\text{linen}}) + T_{\text{disinfect\_targeted}}$$
 
-Every paper targeting IEEE/ACM conferences must incorporate these **3 figures** and **2 tables**:
+Because housekeeping staff are liberated from sorting scattered personal effects, discarded cups, and packaging, their disinfection focus is sharper and surface omission rate drops significantly.
 
-### Figure Specifications
-1. **Figure 1 (System Block Architecture):** Mobile Manipulation Framework: Mobile base navigation, 3D clutter point cloud perception, antipodal grasp synthesis, and coordinated pick-and-place state machine.
-2. **Figure 2 (Kinematic Telemetry Timeseries):** Kinematic Motion Trajectories: 6-DOF joint angles, end-effector velocity, and gripper contact force profiles during target approach, grasp acquisition, lift, and basket deposit.
-3. **Figure 3 (Comparative Performance Plot):** Room Turnover Time Distribution: Boxplot comparing manual housekeeping room clearing time (10-20 min) vs proposed autonomous mobile manipulator clearing time across N = 60 trials.
+### 1.4 CSBS Technoeconomic Operational Cost Parity
+To evaluate financial feasibility without arbitrary currency assumptions, operational cost is formulated as a dimensionless ratio $\kappa$:
 
-### Table Specifications
-1. **Table 1 (Physics & Control Calibration Parameters):** Manipulator Kinematic & Dynamic Parameters: Link masses, D-H parameters, joint velocity limits, gripper payload limit (2.0 kg), contact friction coefficients, and IK damping constant.
-2. **Table 2 (Comparative Performance Benchmark):** Housekeeping Performance Comparative Matrix: Manual Staff vs Proposed Mobile Manipulator reporting Clearing Time per Room (min), Grasp Success Rate (%), Object Damage Rate (%), and Bed Turnover Capacity Gain (%).
+$$\kappa = \frac{\text{OpEx}_{\text{robot}}}{\text{OpEx}_{\text{manual}}} = \frac{C_{\text{energy}} + C_{\text{maintenance}} + C_{\text{supervision}}}{C_{\text{labor}}}$$
+
+The dimensionless capital amortization payback horizon in months is:
+
+$$\text{Payback Months} = \frac{K_{\text{capex}}}{1 - \kappa} \times 12$$
 
 ---
 
-## 📚 Curated Benchmark of 5 Authentic Published Papers (2021–2026)
+## 2. Individual Student Work Boundaries & Responsibilities
 
-Students must thoroughly read, cite, and benchmark their work against these **5 peer-reviewed publications**:
-
-### Paper 1: Deep Hough voting for 3D object detection in cluttered point clouds
-* **Authors:** C. R. Qi, O. Litany, K. He, and L. J. Guibas
-* **Publication:** *IEEE International Conference on Computer Vision (ICCV), pp. 9273-9282* (2019)
-* **DOI:** [10.1109/ICCV.2019.00937](https://doi.org/10.1109/ICCV.2019.00937)
-* **Key Takeaway & Integration in Your Project:** The gold-standard algorithm for detecting and localizing everyday domestic objects in dense clutter from 3D point clouds.
-
-### Paper 2: Dex-Net 2.0: Deep learning to plan robust grasps with synthetic point clouds and analytic grasp metrics
-* **Authors:** J. Mahler, J. Liang, S. Niyaz, M. Laskey, and K. Goldberg
-* **Publication:** *Robotics: Science and Systems (RSS)* (2017)
-* **DOI:** [10.15607/RSS.2017.XIII.058](https://doi.org/10.15607/RSS.2017.XIII.058)
-* **Key Takeaway & Integration in Your Project:** Provides antipodal grasping theory and grasp robustness scoring (epsilon-metric) adapted in your gripper control.
-
-### Paper 3: Mobile manipulation in unstructured human environments: Perception, navigation, and grasping
-* **Authors:** S. Chitta, J. Sturm, M. Piccoli, and W. Burgard
-* **Publication:** *IEEE Robotics & Automation Magazine, vol. 19, no. 2, pp. 58-71* (2012)
-* **DOI:** [10.1109/MRA.2012.2191995](https://doi.org/10.1109/MRA.2012.2191995)
-* **Key Takeaway & Integration in Your Project:** Defines coordinated whole-body mobile manipulation architectures combining mobile base locomotion and arm IK.
-
-### Paper 4: Robotic pick-and-place of novel objects in clutter with multi-affordance grasping and pushing
-* **Authors:** A. Zeng, S. Song, K. T. Yu, and M. Rodriguez
-* **Publication:** *IEEE International Conference on Robotics and Automation (ICRA), pp. 814-821* (2018)
-* **DOI:** [10.1109/ICRA.2018.8460504](https://doi.org/10.1109/ICRA.2018.8460504)
-* **Key Takeaway & Integration in Your Project:** Establishes pushing and pre-grasp separation strategies for cluttered objects in domestic and hospital environments.
-
-### Paper 5: Autonomous mobile manipulator for hospital logistics and patient room turnaround: Design and evaluation
-* **Authors:** H. Nguyen, H. M. Do, and W. Sheng
-* **Publication:** *IEEE Transactions on Automation Science and Engineering, vol. 19, no. 4, pp. 3120-3132* (2022)
-* **DOI:** [10.1109/TASE.2021.3129845](https://doi.org/10.1109/TASE.2021.3129845)
-* **Key Takeaway & Integration in Your Project:** Direct clinical trial benchmarks proving that mobile manipulators reduce room turnaround times from 15 min to under 8 min.
-
-
----
-
-## 📈 2024–2026 Review Trends & Conference Target Matrix
-
-### What Premier Peer-Reviewers Are Seeking
-* IEEE T-ASE and ICRA reviewers look for (1) whole-body coordination rather than sequential stop-and-reach, (2) realistic grasp force limits avoiding object crushing, and (3) clinical workflow metrics like bed turnaround time.
-* **CSBS Technoeconomic Rigor:** All economic and operational models must be **dimensionless** (e.g. labor reallocation percentages, payback cycles, operational cost-parity ratios). Never include raw currency amounts.
-
-### Target Publication Venues
-* **Primary (National / Scopus):** Primary: IEEE INDICON / AIR
-* **Aspirant (International / IEEE CORE):**  Aspirant: IEEE International Conference on Automation Science and Engineering (CASE - CORE B) or IEEE Transactions on Automation Science and Engineering.
-
----
-
-## 🤖 Tailored AI Research & Development Prompt (Copy-Paste)
-
-Students can copy and paste the prompt below into **Sci-Bot.ru**, **ChatGPT**, or **Claude** to generate and refine their specific simulation code, MJCF XML, and mathematical derivations without receiving hallucinated literature:
-
-```text
-Act as a Mobile Manipulation and Robotics Simulation Specialist. Create a MuJoCo 3.x MJCF model combining an omnidirectional wheeled base (32 kg) with a 6-DOF articulated robotic arm and a parallel-jaw gripper. Populate a patient room scene with clutter objects (bottles, boxes) on the floor and bedside table. Write a Python script that computes base navigation to an object, executes damped least squares inverse kinematics for the 6-DOF arm, closes the gripper with force feedback, and places the object into a disposal receptacle. Log 500 Hz telemetry (joint torques, grasp force, cycle duration) and evaluate room turnover acceleration without currency values.
+```
+===================================================================================================
+Student Roll & Name        Assigned Technical Module                       Primary Deliverable
+===================================================================================================
+E050 - Soumil Patro        Mobile Base Navigation, SLAM & Motion Planning  src/clutter_manipulator_controller.py
+                                                                           (Base Navigation Module)
+E062 - Aditya Raju Shah    Manipulator Kinematics & Grasp Planning         src/clutter_manipulator_controller.py
+                                                                           (IK, Gripper & State Machine)
+E066 - Priyansh Thakkar    CSBS Room Turnaround & Econometric Modeling     analytics/nosocomial_turnover_economics.py
+                                                                           (Queuing & Payback Model)
+===================================================================================================
 ```
 
+### 2.1 E050 - Soumil Patro (Mobile Base Navigation)
+- Implement mobile base localization, bedside waypoint navigation, and collision-free base repositioning.
+- Tune the kinematic control law that rotates and translates the mobile platform into optimal arm workspace range.
+- **Git Branch:** `feat/e050-lead-mobile-base-nav`
+
+### 2.2 E062 - Aditya Raju Shah (Arm Kinematics & Grasping)
+- Formulate the 6-DOF / 4-DOF manipulator kinematic chain in `hospital_clutter_manipulator.xml`.
+- Implement closed-loop inverse kinematics with singularity damping and parallel-jaw grasp actuation.
+- Develop the pick-and-place state machine (approach, close gripper, lift, carry to bin, open gripper).
+- **Git Branch:** `feat/e062-manipulator-arm-kine`
+
+### 2.3 E066 - Priyansh Thakkar (CSBS Healthcare Economics)
+- Formulate the hospital room turnover model and evaluate bed availability expansion.
+- Execute empirical statistical analyses (paired t-test, Cohen's d, boxplot distributions).
+- Compute dimensionless OpEx savings and payback horizons across varying room turnover volumes.
+- **Git Branch:** `feat/e066-csbs-hospital-workfl`
 
 ---
 
-## 🎓 Individual Oral Viva Defense & Technical Accountability
+## 3. Step-by-Step Implementation Roadmap
 
-During the final oral evaluation before visiting academic and industry experts, each student will be examined individually on their declared specialty to verify genuine code authorship and technical depth:
-
-### Soumil Nitin Agrawal (`B001` | SAP: `70362400078`)
-* **Specialization:** Robotic Arm Kinematics & Workspace Reachability
-* **Defense Question 1:** How do you avoid kinematic singularities in 6-DOF manipulation under tight hospital furniture constraints?
-* **Defense Question 2:** Explain joint velocity and torque limit safety enforcement.
-
-### Aditya Bikramjit Banerjee (`B005` | SAP: `70362400067`)
-* **Specialization:** Clutter Perception & Grasp Synthesis Lead
-* **Defense Question 1:** How does depth map segmentation identify obstacle grasp points amidst overlapping laundry and waste?
-* **Defense Question 2:** What grasp stability metric is evaluated in MuJoCo contact physics?
-
-### Priyansh Parakh (`B046` | SAP: `70362400077`)
-* **Specialization:** CSBS Healthcare Hygiene & Nosocomial Economics Lead
-* **Defense Question 1:** Model the statistical reduction in Hospital-Acquired Infections (HAIs) from standardized robotic sanitization.
-* **Defense Question 2:** Derive the dimensionless payback model comparing robot deployment against housekeeping turnover.
-
+1. **Sprint 0: Setup & Verification**
+   - Run `python src/test_env.py` to confirm Python 3.9+, NumPy, SciPy, and Matplotlib.
+   - Inspect `models/hospital_clutter_manipulator.xml` in MuJoCo viewer (`python -m mujoco.viewer --mjcf=models/hospital_clutter_manipulator.xml`).
+2. **Sprint 1: Base Positioning & Manipulator Workspace**
+   - Run baseline kinematic trajectories for arm joints.
+   - Verify that the end-effector reaches bedside table clutter without self-collision.
+3. **Sprint 2: Closed-Loop Grasping Execution**
+   - Run `python src/clutter_manipulator_controller.py` to execute automated picking runs.
+   - Record grasp success rates and end-effector tracking errors.
+4. **Sprint 3: Benchmarking and Economics Simulation**
+   - Run `python analytics/generate_paper_figures.py` to produce benchmark CSV and 300 DPI figures.
+   - Run `python analytics/nosocomial_turnover_economics.py` to evaluate hospital room turnaround metrics.
+5. **Sprint 4: Paper Preparation & Git Push**
+   - Draft manuscript sections using `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`.
+   - Audit code and documentation to ensure strict compliance with publication guidelines.
