@@ -1,0 +1,90 @@
+<mujoco model="campus_perimeter_patrol">
+  <compiler angle="radian" coordinate="local"/>
+  <option gravity="0 0 -9.81" timestep="0.004" solver="Newton" iterations="40"/>
+
+  <default>
+    <geom condim="3" friction="1.0 0.01 0.005"/>
+    <motor ctrllimited="true" ctrlrange="0 7.5"/>
+  </default>
+
+  <worldbody>
+    <!-- Campus Ground Plane -->
+    <geom name="ground" type="plane" size="45 45 0.1" rgba="0.3 0.35 0.3 1"/>
+    <light directional="true" pos="0 0 30" dir="0 0 -1" castshadow="false"/>
+
+    <!-- Campus Academic Buildings / Obstacles -->
+    <geom name="building_east" type="box" size="8 12 6" pos="18 0 6" rgba="0.65 0.6 0.55 1"/>
+    <geom name="building_west" type="box" size="8 12 6" pos="-18 0 6" rgba="0.65 0.6 0.55 1"/>
+
+    <!-- Perimeter Boundary Walls -->
+    <geom name="wall_north" type="box" size="32 0.4 1.5" pos="0 30 1.5" rgba="0.45 0.45 0.45 1"/>
+    <geom name="wall_south" type="box" size="32 0.4 1.5" pos="0 -30 1.5" rgba="0.45 0.45 0.45 1"/>
+    <geom name="wall_east"  type="box" size="0.4 30 1.5" pos="30 0 1.5" rgba="0.45 0.45 0.45 1"/>
+    <geom name="wall_west"  type="box" size="0.4 30 1.5" pos="-30 0 1.5" rgba="0.45 0.45 0.45 1"/>
+
+    <!-- Restricted Zone Marker (Electrical Substation) -->
+    <geom name="substation_zone" type="box" size="5 5 0.02" pos="18 20 0.02" rgba="0.85 0.2 0.2 0.5"/>
+
+    <!-- Simulated Human Intruder Avatar -->
+    <body name="human_intruder" pos="18 19 0.85">
+      <freejoint name="intruder_root"/>
+      <geom name="intruder_geom" type="cylinder" size="0.28 0.85" rgba="0.9 0.1 0.1 1" mass="75.0"/>
+      <site name="intruder_head" pos="0 0 0.85"/>
+    </body>
+
+    <!-- =================================================================== -->
+    <!-- UAV ALPHA (Patrol Sector Alpha: North-East Perimeter)               -->
+    <!-- =================================================================== -->
+    <body name="uav_alpha" pos="0 25 12">
+      <freejoint name="uav_alpha_root"/>
+      <geom name="alpha_chassis" type="box" size="0.18 0.18 0.05" rgba="0.15 0.45 0.85 1" mass="1.35"/>
+      <site name="alpha_imu" pos="0 0 0"/>
+      <!-- Downward Surveillance Camera -->
+      <camera name="cam_alpha" pos="0 0 -0.06" euler="3.1415 0 0" fovy="60"/>
+
+      <!-- 4 Rotors for Quadrotor Dynamics -->
+      <site name="alpha_rotor0" pos="0.20 0 0.02"/>
+      <site name="alpha_rotor1" pos="-0.20 0 0.02"/>
+      <site name="alpha_rotor2" pos="0 0.20 0.02"/>
+      <site name="alpha_rotor3" pos="0 -0.20 0.02"/>
+    </body>
+
+    <!-- =================================================================== -->
+    <!-- UAV BRAVO (Patrol Sector Bravo: South-West Perimeter)               -->
+    <!-- =================================================================== -->
+    <body name="uav_bravo" pos="0 -25 12">
+      <freejoint name="uav_bravo_root"/>
+      <geom name="bravo_chassis" type="box" size="0.18 0.18 0.05" rgba="0.2 0.7 0.3 1" mass="1.35"/>
+      <site name="bravo_imu" pos="0 0 0"/>
+      <!-- Downward Surveillance Camera -->
+      <camera name="cam_bravo" pos="0 0 -0.06" euler="3.1415 0 0" fovy="60"/>
+
+      <!-- 4 Rotors for Quadrotor Dynamics -->
+      <site name="bravo_rotor0" pos="0.20 0 0.02"/>
+      <site name="bravo_rotor1" pos="-0.20 0 0.02"/>
+      <site name="bravo_rotor2" pos="0 0.20 0.02"/>
+      <site name="bravo_rotor3" pos="0 -0.20 0.02"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <!-- UAV Alpha Rotors (Thrust 0 to 7.5 N each) -->
+    <motor name="alpha_m0" site="alpha_rotor0" gear="0 0 1 0 0 0"/>
+    <motor name="alpha_m1" site="alpha_rotor1" gear="0 0 1 0 0 0"/>
+    <motor name="alpha_m2" site="alpha_rotor2" gear="0 0 1 0 0 0"/>
+    <motor name="alpha_m3" site="alpha_rotor3" gear="0 0 1 0 0 0"/>
+
+    <!-- UAV Bravo Rotors -->
+    <motor name="bravo_m0" site="bravo_rotor0" gear="0 0 1 0 0 0"/>
+    <motor name="bravo_m1" site="bravo_rotor1" gear="0 0 1 0 0 0"/>
+    <motor name="bravo_m2" site="bravo_rotor2" gear="0 0 1 0 0 0"/>
+    <motor name="bravo_m3" site="bravo_rotor3" gear="0 0 1 0 0 0"/>
+  </actuator>
+
+  <sensor>
+    <accelerometer name="alpha_accel" site="alpha_imu"/>
+    <gyro name="alpha_gyro" site="alpha_imu"/>
+    <accelerometer name="bravo_accel" site="bravo_imu"/>
+    <gyro name="bravo_gyro" site="bravo_imu"/>
+  </sensor>
+</mujoco>
