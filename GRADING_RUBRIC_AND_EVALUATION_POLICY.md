@@ -1,7 +1,7 @@
 # Continuous Assessment (ICA) Grading Rubric & Evaluation Policy
-**Academic Year:** 2026–2027 Odd Semester  
+**Course:** Modern Day Robotics and Its Industrial Applications (MDRIIA - 702CO0E012)  
+**Academic Year:** 2026–2027 | Semester VI (B.Tech CSBS)  
 **Institution:** SVKM's NMIMS MPSTME, Mumbai  
-**Governance Oversight:** Institutional Leadership & Academic Directorate  
 **Framework:** ABET Criterion 3 Student Outcomes & CDIO Syllabus  
 
 ---
@@ -45,5 +45,5 @@
 
 ## 3. Strict Institutional Compliance Safeguards
 1. **Zero Currency Rule:** Any submission containing raw monetary units or fiat currency denominations will receive an immediate 5-mark deduction and must be resubmitted with dimensionless cost parity ratios.
-2. **Restricted Names Rule:** Project documentation must refer to academic leadership exclusively as *"Institutional Leadership & Academic Directorate"*.
+2. **Student Recognition & Attribution Rule:** All student engineering deliverables must be explicitly mapped to verified Git commit trajectories in `TEAM_ROSTER.json` and defended individually during the oral viva.
 3. **Plagiarism & Evidence Authenticity:** Fabricated citations or hallucinated DOIs result in an immediate zero for Milestone 4.

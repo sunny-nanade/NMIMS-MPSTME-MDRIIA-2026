@@ -1,7 +1,7 @@
 # Academic & Industrial Engineering Standards Manual
 ## Modern Day Robotics and Its Industrial Applications (MDRIIA - 702CO0E012)
-**Department:** Computer Science & Business Systems (CSBS), SVKM's NMIMS MPSTME  
-**Governance Oversight:** Institutional Leadership & Academic Directorate  
+**Course:** B.Tech CSBS Semester VI (Elective - II)  
+**Academic Year:** 2026–2027 | Semester VI (B.Tech CSBS)  
 **Pedagogical Framework:** Aalborg-UNESCO PBL & CDIO Syllabus 2.0  
 
 ---
