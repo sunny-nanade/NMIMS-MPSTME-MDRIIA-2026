@@ -1,4 +1,7 @@
-# MDRIIA_GROUP_04: Multi-Arm Robotic Gripper for Non-Cooperative Space Debris Capture in LEO
+# MDRIIA Group 04: Multi-Arm Robotic Gripper for Non-Cooperative Space Debris Capture in LEO
+**Course:** Modern Day Robotics and Its Industrial Applications (MDRIIA - Course Code: 702CO0E012)  
+**Academic Term:** Academic Year 2026–2027 | Semester VI (B.Tech CSBS)  
+**Institution:** SVKM's NMIMS MPSTME, Mumbai  
 
 ---
 
@@ -17,25 +20,35 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `E034` | `70362400049` | **Rishi Vinod Koli** | Lead Orbital Dynamics & MuJoCo Multi-Body Physics Architect | `feat/e034-lead-orbital-dynamic` | Zero-gravity multi-body spacecraft dynamics, Generalized Jacobian Matrix (GJM), and momentum transfer during contact. |
 | `E035` | `70362400032` | **Nicholas Lewis** | Impedance Contact Control & Robotic Kinematics Engineer | `feat/e035-impedance-contact-co` | Cartesian impedance force control, tumbling satellite spin matching, and post-contact detumbling damping. |
 | `E036` | `70362400083` | **Jai Maini** | CSBS Commercial Space Economics & Satellite De-Orbiting Business Analyst | `feat/e036-csbs-commercial-spac` | LEO orbital slot preservation economics, Kessler syndrome collision risk reduction, and multi-mission ADR amortization models. |
 
+
+### Student Engineering Commendation & Acknowledgments
+SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Rishi Vinod Koli (E034)**, **Nicholas Lewis (E035)**, and **Jai Maini (E036)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
+
+> *"Scientists discover the world that exists; engineers create the world that never was."*  
+> — **Theodore von Kármán**
+
+> *"There is no substitute for hard work. Genius is one percent inspiration and ninety-nine percent perspiration."*  
+> — **Thomas A. Edison**
+
 ---
 
-## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+## 3. Foundational Literature Benchmarks (Strict 2 Seminal : 4 Recent Ratio)
 
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
-| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Yan et al. (2020)** | *Multi-objective configuration optimization for coordinated capture of dual-arm space robot* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2019.11.002](https://doi.org/10.1016/j.actaastro.2019.11.002) | `Generalized Jacobian $J_g = J_m - J_b I_b^{-1...` | Rishi Vinod Koli (E034) |
-| 2 | **Rybus et al. (2022)** | *Optimal collision-free path planning of a free-floating space robot using splines* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2021.10.012](https://doi.org/10.1016/j.actaastro.2021.10.012) | `Momentum conservation $I_s \omega_0 + \sum I_...` | Rishi Vinod Koli (E034) & Nicholas Lewis (E035) |
-| 3 | **Han et al. (2020)** | *Combined spacecraft stabilization control after multiple impacts during the capture of non-cooperative targets* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2020.05.035](https://doi.org/10.1016/j.actaastro.2020.05.035) | `Contact impulse equation $I_{\text{imp}} = \i...` | Nicholas Lewis (E035) |
-| 4 | **Wang et al. (2021)** | *A strategy to decelerate and capture a spinning object by a dual-arm space robot* | Aerospace Science and Technology | [https://doi.org/10.1016/j.ast.2021.106682](https://doi.org/10.1016/j.ast.2021.106682) | `Spin velocity matching $\lim_{t \to t_c} (\om...` | Nicholas Lewis (E035) & Jai Maini (E036) |
-| 5 | **Tao et al. (2021)** | *Impedance-Sliding Mode Control With Force Constraints for Space Robots Capturing Non-Cooperative Targets* | IEEE Access | [https://doi.org/10.1109/ACCESS.2021.3129835](https://doi.org/10.1109/ACCESS.2021.3129835) | `Target impedance dynamic $M_d \ddot{e} + D_d ...` | Jai Maini (E036) & Nicholas Lewis (E035) |
-| 6 | **Luo et al. (2017)** | *A review of uncertainty propagation in orbital mechanics* | Progress in Aerospace Sciences | [https://doi.org/10.1016/j.paerosci.2016.12.002](https://doi.org/10.1016/j.paerosci.2016.12.002) | `Clohessy-Wiltshire (CW) relative equations: $...` | Rishi Vinod Koli (E034) & Jai Maini (E036) |
+| # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Yan et al. (2020)** | Seminal | *Multi-objective configuration optimization for coordinated capture of dual-arm space robot* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2019.11.002](https://doi.org/10.1016/j.actaastro.2019.11.002) | `Generalized Jacobian $J_g = J_m - J_b I_b^{-1...` | Rishi Vinod Koli (E034) |
+| 2 | **Rybus et al. (2022)** | Recent | *Optimal collision-free path planning of a free-floating space robot using splines* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2021.10.012](https://doi.org/10.1016/j.actaastro.2021.10.012) | `Momentum conservation $I_s \omega_0 + \sum I_...` | Rishi Vinod Koli (E034) & Nicholas Lewis (E035) |
+| 3 | **Han et al. (2020)** | Recent | *Combined spacecraft stabilization control after multiple impacts during the capture of non-cooperative targets* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2020.05.035](https://doi.org/10.1016/j.actaastro.2020.05.035) | `Contact impulse equation $I_{\text{imp}} = \i...` | Nicholas Lewis (E035) |
+| 4 | **Wang et al. (2021)** | Recent | *A strategy to decelerate and capture a spinning object by a dual-arm space robot* | Aerospace Science and Technology | [https://doi.org/10.1016/j.ast.2021.106682](https://doi.org/10.1016/j.ast.2021.106682) | `Spin velocity matching $\lim_{t \to t_c} (\om...` | Nicholas Lewis (E035) & Jai Maini (E036) |
+| 5 | **Tao et al. (2021)** | Recent | *Impedance-Sliding Mode Control With Force Constraints for Space Robots Capturing Non-Cooperative Targets* | IEEE Access | [https://doi.org/10.1109/ACCESS.2021.3129835](https://doi.org/10.1109/ACCESS.2021.3129835) | `Target impedance dynamic $M_d \ddot{e} + D_d ...` | Jai Maini (E036) & Nicholas Lewis (E035) |
+| 6 | **Luo et al. (2017)** | Seminal | *A review of uncertainty propagation in orbital mechanics* | Progress in Aerospace Sciences | [https://doi.org/10.1016/j.paerosci.2016.12.002](https://doi.org/10.1016/j.paerosci.2016.12.002) | `Clohessy-Wiltshire (CW) relative equations: $...` | Rishi Vinod Koli (E034) & Jai Maini (E036) |
 
 For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
 * [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)

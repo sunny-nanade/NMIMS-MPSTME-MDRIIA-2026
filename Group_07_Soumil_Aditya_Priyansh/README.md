@@ -1,4 +1,7 @@
-# MDRIIA_GROUP_07: Autonomous Mobile Manipulator for Hospital Clutter Classification and Grasp Planning
+# MDRIIA Group 07: Autonomous Mobile Manipulator for Hospital Clutter Classification and Grasp Planning
+**Course:** Modern Day Robotics and Its Industrial Applications (MDRIIA - Course Code: 702CO0E012)  
+**Academic Term:** Academic Year 2026–2027 | Semester VI (B.Tech CSBS)  
+**Institution:** SVKM's NMIMS MPSTME, Mumbai  
 
 ---
 
@@ -17,25 +20,35 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `E050` | `70362400035` | **Soumil Patro** | Lead Mobile Base Navigation & SLAM Engineer | `feat/e050-lead-mobile-base-nav` | Holonomic mobile base positioning, hospital bedside clearance, obstacle avoidance in narrow patient suites, and coordinated base-arm docking. |
 | `E062` | `70362400075` | **Aditya Raju Shah** | Manipulator Arm Kinematics & Vision-Based Grasping Specialist | `feat/e062-manipulator-arm-kine` | Inverse kinematics Jacobian damping, 6-DOF grasp pose generation, push-to-grasp non-prehensile primitives, and bedside clutter classification. |
 | `E066` | `70362400078` | **Priyansh Thakkar** | CSBS Hospital Workflow Efficiency & Room Turnover Business Analyst | `feat/e066-csbs-hospital-workfl` | Hospital room turnaround time reduction (from 15 min to < 6 min), bed vacancy acceleration, and housekeeping labor cost parity models. |
 
+
+### Student Engineering Commendation & Acknowledgments
+SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Soumil Patro (E050)**, **Aditya Raju Shah (E062)**, and **Priyansh Thakkar (E066)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
+
+> *"Scientists discover the world that exists; engineers create the world that never was."*  
+> — **Theodore von Kármán**
+
+> *"There is no substitute for hard work. Genius is one percent inspiration and ninety-nine percent perspiration."*  
+> — **Thomas A. Edison**
+
 ---
 
-## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+## 3. Foundational Literature Benchmarks (Strict 2 Seminal : 4 Recent Ratio)
 
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
-| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Murali et al. (2020)** | *6-DOF Grasping for Target-driven Object Manipulation in Clutter* | IEEE International Conference on Robotics and Automation (ICRA) | [https://doi.org/10.1109/ICRA40945.2020.9197318](https://doi.org/10.1109/ICRA40945.2020.9197318) | `Grasp quality metric $Q(g, x) = P(\text{succe...` | Aditya Raju Shah (E062) |
-| 2 | **Mahler et al. (2019)** | *Learning ambidextrous robot grasping policies* | Science Robotics | [https://doi.org/10.1126/scirobotics.aau4984](https://doi.org/10.1126/scirobotics.aau4984) | `Ferrari-Canny epsilon metric $\epsilon = \min...` | Aditya Raju Shah (E062) |
-| 3 | **Berscheid et al. (2019)** | *Robot Learning of Shifting Objects for Grasping in Cluttered Environments* | IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) | [https://doi.org/10.1109/IROS40897.2019.8968042](https://doi.org/10.1109/IROS40897.2019.8968042) | `Push trajectory vector $\mathbf{p}_{\text{pus...` | Aditya Raju Shah (E062) & Soumil Patro (E050) |
-| 4 | **Dogar & Srinivasa (2012)** | *Physics-Based Grasp Planning Through Clutter* | Robotics: Science and Systems (RSS) | [https://doi.org/10.15607/RSS.2012.VIII.008](https://doi.org/10.15607/RSS.2012.VIII.008) | `Limit surface friction relationship $\mathbf{...` | Soumil Patro (E050) |
-| 5 | **Carling & Bartley (2010)** | *Evaluating hygienic cleaning in health care settings: What you do not know can harm your patients* | American Journal of Infection Control | [https://doi.org/10.1016/j.ajic.2010.03.004](https://doi.org/10.1016/j.ajic.2010.03.004) | `Turnaround interval $T_{\text{turn}} = T_{\te...` | Priyansh Thakkar (E066) |
-| 6 | **Wang et al. (2025)** | *Learning Dual-Arm Push and Grasp Synergy in Dense Clutter* | IEEE Robotics and Automation Letters | [https://doi.org/10.1109/LRA.2025.3557753](https://doi.org/10.1109/LRA.2025.3557753) | `Synergy action-value function $Q(s, a_{\text{...` | Priyansh Thakkar (E066) & Aditya Raju Shah (E062) |
+| # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Murali et al. (2020)** | Recent | *6-DOF Grasping for Target-driven Object Manipulation in Clutter* | IEEE International Conference on Robotics and Automation (ICRA) | [https://doi.org/10.1109/ICRA40945.2020.9197318](https://doi.org/10.1109/ICRA40945.2020.9197318) | `Grasp quality metric $Q(g, x) = P(\text{succe...` | Aditya Raju Shah (E062) |
+| 2 | **Mahler et al. (2019)** | Recent | *Learning ambidextrous robot grasping policies* | Science Robotics | [https://doi.org/10.1126/scirobotics.aau4984](https://doi.org/10.1126/scirobotics.aau4984) | `Ferrari-Canny epsilon metric $\epsilon = \min...` | Aditya Raju Shah (E062) |
+| 3 | **Berscheid et al. (2019)** | Recent | *Robot Learning of Shifting Objects for Grasping in Cluttered Environments* | IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) | [https://doi.org/10.1109/IROS40897.2019.8968042](https://doi.org/10.1109/IROS40897.2019.8968042) | `Push trajectory vector $\mathbf{p}_{\text{pus...` | Aditya Raju Shah (E062) & Soumil Patro (E050) |
+| 4 | **Dogar & Srinivasa (2012)** | Seminal | *Physics-Based Grasp Planning Through Clutter* | Robotics: Science and Systems (RSS) | [https://doi.org/10.15607/RSS.2012.VIII.008](https://doi.org/10.15607/RSS.2012.VIII.008) | `Limit surface friction relationship $\mathbf{...` | Soumil Patro (E050) |
+| 5 | **Carling & Bartley (2010)** | Seminal | *Evaluating hygienic cleaning in health care settings: What you do not know can harm your patients* | American Journal of Infection Control | [https://doi.org/10.1016/j.ajic.2010.03.004](https://doi.org/10.1016/j.ajic.2010.03.004) | `Turnaround interval $T_{\text{turn}} = T_{\te...` | Priyansh Thakkar (E066) |
+| 6 | **Wang et al. (2025)** | Recent | *Learning Dual-Arm Push and Grasp Synergy in Dense Clutter* | IEEE Robotics and Automation Letters | [https://doi.org/10.1109/LRA.2025.3557753](https://doi.org/10.1109/LRA.2025.3557753) | `Synergy action-value function $Q(s, a_{\text{...` | Priyansh Thakkar (E066) & Aditya Raju Shah (E062) |
 
 For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
 * [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)

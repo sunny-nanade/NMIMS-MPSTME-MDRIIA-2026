@@ -1,4 +1,7 @@
-# MDRIIA_GROUP_05: Collaborative Dual-UAV Campus Perimeter Patrol and Surveillance
+# MDRIIA Group 05: Collaborative Dual-UAV Campus Perimeter Patrol and Surveillance
+**Course:** Modern Day Robotics and Its Industrial Applications (MDRIIA - Course Code: 702CO0E012)  
+**Academic Term:** Academic Year 2026–2027 | Semester VI (B.Tech CSBS)  
+**Institution:** SVKM's NMIMS MPSTME, Mumbai  
 
 ---
 
@@ -17,26 +20,36 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `E043` | `70362400030` | **Muaaz Mohammed Iqbal Shaikh** | Lead UAV Flight Dynamics, Path Planner & Coordinated Fleet Architect | `feat/e043-lead-uav-flight-dyna` | Dual-quadrotor 6-DOF aerodynamics, thrust-to-weight modeling, waypoint coverage optimization, and inter-UAV collision avoidance. |
 | `E051` | `70362400067` | **Aditya Rajkumar** | Computer Vision, OpenCV Human Detection & Tracking Specialist | `feat/e051-computer-vision-open` | Downward aerial OpenCV human detection pipeline, bounding box latency, false alarm mitigation, and target handoff tracking. |
 | `E075` | `70362400003` | **Zaid Rezaur Rahman** | Restricted-Zone Geo-Fencing & Intrusion Telemetry Lead | `feat/e075-restricted-zone-geo-` | Ray-casting point-in-polygon geo-fencing, simulated GPS/IMU noise injection, and real-time perimeter breach logging. |
 | `E077` | `70362400080` | **Soumya Subhankar Ranasingh** | CSBS Campus Security Operations & OpEx Payback Analyst | `feat/e077-csbs-campus-security` | Guard labor substitution modeling, patrol cycle acceleration (from 45 to 8.5 min), and multi-year drone fleet OpEx payback analysis. |
 
+
+### Student Engineering Commendation & Acknowledgments
+SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Muaaz Mohammed Iqbal Shaikh (E043)**, **Aditya Rajkumar (E051)**, **Zaid Rezaur Rahman (E075)**, and **Soumya Subhankar Ranasingh (E077)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
+
+> *"Scientists discover the world that exists; engineers create the world that never was."*  
+> — **Theodore von Kármán**
+
+> *"There is no substitute for hard work. Genius is one percent inspiration and ninety-nine percent perspiration."*  
+> — **Thomas A. Edison**
+
 ---
 
-## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+## 3. Foundational Literature Benchmarks (Strict 2 Seminal : 4 Recent Ratio)
 
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
-| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Guerrero-Bonilla et al. (2021)** | *Perimeter Surveillance Based on Set-Invariance* | IEEE Robotics and Automation Letters | [https://doi.org/10.1109/LRA.2020.3028055](https://doi.org/10.1109/LRA.2020.3028055) | `Control Barrier Function $h(x) \ge 0$; barrie...` | Muaaz Mohammed Iqbal Shaikh (E043) & Zaid Rezaur Rahman (E075) |
-| 2 | **Javaid et al. (2023)** | *Communication and Control in Collaborative UAVs: Recent Advances and Future Trends* | IEEE Transactions on Intelligent Transportation Systems | [https://doi.org/10.1109/TITS.2023.3248841](https://doi.org/10.1109/TITS.2023.3248841) | `Network consensus equation $\dot{x}_i = -\sum...` | Muaaz Mohammed Iqbal Shaikh (E043) |
-| 3 | **Wu et al. (2024)** | *Multi-UAV Collaborative Dynamic Task Allocation Method Based on ISOM and Attention Mechanism* | IEEE Transactions on Vehicular Technology | [https://doi.org/10.1109/TVT.2023.3341878](https://doi.org/10.1109/TVT.2023.3341878) | `Task allocation utility $U = \sum_{i} (w_1 T_...` | Soumya Subhankar Ranasingh (E077) & Muaaz Shaikh (E043) |
-| 4 | **Cabreira et al. (2019)** | *Survey on Coverage Path Planning with Unmanned Aerial Vehicles* | Drones | [https://doi.org/10.3390/drones3010004](https://doi.org/10.3390/drones3010004) | `Coverage time $T_{\text{cov}} = \frac{A}{w_{\...` | Zaid Rezaur Rahman (E075) & Aditya Rajkumar (E051) |
-| 5 | **Mittal et al. (2020)** | *Deep learning-based object detection in low-altitude UAV datasets: A survey* | Image and Vision Computing | [https://doi.org/10.1016/j.imavis.2020.104046](https://doi.org/10.1016/j.imavis.2020.104046) | `Mean Average Precision $\text{mAP} = \frac{1}...` | Aditya Rajkumar (E051) |
-| 6 | **Agmon et al. (2008)** | *Multi-robot perimeter patrol in adversarial settings* | IEEE International Conference on Robotics and Automation (ICRA) | [https://doi.org/10.1109/ROBOT.2008.4543563](https://doi.org/10.1109/ROBOT.2008.4543563) | `Maximum patrol time lag $T_{\text{lag}} = \ma...` | Muaaz Shaikh (E043) & Soumya Subhankar Ranasingh (E077) |
+| # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Guerrero-Bonilla et al. (2021)** | Recent | *Perimeter Surveillance Based on Set-Invariance* | IEEE Robotics and Automation Letters | [https://doi.org/10.1109/LRA.2020.3028055](https://doi.org/10.1109/LRA.2020.3028055) | `Control Barrier Function $h(x) \ge 0$; barrie...` | Muaaz Mohammed Iqbal Shaikh (E043) & Zaid Rezaur Rahman (E075) |
+| 2 | **Javaid et al. (2023)** | Recent | *Communication and Control in Collaborative UAVs: Recent Advances and Future Trends* | IEEE Transactions on Intelligent Transportation Systems | [https://doi.org/10.1109/TITS.2023.3248841](https://doi.org/10.1109/TITS.2023.3248841) | `Network consensus equation $\dot{x}_i = -\sum...` | Muaaz Mohammed Iqbal Shaikh (E043) |
+| 3 | **Wu et al. (2024)** | Recent | *Multi-UAV Collaborative Dynamic Task Allocation Method Based on ISOM and Attention Mechanism* | IEEE Transactions on Vehicular Technology | [https://doi.org/10.1109/TVT.2023.3341878](https://doi.org/10.1109/TVT.2023.3341878) | `Task allocation utility $U = \sum_{i} (w_1 T_...` | Soumya Subhankar Ranasingh (E077) & Muaaz Shaikh (E043) |
+| 4 | **Cabreira et al. (2019)** | Seminal | *Survey on Coverage Path Planning with Unmanned Aerial Vehicles* | Drones | [https://doi.org/10.3390/drones3010004](https://doi.org/10.3390/drones3010004) | `Coverage time $T_{\text{cov}} = \frac{A}{w_{\...` | Zaid Rezaur Rahman (E075) & Aditya Rajkumar (E051) |
+| 5 | **Mittal et al. (2020)** | Recent | *Deep learning-based object detection in low-altitude UAV datasets: A survey* | Image and Vision Computing | [https://doi.org/10.1016/j.imavis.2020.104046](https://doi.org/10.1016/j.imavis.2020.104046) | `Mean Average Precision $\text{mAP} = \frac{1}...` | Aditya Rajkumar (E051) |
+| 6 | **Agmon et al. (2008)** | Seminal | *Multi-robot perimeter patrol in adversarial settings* | IEEE International Conference on Robotics and Automation (ICRA) | [https://doi.org/10.1109/ROBOT.2008.4543563](https://doi.org/10.1109/ROBOT.2008.4543563) | `Maximum patrol time lag $T_{\text{lag}} = \ma...` | Muaaz Shaikh (E043) & Soumya Subhankar Ranasingh (E077) |
 
 For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
 * [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)

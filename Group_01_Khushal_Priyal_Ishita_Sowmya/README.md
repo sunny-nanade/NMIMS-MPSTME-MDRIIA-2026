@@ -1,4 +1,7 @@
-# MDRIIA_GROUP_01: Autonomous Mobile Robot for Critical Medicine Delivery in ICUs
+# MDRIIA Group 01: Autonomous Mobile Robot for Critical Medicine Delivery in ICUs
+**Course:** Modern Day Robotics and Its Industrial Applications (MDRIIA - Course Code: 702CO0E012)  
+**Academic Term:** Academic Year 2026–2027 | Semester VI (B.Tech CSBS)  
+**Institution:** SVKM's NMIMS MPSTME, Mumbai  
 
 ---
 
@@ -17,26 +20,36 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `E006` | `70362400061` | **Khushal Asnani** | Lead Robotics Systems Architect & MuJoCo Physics Modeler | `feat/e006-lead-robotics-system` | Differential drive chassis dynamics, passive caster ball friction, and anti-slosh liquid medicine payload mechanics. |
 | `E016` | `70362400041` | **Priyal Kaushal Deputy** | Autonomous Navigation, SLAM & Dynamic Collision Avoidance Specialist | `feat/e016-autonomous-navigatio` | Dynamic Window Approach (DWA) local trajectory planning, four-quadrant heading error normalization, and reactive clearance in crowded ICU corridors. |
 | `E054` | `70362400038` | **Ishita Ranjan** | CSBS Clinical Workflow & Time-Motion ROI Business Analyst | `feat/e054-csbs-clinical-workfl` | Time-and-motion clinical workflow modeling, non-patient-facing transit reduction, and operational cost parity. |
 | `E060` | `70362400055` | **Sowmya Satish** | Sensor Telemetry, Quality Assurance & Empirical Validation Lead | `feat/e060-sensor-telemetry-qua` | Telemetry logging, sensor noise modeling (ultrasonic/LiDAR), and statistical hypothesis testing (N >= 50 runs). |
 
+
+### Student Engineering Commendation & Acknowledgments
+SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Khushal Asnani (E006)**, **Priyal Kaushal Deputy (E016)**, **Ishita Ranjan (E054)**, and **Sowmya Satish (E060)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
+
+> *"Scientists discover the world that exists; engineers create the world that never was."*  
+> — **Theodore von Kármán**
+
+> *"There is no substitute for hard work. Genius is one percent inspiration and ninety-nine percent perspiration."*  
+> — **Thomas A. Edison**
+
 ---
 
-## 3. Foundational Literature Benchmarks (6 Verified Peer-Reviewed Papers)
+## 3. Foundational Literature Benchmarks (Strict 2 Seminal : 4 Recent Ratio)
 
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
-| # | Author (Year) | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Sujan et al. (2024)** | *Navigation benchmarking for autonomous mobile robots in hospital environment* | Scientific Reports | [https://doi.org/10.1038/s41598-024-69040-z](https://doi.org/10.1038/s41598-024-69040-z) | `Path curvature $\kappa(s) = \frac{x'y'' - y'x...` | Khushal Asnani (E006) & Priyal Kaushal Deputy (E016) |
-| 2 | **Alonso-Mora et al. (2023)** | *The Multi-Trip Autonomous Mobile Robot Scheduling Problem with Time Windows in a Hospital Environment* | Applied Sciences | [https://doi.org/10.3390/app13179879](https://doi.org/10.3390/app13179879) | `$\min \sum_{k \in K} \sum_{(i,j) \in A} c_{ij...` | Ishita Ranjan (E054) & Sowmya Satish (E060) |
-| 3 | **Terashima et al. (2020)** | *Controlling Liquid Slosh by Applying Optimal Operating-Speed-Dependent Motion Profiles* | Robotics | [https://doi.org/10.3390/robotics9010018](https://doi.org/10.3390/robotics9010018) | `Slosh angle dynamics $\ddot{\theta} + \frac{g...` | Khushal Asnani (E006) |
-| 4 | **Bekker et al. (2021)** | *How do nurses spend their time? A time and motion analysis of nursing activities in an internal medicine ward* | Journal of Advanced Nursing | [https://doi.org/10.1111/jan.14935](https://doi.org/10.1111/jan.14935) | `Transit fraction $\Phi_{\text{transit}} = \fr...` | Ishita Ranjan (E054) |
-| 5 | **Fox, Burgard, & Thrun (1997)** | *The dynamic window approach to collision avoidance* | IEEE Robotics & Automation Magazine | [https://doi.org/10.1109/100.580977](https://doi.org/10.1109/100.580977) | `$G(v, \omega) = \sigma(\alpha \cdot \text{hea...` | Priyal Kaushal Deputy (E016) |
-| 6 | **Primatesta et al. (2016)** | *Dynamic trajectory planning for mobile robot navigation in crowded environments* | IEEE Emerging Technologies and Factory Automation (ETFA) | [https://doi.org/10.1109/ETFA.2016.7733510](https://doi.org/10.1109/ETFA.2016.7733510) | `Collision risk metric $R(p, v) = \int_0^T \ma...` | Priyal Kaushal Deputy (E016) & Sowmya Satish (E060) |
+| # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Sujan et al. (2024)** | Recent | *Navigation benchmarking for autonomous mobile robots in hospital environment* | Scientific Reports | [https://doi.org/10.1038/s41598-024-69040-z](https://doi.org/10.1038/s41598-024-69040-z) | `Path curvature $\kappa(s) = \frac{x'y'' - y'x...` | Khushal Asnani (E006) & Priyal Kaushal Deputy (E016) |
+| 2 | **Alonso-Mora et al. (2023)** | Recent | *The Multi-Trip Autonomous Mobile Robot Scheduling Problem with Time Windows in a Hospital Environment* | Applied Sciences | [https://doi.org/10.3390/app13179879](https://doi.org/10.3390/app13179879) | `$\min \sum_{k \in K} \sum_{(i,j) \in A} c_{ij...` | Ishita Ranjan (E054) & Sowmya Satish (E060) |
+| 3 | **Terashima et al. (2020)** | Recent | *Controlling Liquid Slosh by Applying Optimal Operating-Speed-Dependent Motion Profiles* | Robotics | [https://doi.org/10.3390/robotics9010018](https://doi.org/10.3390/robotics9010018) | `Slosh angle dynamics $\ddot{\theta} + \frac{g...` | Khushal Asnani (E006) |
+| 4 | **Bekker et al. (2021)** | Recent | *How do nurses spend their time? A time and motion analysis of nursing activities in an internal medicine ward* | Journal of Advanced Nursing | [https://doi.org/10.1111/jan.14935](https://doi.org/10.1111/jan.14935) | `Transit fraction $\Phi_{\text{transit}} = \fr...` | Ishita Ranjan (E054) |
+| 5 | **Fox, Burgard, & Thrun (1997)** | Seminal | *The dynamic window approach to collision avoidance* | IEEE Robotics & Automation Magazine | [https://doi.org/10.1109/100.580977](https://doi.org/10.1109/100.580977) | `$G(v, \omega) = \sigma(\alpha \cdot \text{hea...` | Priyal Kaushal Deputy (E016) |
+| 6 | **Primatesta et al. (2016)** | Seminal | *Dynamic trajectory planning for mobile robot navigation in crowded environments* | IEEE Emerging Technologies and Factory Automation (ETFA) | [https://doi.org/10.1109/ETFA.2016.7733510](https://doi.org/10.1109/ETFA.2016.7733510) | `Collision risk metric $R(p, v) = \int_0^T \ma...` | Priyal Kaushal Deputy (E016) & Sowmya Satish (E060) |
 
 For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
 * [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
