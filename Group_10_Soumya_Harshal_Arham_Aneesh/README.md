@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"Filtering out physiological surgeon tremor down to 5 micrometers with high-frequency Kalman filters, while the entire surgical suite is vibrating because someone in the adjacent hallway is rolling a 200 kg autoclave cart across the tile seams."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

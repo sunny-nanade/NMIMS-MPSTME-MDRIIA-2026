@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"An autonomous mobile companion equipped with pan-tilt MediaPipe vision to detect sudden falls within the 6-minute golden window, which will inevitably trigger a code-red 911 emergency dispatch because grandpa dropped his TV remote and decided to take an afternoon nap on the living room rug."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

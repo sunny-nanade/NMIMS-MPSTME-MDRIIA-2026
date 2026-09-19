@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"Developing a transformable legged-wheeled hybrid for hazardous terrain traversal, ensuring that when your wheel motor stalls on loose rubble, your leg actuators can step in to fail twice as expensively in four degrees of freedom."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

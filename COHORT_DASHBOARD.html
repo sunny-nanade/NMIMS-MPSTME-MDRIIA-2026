@@ -326,6 +326,31 @@
       line-height: 1.4;
     }
 
+    .reality-box {
+      background: #f8fafc;
+      border-left: 3px solid #64748b;
+      border-radius: 0 4px 4px 0;
+      padding: 8px 12px;
+      margin-top: 10px;
+      margin-bottom: 12px;
+    }
+
+    .reality-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #475569;
+      margin-bottom: 3px;
+    }
+
+    .reality-text {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #334155;
+      line-height: 1.4;
+    }
+
     .video-showcase-box {
       margin-top: 12px;
       margin-bottom: 6px;
@@ -651,6 +676,10 @@
             <div class="section-title">Verified Foundational Literature</div>
             <div class="papers-summary">
               ${g.papers}
+            </div>
+            <div class="reality-box">
+              <div class="reality-title">The Reality Check (Theoretical Roast)</div>
+              <div class="reality-text">"${g.realityCheck}"</div>
             </div>
             <div class="video-showcase-box">
               <a class="video-link" href="${g.linkedinUrl && g.linkedinUrl !== 'PENDING_SUBMISSION' ? g.linkedinUrl : './' + g.folder + '/README.md#4-project-demonstration--academic-showcase-linkedin'}" target="_blank">

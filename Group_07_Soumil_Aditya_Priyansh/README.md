@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"Training a mobile manipulator with a 6-DOF articulated arm to classify and declutter post-operative recovery rooms, whose neural network will inevitably classify a patient's unlabelled prescription spectacles as biohazard waste and deposit them into the recycling bin with sub-millimeter precision."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

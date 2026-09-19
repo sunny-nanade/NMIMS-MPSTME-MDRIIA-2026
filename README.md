@@ -75,6 +75,26 @@ For external evaluators, visiting faculty, and students reviewing project milest
 
 ---
 
+
+## The Devil's Advocate: Cohort Reality Checks (Theoretical Roasts)
+
+To shatter "simulation myopia" and prepare student engineering teams for relentless real-world operational challenges, every project incorporates an academic reality check exposing the divide between clean physics simulations and messy physical realities:
+
+| Group # | Workspace Directory | Engineering Domain | The Reality Check (Theoretical Roast) |
+| :---: | :--- | :--- | :--- |
+| **Group 01** | [Group_01_Khushal_Priyal_Ishita_Sowmya](./Group_01_Khushal_Priyal_Ishita_Sowmya) | ICU Critical Medicine Delivery AMR | *A pristine DeepMind MuJoCo simulation naively assuming that busy ICU nurses won't leave metal IV drip poles scattered across the corridor, won't smash the emergency stop button because 'it made a weird beep', and that 500 mL saline bags obey Newtonian mechanics without sloshing all over your LiDAR optics.* |
+| **Group 02** | [Group_02_Kamakshi_Devanshi](./Group_02_Kamakshi_Devanshi) | Elderly Fall Supervision Companion | *An autonomous mobile companion equipped with pan-tilt MediaPipe vision to detect sudden falls within the 6-minute golden window, which will inevitably trigger a code-red 911 emergency dispatch because grandpa dropped his TV remote and decided to take an afternoon nap on the living room rug.* |
+| **Group 03** | [Group_03_Kashish_Vaishnavi_Daneeka](./Group_03_Kashish_Vaishnavi_Daneeka) | Last-Mile Ground AED Emergency AMR | *Engineering a 4-wheel independent suspension chassis to outrun sudden cardiac arrest across urban traffic, assuming Indian municipal sidewalks don't feature open storm drains, sudden pavement trenches, and stray dogs who consider your shockproof defibrillator pod their new favorite chew toy.* |
+| **Group 04** | [Group_04_Rishi_Nicholas_Jai](./Group_04_Rishi_Nicholas_Jai) | LEO Space Debris Impedance Gripper | *Modeling viscoelastic impedance contact control in microgravity, where your biggest mathematical triumph will be transferring just enough rotational impulse during capture to convert a dead 2-ton Soviet booster into an unstoppable 10,000 RPM orbital buzzsaw.* |
+| **Group 05** | [Group_05_Muaaz_Aditya_Zaid_Soumya](./Group_05_Muaaz_Aditya_Zaid_Soumya) | Cooperative Dual-UAV Campus Patrol | *Architecting a cooperative multi-agent aerial consensus protocol to detect campus perimeter breaches, completely ignoring that 15-knot coastal sea breezes, campus WiFi dead zones, and a flock of territorial pigeons will immediately turn your decentralized swarm consensus into a synchronized double-tree landing.* |
+| **Group 06** | [Group_06_Arush_Ronit_Harshvardhan](./Group_06_Arush_Ronit_Harshvardhan) | Solar Array Dry-Cleaning Crawler | *Engineering a tracked dry-cleaning crawler that eliminates 95% of soiling loss on utility-scale solar arrays, provided the panels are tilted at perfect lab angles and never encounter dried bird droppings that have baked under 44°C Mumbai sunlight into industrial-grade ceramic glaze.* |
+| **Group 07** | [Group_07_Soumil_Aditya_Priyansh](./Group_07_Soumil_Aditya_Priyansh) | Hospital Room Housekeeping Manipulator | *Training a mobile manipulator with a 6-DOF articulated arm to classify and declutter post-operative recovery rooms, whose neural network will inevitably classify a patient's unlabelled prescription spectacles as biohazard waste and deposit them into the recycling bin with sub-millimeter precision.* |
+| **Group 08** | [Group_08_Manikya_Shourya_Keswani_Vora](./Group_08_Manikya_Shourya_Keswani_Vora) | Flood Relief Amphibious Multirotor | *Simulating an amphibious differential-drive robot for flood relief delivery, whose buoyancy calculations and hydrodynamic drag models work impeccably right until the first plastic grocery bag wraps around the port-side thruster shaft.* |
+| **Group 09** | [Group_09_Arnav_Vihan_Pratik](./Group_09_Arnav_Vihan_Pratik) | Transformable Legged-Wheeled Hazmat AMR | *Developing a transformable legged-wheeled hybrid for hazardous terrain traversal, ensuring that when your wheel motor stalls on loose rubble, your leg actuators can step in to fail twice as expensively in four degrees of freedom.* |
+| **Group 10** | [Group_10_Soumya_Harshal_Arham_Aneesh](./Group_10_Soumya_Harshal_Arham_Aneesh) | Tremor-Suppressed Micro-Surgical Arm | *Filtering out physiological surgeon tremor down to 5 micrometers with high-frequency Kalman filters, while the entire surgical suite is vibrating because someone in the adjacent hallway is rolling a 200 kg autoclave cart across the tile seams.* |
+
+---
+
 ## Thematic Research Clusters
 
 ```

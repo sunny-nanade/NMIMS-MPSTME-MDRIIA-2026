@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"Simulating an amphibious differential-drive robot for flood relief delivery, whose buoyancy calculations and hydrodynamic drag models work impeccably right until the first plastic grocery bag wraps around the port-side thruster shaft."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

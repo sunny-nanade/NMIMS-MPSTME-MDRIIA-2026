@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"Engineering a tracked dry-cleaning crawler that eliminates 95% of soiling loss on utility-scale solar arrays, provided the panels are tilted at perfect lab angles and never encounter dried bird droppings that have baked under 44°C Mumbai sunlight into industrial-grade ceramic glaze."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

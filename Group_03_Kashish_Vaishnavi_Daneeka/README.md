@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"Engineering a 4-wheel independent suspension chassis to outrun sudden cardiac arrest across urban traffic, assuming Indian municipal sidewalks don't feature open storm drains, sudden pavement trenches, and stray dogs who consider your shockproof defibrillator pod their new favorite chew toy."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

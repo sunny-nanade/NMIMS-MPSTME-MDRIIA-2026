@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"Architecting a cooperative multi-agent aerial consensus protocol to detect campus perimeter breaches, completely ignoring that 15-knot coastal sea breezes, campus WiFi dead zones, and a flock of territorial pigeons will immediately turn your decentralized swarm consensus into a synchronized double-tree landing."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

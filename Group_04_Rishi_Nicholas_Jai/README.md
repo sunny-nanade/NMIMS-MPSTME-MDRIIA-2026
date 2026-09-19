@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"Modeling viscoelastic impedance contact control in microgravity, where your biggest mathematical triumph will be transferring just enough rotational impulse during capture to convert a dead 2-ton Soviet booster into an unstoppable 10,000 RPM orbital buzzsaw."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |

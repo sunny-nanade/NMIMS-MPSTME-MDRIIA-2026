@@ -17,6 +17,12 @@
 
 ---
 
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"A pristine DeepMind MuJoCo simulation naively assuming that busy ICU nurses won't leave metal IV drip poles scattered across the corridor, won't smash the emergency stop button because 'it made a weird beep', and that 500 mL saline bags obey Newtonian mechanics without sloshing all over your LiDAR optics."*
+
+---
+
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
