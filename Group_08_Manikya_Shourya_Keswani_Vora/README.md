@@ -57,7 +57,18 @@ For the exhaustive literature analysis, mathematical derivations, and viva defen
 
 ---
 
-## 4. Repository Directory Architecture
+## 4. Project Demonstration & Academic Showcase (LinkedIn)
+
+[![Watch Video Demonstration on LinkedIn](docs/figures/video_poster.png)](https://www.linkedin.com/)
+
+* **Video Demonstration:** [Watch 60-Second Walkthrough on LinkedIn](https://www.linkedin.com/) *(Click thumbnail above to open LinkedIn post)*
+* **Student Presenters:** **Manikya Rathore (E056)**, **Shourya Garg (E020)**, **Keswani Laksh (E032)**, **Vora Jash (E067)**
+* **Academic Institutional Tags:** SVKM's NMIMS MPSTME | Academic Directorate | Industry 4.0 Robotics
+* **Submission Protocol:** Record a 60–90 second demonstration of your MuJoCo simulation and telemetry. Publish on LinkedIn tagging MPSTME, Dean, and Course Faculty. Insert your live post URL in `docs/TEAM_ROSTER.json` under `"linkedin_url"`, and submit a pull request to update this project dossier and the cohort dashboard.
+
+---
+
+## 5. Repository Directory Architecture
 
 ```
 .

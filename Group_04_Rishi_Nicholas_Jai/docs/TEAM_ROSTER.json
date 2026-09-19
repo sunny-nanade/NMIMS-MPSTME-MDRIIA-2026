@@ -84,5 +84,13 @@
       "doi": "https://doi.org/10.1016/j.paerosci.2016.12.002",
       "lead": "Rishi Vinod Koli (E034) & Jai Maini (E036)"
     }
-  ]
+  ],
+  "project_showcase": {
+    "platform": "LinkedIn Video",
+    "linkedin_url": "PENDING_SUBMISSION",
+    "video_poster_path": "docs/figures/video_poster.png",
+    "video_duration_target": "60-90 seconds",
+    "submission_status": "PENDING",
+    "submission_instructions": "Paste your published LinkedIn post URL into 'linkedin_url' and submit a Pull Request"
+  }
 }

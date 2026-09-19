@@ -326,6 +326,36 @@
       line-height: 1.4;
     }
 
+    .video-showcase-box {
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    .video-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0369a1;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      border-radius: 4px;
+      padding: 6px 12px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .video-link:hover {
+      background: #bae6fd;
+      color: #0284c7;
+    }
+
+    .play-icon {
+      font-size: 0.72rem;
+      color: #0284c7;
+    }
+
     .card-footer {
       border-top: 1px solid var(--border);
       padding-top: 12px;
@@ -621,6 +651,11 @@
             <div class="section-title">Verified Foundational Literature</div>
             <div class="papers-summary">
               ${g.papers}
+            </div>
+            <div class="video-showcase-box">
+              <a class="video-link" href="${g.linkedinUrl && g.linkedinUrl !== 'PENDING_SUBMISSION' ? g.linkedinUrl : './' + g.folder + '/README.md#4-project-demonstration--academic-showcase-linkedin'}" target="_blank">
+                <span class="play-icon">&#9654;</span> ${g.linkedinUrl && g.linkedinUrl !== 'PENDING_SUBMISSION' ? 'Watch Video on LinkedIn' : 'Video Demonstration Showcase'}
+              </a>
             </div>
           </div>
           <div class="card-footer">
