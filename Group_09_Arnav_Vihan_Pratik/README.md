@@ -26,7 +26,7 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `E064` | `70362400017` | **Arnav Saurabh Surve** | Lead UGV Skid-Steer Dynamics & MuJoCo Terrain Modeler | `feat/e064-lead-ugv-skid-steer-` | Skid-steer 4-wheel slip dynamics, rough terrain contact normal forces, pitch/roll rollover stability, and torque distribution. |
 | `E070` | `70362400063` | **Vihan Shripad Joshi** | LiDAR Perception, 3D Elevation Mapping & Obstacle Segmentation Lead | `feat/e070-lidar-perception-3d-` | Multi-ray LiDAR point cloud filtering, 2.5D elevation grid mapping, slope/roughness traversability cost calculation, and path replanning. |
 | `E073` | `70362400033` | **Pratik Mangesh Gaikwad** | CSBS Hazardous Operations Safety & Teleoperation Latency Analyst | `feat/e073-csbs-hazardous-opera` | Operator cognitive workload metrics (NASA-TLX), teleoperation latency resilience, human risk mitigation, and industrial inspection payback. |
@@ -48,7 +48,7 @@ SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Ar
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
 | # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | **Fankhauser et al. (2018)** | Recent | *Probabilistic Terrain Mapping for Mobile Robots With Uncertain Localization* | IEEE Robotics and Automation Letters | [https://doi.org/10.1109/LRA.2018.2849506](https://doi.org/10.1109/LRA.2018.2849506) | `Terrain variance update $\sigma_h^2(x,y) = \s...` | Vihan Shripad Joshi (E070) & Arnav Saurabh Surve (E064) |
 | 2 | **Chilian & Hirschmuller (2009)** | Recent | *Stereo camera based navigation of mobile robots on rough terrain* | IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) | [https://doi.org/10.1109/IROS.2009.5354535](https://doi.org/10.1109/IROS.2009.5354535) | `Roughness metric $\rho = \sqrt{\frac{1}{N} \s...` | Vihan Shripad Joshi (E070) |
 | 3 | **Kelly et al. (2006)** | Seminal | *Toward Reliable Off Road Autonomous Vehicles Operating in Challenging Environments* | The International Journal of Robotics Research | [https://doi.org/10.1177/0278364906065543](https://doi.org/10.1177/0278364906065543) | `Predictive trajectory roll-out $\dot{x} = f(x...` | Arnav Saurabh Surve (E064) |

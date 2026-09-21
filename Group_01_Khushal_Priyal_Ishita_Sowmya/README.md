@@ -26,7 +26,7 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `E006` | `70362400061` | **Khushal Asnani** | Lead Robotics Systems Architect & MuJoCo Physics Modeler | `feat/e006-lead-robotics-system` | Differential drive chassis dynamics, passive caster ball friction, and anti-slosh liquid medicine payload mechanics. |
 | `E016` | `70362400041` | **Priyal Kaushal Deputy** | Autonomous Navigation, SLAM & Dynamic Collision Avoidance Specialist | `feat/e016-autonomous-navigatio` | Dynamic Window Approach (DWA) local trajectory planning, four-quadrant heading error normalization, and reactive clearance in crowded ICU corridors. |
 | `E054` | `70362400038` | **Ishita Ranjan** | CSBS Clinical Workflow & Time-Motion ROI Business Analyst | `feat/e054-csbs-clinical-workfl` | Time-and-motion clinical workflow modeling, non-patient-facing transit reduction, and operational cost parity. |
@@ -49,7 +49,7 @@ SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Kh
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
 | # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | **Sujan et al. (2024)** | Recent | *Navigation benchmarking for autonomous mobile robots in hospital environment* | Scientific Reports | [https://doi.org/10.1038/s41598-024-69040-z](https://doi.org/10.1038/s41598-024-69040-z) | `Path curvature $\kappa(s) = \frac{x'y'' - y'x...` | Khushal Asnani (E006) & Priyal Kaushal Deputy (E016) |
 | 2 | **Alonso-Mora et al. (2023)** | Recent | *The Multi-Trip Autonomous Mobile Robot Scheduling Problem with Time Windows in a Hospital Environment* | Applied Sciences | [https://doi.org/10.3390/app13179879](https://doi.org/10.3390/app13179879) | `$\min \sum_{k \in K} \sum_{(i,j) \in A} c_{ij...` | Ishita Ranjan (E054) & Sowmya Satish (E060) |
 | 3 | **Terashima et al. (2020)** | Recent | *Controlling Liquid Slosh by Applying Optimal Operating-Speed-Dependent Motion Profiles* | Robotics | [https://doi.org/10.3390/robotics9010018](https://doi.org/10.3390/robotics9010018) | `Slosh angle dynamics $\ddot{\theta} + \frac{g...` | Khushal Asnani (E006) |

@@ -26,7 +26,7 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `E048` | `70362400010` | **Arush Ashish Patil** | Lead Tracked Crawler Chassis & MuJoCo Adhesion Modeler | `feat/e048-lead-tracked-crawler` | Tracked mobile base kinematics on 15-35 degree inclined solar panels, normal contact force distribution, and anti-slip friction bounds. |
 | `E052` | `70362400058` | **Ronit Rajput** | Waterless Rotary Brush Actuation & Cleaning Efficiency Engineer | `feat/e052-waterless-rotary-bru` | Rotary brush contact mechanics, normal force regulation, dust particulate displacement efficiency, and surface micro-scratch prevention. |
 | `E058` | `70362400007` | **Harshvardhan Sahi** | CSBS Photovoltaic Degradation & CapEx/OpEx Payback Analyst | `feat/e058-csbs-photovoltaic-de` | Soiling degradation kinetics (15-18% monthly loss), Levelized Cost of Electricity (LCOE) impact, and autonomous vs manual labor cost parity. |
@@ -48,7 +48,7 @@ SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Ar
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
 | # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | **Figgis et al. (2023)** | Recent | *PV module vibration by robotic cleaning* | Solar Energy | [https://doi.org/10.1016/j.solener.2022.12.049](https://doi.org/10.1016/j.solener.2022.12.049) | `Vibration acceleration power spectral density...` | Arush Ashish Patil (E048) |
 | 2 | **Song et al. (2021)** | Seminal | *Air pollution and soiling implications for solar photovoltaic power generation: A comprehensive review* | Applied Energy | [https://doi.org/10.1016/j.apenergy.2021.117247](https://doi.org/10.1016/j.apenergy.2021.117247) | `Soiling ratio $\text{SR}(t) = \frac{P_{\text{...` | Harshvardhan Sahi (E058) |
 | 3 | **Figgis et al. (2023)** | Recent | *Effect of cleaning robot's moving shadow on PV string* | Solar Energy | [https://doi.org/10.1016/j.solener.2023.03.003](https://doi.org/10.1016/j.solener.2023.03.003) | `String current under partial shading $I_{\tex...` | Harshvardhan Sahi (E058) & Ronit Rajput (E052) |

@@ -26,15 +26,12 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `E071` | `70362400034` | **Soumya Singh** | Lead Surgical Kinematics, Damped Least Squares IK & MuJoCo Modeler | `feat/e071-lead-surgical-kinema` | 7-DOF redundant manipulator kinematics, Damped Least Squares (DLS) Jacobian pseudo-inverse, singularity robustness, and joint velocity bounds. |
 | `E033` | `70362400028` | **Harshal Khandekar** | Digital Signal Processing, Tremor Modeling & Kalman Filtering Lead | `feat/e033-digital-signal-proce` | Physiological surgeon tremor modeling (8-12 Hz Gaussian bandpass noise), discrete Butterworth/Kalman filter implementation, and phase lag minimization. |
-| `E069` | `70362400047` | **Arham Khan** | End-Effector Precision Telemetry & Sub-Millimeter Calibration Specialist | `feat/e069-end-effector-precisi` | End-effector tip position telemetry, Euclidean trajectory tracking error, needle insertion target accuracy (< 0.5 mm), and overshoot suppression. |
-| `E076` | `70362400019` | **Aneesh Kumar** | CSBS Surgical Clinical Economics & OR Utilization Business Analyst | `feat/e076-csbs-surgical-clinic` | Operating room cost structure, surgical revision rate reduction, surgeon fatigue mitigation, and robotic precision capital amortization. |
-
 
 ### Student Engineering Commendation & Acknowledgments
-SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Soumya Singh (E071)**, **Harshal Khandekar (E033)**, **Arham Khan (E069)**, and **Aneesh Kumar (E076)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
+SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Soumya Singh (E071)** and **Harshal Khandekar (E033)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
 
 > *"Scientists discover the world that exists; engineers create the world that never was."*  
 > — **Theodore von Kármán**
@@ -49,13 +46,13 @@ SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **So
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
 | # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Yang et al. (2015)** | Recent | *Manipulator Design and Operation of a Six-Degree-of-Freedom Handheld Tremor-Canceling Microsurgical Instrument* | IEEE/ASME Transactions on Mechatronics | [https://doi.org/10.1109/TMECH.2014.2320858](https://doi.org/10.1109/TMECH.2014.2320858) | `Tremor attenuation ratio $\Gamma = 20 \log_{1...` | Soumya Singh (E071) & Arham Khan (E069) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Yang et al. (2015)** | Recent | *Manipulator Design and Operation of a Six-Degree-of-Freedom Handheld Tremor-Canceling Microsurgical Instrument* | IEEE/ASME Transactions on Mechatronics | [https://doi.org/10.1109/TMECH.2014.2320858](https://doi.org/10.1109/TMECH.2014.2320858) | `Tremor attenuation ratio $\Gamma = 20 \log_{1...` | Soumya Singh (E071) & Harshal Khandekar (E033) |
 | 2 | **Taylor & Stoianovici (2003)** | Recent | *Medical robotics in computer-integrated surgery* | IEEE Transactions on Robotics and Automation | [https://doi.org/10.1109/TRA.2003.817058](https://doi.org/10.1109/TRA.2003.817058) | `Safety boundary virtual fixture $F_{\text{fix...` | Soumya Singh (E071) |
-| 3 | **Chiaverini (1997)** | Seminal | *Singularity-robust task-priority redundancy resolution for real-time kinematic control of robot manipulators* | IEEE Transactions on Robotics and Automation | [https://doi.org/10.1109/70.585902](https://doi.org/10.1109/70.585902) | `Damped pseudo-inverse $J^* = J^T (J J^T + \la...` | Soumya Singh (E071) & Arham Khan (E069) |
+| 3 | **Chiaverini (1997)** | Seminal | *Singularity-robust task-priority redundancy resolution for real-time kinematic control of robot manipulators* | IEEE Transactions on Robotics and Automation | [https://doi.org/10.1109/70.585902](https://doi.org/10.1109/70.585902) | `Damped pseudo-inverse $J^* = J^T (J J^T + \la...` | Soumya Singh (E071) & Harshal Khandekar (E033) |
 | 4 | **Riviere & Thakor (1998)** | Seminal | *Adaptive cancelling of physiological tremor for improved precision in microsurgery* | IEEE Transactions on Biomedical Engineering | [https://doi.org/10.1109/10.686791](https://doi.org/10.1109/10.686791) | `Tremor signal model $x_k = \sum_{i=1}^M \left...` | Harshal Khandekar (E033) |
-| 5 | **Childers & Maggard-Gibbons (2018)** | Recent | *Understanding Costs of Care in the Operating Room* | JAMA Surgery | [https://doi.org/10.1001/jamasurg.2017.6233](https://doi.org/10.1001/jamasurg.2017.6233) | `OR cost rate $C_{\text{OR}} = \text{BaseRate}...` | Aneesh Kumar (E076) |
-| 6 | **Riviere et al. (2003)** | Recent | *Toward active tremor canceling in handheld microsurgical instruments* | IEEE Transactions on Robotics and Automation | [https://doi.org/10.1109/TRA.2003.817506](https://doi.org/10.1109/TRA.2003.817506) | `Transfer function $H(s) = \frac{s^2 + 2\zeta_...` | Harshal Khandekar (E033) & Aneesh Kumar (E076) |
+| 5 | **Childers & Maggard-Gibbons (2018)** | Recent | *Understanding Costs of Care in the Operating Room* | JAMA Surgery | [https://doi.org/10.1001/jamasurg.2017.6233](https://doi.org/10.1001/jamasurg.2017.6233) | `OR cost rate $C_{\text{OR}} = \text{BaseRate}...` | Soumya Singh (E071) & Harshal Khandekar (E033) |
+| 6 | **Riviere et al. (2003)** | Recent | *Toward active tremor canceling in handheld microsurgical instruments* | IEEE Transactions on Robotics and Automation | [https://doi.org/10.1109/TRA.2003.817506](https://doi.org/10.1109/TRA.2003.817506) | `Transfer function $H(s) = \frac{s^2 + 2\zeta_...` | Harshal Khandekar (E033) & Soumya Singh (E071) |
 
 For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
 * [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
@@ -68,7 +65,7 @@ For the exhaustive literature analysis, mathematical derivations, and viva defen
 [![Watch Video Demonstration on LinkedIn](docs/figures/video_poster.png)](https://www.linkedin.com/)
 
 * **Video Demonstration:** [Watch 60-Second Walkthrough on LinkedIn](https://www.linkedin.com/) *(Click thumbnail above to open LinkedIn post)*
-* **Student Presenters:** **Soumya Singh (E071)**, **Harshal Khandekar (E033)**, **Arham Khan (E069)**, **Aneesh Kumar (E076)**
+* **Student Presenters:** **Soumya Singh** (E071), **Harshal Khandekar** (E033)
 * **Academic Institutional Tags:** SVKM's NMIMS MPSTME | Academic Directorate | Industry 4.0 Robotics
 * **Submission Protocol:** Record a 60–90 second demonstration of your MuJoCo simulation and telemetry. Publish on LinkedIn tagging MPSTME, Dean, and Course Faculty. Insert your live post URL in `docs/TEAM_ROSTER.json` under `"linkedin_url"`, and submit a pull request to update this project dossier and the cohort dashboard.
 

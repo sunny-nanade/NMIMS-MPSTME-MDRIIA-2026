@@ -1,6 +1,6 @@
 {
   "group_id": "MDRIIA_GROUP_03",
-  "folder_name": "Group_03_Kashish_Vaishnavi_Daneeka",
+  "folder_name": "Group_03_Kashish_Vaishnavi",
   "domain": "Autonomous Last-Mile Ground AED Delivery Robot for Sudden Cardiac Arrest",
   "authorized_title": "Can an autonomous last-mile ground AED delivery vehicle simulated in MuJoCo reduce time-to-first-shock below urban ambulance congestion delays (15-20 minutes), given that sudden cardiac arrest survival drops 7-10% for every minute without defibrillation?",
   "members": [
@@ -19,14 +19,6 @@
       "role": "MuJoCo Dynamic Chassis Modeler & Path Optimization Engineer",
       "assigned_branch": "feat/e046-mujoco-dynamic-chass",
       "viva_focus": "Four-wheel independent suspension, curb-climbing dynamics, shock isolation for biphasic AED pads, and contact friction stability."
-    },
-    {
-      "roll_no": "E057",
-      "sap_id": "70362400081",
-      "name": "Daneeka Abhijeet Roy",
-      "role": "Emergency Medical Logistics & Cost-Effectiveness Business Analyst",
-      "assigned_branch": "feat/e057-emergency-medical-lo",
-      "viva_focus": "Cardiac arrest survival decay modeling (7-10%/min), time-to-first-shock reduction, EMS fleet offloading ratios, and payback parity."
     }
   ],
   "foundational_papers": [
@@ -37,7 +29,7 @@
       "title": "Drone delivery of automated external defibrillators compared with ambulance arrival in out-of-hospital cardiac arrest",
       "venue": "The Lancet Digital Health",
       "doi": "https://doi.org/10.1016/S2589-7500(23)00161-9",
-      "lead": "Daneeka Abhijeet Roy (E057)"
+      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)"
     },
     {
       "id": 2,
@@ -46,7 +38,7 @@
       "title": "Heart Disease and Stroke Statistics-2023 Update: A Report From the American Heart Association",
       "venue": "Circulation",
       "doi": "https://doi.org/10.1161/CIR.0000000000001123",
-      "lead": "Daneeka Abhijeet Roy (E057) & Kashish Praveen Jain (E026)"
+      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)"
     },
     {
       "id": 3,
@@ -73,7 +65,7 @@
       "title": "Predicting survival from out-of-hospital cardiac arrest: A graphic model",
       "venue": "Annals of Emergency Medicine",
       "doi": "https://doi.org/10.1016/s0196-0644(05)81302-2",
-      "lead": "Vaishnavi Parashar (E046) & Daneeka Abhijeet Roy (E057)"
+      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)"
     },
     {
       "id": 6,

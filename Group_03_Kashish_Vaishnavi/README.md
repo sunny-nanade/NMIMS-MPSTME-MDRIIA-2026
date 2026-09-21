@@ -26,14 +26,12 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `E026` | `70362400060` | **Kashish Praveen Jain** | Lead Autonomous Navigation & Traffic Congestion Modeling Specialist | `feat/e026-lead-autonomous-navi` | Sidewalk navigation dynamics, pedestrian crowd evasion, dynamic routing through urban choke points, and arrival latency budgets. |
 | `E046` | `70362400074` | **Vaishnavi Parashar** | MuJoCo Dynamic Chassis Modeler & Path Optimization Engineer | `feat/e046-mujoco-dynamic-chass` | Four-wheel independent suspension, curb-climbing dynamics, shock isolation for biphasic AED pads, and contact friction stability. |
-| `E057` | `70362400081` | **Daneeka Abhijeet Roy** | Emergency Medical Logistics & Cost-Effectiveness Business Analyst | `feat/e057-emergency-medical-lo` | Cardiac arrest survival decay modeling (7-10%/min), time-to-first-shock reduction, EMS fleet offloading ratios, and payback parity. |
-
 
 ### Student Engineering Commendation & Acknowledgments
-SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Kashish Praveen Jain (E026)**, **Vaishnavi Parashar (E046)**, and **Daneeka Abhijeet Roy (E057)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
+SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Kashish Praveen Jain (E026)** and **Vaishnavi Parashar (E046)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
 
 > *"Scientists discover the world that exists; engineers create the world that never was."*  
 > — **Theodore von Kármán**
@@ -48,12 +46,12 @@ SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Ka
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
 | # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Schierbeck et al. (2023)** | Recent | *Drone delivery of automated external defibrillators compared with ambulance arrival in out-of-hospital cardiac arrest* | The Lancet Digital Health | [https://doi.org/10.1016/S2589-7500(23)00161-9](https://doi.org/10.1016/S2589-7500(23)00161-9) | `Median time savings $\Delta t = 1\text{ min }...` | Daneeka Abhijeet Roy (E057) |
-| 2 | **Tsao et al. (2023)** | Recent | *Heart Disease and Stroke Statistics-2023 Update: A Report From the American Heart Association* | Circulation | [https://doi.org/10.1161/CIR.0000000000001123](https://doi.org/10.1161/CIR.0000000000001123) | `Resuscitation decay rate $\frac{dS}{dt} = -k ...` | Daneeka Abhijeet Roy (E057) & Kashish Praveen Jain (E026) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Schierbeck et al. (2023)** | Recent | *Drone delivery of automated external defibrillators compared with ambulance arrival in out-of-hospital cardiac arrest* | The Lancet Digital Health | [https://doi.org/10.1016/S2589-7500(23)00161-9](https://doi.org/10.1016/S2589-7500(23)00161-9) | `Median time savings $\Delta t = 1\text{ min }...` | Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046) |
+| 2 | **Tsao et al. (2023)** | Recent | *Heart Disease and Stroke Statistics-2023 Update: A Report From the American Heart Association* | Circulation | [https://doi.org/10.1161/CIR.0000000000001123](https://doi.org/10.1161/CIR.0000000000001123) | `Resuscitation decay rate $\frac{dS}{dt} = -k ...` | Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046) |
 | 3 | **Naess et al. (2024)** | Recent | *Using machine learning to assess the extent of busy ambulance delays* | PLOS ONE | [https://doi.org/10.1371/journal.pone.0296308](https://doi.org/10.1371/journal.pone.0296308) | `Urban delay distribution $P(t_{\text{EMS}} > ...` | Kashish Praveen Jain (E026) |
 | 4 | **Weinberg et al. (2023)** | Recent | *Sharing the Sidewalk: Observing Delivery Robot Interactions with Pedestrians* | Multimodal Technologies and Interaction | [https://doi.org/10.3390/mti7050053](https://doi.org/10.3390/mti7050053) | `Comfort lateral separation $d_{\text{sep}} \g...` | Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046) |
-| 5 | **Larsen et al. (1993)** | Seminal | *Predicting survival from out-of-hospital cardiac arrest: A graphic model* | Annals of Emergency Medicine | [https://doi.org/10.1016/s0196-0644(05)81302-2](https://doi.org/10.1016/s0196-0644(05)81302-2) | `Survival model: $S(t_{\text{cpr}}, t_{\text{d...` | Vaishnavi Parashar (E046) & Daneeka Abhijeet Roy (E057) |
+| 5 | **Larsen et al. (1993)** | Seminal | *Predicting survival from out-of-hospital cardiac arrest: A graphic model* | Annals of Emergency Medicine | [https://doi.org/10.1016/s0196-0644(05)81302-2](https://doi.org/10.1016/s0196-0644(05)81302-2) | `Survival model: $S(t_{\text{cpr}}, t_{\text{d...` | Vaishnavi Parashar (E046) & Kashish Praveen Jain (E026) |
 | 6 | **Tripathi et al. (2020)** | Seminal | *Circadian variation of in-hospital cardiac arrest* | Resuscitation | [https://doi.org/10.1016/j.resuscitation.2020.08.014](https://doi.org/10.1016/j.resuscitation.2020.08.014) | `Adjusted survival odds ratio $\text{OR} = \ex...` | Vaishnavi Parashar (E046) & Kashish Praveen Jain (E026) |
 
 For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
@@ -67,7 +65,7 @@ For the exhaustive literature analysis, mathematical derivations, and viva defen
 [![Watch Video Demonstration on LinkedIn](docs/figures/video_poster.png)](https://www.linkedin.com/)
 
 * **Video Demonstration:** [Watch 60-Second Walkthrough on LinkedIn](https://www.linkedin.com/) *(Click thumbnail above to open LinkedIn post)*
-* **Student Presenters:** **Kashish Praveen Jain (E026)**, **Vaishnavi Parashar (E046)**, **Daneeka Abhijeet Roy (E057)**
+* **Student Presenters:** **Kashish Praveen Jain** (E026), **Vaishnavi Parashar** (E046)
 * **Academic Institutional Tags:** SVKM's NMIMS MPSTME | Academic Directorate | Industry 4.0 Robotics
 * **Submission Protocol:** Record a 60–90 second demonstration of your MuJoCo simulation and telemetry. Publish on LinkedIn tagging MPSTME, Dean, and Course Faculty. Insert your live post URL in `docs/TEAM_ROSTER.json` under `"linkedin_url"`, and submit a pull request to update this project dossier and the cohort dashboard.
 

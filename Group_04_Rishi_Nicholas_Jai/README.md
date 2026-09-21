@@ -26,7 +26,7 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `E034` | `70362400049` | **Rishi Vinod Koli** | Lead Orbital Dynamics & MuJoCo Multi-Body Physics Architect | `feat/e034-lead-orbital-dynamic` | Zero-gravity multi-body spacecraft dynamics, Generalized Jacobian Matrix (GJM), and momentum transfer during contact. |
 | `E035` | `70362400032` | **Nicholas Lewis** | Impedance Contact Control & Robotic Kinematics Engineer | `feat/e035-impedance-contact-co` | Cartesian impedance force control, tumbling satellite spin matching, and post-contact detumbling damping. |
 | `E036` | `70362400083` | **Jai Maini** | CSBS Commercial Space Economics & Satellite De-Orbiting Business Analyst | `feat/e036-csbs-commercial-spac` | LEO orbital slot preservation economics, Kessler syndrome collision risk reduction, and multi-mission ADR amortization models. |
@@ -48,7 +48,7 @@ SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Ri
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
 | # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | **Yan et al. (2020)** | Seminal | *Multi-objective configuration optimization for coordinated capture of dual-arm space robot* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2019.11.002](https://doi.org/10.1016/j.actaastro.2019.11.002) | `Generalized Jacobian $J_g = J_m - J_b I_b^{-1...` | Rishi Vinod Koli (E034) |
 | 2 | **Rybus et al. (2022)** | Recent | *Optimal collision-free path planning of a free-floating space robot using splines* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2021.10.012](https://doi.org/10.1016/j.actaastro.2021.10.012) | `Momentum conservation $I_s \omega_0 + \sum I_...` | Rishi Vinod Koli (E034) & Nicholas Lewis (E035) |
 | 3 | **Han et al. (2020)** | Recent | *Combined spacecraft stabilization control after multiple impacts during the capture of non-cooperative targets* | Acta Astronautica | [https://doi.org/10.1016/j.actaastro.2020.05.035](https://doi.org/10.1016/j.actaastro.2020.05.035) | `Contact impulse equation $I_{\text{imp}} = \i...` | Nicholas Lewis (E035) |

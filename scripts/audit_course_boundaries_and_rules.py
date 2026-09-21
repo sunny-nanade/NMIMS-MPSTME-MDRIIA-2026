@@ -84,8 +84,8 @@ def audit_rosters_and_dois(base_dir):
     total_students = 0
     total_dois = 0
 
-    if len(groups) != 10:
-        return False, [f"Expected 10 groups, found {len(groups)}"]
+    if len(groups) != 12:
+        return False, [f"Expected 12 groups, found {len(groups)}"]
 
     for g in groups:
         roster_path = os.path.join(base_dir, g, "docs", "TEAM_ROSTER.json")
@@ -101,7 +101,7 @@ def audit_rosters_and_dois(base_dir):
             return False, [f"{g} has {len(dois)} DOIs, expected 6"]
 
     if total_students != 33:
-        return False, [f"Total students across 10 groups is {total_students}, expected exactly 33"]
+        return False, [f"Total students across 12 groups is {total_students}, expected exactly 33"]
 
     print(f"Roster Audit Passed: Exactly {len(groups)} groups, {total_students} students, and {total_dois} verified CrossRef DOIs.")
     return True, []

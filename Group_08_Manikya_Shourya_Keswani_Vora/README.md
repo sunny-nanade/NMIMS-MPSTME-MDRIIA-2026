@@ -26,7 +26,7 @@
 ## 2. Student Engineering Team Matrix
 
 | Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `E056` | `70362400045` | **Manikya Rathore** | Lead UAV Aerodynamics, Payload Physics & MuJoCo Modeler | `feat/e056-lead-uav-aerodynamic` | 6-DOF quadrotor aerodynamics, cable-suspended payload pendulum dynamics, rotor thrust-to-weight scaling, and air-drop release mechanics. |
 | `E020` | `70362400015` | **Shourya Garg** | Computer Vision, Thermal Survivor Detection & Winch Drop Specialist | `feat/e020-computer-vision-ther` | Vision-based target tracking, circular landing/drop zone identification, downwash compensation, and payload release timing. |
 | `E032` | `70362400072` | **Keswani Laksh** | Flight Path Optimization & Wind Gust Disturbance Control Lead | `feat/e032-flight-path-optimiza` | Dryden wind turbulence modeling, payload swing attenuation, LQR attitude stabilization, and flight envelope bounds. |
@@ -49,7 +49,7 @@ SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Ma
 The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
 | # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | **Dorling et al. (2017)** | Seminal | *Vehicle Routing Problems for Drone Delivery* | IEEE Transactions on Systems, Man, and Cybernetics: Systems | [https://doi.org/10.1109/TSMC.2016.2582745](https://doi.org/10.1109/TSMC.2016.2582745) | `Power consumption model $P(m) = (m_{\text{dro...` | Vora Jash (E067) & Manikya Rathore (E056) |
 | 2 | **Chowdhury et al. (2017)** | Recent | *Drones for disaster response and relief operations: A continuous approximation model* | International Journal of Production Economics | [https://doi.org/10.1016/j.ijpe.2017.03.024](https://doi.org/10.1016/j.ijpe.2017.03.024) | `Fleet demand coverage $D(x,y) = \int \int \rh...` | Vora Jash (E067) |
 | 3 | **Zhang et al. (2023)** | Recent | *Real-Time Local Obstacle Avoidance and Trajectory Tracking Control of Quadrotor UAVs With Suspended Payload in Complex Environments* | IEEE Access | [https://doi.org/10.1109/ACCESS.2023.3344578](https://doi.org/10.1109/ACCESS.2023.3344578) | `Cable swing dynamics $\ddot{\alpha} + \frac{g...` | Manikya Rathore (E056) & Keswani Laksh (E032) |
