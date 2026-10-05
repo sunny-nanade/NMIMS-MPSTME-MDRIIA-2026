@@ -2,7 +2,7 @@
 
 **Title:** How can a 7-DOF surgical manipulator simulated in MuJoCo implement inverse kinematics Jacobian damping and low-pass tremor filtering to achieve sub-0.5 mm needle placement accuracy under simulated physiological surgeon hand tremor?
 
-**Authors:** Soumya Singh (E071), Harshal Khandekar (E033), Arham Khan (E069), Aneesh Kumar (E076)
+**Authors:** Soumya Singh (E071), Harshal Khandekar (E033)
 
 ---
 

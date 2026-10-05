@@ -73,25 +73,15 @@ To adhere strictly to CSBS standards without arbitrary currency values:
   2. *Question:* In MuJoCo, how are contact dynamics resolved between the pneumatic tire geoms and the vertical curb geom?  
      *Model Answer:* MuJoCo uses convex optimization with elliptic friction cones. In the XML, contact pairs are parameterized via friction coefficients (tangential, torsional, rolling) and solver parameters `solref` and `solimp`. We configured high tangential friction ($\mu = 1.1$) and calibrated `solref` to prevent high-frequency contact chatter while accurately transmitting tractive climbing torque without slip.
 
-### 3.2 Student E046 - Vaishnavi Parashar
-* **Assigned Role:** Navigation, Curb-Climbing & Obstacle Guidance Lead
+#### 3.2 Student E046 - Vaishnavi Parashar
+* **Assigned Role:** Navigation, Obstacle Guidance & CSBS Health Economics Lead
 * **Git Branch:** `feat/e046-curb-navigation`
-* **Core Technical Responsibility:** Implement the reactive navigation controller in `src/aed_navigation_controller.py`. Integrate potential field / vector field obstacle avoidance around pedestrians, dynamic torque vectoring for curb climbing, and logging of telemetry metrics.
+* **Core Technical Responsibility:** Implement the reactive navigation controller in `src/aed_navigation_controller.py` and the clinical survival and health economics models in `analytics/cardiac_survival_economics.py`. Integrate potential field obstacle avoidance, urban ambulance delay distributions from Naess et al. (2024), QALY preservation calculations, and statistical hypothesis testing.
 * **Viva Defense Questions:**
   1. *Question:* Explain how your curb-climbing torque vectoring algorithm prevents wheel spinout and vehicle roll when approaching a curb at an oblique angle (e.g., 30 degrees)?  
      *Model Answer:* When approaching obliquely, the leading tire strikes the curb before the opposite tire, inducing an asymmetric roll moment. Our controller detects contact via wheel vertical velocity thresholds and applies torque vectoring: torque to the unmounted wheel is temporarily boosted while the mounted wheel maintains traction limit torque. Anti-rollover limiters restrict roll angle to $|\phi| \le 18^\circ$, preventing lateral rollover.
-  2. *Question:* How does your obstacle avoidance algorithm maintain sidewalk compliance in accordance with Weinberg et al. (2023) standards?  
-     *Model Answer:* Sidewalk corridors require maintaining a pedestrian clearance envelope of 0.60 to 1.20 m. We use an Artificial Potential Field where repulsive potential scales inversely with pedestrian distance, but is bounded laterally by virtual wall potentials representing sidewalk curb edges, ensuring the robot yields to pedestrians without veering into roadway traffic.
-
-### 3.3 Student E057 - Daneeka Abhijeet Roy
-* **Assigned Role:** Emergency Medical Logistics & Survival Decay Analyst
-* **Git Branch:** `feat/e057-cardiac-survival`
-* **Core Technical Responsibility:** Implement the clinical survival and health economics models in `analytics/cardiac_survival_economics.py`. Model urban ambulance delay distributions from Naess et al. (2024), calculate QALY metrics, and perform statistical t-tests on simulation results.
-* **Viva Defense Questions:**
-  1. *Question:* Explain the clinical and mathematical rationale behind using the Larsen equation over simple linear decay models?  
-     *Model Answer:* The Larsen et al. (1993) model accounts for the interaction between bystander CPR delay ($t_{	ext{CPR}}$) and defibrillation delay ($t_{	ext{defib}}$). Linear models ignore the physiological benefit of CPR, which slows myocardial cellular degradation. The Larsen model captures that while CPR slows decay (coefficient $-0.023$), defibrillation remains twice as critical (coefficient $-0.046$), proving that rapid AED delivery is essential even when bystander CPR is present.
-  2. *Question:* How does your CSBS operational parity model demonstrate economic feasibility without quoting monetary currencies?  
-     *Model Answer:* We formulate operational feasibility through dimensionless efficiency ratios: the OpEx parity ratio $\kappa = C_{	ext{AMR}} / C_{	ext{EMS}} pprox 0.095$ demonstrates that operating a micro-AMR fleet requires less than 10% of the maintenance and fuel costs of full-sized EMS vehicles. Furthermore, the payback horizon is expressed in amortized deployment encounters and QALY gains per unit expenditure rather than nominal currency units.
+  2. *Question:* Explain the clinical and mathematical rationale behind using the Larsen equation over simple linear decay models, and how your CSBS operational parity model demonstrates economic feasibility?  
+     *Model Answer:* The Larsen et al. (1993) model accounts for the interaction between bystander CPR delay ($t_{\text{CPR}}$) and defibrillation delay ($t_{\text{defib}}$). Linear models ignore the physiological benefit of CPR, which slows myocardial cellular degradation. The OpEx parity ratio $\kappa = C_{\text{AMR}} / C_{\text{EMS}} \approx 0.095$ demonstrates that operating a micro-AMR fleet requires less than 10% of the maintenance and fuel costs of full-sized EMS vehicles, yielding over 3.7 QALYs preserved per deployment without quoting nominal currencies.
 
 ---
 

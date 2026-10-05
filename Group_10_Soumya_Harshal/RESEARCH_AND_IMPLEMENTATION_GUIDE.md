@@ -70,37 +70,25 @@ $$\text{Payback Months} = \frac{K_{\text{capex}}}{1 - \kappa} \times 12$$
 ===================================================================================================
 Student Roll & Name        Assigned Technical Module                       Primary Deliverable
 ===================================================================================================
-E071 - Soumya Singh        7-DOF Kinematics & Damped Least Squares IK      models/surgical_7dof_robot.xml
+E071 - Soumya Singh        7-DOF Kinematics, DLS IK & Needle Telemetry     models/surgical_7dof_robot.xml
                                                                            (MJCF Robot & DLS IK Engine)
-E033 - Harshal Khandekar   DSP Tremor Modeling & Digital Filtering         src/surgical_tremor_controller.py
-                                                                           (8-12 Hz Generator & Filter)
-E069 - Arham Khan          Needle Placement Accuracy & Telemetry           src/surgical_tremor_controller.py
-                                                                           (Sub-0.5 mm RMSE Calibration)
-E076 - Aneesh Kumar        CSBS Operating Room Economics & Utilization     analytics/surgical_or_economics.py
-                                                                           (OR Payback & Revision Model)
+E033 - Harshal Khandekar   DSP Tremor Filtering & CSBS OR Economics       src/surgical_tremor_controller.py
+                                                                           (Tremor Filter & OR Payback Model)
 ===================================================================================================
 ```
 
-### 2.1 E071 - Soumya Singh (Kinematics & DLS IK)
+### 2.1 E071 - Soumya Singh (Kinematics, DLS IK & Telemetry)
 - Build the 7-DOF articulated robot arm MJCF XML model with anatomically appropriate link lengths and joint limits.
 - Implement singularity-robust Damped Least Squares inverse kinematics with null-space optimization.
+- Formulate target tissue registration, needle tip positioning error metrics, and record 3D trajectory telemetry to verify sub-0.5 mm RMSE.
 - **Git Branch:** `feat/e071-lead-surgical-kinema`
 
-### 2.2 E033 - Harshal Khandekar (DSP Tremor & Filtering)
+### 2.2 E033 - Harshal Khandekar (DSP Tremor, Filtering & CSBS OR Economics)
 - Implement the 8-12 Hz physiological tremor signal synthesizer.
 - Design and tune the 2nd-order Butterworth / exponential smoothing low-pass filter satisfying $\tau < 25$ ms.
-- **Git Branch:** `feat/e033-digital-signal-proce`
-
-### 2.3 E069 - Arham Khan (Accuracy & Telemetry)
-- Formulate target tissue registration and needle tip positioning error metrics.
-- Record 3D trajectory telemetry and verify sub-0.5 mm RMSE under simulated physiological tremor.
-- **Git Branch:** `feat/e069-end-effector-precisi`
-
-### 2.4 E076 - Aneesh Kumar (CSBS OR Economics)
-- Formulate operating room throughput models and procedure revision avoidance analytics.
+- Formulate operating room throughput models, procedure revision avoidance analytics, and compute dimensionless OpEx savings and capital payback horizons.
 - Execute statistical hypothesis tests (Student's t-test, Cohen's d).
-- Compute dimensionless OpEx savings and capital payback horizons across surgical case volumes.
-- **Git Branch:** `feat/e076-csbs-surgical-clinic`
+- **Git Branch:** `feat/e033-digital-signal-proce`
 
 ---
 

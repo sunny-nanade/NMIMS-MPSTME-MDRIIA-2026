@@ -12,8 +12,7 @@ class AEDDeliveryController:
     Autonomous Navigation, Curb-Climbing, and Telemetry Controller
     Student Implementation Boundaries:
     - E026 (Kashish): Suspension dynamics, vertical shock limiters, and wheel normal force balancing
-    - E046 (Vaishnavi): Path planning, pedestrian obstacle avoidance, and curb torque vectoring
-    - E057 (Daneeka): Clinical survival decay estimation and telemetry logging
+    - E046 (Vaishnavi): Path planning, pedestrian obstacle avoidance, curb torque vectoring, and clinical survival decay estimation
     """
     def __init__(self, target_distance_m=1800.0):
         self.target_dist = target_distance_m
@@ -67,7 +66,7 @@ class AEDDeliveryController:
 
     def evaluate_larsen_survival(self, transit_time_min, cpr_delay_min=1.0):
         """
-        # TODO [E057 - Daneeka Abhijeet Roy]:
+        # TODO [E046 - Vaishnavi Parashar]:
         Implement the Larsen et al. (1993) resuscitation survival probability formulation.
         Formula: P(survival) = 0.67 - 0.023 * t_CPR - 0.046 * t_defib
         Bound output probability in range [0.05, 0.70].

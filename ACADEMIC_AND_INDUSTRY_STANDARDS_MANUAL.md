@@ -21,7 +21,7 @@ This manual establishes the formal, binding technical and academic standards gov
   * **Dynamic Clearance:** Continuous laser/ultrasonic safety bubble of at least $0.50\text{ m}$ maintained from any dynamic or static obstacle.
 
 ### 2.2 ISO 3691-4:2023 — Driverless Industrial Trucks & Autonomous Mobile Robots (AMRs)
-* **Applicability:** Groups 01, 03, 06, 07, 09.
+* **Applicability:** Groups 01, 03, 06, 07, 09, 11 (Solar PV Inspection AMR).
 * **Mandated Constraints:**
   * **Speed Profiles & Braking Distance:** Braking distance calculation: $s_{brake} = \frac{v^2}{2 \mu g} + v \cdot t_{detect}$, where sensor detection latency $t_{detect} \le 50\text{ ms}$.
   * **Personnel Detection Field:** Minimum field of view (FOV) of 180 degrees forward-facing with dual-zone warning (slowdown at $1.5\text{ m}$, emergency stop at $0.4\text{ m}$).
@@ -32,8 +32,14 @@ This manual establishes the formal, binding technical and academic standards gov
   * **Power and Force Limiting (PFL):** End-effector contact force shall not exceed $140\text{ N}$ during transient contact and $35\text{ N}$ during quasi-static contact on human soft tissue.
   * **Speed and Separation Monitoring (SSM):** Dynamic safety margin scaled to joint velocity: $S_p = (v_r + v_h) T_r + C$.
 
-### 2.4 ROS 2 REP Standards (REP 103 & REP 105)
-* **Applicability:** All 10 Groups.
+### 2.4 ISO 21384 & ASTM F3322 — Small Unmanned Aircraft Systems (sUAS)
+* **Applicability:** Groups 05 (Campus Dual-UAV), 08 (Flood Relief UAV), 12 (Pipeline Surveillance Drone).
+* **Mandated Constraints:**
+  * **Geofencing & Containment:** Hard limit flight ceiling ($120\text{ m}$ AGL) and virtual boundary containment with automated return-to-home (RTH) upon telemetry loss ($t_{comm\_lost} \ge 2.5\text{ s}$).
+  * **Payload Dynamics & Tether Stability:** Pendulum oscillation angle $\theta_{swing} \le 15^\circ$ during forward transit.
+
+### 2.5 ROS 2 REP Standards (REP 103 & REP 105)
+* **Applicability:** All 12 Groups.
 * **Coordinate Frame Hierarchy:**
   * Coordinate conventions must strictly follow ISO/REP-103: $X$ forward, $Y$ left, $Z$ upward (Right-Handed System).
   * Frame transformations: `map` -> `odom` -> `base_footprint` -> `base_link` -> `sensor_optical_frame`.

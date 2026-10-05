@@ -124,7 +124,7 @@ Verify your local Python and MuJoCo simulation environment:
 ```powershell
 # Step 1: Clone repository and navigate to group directory
 git clone <repository_url>
-cd <repository_root>/Group_10_Soumya_Harshal_Arham_Aneesh
+cd <repository_root>/Group_10_Soumya_Harshal
 
 # Step 2: Checkout your individual feature branch
 # Example for lead student:

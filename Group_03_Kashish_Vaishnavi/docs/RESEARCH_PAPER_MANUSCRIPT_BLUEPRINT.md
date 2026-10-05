@@ -2,7 +2,7 @@
 
 **Title:** Can an autonomous last-mile ground AED delivery vehicle simulated in MuJoCo reduce time-to-first-shock below urban ambulance congestion delays (15-20 minutes), given that sudden cardiac arrest survival drops 7-10% for every minute without defibrillation?
 
-**Authors:** Kashish Praveen Jain (E026), Vaishnavi Parashar (E046), Daneeka Abhijeet Roy (E057)
+**Authors:** Kashish Praveen Jain (E026), Vaishnavi Parashar (E046)
 
 ---
 

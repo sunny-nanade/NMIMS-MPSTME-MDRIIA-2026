@@ -37,8 +37,8 @@ This manual establishes the formal, binding technical and academic standards gov
   * **Power and Force Limiting (PFL):** End-effector contact force shall not exceed $140\\text{ N}$ during transient contact and $35\\text{ N}$ during quasi-static contact on human soft tissue.
   * **Speed and Separation Monitoring (SSM):** Dynamic safety margin scaled to joint velocity: $S_p = (v_r + v_h) T_r + C$.
 
-### 2.4 ROS 2 REP Standards (REP 103 & REP 105)
-* **Applicability:** All 10 Groups.
+### 2.5 ROS 2 REP Standards (REP 103 & REP 105)
+* **Applicability:** All 12 Groups.
 * **Coordinate Frame Hierarchy:**
   * Coordinate conventions must strictly follow ISO/REP-103: $X$ forward, $Y$ left, $Z$ upward (Right-Handed System).
   * Frame transformations: `map` -> `odom` -> `base_footprint` -> `base_link` -> `sensor_optical_frame`.

@@ -73,8 +73,8 @@ class SurgicalTremorController:
 
     def evaluate_placement_accuracy(self, needle_tip_pos, target_pos):
         """
-        Student Task Boundary - Arham Khan (E069)
-        # TODO [E069 - Arham Khan]:
+        Student Task Boundary - Soumya Singh (E071)
+        # TODO [E071 - Soumya Singh]:
         # Compute 3D Euclidean displacement and evaluate sub-0.5 mm threshold:
         # e = norm(needle_tip - target) <= 0.0005 m
         """
