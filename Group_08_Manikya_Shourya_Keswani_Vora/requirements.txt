@@ -1,0 +1,19 @@
+# SkyHydro flood-relief UAV — Python 3.10–3.12 recommended (64-bit)
+
+# physics + viewer
+mujoco>=3.2.0            # tested against MuJoCo 3.3.0
+# reinforcement learning
+gymnasium>=0.29
+stable-baselines3>=2.3
+torch>=2.1               # GPU training: install the CUDA build -> pip install torch --index-url https://download.pytorch.org/whl/cu126
+tensorboard>=2.14        # training curves:  tensorboard --logdir runs
+tqdm
+rich
+# scene generation, evaluation, video
+numpy>=1.24
+scipy>=1.10
+pillow>=10.0
+imageio>=2.31
+imageio-ffmpeg>=0.4      # mp4 writing for rl/evaluate.py --video
+pytest>=7.0              # optional: python -m pytest tests -q
+matplotlib>=3.7          # analytics figures (trials, business sensitivity)

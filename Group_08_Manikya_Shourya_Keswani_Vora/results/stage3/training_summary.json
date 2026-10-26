@@ -1,0 +1,171 @@
+{
+ "algo": "ppo",
+ "stage": 3,
+ "timesteps": 3000000,
+ "n_envs": 22,
+ "device": "cuda",
+ "gpu": "NVIDIA GeForce RTX 3090",
+ "init": "D:\\Manikya Rathore\\SkyHydro_Project\\results/stage2/model.zip",
+ "bc_episodes": 0,
+ "seed": 0,
+ "train_minutes": 103.2,
+ "run_dir": "runs\\ppo_stage3",
+ "learning_curve": [
+  {
+   "timesteps": 2499990,
+   "mean_return": -6.15,
+   "mean_episode_steps": 3207.4
+  },
+  {
+   "timesteps": 2599980,
+   "mean_return": -12.51,
+   "mean_episode_steps": 3213.6
+  },
+  {
+   "timesteps": 2699970,
+   "mean_return": 1.57,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 2799960,
+   "mean_return": 10.09,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 2899950,
+   "mean_return": -1.66,
+   "mean_episode_steps": 3210.0
+  },
+  {
+   "timesteps": 2999940,
+   "mean_return": 1.23,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 3099930,
+   "mean_return": -0.81,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 3199920,
+   "mean_return": 6.0,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 3299910,
+   "mean_return": -14.23,
+   "mean_episode_steps": 3210.8
+  },
+  {
+   "timesteps": 3399900,
+   "mean_return": 8.99,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 3499890,
+   "mean_return": 0.25,
+   "mean_episode_steps": 3214.6
+  },
+  {
+   "timesteps": 3599880,
+   "mean_return": 11.07,
+   "mean_episode_steps": 3215.8
+  },
+  {
+   "timesteps": 3699870,
+   "mean_return": 0.41,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 3799860,
+   "mean_return": 6.42,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 3899850,
+   "mean_return": 10.68,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 3999840,
+   "mean_return": 2.36,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 4099830,
+   "mean_return": 17.88,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 4199820,
+   "mean_return": 155.85,
+   "mean_episode_steps": 3208.2
+  },
+  {
+   "timesteps": 4299810,
+   "mean_return": 148.03,
+   "mean_episode_steps": 3215.6
+  },
+  {
+   "timesteps": 4399800,
+   "mean_return": 507.78,
+   "mean_episode_steps": 2030.8
+  },
+  {
+   "timesteps": 4499790,
+   "mean_return": 140.23,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 4599780,
+   "mean_return": 177.9,
+   "mean_episode_steps": 4000.0
+  },
+  {
+   "timesteps": 4699770,
+   "mean_return": 308.19,
+   "mean_episode_steps": 2185.4
+  },
+  {
+   "timesteps": 4799760,
+   "mean_return": 624.1,
+   "mean_episode_steps": 1482.0
+  },
+  {
+   "timesteps": 4899750,
+   "mean_return": 639.57,
+   "mean_episode_steps": 1532.6
+  },
+  {
+   "timesteps": 4999740,
+   "mean_return": 638.73,
+   "mean_episode_steps": 1557.8
+  },
+  {
+   "timesteps": 5099730,
+   "mean_return": 636.12,
+   "mean_episode_steps": 1467.4
+  },
+  {
+   "timesteps": 5199720,
+   "mean_return": 623.4,
+   "mean_episode_steps": 1444.2
+  },
+  {
+   "timesteps": 5299710,
+   "mean_return": 252.85,
+   "mean_episode_steps": 2967.4
+  },
+  {
+   "timesteps": 5399700,
+   "mean_return": 496.31,
+   "mean_episode_steps": 1927.8
+  }
+ ],
+ "test": {
+  "episodes": 3,
+  "success_rate": 1.0,
+  "mean_return": 604.44,
+  "mean_delivered_fraction": 1.0
+ }
+}

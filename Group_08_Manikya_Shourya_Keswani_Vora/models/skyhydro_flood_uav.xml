@@ -1,75 +1,132 @@
 <mujoco model="skyhydro_flood_relief_uav">
-  <compiler angle="radian" coordinate="local"/>
-  <option gravity="0 0 -9.81" timestep="0.002" integrator="RK4"/>
+  <!-- Group 08 SkyHydro: drop-trial model (official airframe + fixes).
+       Changes vs the starter file:
+       * <motor body=...> is not valid MJCF (MuJoCo: "unrecognized attribute 'body'").
+         Each rotor is now a motor on its own rotor site (X layout, arm 0.30 m),
+         so roll / pitch / yaw come from real differential thrust + rotor drag torque.
+       * arms laid out horizontally (the starter capsules pointed straight up).
+       * cable: 2-DOF hinge pendulum + a winch slide joint driven by a position
+         actuator (pays the canister out / in); the visible cable is a tendon.
+       * canister is a free body held on the hook by an equality "connect"
+         constraint; RELEASE switches that constraint off and the canister falls
+         and lands under MuJoCo contact physics.
+       Masses are the official ones (airframe 3.2 kg, cable 0.15 kg, canister set per trial). -->
+  <compiler angle="radian" coordinate="local" autolimits="true"/>
+  <option gravity="0 0 -9.81" timestep="0.002" integrator="RK4" density="0" viscosity="0"/>
 
   <visual>
     <headlight ambient="0.45 0.45 0.45" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2"/>
     <rgba fog="0.85 0.88 0.92 1"/>
+    <global offwidth="1280" offheight="960"/>
   </visual>
 
   <default>
     <joint damping="0.1" armature="0.005"/>
-    <geom friction="0.7 0.01 0.001" solref="0.01 1" solimp="0.9 0.95 0.001"/>
-    <motor ctrlrange="-40 40" ctrllimited="true"/>
+    <!-- friction: rubberised canister base on a concrete roof (sliding 0.7);
+         solref 0.01 s time constant (= 5 timesteps, the stable minimum at 0.002 s), damping ratio 1 (no bounce) -->
+    <geom friction="0.7 0.01 0.001" solref="0.01 1" solimp="0.9 0.95 0.001" contype="1" conaffinity="1"/>
+    <default class="airframe">
+      <geom contype="2" conaffinity="2" rgba="0.1 0.1 0.1 1"/>
+    </default>
+    <default class="visual">
+      <geom contype="0" conaffinity="0" mass="0.001"/>
+    </default>
   </default>
 
-  <worldbody>
-    <!-- Flood Water Surface Simulation -->
-    <geom name="flood_water" type="plane" size="25 25 0.1" rgba="0.18 0.32 0.45 0.85"/>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.70 0.74 0.78" rgb2="0.88 0.89 0.89" width="256" height="256"/>
+    <texture name="water_tex" type="2d" builtin="checker" rgb1="0.40 0.33 0.25" rgb2="0.36 0.30 0.22" width="256" height="256"/>
+    <material name="water_mat" texture="water_tex" texrepeat="12 12" specular="0.4" shininess="0.6"/>
+  </asset>
 
-    <!-- Isolated Rooftop Drop Target Structure -->
-    <body name="rooftop_target" pos="0 0 1.5">
-      <geom name="building_block" type="box" size="2.5 2.5 1.5" pos="0 0 -1.5" rgba="0.65 0.65 0.65 1"/>
-      <geom name="drop_zone_outer" type="cylinder" size="2.0 0.02" pos="0 0 0.02" rgba="0.85 0.85 0.2 1"/>
-      <geom name="drop_zone_bullseye" type="cylinder" size="0.6 0.025" pos="0 0 0.025" rgba="0.85 0.2 0.2 1"/>
+  <worldbody>
+    <light name="sun" directional="true" pos="0 0 30" dir="0.35 0.45 -0.82" diffuse="0.6 0.6 0.58" castshadow="true"/>
+    <!-- muddy flood water surface (a miss lands here = failed delivery) -->
+    <geom name="flood_water" type="plane" size="80 80 0.1" pos="0 0 0" material="water_mat"/>
+
+    <!-- relief hub launch pad (on a raised embankment) -->
+    <body name="launch_pad" pos="-45 0 1.0">
+      <geom name="embankment" type="box" size="4 4 1.0" pos="0 0 -1.0" rgba="0.45 0.42 0.36 1"/>
+      <geom name="pad_mark" type="cylinder" size="2.0 0.02" pos="0 0 0.02" rgba="0.2 0.55 0.85 1" contype="0" conaffinity="0"/>
+    </body>
+
+    <!-- isolated rooftop drop target: flooded 2-storey building, roof at z = 6 m -->
+    <body name="rooftop_target" pos="0 0 6.0">
+      <geom name="building_block" type="box" size="2.5 2.5 3.0" pos="0 0 -3.0" rgba="0.80 0.78 0.72 1"/>
+      <geom name="drop_zone_outer" type="cylinder" size="2.0 0.02" pos="0 0 0.02" rgba="0.85 0.85 0.2 1" contype="0" conaffinity="0"/>
+      <geom name="drop_zone_bullseye" type="cylinder" size="0.6 0.025" pos="0 0 0.025" rgba="0.85 0.2 0.2 1" contype="0" conaffinity="0"/>
       <site name="target_center" pos="0 0 0.04"/>
     </body>
 
-    <!-- Multirotor UAV Airframe -->
-    <body name="uav_chassis" pos="0 0 12.0">
+    <!-- multirotor UAV airframe (official masses) -->
+    <body name="uav_chassis" pos="-45 0 1.3">
       <freejoint name="uav_root_joint"/>
-      <!-- Central Carbon Fiber Hub -->
-      <geom name="fuselage" type="cylinder" size="0.18 0.06" rgba="0.2 0.25 0.3 1" mass="2.2"/>
-
-      <!-- 4 Quadrotor Arms -->
-      <geom name="arm1" type="capsule" size="0.018 0.22" pos="0.22 0.22 0" quat="0.9239 0 0 0.3827" rgba="0.1 0.1 0.1 1" mass="0.25"/>
-      <geom name="arm2" type="capsule" size="0.018 0.22" pos="-0.22 0.22 0" quat="0.3827 0 0 0.9239" rgba="0.1 0.1 0.1 1" mass="0.25"/>
-      <geom name="arm3" type="capsule" size="0.018 0.22" pos="-0.22 -0.22 0" quat="0.3827 0 0 -0.9239" rgba="0.1 0.1 0.1 1" mass="0.25"/>
-      <geom name="arm4" type="capsule" size="0.018 0.22" pos="0.22 -0.22 0" quat="0.9239 0 0 -0.3827" rgba="0.1 0.1 0.1 1" mass="0.25"/>
-
-      <!-- Downward Vision Sensor Site -->
+      <geom name="fuselage" class="airframe" type="cylinder" size="0.18 0.06" rgba="0.2 0.25 0.3 1" mass="2.2"/>
+      <geom name="arm1" class="airframe" type="capsule" fromto="0 0 0  0.30  0.30 0" size="0.018" mass="0.25"/>
+      <geom name="arm2" class="airframe" type="capsule" fromto="0 0 0 -0.30  0.30 0" size="0.018" mass="0.25"/>
+      <geom name="arm3" class="airframe" type="capsule" fromto="0 0 0 -0.30 -0.30 0" size="0.018" mass="0.25"/>
+      <geom name="arm4" class="airframe" type="capsule" fromto="0 0 0  0.30 -0.30 0" size="0.018" mass="0.25"/>
+      <geom name="rotor1" class="visual" type="cylinder" size="0.2 0.006" pos=" 0.30  0.30 0.04" rgba="0.1 0.1 0.1 0.35"/>
+      <geom name="rotor2" class="visual" type="cylinder" size="0.2 0.006" pos="-0.30  0.30 0.04" rgba="0.1 0.1 0.1 0.35"/>
+      <geom name="rotor3" class="visual" type="cylinder" size="0.2 0.006" pos="-0.30 -0.30 0.04" rgba="0.1 0.1 0.1 0.35"/>
+      <geom name="rotor4" class="visual" type="cylinder" size="0.2 0.006" pos=" 0.30 -0.30 0.04" rgba="0.1 0.1 0.1 0.35"/>
+      <!-- status light: colour = current FSM state (set by the controller) -->
+      <geom name="fsm_light" class="visual" type="sphere" size="0.07" pos="0 0 0.09" rgba="1 1 1 1"/>
+      <site name="rotor1_site" pos=" 0.30  0.30 0.04"/>
+      <site name="rotor2_site" pos="-0.30  0.30 0.04"/>
+      <site name="rotor3_site" pos="-0.30 -0.30 0.04"/>
+      <site name="rotor4_site" pos=" 0.30 -0.30 0.04"/>
       <site name="downward_cam_site" pos="0 0 -0.06" quat="0.7071 0.7071 0 0"/>
-
-      <!-- Winch Deployment Anchor -->
       <site name="winch_anchor" pos="0 0 -0.08"/>
 
-      <!-- Cable Link (Suspended Slung Load) -->
+      <!-- slung load: 2-DOF cable pendulum, winch slide joint, hook -->
       <body name="winch_cable" pos="0 0 -0.15">
-        <joint name="cable_pitch" type="hinge" axis="0 1 0" range="-1.2 1.2"/>
-        <joint name="cable_roll" type="hinge" axis="1 0 0" range="-1.2 1.2"/>
-        <geom name="cable_geom" type="capsule" size="0.006 1.8" pos="0 0 -1.8" rgba="0.7 0.7 0.7 0.8" mass="0.15"/>
-
-        <!-- Medical Relief Canister Payload -->
-        <body name="relief_payload" pos="0 0 -3.6">
-          <geom name="payload_box" type="cylinder" size="0.14 0.18" rgba="0.9 0.15 0.15 1" mass="1.5"/>
-          <geom name="cross_h" type="box" size="0.09 0.025 0.02" pos="0 0.142 0" rgba="1 1 1 1" mass="0.01"/>
-          <geom name="cross_v" type="box" size="0.025 0.09 0.02" pos="0 0.142 0" rgba="1 1 1 1" mass="0.01"/>
-          <site name="payload_sensor" pos="0 0 0"/>
+        <joint name="cable_pitch" type="hinge" axis="0 1 0" range="-1.2 1.2" damping="0.02"/>
+        <joint name="cable_roll" type="hinge" axis="1 0 0" range="-1.2 1.2" damping="0.02"/>
+        <geom name="cable_hub" class="visual" type="sphere" size="0.03" mass="0.05"/>
+        <body name="hook" pos="0 0 -3.6">
+          <joint name="winch" type="slide" axis="0 0 -1" range="-3.3 9.0" damping="2.0"/>
+          <geom name="hook_geom" class="visual" type="sphere" size="0.05" rgba="0.3 0.3 0.3 1" mass="0.10"/>
+          <site name="hook_site" pos="0 0 0"/>
         </body>
       </body>
     </body>
+
+    <!-- medical relief canister: free body, held on the hook by the 'hook_hold' constraint -->
+    <body name="relief_payload" pos="-45 0 -2.63">
+      <freejoint name="payload_free"/>
+      <geom name="payload_box" type="cylinder" size="0.14 0.18" rgba="0.9 0.15 0.15 1" mass="1.5"/>
+      <geom name="cross_h" class="visual" type="box" size="0.09 0.025 0.02" pos="0 0.142 0" rgba="1 1 1 1"/>
+      <geom name="cross_v" class="visual" type="box" size="0.025 0.09 0.02" pos="0 0.142 0" rgba="1 1 1 1"/>
+      <site name="payload_sensor" pos="0 0 0"/>
+      <site name="payload_top" pos="0 0 0.18"/>
+    </body>
   </worldbody>
 
+  <equality>
+    <connect name="hook_hold" body1="hook" body2="relief_payload" anchor="0 0 0"/>
+  </equality>
+
+  <tendon>
+    <spatial name="cable_line" width="0.012" rgba="0.75 0.75 0.75 1">
+      <site site="winch_anchor"/>
+      <site site="hook_site"/>
+    </spatial>
+  </tendon>
+
   <actuator>
-    <!-- Quadrotor Motor Thrusts -->
-    <motor name="rotor1_thrust" body="uav_chassis" gear="0 0 1 0 0 0" ctrlrange="0 35"/>
-    <motor name="rotor2_thrust" body="uav_chassis" gear="0 0 1 0 0 0" ctrlrange="0 35"/>
-    <motor name="rotor3_thrust" body="uav_chassis" gear="0 0 1 0 0 0" ctrlrange="0 35"/>
-    <motor name="rotor4_thrust" body="uav_chassis" gear="0 0 1 0 0 0" ctrlrange="0 35"/>
+    <!-- rotor i: thrust along its site z (0..35 N) + rotor drag torque k_m*T (k_m = 0.016 m), spin sign alternates -->
+    <motor name="rotor1_thrust" site="rotor1_site" gear="0 0 1 0 0 -0.016" ctrlrange="0 35"/>
+    <motor name="rotor2_thrust" site="rotor2_site" gear="0 0 1 0 0  0.016" ctrlrange="0 35"/>
+    <motor name="rotor3_thrust" site="rotor3_site" gear="0 0 1 0 0 -0.016" ctrlrange="0 35"/>
+    <motor name="rotor4_thrust" site="rotor4_site" gear="0 0 1 0 0  0.016" ctrlrange="0 35"/>
+    <!-- winch: position servo on the cable length (extra pay-out in m) -->
+    <position name="winch_motor" joint="winch" kp="600" kv="80" ctrlrange="-3.3 9.0" forcerange="-150 150"/>
   </actuator>
 
   <sensor>
     <accelerometer name="uav_accel" site="downward_cam_site"/>
     <gyro name="uav_gyro" site="downward_cam_site"/>
+    <framepos name="payload_pos" objtype="site" objname="payload_sensor"/>
   </sensor>
 </mujoco>

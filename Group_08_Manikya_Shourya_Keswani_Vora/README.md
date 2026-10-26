@@ -1,141 +1,63 @@
-# MDRIIA Group 08: Autonomous Multirotor UAV for Medical Relief Air-Drop in Flood Operations
-**Course:** Modern Day Robotics and Its Industrial Applications (MDRIIA - Course Code: 702CO0E012)  
-**Academic Term:** Academic Year 2026–2027 | Semester VI (B.Tech CSBS)  
-**Institution:** SVKM's NMIMS MPSTME, Mumbai  
+# MDRIIA Group 08 · SkyHydro: Vision-Guided Multirotor UAV for Last-Mile Flood Relief Delivery
 
----
+**Course:** Modern Day Robotics and Its Industrial Applications (MDRIIA, 702CO0E012) · B.Tech CSBS · SVKM's NMIMS MPSTME · AY 2026–27
+**Team:** Manikya Rathore (E056) · Shourya Garg (E020) · Keswani Laksh (E032) · Vora Jash (E067)
 
-## 1. Authorized Research Title & Problem Statement
+> *To what extent can an autonomous vision-guided multirotor UAV simulated in MuJoCo for payload-range trade-offs optimize last-mile medical relief drop accuracy during NDRF flood operations while establishing fleet utilization payback parity against ground transport?*
 
-> "To what extent can an autonomous vision-guided multirotor UAV simulated in MuJoCo for payload-range trade-offs optimize last-mile medical relief drop accuracy during NDRF flood operations while establishing fleet utilization payback parity against ground transport?"
+The technical dossier is in [`docs/MDRIIA_Group_08_Technical_Dossier.pdf`](docs/).
 
-### Core Engineering Focus
-* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body dynamic physics simulation (`models/skyhydro_flood_uav.xml`).
-* **Autonomous Control:** Closed-loop Python control architecture with student implementation boundaries (`src/flood_relief_drop_sim.py`).
-* **Technoeconomic Evaluation:** Dimensionless CSBS operational economics and return on investment model (`analytics/disaster_relief_logistics.py`).
-* **Empirical Validation:** Reproducible benchmark trials and statistical hypothesis testing (`analytics/flood_relief_real_trials.csv`).
+## What is in this folder
 
----
+| Path | What it is | Dossier |
+|---|---|---|
+| `models/skyhydro_flood_uav.xml` | MJCF drop-trial model: official airframe and masses, 4 rotor motors on their own sites (differential thrust + drag torque), 2-DOF cable pendulum + winch, releasable canister, rooftop target. Timestep 0.002 s (500 Hz), RK4. | §2 |
+| `src/flood_relief_drop_sim.py` | Closed-loop controller: FSM `TAKEOFF → CRUISE → APPROACH_DROP_ZONE → HOVER → WINCH_LOWER → RELEASE → WINCH_UP → RETURN_TO_BASE` (+ `ABORT`), cascaded PID + geometric attitude control, wind/gust model, Monte Carlo runner, 500 Hz logger, viewer | §2, §4 |
+| `analytics/flood_relief_real_trials.csv` | **Our results**: 240 MuJoCo runs (2 controllers × 4 crosswinds × 30 runs), one row per run with its seed | §4 |
+| `analytics/telemetry/*.csv.gz` | 500 Hz logs (time, FSM state, pose, reference, velocity, canister, swing, cable length, wind, 4 rotor thrusts, power) | §4 |
+| `analytics/analyze_trials.py` | Welch t-test, Cohen's d, 95 % CI, CEP, success rates → `trial_stats.json`, `docs/figures/fig_boxplot.png`, `fig_trajectory.png` | §4 |
+| `analytics/disaster_relief_logistics.py` | CSBS model (dimensionless): H_reclaimed, κ / NCRI, P_payback, M/M/c queue, FMEA, ±30 % tornado + break-even → `business_results.json`, `fig_business_*.png` | §3 |
+| `environment/`, `rl/`, `simulate.py` | Full 3D flood valley (terrain, two towns, survivors, animated flood water, debris, helicopter) and the RL pilot (PPO, Stable-Baselines3, curriculum stages 1–3) | expo demo |
+| `results/stage1-3/` | Trained RL pilots (`model.zip`) + `training_summary.json` + `replay.json` | expo demo |
+| `analytics/evaluate_rl_pilot.py`, `rl_pilot_real_trials.csv` | Stage-3 RL pilot vs scripted expert, 30 full missions each (same seeds): RL 30/30, 150 s vs 309 s | expo demo |
+| `analytics/SIMULATED_*`, `generate_paper_figures.py`, `docs/figures/figure*.png` | Course starter files with **generated target numbers**. Not used for any result. | — |
 
-> [!NOTE]
-> ### The Devil's Advocate: Reality Check & Theoretical Roast
-> *"Simulating an amphibious differential-drive robot for flood relief delivery, whose buoyancy calculations and hydrodynamic drag models work impeccably right until the first plastic grocery bag wraps around the port-side thruster shaft."*
+## Run it (fresh clone)
 
----
+```bash
+# Windows: setup_windows.bat     Linux/macOS: ./setup_linux.sh      (venv, CUDA PyTorch, deps, builds the valley, tests)
+pip install -r requirements.txt            # if you set up the environment yourself
 
-## 2. Student Engineering Team Matrix
+# 1. the drop-trial model loads
+python -c "import mujoco; mujoco.MjModel.from_xml_path('models/skyhydro_flood_uav.xml')"
 
-| Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `E056` | `70362400045` | **Manikya Rathore** | Lead UAV Aerodynamics, Payload Physics & MuJoCo Modeler | `feat/e056-lead-uav-aerodynamic` | 6-DOF quadrotor aerodynamics, cable-suspended payload pendulum dynamics, rotor thrust-to-weight scaling, and air-drop release mechanics. |
-| `E020` | `70362400015` | **Shourya Garg** | Computer Vision, Thermal Survivor Detection & Winch Drop Specialist | `feat/e020-computer-vision-ther` | Vision-based target tracking, circular landing/drop zone identification, downwash compensation, and payload release timing. |
-| `E032` | `70362400072` | **Keswani Laksh** | Flight Path Optimization & Wind Gust Disturbance Control Lead | `feat/e032-flight-path-optimiza` | Dryden wind turbulence modeling, payload swing attenuation, LQR attitude stabilization, and flight envelope bounds. |
-| `E067` | `70362400020` | **Vora Jash** | CSBS Disaster Logistics, Fleet Economics & Cost-Parity Analyst | `feat/e067-csbs-disaster-logist` | Disaster relief supply chain modeling, payload-range battery trade-offs, NDRF boat replacement ratios, and fleet amortization models. |
+# 2. watch one drop (FSM state shown in the viewer: text overlay + status-light colour)
+python src/flood_relief_drop_sim.py --view                                # proposed controller, 10 m/s crosswind
+python src/flood_relief_drop_sim.py --view --controller baseline --wind 15   # baseline misses
+python src/flood_relief_drop_sim.py --view --battery-soc 0.3              # handled failure: battery-reserve ABORT
 
+# 3. Monte Carlo trials -> statistics -> business model (re-creates every number in the dossier)
+python src/flood_relief_drop_sim.py --trials 30                           # 240 runs, ~15-60 min depending on CPU
+python analytics/analyze_trials.py
+python analytics/disaster_relief_logistics.py
 
-### Student Engineering Commendation & Acknowledgments
-SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Manikya Rathore (E056)**, **Shourya Garg (E020)**, **Keswani Laksh (E032)**, and **Vora Jash (E067)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
+# 4. re-create the 500 Hz log of any run from its seed
+python src/flood_relief_drop_sim.py --trials 30 --replay-run 137 --telemetry run137.csv
 
-> *"Scientists discover the world that exists; engineers create the world that never was."*  
-> — **Theodore von Kármán**
-
-> *"There is no substitute for hard work. Genius is one percent inspiration and ninety-nine percent perspiration."*  
-> — **Thomas A. Edison**
-
----
-
-## 3. Foundational Literature Benchmarks (Strict 2 Seminal : 4 Recent Ratio)
-
-The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
-
-| # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Dorling et al. (2017)** | Seminal | *Vehicle Routing Problems for Drone Delivery* | IEEE Transactions on Systems, Man, and Cybernetics: Systems | [https://doi.org/10.1109/TSMC.2016.2582745](https://doi.org/10.1109/TSMC.2016.2582745) | `Power consumption model $P(m) = (m_{\text{dro...` | Vora Jash (E067) & Manikya Rathore (E056) |
-| 2 | **Chowdhury et al. (2017)** | Recent | *Drones for disaster response and relief operations: A continuous approximation model* | International Journal of Production Economics | [https://doi.org/10.1016/j.ijpe.2017.03.024](https://doi.org/10.1016/j.ijpe.2017.03.024) | `Fleet demand coverage $D(x,y) = \int \int \rh...` | Vora Jash (E067) |
-| 3 | **Zhang et al. (2023)** | Recent | *Real-Time Local Obstacle Avoidance and Trajectory Tracking Control of Quadrotor UAVs With Suspended Payload in Complex Environments* | IEEE Access | [https://doi.org/10.1109/ACCESS.2023.3344578](https://doi.org/10.1109/ACCESS.2023.3344578) | `Cable swing dynamics $\ddot{\alpha} + \frac{g...` | Manikya Rathore (E056) & Keswani Laksh (E032) |
-| 4 | **Falanga et al. (2017)** | Recent | *Vision-based autonomous quadrotor landing on a moving platform* | IEEE International Symposium on Safety, Security and Rescue Robotics (SSRR) | [https://doi.org/10.1109/SSRR.2017.8088164](https://doi.org/10.1109/SSRR.2017.8088164) | `Visual error vector $\mathbf{e}_v = \mathbf{p...` | Shourya Garg (E020) |
-| 5 | **Scholten, Fumagalli et al. (2013)** | Seminal | *Interaction control of an UAV endowed with a manipulator* | IEEE International Conference on Robotics and Automation (ICRA) | [https://doi.org/10.1109/ICRA.2013.6631278](https://doi.org/10.1109/ICRA.2013.6631278) | `Coupled mass matrix $\begin{bmatrix} M_{uu} &...` | Manikya Rathore (E056) & Shourya Garg (E020) |
-| 6 | **Kamal et al. (2018)** | Recent | *Using crowdsourcing to identify critical affected areas for rapid damage assessment: Hurricane Matthew case study* | International Journal of Disaster Risk Reduction | [https://doi.org/10.1016/j.ijdrr.2018.02.003](https://doi.org/10.1016/j.ijdrr.2018.02.003) | `Isolation index $\Omega = \frac{T_{\text{subm...` | Keswani Laksh (E032) & Vora Jash (E067) |
-
-For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
-* [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
-* [`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`](docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md)
-
----
-
-## 4. Project Demonstration & Academic Showcase (LinkedIn)
-
-[![Watch Video Demonstration on LinkedIn](docs/figures/video_poster.png)](https://www.linkedin.com/)
-
-* **Video Demonstration:** [Watch 60-Second Walkthrough on LinkedIn](https://www.linkedin.com/) *(Click thumbnail above to open LinkedIn post)*
-* **Student Presenters:** **Manikya Rathore (E056)**, **Shourya Garg (E020)**, **Keswani Laksh (E032)**, **Vora Jash (E067)**
-* **Academic Institutional Tags:** SVKM's NMIMS MPSTME | Academic Directorate | Industry 4.0 Robotics
-* **Submission Protocol:** Record a 60–90 second demonstration of your MuJoCo simulation and telemetry. Publish on LinkedIn tagging MPSTME, Dean, and Course Faculty. Insert your live post URL in `docs/TEAM_ROSTER.json` under `"linkedin_url"`, and submit a pull request to update this project dossier and the cohort dashboard.
-
----
-
-## 5. Repository Directory Architecture
-
-```
-.
-|-- README.md                                          <- Front-page research charter, student roster & literature
-|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md               <- Comprehensive technical engineering guide
-|-- docs/
-|   |-- TEAM_ROSTER.json                               <- Machine-readable team configuration
-|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md   <- Exhaustive literature dossier (6 verified papers)
-|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md         <- 4-page IEEE conference manuscript blueprint
-|   `-- figures/
-|       |-- figure1_system_architecture.png            <- 300 DPI system architecture diagram
-|       |-- figure2_kinematic_telemetry.png            <- 300 DPI kinematics and simulation telemetry
-|       `-- figure3_comparative_performance.png        <- 300 DPI comparative benchmark visualization
-|-- models/
-|   |-- .gitkeep
-|   `-- skyhydro_flood_uav.xml                                    <- MuJoCo MJCF simulation model
-|-- src/
-|   |-- test_env.py                                    <- Physics validation & environment tester
-|   `-- flood_relief_drop_sim.py                                      <- Autonomous control loop (# TODO student boundaries)
-`-- analytics/
-    |-- .gitkeep
-    |-- disaster_relief_logistics.py                                      <- CSBS dimensionless technoeconomic model
-    |-- generate_paper_figures.py                      <- Standalone 300 DPI publication figure generator
-    `-- SIMULATED_flood_relief_benchmark.csv                                    <- SIMULATED starter targets (np.random), NOT results
+# 5. full valley + trained RL pilot (expo)
+python analytics/evaluate_rl_pilot.py --episodes 30   # RL vs expert, 60 missions (~25-60 min)
+sim.bat            # or: python simulate.py          (survey scan, then the trained pilot supplies the houses)
+sim.bat --replay   # replay the recorded test missions from results/
+train.bat          # retrain stages 1 -> 3 on the GPU (results saved to results/ automatically)
 ```
 
----
+## Data provenance
 
-## 5. Pedagogical Boundaries: Guidance vs Student Ownership
+Every number in dossier §4 comes from `analytics/flood_relief_real_trials.csv`, produced by `src/flood_relief_drop_sim.py` running MuJoCo. Every economic input in §3 is either computed from those trials or is a labelled assumption that is varied in the sensitivity graph. Nothing is taken from the `SIMULATED_*` starter files.
 
-To ensure academic rigor and authentic student learning, this repository enforces strict boundaries between scaffolding and student deliverables:
+## Honest limits
 
-* **Provided by Course Scaffolding:**
-  * Validated physical model architecture in MuJoCo MJCF (`models/skyhydro_flood_uav.xml`).
-  * Verification toolchain and smoke test script (`src/test_env.py`).
-  * Literature foundation, mathematical formulations, and conference paper blueprint (`docs/`).
-  * Dimensionless technoeconomic framework (`analytics/disaster_relief_logistics.py`).
-* **Student Technical Deliverables (Required for Evaluation):**
-  * Implement and tune the control algorithm in `src/flood_relief_drop_sim.py` (filling all marked `# TODO [Student Roll / Name]` blocks).
-  * Run physics simulation trials to collect and expand empirical data in `analytics/flood_relief_real_trials.csv`.
-  * Re-run `analytics/generate_paper_figures.py` to regenerate publication figures with live experimental telemetry.
-  * Author the final 4-page IEEE conference paper in `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend individual Git commits during the oral viva.
-
----
-
-## 6. Sprint 0 Onboarding & Physics Environment Verification
-
-Verify your local Python and MuJoCo simulation environment:
-
-```powershell
-# Step 1: Clone repository and navigate to group directory
-git clone <repository_url>
-cd <repository_root>/Group_08_Manikya_Shourya_Keswani_Vora
-
-# Step 2: Checkout your individual feature branch
-# Example for lead student:
-git checkout -b feat/e056-lead-uav-aerodynamic
-
-# Step 3: Run environment smoke test
-python src/test_env.py
-
-# Step 4: Verify 300 DPI publication figures
-python analytics/generate_paper_figures.py
-```
+* Wind is a quadratic-drag force with first-order Gauss–Markov gusts (Dryden-like), not CFD; rotor downwash on the canister is not modelled.
+* "Vision" is a simulated downward-camera measurement of the canister relative to the marker (5 cm noise, 30 Hz). There is no image-processing model.
+* In the valley demo, the survey scan is a scripted flight that reads each house's survivor count from the scene; the RL pilot learned the pickup and delivery runs, not the scan.
+* Cost figures are ratios to one boat-hour; most inputs are assumptions (see `ASSUME` in the business script) and are varied ±30 %.

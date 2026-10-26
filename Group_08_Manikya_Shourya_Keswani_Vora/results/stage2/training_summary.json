@@ -1,0 +1,221 @@
+{
+ "algo": "ppo",
+ "stage": 2,
+ "timesteps": 2000000,
+ "n_envs": 16,
+ "device": "cuda",
+ "gpu": "NVIDIA GeForce RTX 3090",
+ "init": "D:\\Manikya Rathore\\SkyHydro_Project\\results/stage1/model.zip",
+ "bc_episodes": 0,
+ "seed": 0,
+ "train_minutes": 163.2,
+ "run_dir": "runs\\ppo_stage2",
+ "learning_curve": [
+  {
+   "timesteps": 1000000,
+   "mean_return": -26.81,
+   "mean_episode_steps": 1584.6
+  },
+  {
+   "timesteps": 1050000,
+   "mean_return": -24.89,
+   "mean_episode_steps": 2089.0
+  },
+  {
+   "timesteps": 1100000,
+   "mean_return": -22.13,
+   "mean_episode_steps": 1578.2
+  },
+  {
+   "timesteps": 1150000,
+   "mean_return": -30.02,
+   "mean_episode_steps": 1073.6
+  },
+  {
+   "timesteps": 1200000,
+   "mean_return": -32.71,
+   "mean_episode_steps": 1067.8
+  },
+  {
+   "timesteps": 1250000,
+   "mean_return": -26.17,
+   "mean_episode_steps": 1576.0
+  },
+  {
+   "timesteps": 1300000,
+   "mean_return": -23.45,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1350000,
+   "mean_return": -17.25,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1400000,
+   "mean_return": -24.16,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1450000,
+   "mean_return": -19.0,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1500000,
+   "mean_return": -28.0,
+   "mean_episode_steps": 2085.0
+  },
+  {
+   "timesteps": 1550000,
+   "mean_return": -16.67,
+   "mean_episode_steps": 2088.0
+  },
+  {
+   "timesteps": 1600000,
+   "mean_return": -17.51,
+   "mean_episode_steps": 2095.8
+  },
+  {
+   "timesteps": 1650000,
+   "mean_return": -24.41,
+   "mean_episode_steps": 2092.0
+  },
+  {
+   "timesteps": 1700000,
+   "mean_return": -17.6,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1750000,
+   "mean_return": -14.65,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1800000,
+   "mean_return": -4.34,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1850000,
+   "mean_return": -15.94,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1900000,
+   "mean_return": -10.84,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 1950000,
+   "mean_return": -28.03,
+   "mean_episode_steps": 2086.0
+  },
+  {
+   "timesteps": 2000000,
+   "mean_return": -22.59,
+   "mean_episode_steps": 2084.4
+  },
+  {
+   "timesteps": 2050000,
+   "mean_return": -21.37,
+   "mean_episode_steps": 2086.8
+  },
+  {
+   "timesteps": 2100000,
+   "mean_return": -16.88,
+   "mean_episode_steps": 2089.2
+  },
+  {
+   "timesteps": 2150000,
+   "mean_return": -6.17,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 2200000,
+   "mean_return": -21.24,
+   "mean_episode_steps": 2091.4
+  },
+  {
+   "timesteps": 2250000,
+   "mean_return": -7.03,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 2300000,
+   "mean_return": -15.8,
+   "mean_episode_steps": 2084.6
+  },
+  {
+   "timesteps": 2350000,
+   "mean_return": 0.71,
+   "mean_episode_steps": 2094.4
+  },
+  {
+   "timesteps": 2400000,
+   "mean_return": 4.84,
+   "mean_episode_steps": 2093.4
+  },
+  {
+   "timesteps": 2450000,
+   "mean_return": -16.27,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 2500000,
+   "mean_return": -19.51,
+   "mean_episode_steps": 2095.0
+  },
+  {
+   "timesteps": 2550000,
+   "mean_return": -14.35,
+   "mean_episode_steps": 2092.2
+  },
+  {
+   "timesteps": 2600000,
+   "mean_return": -12.45,
+   "mean_episode_steps": 1587.6
+  },
+  {
+   "timesteps": 2650000,
+   "mean_return": -15.31,
+   "mean_episode_steps": 2084.8
+  },
+  {
+   "timesteps": 2700000,
+   "mean_return": -0.18,
+   "mean_episode_steps": 2092.4
+  },
+  {
+   "timesteps": 2750000,
+   "mean_return": -14.71,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 2800000,
+   "mean_return": -6.62,
+   "mean_episode_steps": 2085.2
+  },
+  {
+   "timesteps": 2850000,
+   "mean_return": -16.74,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 2900000,
+   "mean_return": -10.61,
+   "mean_episode_steps": 2600.0
+  },
+  {
+   "timesteps": 2950000,
+   "mean_return": -11.36,
+   "mean_episode_steps": 2600.0
+  }
+ ],
+ "test": {
+  "episodes": 3,
+  "success_rate": 0.0,
+  "mean_return": 16.93,
+  "mean_delivered_fraction": 0.0
+ }
+}

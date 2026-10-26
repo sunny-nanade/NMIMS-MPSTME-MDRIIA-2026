@@ -1,0 +1,121 @@
+{
+ "algo": "ppo",
+ "stage": 1,
+ "timesteps": 1000000,
+ "n_envs": 16,
+ "device": "cuda",
+ "gpu": "NVIDIA GeForce RTX 3090",
+ "init": null,
+ "bc_episodes": 40,
+ "seed": 0,
+ "train_minutes": 57.3,
+ "run_dir": "runs\\ppo_stage1",
+ "learning_curve": [
+  {
+   "timesteps": 50000,
+   "mean_return": -16.25,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 100000,
+   "mean_return": -20.1,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 150000,
+   "mean_return": -13.44,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 200000,
+   "mean_return": -12.42,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 250000,
+   "mean_return": -11.45,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 300000,
+   "mean_return": -13.79,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 350000,
+   "mean_return": -15.0,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 400000,
+   "mean_return": -14.31,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 450000,
+   "mean_return": -19.63,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 500000,
+   "mean_return": -13.88,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 550000,
+   "mean_return": -22.45,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 600000,
+   "mean_return": -18.84,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 650000,
+   "mean_return": -16.82,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 700000,
+   "mean_return": -13.23,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 750000,
+   "mean_return": -13.22,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 800000,
+   "mean_return": -13.74,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 850000,
+   "mean_return": -13.97,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 900000,
+   "mean_return": -12.34,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 950000,
+   "mean_return": -11.01,
+   "mean_episode_steps": 1500.0
+  },
+  {
+   "timesteps": 1000000,
+   "mean_return": -13.02,
+   "mean_episode_steps": 1500.0
+  }
+ ],
+ "test": {
+  "episodes": 3,
+  "success_rate": 0.0,
+  "mean_return": -11.42,
+  "mean_delivered_fraction": 0.0
+ }
+}

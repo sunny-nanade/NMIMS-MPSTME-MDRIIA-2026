@@ -1,0 +1,68 @@
+{
+ "stages": {
+  "1": {
+   "stage": 1,
+   "algo": "ppo",
+   "model": "results/stage1/model.zip",
+   "replay": "results/stage1/replay.json",
+   "summary": "results/stage1/training_summary.json",
+   "trained_on": "cuda",
+   "timesteps": 1000000,
+   "saved": "2026-10-10T15:20:37",
+   "test": {
+    "episodes": 3,
+    "success_rate": 0.0,
+    "mean_return": -11.42,
+    "mean_delivered_fraction": 0.0
+   }
+  },
+  "2": {
+   "stage": 2,
+   "algo": "ppo",
+   "model": "results/stage2/model.zip",
+   "replay": "results/stage2/replay.json",
+   "summary": "results/stage2/training_summary.json",
+   "trained_on": "cuda",
+   "timesteps": 2000000,
+   "saved": "2026-10-10T18:04:30",
+   "test": {
+    "episodes": 3,
+    "success_rate": 0.0,
+    "mean_return": 16.93,
+    "mean_delivered_fraction": 0.0
+   }
+  },
+  "3": {
+   "stage": 3,
+   "algo": "ppo",
+   "model": "results/stage3/model.zip",
+   "replay": "results/stage3/replay.json",
+   "summary": "results/stage3/training_summary.json",
+   "trained_on": "cuda",
+   "timesteps": 3000000,
+   "saved": "2026-10-19T15:51:39",
+   "test": {
+    "episodes": 3,
+    "success_rate": 1.0,
+    "mean_return": 604.44,
+    "mean_delivered_fraction": 1.0
+   }
+  }
+ },
+ "latest": {
+  "stage": 3,
+  "algo": "ppo",
+  "model": "results/stage3/model.zip",
+  "replay": "results/stage3/replay.json",
+  "summary": "results/stage3/training_summary.json",
+  "trained_on": "cuda",
+  "timesteps": 3000000,
+  "saved": "2026-10-19T15:51:39",
+  "test": {
+   "episodes": 3,
+   "success_rate": 1.0,
+   "mean_return": 604.44,
+   "mean_delivered_fraction": 1.0
+  }
+ }
+}
