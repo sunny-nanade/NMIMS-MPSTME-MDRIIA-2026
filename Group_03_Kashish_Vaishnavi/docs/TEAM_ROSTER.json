@@ -10,7 +10,9 @@
       "name": "Kashish Praveen Jain",
       "role": "Lead Autonomous Navigation & Traffic Congestion Modeling Specialist",
       "assigned_branch": "feat/e026-lead-autonomous-navi",
-      "viva_focus": "Sidewalk navigation dynamics, pedestrian crowd evasion, dynamic routing through urban choke points, and arrival latency budgets."
+      "viva_focus": "Sidewalk navigation dynamics, pedestrian crowd evasion, dynamic routing through urban choke points, and arrival latency budgets.",
+      "github_handle": "",
+      "institutional_email": ""
     },
     {
       "roll_no": "E046",
@@ -18,7 +20,9 @@
       "name": "Vaishnavi Parashar",
       "role": "MuJoCo Dynamic Chassis Modeler & Path Optimization Engineer",
       "assigned_branch": "feat/e046-mujoco-dynamic-chass",
-      "viva_focus": "Four-wheel independent suspension, curb-climbing dynamics, shock isolation for biphasic AED pads, and contact friction stability."
+      "viva_focus": "Four-wheel independent suspension, curb-climbing dynamics, shock isolation for biphasic AED pads, and contact friction stability.",
+      "github_handle": "",
+      "institutional_email": ""
     }
   ],
   "foundational_papers": [
@@ -26,10 +30,11 @@
       "id": 1,
       "authors": "Schierbeck et al.",
       "year": 2023,
-      "title": "Drone delivery of automated external defibrillators compared with ambulance arrival in out-of-hospital cardiac arrest",
+      "title": "Drone delivery of automated external defibrillators compared with ambulance arrival in real-life suspected out-of-hospital cardiac arrests: a prospective observational study in Sweden",
       "venue": "The Lancet Digital Health",
       "doi": "https://doi.org/10.1016/S2589-7500(23)00161-9",
-      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)"
+      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)",
+      "type": "Recent"
     },
     {
       "id": 2,
@@ -38,25 +43,28 @@
       "title": "Heart Disease and Stroke Statistics-2023 Update: A Report From the American Heart Association",
       "venue": "Circulation",
       "doi": "https://doi.org/10.1161/CIR.0000000000001123",
-      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)"
+      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)",
+      "type": "Recent"
     },
     {
       "id": 3,
       "authors": "Naess et al.",
       "year": 2024,
-      "title": "Using machine learning to assess the extent of busy ambulance delays",
+      "title": "Using machine learning to assess the extent of busy ambulances and its impact on ambulance response times: A retrospective observational study",
       "venue": "PLOS ONE",
       "doi": "https://doi.org/10.1371/journal.pone.0296308",
-      "lead": "Kashish Praveen Jain (E026)"
+      "lead": "Kashish Praveen Jain (E026)",
+      "type": "Recent"
     },
     {
       "id": 4,
       "authors": "Weinberg et al.",
       "year": 2023,
-      "title": "Sharing the Sidewalk: Observing Delivery Robot Interactions with Pedestrians",
+      "title": "Sharing the Sidewalk: Observing Delivery Robot Interactions with Pedestrians during a Pilot in Pittsburgh, PA",
       "venue": "Multimodal Technologies and Interaction",
       "doi": "https://doi.org/10.3390/mti7050053",
-      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)"
+      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)",
+      "type": "Recent"
     },
     {
       "id": 5,
@@ -64,17 +72,19 @@
       "year": 1993,
       "title": "Predicting survival from out-of-hospital cardiac arrest: A graphic model",
       "venue": "Annals of Emergency Medicine",
-      "doi": "https://doi.org/10.1016/s0196-0644(05)81302-2",
-      "lead": "Kashish Praveen Jain (E026) & Vaishnavi Parashar (E046)"
+      "doi": "https://doi.org/10.1016/S0196-0644(05)81302-2",
+      "lead": "Vaishnavi Parashar (E046) & Kashish Praveen Jain (E026)",
+      "type": "Seminal"
     },
     {
       "id": 6,
-      "authors": "Tripathi et al.",
-      "year": 2020,
-      "title": "Circadian variation of in-hospital cardiac arrest",
-      "venue": "Resuscitation",
-      "doi": "https://doi.org/10.1016/j.resuscitation.2020.08.014",
-      "lead": "Vaishnavi Parashar (E046) & Kashish Praveen Jain (E026)"
+      "authors": "Khatib",
+      "year": 1986,
+      "title": "Real-Time Obstacle Avoidance for Manipulators and Mobile Robots",
+      "venue": "The International Journal of Robotics Research",
+      "doi": "https://doi.org/10.1177/027836498600500106",
+      "lead": "Kashish Praveen Jain (E026)",
+      "type": "Seminal"
     }
   ],
   "project_showcase": {
