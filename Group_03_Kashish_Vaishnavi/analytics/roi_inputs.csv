@@ -1,0 +1,20 @@
+input,value,unit,source
+zone_area_km2,50.0,km^2,ASSUMPTION
+pop_density_per_km2,20000.0,persons/km^2,ASSUMPTION
+ohca_incidence_per_100k_yr,55.0,events/100k/yr,ASSUMPTION (unverified order of magnitude)
+suspected_call_factor,2.5,-,ASSUMPTION
+hub_radius_m,500.0,m,README RQ3 clinical break-even
+route_factor,1.54,-,docs/OSM_ROUTES.md (Mumbai OSM geometry)
+v_amr_mps,2.0611203125,m/s,measured: analytics/aed_delivery_real_trials.csv
+turnaround_h,0.25,h,ASSUMPTION
+p_wait_max,0.05,-,ASSUMPTION
+p_standdown,0.15,-,ASSUMPTION
+h_als_per_call,1.5,vehicle-h,ASSUMPTION
+pod_opex,0.1,ALS vehicle-yr/yr,ASSUMPTION
+hub_opex,0.03,ALS vehicle-yr/yr,ASSUMPTION
+pod_capex,0.35,ALS vehicle-yr,ASSUMPTION
+hub_capex,0.1,ALS vehicle-yr,ASSUMPTION
+life_years,8.0,yr,ASSUMPTION
+life_expectancy_yr,12.0,yr,course scaffold ASSUMPTION
+qol,0.85,-,course scaffold ASSUMPTION
+t_cpr_min,3.0,min,ASSUMPTION (clinical.DispatchTimes)

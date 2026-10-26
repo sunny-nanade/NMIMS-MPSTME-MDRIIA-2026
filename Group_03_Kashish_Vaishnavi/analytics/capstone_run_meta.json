@@ -1,0 +1,59 @@
+{
+  "n_per_condition": 50,
+  "seed_base": 70000,
+  "conditions": {
+    "free_flow": "flat_clear",
+    "lane_splitting": "mixed",
+    "crowd": "crowded",
+    "kerb": "kerb",
+    "slippery": "slippery"
+  },
+  "controllers": {
+    "baseline_unshielded": {
+      "planner": "pure_pursuit",
+      "safety_filter": false,
+      "vehicle": "course",
+      "planner_kwargs": {}
+    },
+    "baseline": {
+      "planner": "pure_pursuit",
+      "safety_filter": true,
+      "vehicle": "course",
+      "planner_kwargs": {}
+    },
+    "baseline_fast": {
+      "planner": "pure_pursuit",
+      "safety_filter": true,
+      "vehicle": "course",
+      "planner_kwargs": {
+        "v_cruise": 3.5
+      }
+    },
+    "proposed": {
+      "planner": "fsm_dwa",
+      "safety_filter": true,
+      "vehicle": "course",
+      "planner_kwargs": {
+        "v_cruise": 3.5,
+        "fsm_kwargs": {
+          "v_cruise": 3.5
+        }
+      }
+    },
+    "proposed_codesigned": {
+      "planner": "fsm_dwa",
+      "safety_filter": true,
+      "vehicle": "optimized",
+      "planner_kwargs": {
+        "v_cruise": 3.5,
+        "fsm_kwargs": {
+          "v_cruise": 3.5
+        }
+      }
+    }
+  },
+  "episodes": 1250,
+  "log_rate_hz_min": 499.9999999997469,
+  "log_rate_hz_max": 500.00000000010516,
+  "wall_s": 307.70334792137146
+}
