@@ -1,128 +1,130 @@
-# Closed-Loop Navigation and Telemetry Controller
-# Autonomous Last-Mile Ground AED Delivery Robot
-# Group: MDRIIA Group 03
+"""Closed-loop navigation entry point.
 
-import os
+MDRIIA Group 03 - autonomous last-mile ground AED delivery rover.
+
+Runs ONE episode of each requested controller (default: DWA and MPPI) on the vendored aedrover
+package. Every controller sees the same seeded scenario and, unless --no-shield is given, the same
+speed-and-separation safety filter, so the summaries are directly comparable. The controllers
+themselves live in src/aedrover/nav; this file is only the entry point.
+
+    python src/aed_navigation_controller.py --controllers dwa
+    python src/aed_navigation_controller.py --family crowded --seed 1001
+    python src/aed_navigation_controller.py --controllers dwa --telemetry analytics/kerb_crossing_telemetry.csv
+
+MPPI plans with physics rollouts and needs minutes for a full episode; use --max-time to shorten.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
 import sys
-import math
-import numpy as np
+import time
+from pathlib import Path
 
-class AEDDeliveryController:
-    """
-    Autonomous Navigation, Curb-Climbing, and Telemetry Controller
-    Student Implementation Boundaries:
-    - E026 (Kashish): Suspension dynamics, vertical shock limiters, and wheel normal force balancing
-    - E046 (Vaishnavi): Path planning, pedestrian obstacle avoidance, curb torque vectoring, and clinical survival decay estimation
-    """
-    def __init__(self, target_distance_m=1800.0):
-        self.target_dist = target_distance_m
-        self.cruise_speed_mps = 3.5
-        self.curb_speed_mps = 1.2
-        self.max_shock_g = 3.0
-        self.traversed_dist = 0.0
-        self.current_time_s = 0.0
-        
-        # Telemetry history buffer
-        self.telemetry = {
-            "time_s": [],
-            "distance_m": [],
-            "velocity_mps": [],
-            "payload_accel_g": [],
-            "curb_impact_force_N": [],
-            "survival_prob": []
-        }
+SRC = Path(__file__).resolve().parent
+sys.path.insert(0, str(SRC))
 
-    def compute_apf_forces(self, current_pos, goal_pos, obstacle_positions):
-        """
-        # TODO [E046 - Vaishnavi Parashar]:
-        Implement the Artificial Potential Field (APF) obstacle avoidance routine.
-        - Calculate attractive gradient toward goal_pos
-        - Calculate repulsive gradient for each obstacle within 2.5 m influence radius
-        - Apply Weinberg et al. (2023) sidewalk corridor lateral boundaries (0.6 m - 1.2 m)
-        """
-        # Baseline stub: direct forward vector
-        delta = np.array(goal_pos) - np.array(current_pos)
-        dist = np.linalg.norm(delta)
-        if dist > 0.01:
-            unit_heading = delta / dist
-        else:
-            unit_heading = np.array([1.0, 0.0])
-        return unit_heading
+import numpy as np  # noqa: E402
+import pandas as pd  # noqa: E402
 
-    def curb_climbing_torque_vectoring(self, wheel_contact_flags, pitch_angle_rad):
-        """
-        # TODO [E026 - Kashish Praveen Jain]:
-        Implement dynamic torque vectoring for 12 cm vertical curb climbing.
-        - Detect front wheel curb impact from contact flags
-        - Reduce vehicle speed to curb_speed_mps (1.2 m/s) to attenuate impact shock
-        - Boost front actuator torque proportionally to pitch angle to overcome curb lip
-        - Restrict roll angle to |phi| <= 18 deg to prevent vehicle rollover
-        """
-        # Baseline stub: constant torque limit
-        base_torque = 80.0
-        if any(wheel_contact_flags):
-            return base_torque * 1.5
-        return base_torque
+from aedrover.control.safety_filter import SafetyFilter  # noqa: E402
+from aedrover.nav.base import make_controller, registered_controllers, run_episode  # noqa: E402
+from aedrover.sim.env import AEDRoverEnv  # noqa: E402
+from aedrover.sim.scenario import FAMILIES  # noqa: E402
+from aedrover.sim.vehicle_mjcf import VehicleParams  # noqa: E402
 
-    def evaluate_larsen_survival(self, transit_time_min, cpr_delay_min=1.0):
-        """
-        # TODO [E046 - Vaishnavi Parashar]:
-        Implement the Larsen et al. (1993) resuscitation survival probability formulation.
-        Formula: P(survival) = 0.67 - 0.023 * t_CPR - 0.046 * t_defib
-        Bound output probability in range [0.05, 0.70].
-        """
-        # Baseline implementation
-        p_survival = 0.67 - (0.023 * cpr_delay_min) - (0.046 * transit_time_min)
-        return float(np.clip(p_survival, 0.05, 0.70))
+BUDGET_G = 3.0
+TELEMETRY_COLUMNS = ["t_s", "x_m", "y_m", "yaw_rad", "v_cmd_mps", "delta_cmd_rad", "shock_g", "clearance_m"]
 
-    def step_simulation(self, dt=0.01):
-        """Execute a single simulation step and log telemetry."""
-        self.current_time_s += dt
-        
-        # Determine speed based on route progress (curbs at 500 m and 1200 m)
-        is_curb_zone = (495.0 <= self.traversed_dist <= 505.0) or (1195.0 <= self.traversed_dist <= 1205.0)
-        target_v = self.curb_speed_mps if is_curb_zone else self.cruise_speed_mps
-        
-        self.traversed_dist += target_v * dt
-        
-        # Simulate payload shock acceleration
-        if is_curb_zone:
-            shock_g = 2.68 + np.random.normal(0, 0.08)
-            curb_force = 1250.0 + np.random.normal(0, 50.0)
-        else:
-            shock_g = 0.45 + np.random.normal(0, 0.03)
-            curb_force = 0.0
-            
-        t_min = self.current_time_s / 60.0
-        survival_prob = self.evaluate_larsen_survival(t_min)
-        
-        # Log to buffer
-        self.telemetry["time_s"].append(round(self.current_time_s, 2))
-        self.telemetry["distance_m"].append(round(self.traversed_dist, 2))
-        self.telemetry["velocity_mps"].append(round(target_v, 2))
-        self.telemetry["payload_accel_g"].append(round(shock_g, 3))
-        self.telemetry["curb_impact_force_N"].append(round(curb_force, 1))
-        self.telemetry["survival_prob"].append(round(survival_prob, 4))
-        
-        return self.traversed_dist >= self.target_dist
 
-def main():
+# keyword each controller uses for its top speed (as in the benchmark, one number caps every method)
+SPEED_KEY = {"pure_pursuit": "v_cruise", "apf": "v_cruise", "apf_nocurb": "v_cruise", "dwa": "v_cruise",
+             "dwa_nocurb": "v_cruise", "mppi": "v_max", "ppo": "v_max"}
+BENCHMARK_SPEED_CAP = 2.0
+
+
+def controller_kwargs(name, speed_cap):
+    """Settings the benchmark used: the common speed cap and, for MPPI, the tuned cost weights."""
+    kw = {}
+    if speed_cap and name in SPEED_KEY:
+        kw[SPEED_KEY[name]] = float(speed_cap)
+    tuned = SRC.parent / "configs" / "mppi_tuned.json"
+    if name == "mppi" and tuned.exists():
+        kw.update(json.loads(tuned.read_text(encoding="utf-8"))["kwargs"])
+    return kw
+
+
+def run_one(name, family, seed, vehicle, shield_on, max_time, speed_cap=BENCHMARK_SPEED_CAP):
+    """Run one episode; returns (episode metrics, scenario, shield, wall seconds)."""
+    env = AEDRoverEnv(obs_mode="dict", veh=VehicleParams.by_name(vehicle), max_time=max_time)
+    controller = make_controller(name, **controller_kwargs(name, speed_cap))
+    shield = SafetyFilter() if shield_on else None
+    t0 = time.perf_counter()
+    episode = run_episode(env, controller, shield, seed=seed, options={"family": family}, record=True)
+    return episode, env.scenario, shield, time.perf_counter() - t0
+
+
+def write_telemetry(path, episode, scenario, name, family, seed):
+    """Write the recorded trajectory (time, pose, commanded speed and steering, shock, clearance)."""
+    frame = pd.DataFrame(episode["trajectory"], columns=TELEMETRY_COLUMNS)
+    frame["controller"] = name
+    frame["family"] = family
+    frame["seed"] = seed
+    frame["kerb_h_m"] = scenario.kerb_h
+    frame["x_down_m"] = scenario.x_down
+    frame["x_up_m"] = scenario.x_up
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    frame.to_csv(path, index=False, lineterminator="\n")
+    return path
+
+
+def summary_line(name, episode, shield, wall):
+    clearance = episode["min_clearance_m"]
+    clear_txt = "n/a" if not np.isfinite(clearance) else f"{clearance:.2f} m"
+    interventions = "shield off" if shield is None else f"shield interventions {shield.n_interventions}/{shield.n_calls}"
+    return (
+        f"[{name}] outcome={episode['outcome']}  time={episode['time_s']:.2f} s  path={episode['path_m']:.2f} m  "
+        f"peak_shock={episode['peak_shock_g']:.2f} g (budget {BUDGET_G:g} g)  min_clearance={clear_txt}  "
+        f"{interventions}  wall={wall:.1f} s"
+    )
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Run one episode of each requested controller.")
+    ap.add_argument("--controllers", nargs="+", default=["dwa", "mppi"], help="registered controller names")
+    ap.add_argument("--family", choices=FAMILIES, default="kerb", help="scenario family")
+    ap.add_argument("--seed", type=int, default=1003, help="scenario seed (same scenario for every controller)")
+    ap.add_argument("--vehicle", choices=("nominal", "optimized"), default="optimized")
+    ap.add_argument("--no-shield", action="store_true", help="disable the safety filter")
+    ap.add_argument("--max-time", type=float, default=90.0, help="episode time limit in seconds (benchmark: 90)")
+    ap.add_argument("--speed-cap", type=float, default=BENCHMARK_SPEED_CAP,
+                    help="top speed in m/s given to every controller (benchmark: 2.0; 0 keeps each controller's default)")
+    ap.add_argument("--telemetry", default=None, help="write the trajectory of each controller to this CSV")
+    args = ap.parse_args(argv)
+
+    available = registered_controllers()
+    unknown = [c for c in args.controllers if c not in available]
+    if unknown:
+        print(f"[ERROR] unknown controller(s) {unknown}; registered: {available}")
+        return 2
     print("=" * 60)
-    print("Starting Autonomous Ground AED Delivery Controller Test Run...")
+    print(f"Autonomous ground AED delivery rover: family={args.family} seed={args.seed} vehicle={args.vehicle}")
     print("=" * 60)
-    controller = AEDDeliveryController(target_distance_m=1800.0)
-    
-    done = False
-    while not done and controller.current_time_s < 600.0:
-        done = controller.step_simulation(dt=0.05)
-        
-    final_time_min = controller.current_time_s / 60.0
-    final_p = controller.telemetry["survival_prob"][-1]
-    
-    print(f"Mission Completed in: {final_time_min:.2f} minutes ({controller.current_time_s:.1f} s)")
-    print(f"Total Traversed Distance: {controller.traversed_dist:.1f} m")
-    print(f"Predicted Patient Survival Probability: {final_p*100:.2f}%")
-    print("=" * 60)
+    for name in args.controllers:
+        if name == "mppi":
+            print("[mppi] plans with physics rollouts; a full episode takes minutes on a laptop CPU ...", flush=True)
+        episode, scenario, shield, wall = run_one(
+            name, args.family, args.seed, args.vehicle, not args.no_shield, args.max_time, args.speed_cap)
+        print(summary_line(name, episode, shield, wall))
+        if args.telemetry:
+            path = Path(args.telemetry)
+            if len(args.controllers) > 1:
+                path = path.with_name(f"{path.stem}_{name}{path.suffix}")
+            print(f"[{name}] telemetry written to {write_telemetry(path, episode, scenario, name, args.family, args.seed)}")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

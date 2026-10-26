@@ -1,70 +1,87 @@
-# Verification and Test Environment Script
-# Group: MDRIIA Group 03
-# Project: Autonomous Last-Mile Ground AED Delivery Vehicle
+"""Verification and test-environment script.
 
+MDRIIA Group 03 - autonomous last-mile ground AED delivery rover.
+
+Checks the Python toolchain, compiles models/aed_delivery_amr.xml with plain MuJoCo, steps it,
+and checks that the vendored package (src/aedrover) can build and step a simulation environment.
+Exit status 0 means every check passed.
+"""
+
+import importlib
 import sys
-import os
+from pathlib import Path
+
+SRC = Path(__file__).resolve().parent
+ROOT = SRC.parent
+sys.path.insert(0, str(SRC))
+
+REQUIRED = [
+    ("numpy", "numpy"),
+    ("scipy", "scipy"),
+    ("matplotlib", "matplotlib"),
+    ("pandas", "pandas"),
+    ("yaml", "pyyaml"),
+    ("gymnasium", "gymnasium"),
+    ("mujoco", "mujoco"),
+]
+
 
 def run_environment_check():
     print("=" * 60)
     print("MDRIIA GROUP 03 - TOOLCHAIN AND PHYSICS VERIFICATION")
     print("=" * 60)
+    if sys.version_info < (3, 10):
+        print(f"[ERROR] Python {sys.version.split()[0]} is too old; Python 3.10 or newer is required.")
+        return False
     print(f"[OK] Python Version: {sys.version.split()[0]}")
-    
-    try:
-        import numpy as np
-        print(f"[OK] NumPy Version: {np.__version__}")
-    except ImportError:
-        print("[ERROR] NumPy is missing. Install via: pip install numpy")
-        return False
-        
-    try:
-        import scipy
-        print(f"[OK] SciPy Version: {scipy.__version__}")
-    except ImportError:
-        print("[ERROR] SciPy is missing. Install via: pip install scipy")
-        return False
 
-    try:
-        import matplotlib
-        print(f"[OK] Matplotlib Version: {matplotlib.__version__}")
-    except ImportError:
-        print("[ERROR] Matplotlib is missing. Install via: pip install matplotlib")
-        return False
+    for module, pip_name in REQUIRED:
+        try:
+            mod = importlib.import_module(module)
+        except ImportError:
+            print(f"[ERROR] {module} is missing. Install via: pip install {pip_name}")
+            return False
+        print(f"[OK] {module} Version: {getattr(mod, '__version__', 'unknown')}")
 
+    import mujoco
+    import numpy as np
+
+    xml_path = ROOT / "models" / "aed_delivery_amr.xml"
+    if not xml_path.exists():
+        print(f"[ERROR] Model file not found: {xml_path}")
+        return False
     try:
-        import mujoco
-        print(f"[OK] MuJoCo Version: {mujoco.__version__}")
-        
-        # Verify model compilation
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        xml_path = os.path.join(os.path.dirname(current_dir), "models", "aed_delivery_amr.xml")
-        
-        if os.path.exists(xml_path):
-            model = mujoco.MjModel.from_xml_path(xml_path)
-            data = mujoco.MjData(model)
+        model = mujoco.MjModel.from_xml_path(str(xml_path))
+        data = mujoco.MjData(model)
+        for _ in range(500):
             mujoco.mj_step(model, data)
-            print(f"[SUCCESS] Loaded and stepped model: {xml_path}")
-            print(f"[INFO] Model Bodies: {model.nbody}, Joints: {model.njnt}, Actuators: {model.nu}")
-        else:
-            print(f"[WARNING] Local XML not found at {xml_path}. Testing fallback string.")
-            fallback = "<mujoco><worldbody><body name='b'><geom type='sphere' size='0.1'/></body></worldbody></mujoco>"
-            m = mujoco.MjModel.from_xml_string(fallback)
-            d = mujoco.MjData(m)
-            mujoco.mj_step(m, d)
-            print("[SUCCESS] Fallback physics step verified.")
-    except ImportError:
-        print("[ERROR] MuJoCo library not installed. Run: pip install mujoco")
+    except Exception as exc:  # compilation or stepping failure
+        print(f"[ERROR] Physics compilation failed: {exc}")
         return False
-    except Exception as e:
-        print(f"[ERROR] Physics compilation failed: {e}")
+    if not (np.isfinite(data.qpos).all() and np.isfinite(data.qvel).all()):
+        print("[ERROR] Simulation state became non-finite while settling the rover.")
         return False
-        
+    print(f"[SUCCESS] Loaded and stepped model: {xml_path}")
+    print(f"[INFO] Model Bodies: {model.nbody}, Joints: {model.njnt}, Actuators: {model.nu}")
+    print(f"[INFO] Simulated time: {data.time:.2f} s, chassis height: {data.qpos[2]:.3f} m")
+
+    try:
+        from aedrover.sim import AEDRoverEnv, VehicleParams
+
+        env = AEDRoverEnv(veh=VehicleParams.optimized(), obs_mode="dict")
+        env.reset(seed=0, options={"family": "flat_clear"})
+        for _ in range(25):
+            env.step(np.array([1.0, 0.0]))
+    except Exception as exc:
+        print(f"[ERROR] Vendored package aedrover failed: {exc}")
+        return False
+    print("[OK] Vendored package aedrover: environment reset and 25 control steps")
+
     print("=" * 60)
     print("Verification complete. All required libraries are ready.")
     print("=" * 60)
     return True
 
+
 if __name__ == "__main__":
-    success = run_environment_check()
-    sys.exit(0 if success else 1)
+    sys.exit(0 if run_environment_check() else 1)

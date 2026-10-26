@@ -1,0 +1,11 @@
+mujoco>=3.2
+numpy>=1.26
+scipy>=1.11
+pandas>=2.0
+matplotlib>=3.8
+pyyaml>=6.0
+gymnasium>=0.29
+pillow>=10
+imageio>=2.34
+imageio-ffmpeg>=0.5
+opencv-python-headless>=4.8
