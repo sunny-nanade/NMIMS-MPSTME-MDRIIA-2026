@@ -1,4 +1,4 @@
-﻿"""Watch a controller drive live in MuJoCo's interactive viewer (real time, episodes repeat until you close it).
+"""Watch a controller drive live in MuJoCo's interactive viewer (real time, episodes repeat until you close it).
 
     python scripts/live_viewer.py                                  # capstone controller (mission FSM + dynamic window) through a mixed street
     python scripts/live_viewer.py --controller ppo --family crowded  # PPO through a crowd
@@ -117,6 +117,7 @@ def main() -> None:
     ap.add_argument("--controller", default="fsm_dwa", choices=("fsm_dwa", "ppo", "mppi", "dwa", "apf", "pure_pursuit"))
     ap.add_argument("--family", default="mixed")
     ap.add_argument("--seed", type=int, default=5021)
+    ap.add_argument("--episodes", type=int, default=0, help="stop after this many episodes (0 = keep going with the next seed until you close the window); use 1 when recording")
     ap.add_argument("--vehicle", default="course", choices=("course", "nominal", "optimized"),
                     help="course = the starter pack's values (default); optimized = this repository's co-designed chassis")
     ap.add_argument("--cruise", type=float, default=3.5, help="road cruise speed [m/s]; the course guide specifies 3.5")
@@ -153,9 +154,10 @@ def main() -> None:
                 track(v, env)
                 ok = run_episode(a, env, ctrl, shield, v, seed, scene)
             scene.close()
-            if not ok:
+            if not ok or a.episodes == 1:
                 return
             seed += 1
+            a.episodes = max(a.episodes - 1, 0) if a.episodes else 0
     if a.rich:
         # a rich environment compiles a new model on every reset, and a viewer is bound to one model: one window per episode
         while True:
@@ -165,9 +167,10 @@ def main() -> None:
                 shield.reset()
             with mujoco.viewer.launch_passive(env.world.model, env.world.data) as v:
                 track(v, env)
-                if not run_episode(a, env, ctrl, shield, v, seed):
+                if not run_episode(a, env, ctrl, shield, v, seed) or a.episodes == 1:
                     return
             seed += 1
+            a.episodes = max(a.episodes - 1, 0) if a.episodes else 0
     m, d = env.world.model, env.world.data
     with mujoco.viewer.launch_passive(m, d) as v:
         track(v, env)
@@ -176,9 +179,10 @@ def main() -> None:
             ctrl.reset(env)
             if shield is not None:
                 shield.reset()
-            if not run_episode(a, env, ctrl, shield, v, seed):
+            if not run_episode(a, env, ctrl, shield, v, seed) or a.episodes == 1:
                 break
             seed += 1
+            a.episodes = max(a.episodes - 1, 0) if a.episodes else 0
 
 
 if __name__ == "__main__":
