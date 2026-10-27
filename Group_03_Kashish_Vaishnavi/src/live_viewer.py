@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import aedrover.capstone.fsm  # noqa: E402,F401  (registers fsm_dwa)
 from aedrover.analysis.experiments import controller_spec  # noqa: E402
-from aedrover.control.safety_filter import SafetyFilter  # noqa: E402
+from aedrover.control.safety_filter import SafetyFilter, SafetyParams  # noqa: E402
 from aedrover.nav.base import make_controller  # noqa: E402
 from aedrover.sim.env import AEDRoverEnv  # noqa: E402
 from aedrover.sim.vehicle_mjcf import VehicleParams  # noqa: E402
@@ -131,13 +131,14 @@ def main() -> None:
     extra = {"path": str(ROOT / "models" / "ppo_selected")} if a.controller == "ppo" else (
         {"nthread": 8} if a.controller == "mppi" else {})
     if a.controller == "fsm_dwa":                       # cruise speed from the course guide: 3.5 m/s, curb speed 1.2 m/s (FSMParams)
-        name, kw = "fsm_dwa", {"v_cruise": a.cruise, "fsm_kwargs": {"v_cruise": a.cruise}}
+        # the settings of the evaluated "proposed" arm (capstone.monte_carlo._PROPOSED): kerb friction belief 0.35, 50 ms reaction time
+        name, kw = "fsm_dwa", {"v_cruise": a.cruise, "fsm_kwargs": {"v_cruise": a.cruise, "mu_belief": 0.35}, "safety_kwargs": {"t_react": 0.05}}
     else:
         name, kw = controller_spec(a.controller, a.cruise, **extra)
     env = AEDRoverEnv(obs_mode="dict", veh=VehicleParams.by_name(a.vehicle), v_max=max(3.5, a.cruise), rich=a.rich)
     print(f"vehicle '{a.vehicle}': sprung {env.veh0.sprung_mass:.0f} kg, unsprung/wheel {env.veh0.unsprung_mass:.2f} kg, "
           f"k_s {env.veh0.susp_k:.0f} N/m, c_s {env.veh0.susp_c:.0f} N s/m, tyre mu {env.veh0.friction}, cruise {a.cruise} m/s", flush=True)
-    ctrl, shield = make_controller(name, **kw), (None if a.no_shield else SafetyFilter())
+    ctrl, shield = make_controller(name, **kw), (None if a.no_shield else SafetyFilter(SafetyParams(t_react=0.05) if a.controller == "fsm_dwa" else SafetyParams()))
     seed = a.seed
     if not a.plain and not a.rich:
         # the dressed model is built per episode, and a viewer is bound to one model: one window per episode
