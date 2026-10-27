@@ -19,6 +19,7 @@ except ImportError:                      # exported course folder: the package i
 
 import json  # noqa: E402
 import math  # noqa: E402
+from dataclasses import replace  # noqa: E402
 
 import pandas as pd  # noqa: E402
 
@@ -28,6 +29,8 @@ from aedrover.capstone.business import (  # noqa: E402
     evaluate,
     fmea_table,
     input_records,
+    required_standdown_calls_per_pod_day,
+    scenario_table,
     sweep,
     tornado,
     with_measured_speed,
@@ -65,6 +68,12 @@ def main(trials_csv: Path | None = None, out_dir: Path | None = None) -> dict:
     tor = tornado(x, TORNADO_INPUTS)
     fm = fmea_table(trials)
 
+    scen = scenario_table(x)
+    scen.to_csv(out / "roi_scenarios.csv", index=False, float_format="%.6g")
+    need = {"base_costs": required_standdown_calls_per_pod_day(x),
+            "cheap_pod_shared_hub": required_standdown_calls_per_pod_day(replace(x, pod_opex=0.03, hub_opex=0.005)),
+            "dual_use_marginal": required_standdown_calls_per_pod_day(replace(x, pod_opex=0.005, hub_opex=0.0)),
+            "achieved_base": res["calls_per_day"] * x.p_standdown / res["pods"]}
     pd.DataFrame(input_records(x)).to_csv(out / "roi_inputs.csv", index=False)
     sw.to_csv(out / "roi_sensitivity.csv", index=False, float_format="%.6g")
     tor.to_csv(out / "roi_tornado.csv", index=False, float_format="%.6g")
@@ -74,7 +83,7 @@ def main(trials_csv: Path | None = None, out_dir: Path | None = None) -> dict:
     fmea_plot(fm, figs / "business_fmea.png")
 
     payload = {"inputs": {r["input"]: r["value"] for r in input_records(x)}, "results": res,
-               "sensitivity_input": SWEEP_INPUT, "break_even": be}
+               "sensitivity_input": SWEEP_INPUT, "break_even": be, "standdown_calls_per_pod_day_needed_for_kappa_0.25": need}
     (out / "roi_results.json").write_text(json.dumps(payload, indent=2, default=_clean), encoding="utf-8")
 
     print("MDRIIA Group 03 - dimensionless business model (all costs in ALS vehicle-years)")
@@ -84,6 +93,8 @@ def main(trials_csv: Path | None = None, out_dir: Path | None = None) -> dict:
         print(f"  {k:36s} {res[k]:.6g}")
     for k, v in be.items():
         print(f"  break-even {SWEEP_INPUT} for {k}: {v:.6g}")
+    print(scen[["scenario", "pods", "kappa", "NCRI"]].round(3).to_string(index=False))
+    print("stand-down calls per pod per day needed for kappa <= 0.25:", {k: round(v, 3) for k, v in need.items()})
     print(fm[["failure_mode", "S", "O_pre", "D_pre", "RPN_pre", "O_post", "D_post", "RPN_post"]].to_string(index=False))
     return payload
 

@@ -36,7 +36,11 @@
       "planner_kwargs": {
         "v_cruise": 3.5,
         "fsm_kwargs": {
-          "v_cruise": 3.5
+          "v_cruise": 3.5,
+          "mu_belief": 0.35
+        },
+        "safety_kwargs": {
+          "t_react": 0.05
         }
       }
     },
@@ -47,13 +51,17 @@
       "planner_kwargs": {
         "v_cruise": 3.5,
         "fsm_kwargs": {
-          "v_cruise": 3.5
+          "v_cruise": 3.5,
+          "mu_belief": 0.35
+        },
+        "safety_kwargs": {
+          "t_react": 0.05
         }
       }
     }
   },
   "episodes": 1250,
-  "log_rate_hz_min": 499.9999999997469,
-  "log_rate_hz_max": 500.0000000001078,
-  "wall_s": 4356.704011678696
+  "log_rate_hz_min": 499.99999999976995,
+  "log_rate_hz_max": 500.0000000001083,
+  "wall_s": 836.4909665584564
 }

@@ -1,12 +1,14 @@
 {
   "inputs": {
     "zone_area_km2": 50.0,
+    "coverage_fraction": 1.0,
+    "hotspot_factor": 1.0,
     "pop_density_per_km2": 20000.0,
     "ohca_incidence_per_100k_yr": 55.0,
     "suspected_call_factor": 2.5,
     "hub_radius_m": 500.0,
     "route_factor": 1.54,
-    "v_amr_mps": 2.0611203125,
+    "v_amr_mps": 2.0298843539325846,
     "turnaround_h": 0.25,
     "p_wait_max": 0.05,
     "p_standdown": 0.15,
@@ -28,13 +30,13 @@
     "ohca_per_year": 550.0,
     "calls_per_day": 3.767123287671233,
     "lambda_per_hub_h": 0.0020384866275277233,
-    "mu_per_h": 2.1855714361521486,
-    "service_time_min": 27.452774595935516,
-    "rho": 0.0009327018983724557,
-    "p_wait": 0.0009327018983724557,
-    "Wq_min": 0.025629159346796628,
-    "rho_mm1": 0.0009327018983724557,
-    "Wq_mm1_min": 0.025629159346796628,
+    "mu_per_h": 2.1704216141399413,
+    "service_time_min": 27.644398493412446,
+    "rho": 0.0009392122775811468,
+    "p_wait": 0.0009392122775811466,
+    "Wq_min": 0.02598836706478025,
+    "rho_mm1": 0.0009392122775811468,
+    "Wq_mm1_min": 0.02598836706478025,
     "H_reclaimed_veh_h_per_day": 0.8476027397260273,
     "delta_FTE": 0.14873798076923075,
     "C_baseline": 0.035316780821917804,
@@ -45,16 +47,22 @@
     "capex": 34.65,
     "T_payback_months": Infinity,
     "P_payback": Infinity,
-    "t_first_shock_pod_min": 9.726387297967758,
+    "t_first_shock_pod_min": 9.822199246706223,
     "t_first_shock_ambulance_min": 11.0,
-    "delta_survival": 0.023503691732718112,
-    "delta_QALY_per_encounter": 0.23973765567372474,
-    "QALY_per_year": 131.8557106205486,
-    "QALY_per_ALS_vehicle_year_of_cost": 13.172398663391467
+    "delta_survival": 0.022891932028922053,
+    "delta_QALY_per_encounter": 0.23349770669500494,
+    "QALY_per_year": 128.42373868225272,
+    "QALY_per_ALS_vehicle_year_of_cost": 12.82954432390137
   },
   "sensitivity_input": "ohca_incidence_per_100k_yr",
   "break_even": {
     "kappa=1 (cost parity)": 39571.84,
     "kappa=0.25 (course target)": 2412683.0933333333
+  },
+  "standdown_calls_per_pod_day_needed_for_kappa_0.25": {
+    "base_costs": 8.319999999999999,
+    "cheap_pod_shared_hub": 2.2399999999999998,
+    "dual_use_marginal": 0.32,
+    "achieved_base": 0.007338551859099803
   }
 }

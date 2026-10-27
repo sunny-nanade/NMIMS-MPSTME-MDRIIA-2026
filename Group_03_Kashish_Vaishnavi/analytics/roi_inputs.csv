@@ -1,11 +1,13 @@
 input,value,unit,source
 zone_area_km2,50.0,km^2,ASSUMPTION
+coverage_fraction,1.0,-,design choice (scenario)
+hotspot_factor,1.0,-,ASSUMPTION (scenario)
 pop_density_per_km2,20000.0,persons/km^2,ASSUMPTION
 ohca_incidence_per_100k_yr,55.0,events/100k/yr,ASSUMPTION (unverified order of magnitude)
 suspected_call_factor,2.5,-,ASSUMPTION
 hub_radius_m,500.0,m,README RQ3 clinical break-even
 route_factor,1.54,-,docs/OSM_ROUTES.md (Mumbai OSM geometry)
-v_amr_mps,2.0611203125,m/s,measured: analytics/aed_delivery_real_trials.csv
+v_amr_mps,2.0298843539325846,m/s,measured: analytics/aed_delivery_real_trials.csv
 turnaround_h,0.25,h,ASSUMPTION
 p_wait_max,0.05,-,ASSUMPTION
 p_standdown,0.15,-,ASSUMPTION

@@ -1,0 +1,6 @@
+scenario,pods,H_reclaimed_veh_h_per_day,kappa,NCRI,T_payback_months,meets_kappa_target
+base: uniform grid over the zone,77,0.847603,283.435,-282.435,inf,False
+"siting: pods only in the densest 10 % of the zone, 4x arrest rate there",8,0.339041,73.6194,-72.6194,inf,False
+siting + unmanned pod at 3 % and shared hubs at 0.5 % of an ambulance-year,8,0.339041,19.8206,-18.8206,inf,False
+siting + cheap pods + half of suspected calls resolved without an ambulance,8,1.13014,5.94618,-4.94618,inf,False
+"dual-use fleet: AED added to existing delivery robots (marginal 0.5 % per pod, no new hubs), siting, half stood down",8,1.13014,0.849455,0.150545,6093.91,False
