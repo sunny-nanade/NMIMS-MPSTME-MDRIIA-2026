@@ -80,7 +80,7 @@ def measure_emergency_stop(v0: float = 1.8, seed: int = 123) -> dict[str, float]
 
 
 def standards_report(trials: pd.DataFrame | None = None, tyre_mu: float = 1.0) -> pd.DataFrame:
-    sp, fp, ps = SafetyParams(), FSMParams(), PerceptionSpec()
+    sp, fp, ps = SafetyParams(t_react=0.05), FSMParams(), PerceptionSpec()      # the proposed controller's filter (see monte_carlo._PROPOSED)
     stop = measure_emergency_stop(fp.v_cruise)
     rows: list[Check] = []
 

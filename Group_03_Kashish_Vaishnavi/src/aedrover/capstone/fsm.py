@@ -1,4 +1,4 @@
-"""Mission finite-state machine for the capstone controller (course dossier, Section 2).
+﻿"""Mission finite-state machine for the capstone controller (course dossier, Section 2).
 
     DISPATCH -> ROAD_CRUISE <-> CURB_SIDEWALK -> ARRIVE -> AED_HANDOVER
 
@@ -31,7 +31,10 @@ import math
 from dataclasses import dataclass, field
 from enum import Enum
 
+import numpy as np
+
 from ..control.curb import CurbTable
+from ..control.safety_filter import SafetyFilter, SafetyParams
 from ..nav.base import Controller, make_controller, register
 
 
@@ -60,6 +63,10 @@ class FSMParams:
     mu_belief: float = 0.5         # conservative friction belief for the kerb table
     climb_margin: float = 0.15     # m/s above the minimum successful climb speed
     handover_s: float = 10.0       # s, bystander retrieves the AED and applies the pads
+    climb_assist: bool = False     # raise the approach speed to the climbing minimum just before a kerb up (see FSMSupervisor)
+    assist_m: float = 2.0          # m, distance before the kerb edge in which the assist acts
+    unblock: bool = False          # search steering with the safety barrier when blocked (see FSMSupervisor)
+    unblock_s: float = 1.5         # s, blocked time before the search starts
 
 
 @dataclass
@@ -80,9 +87,9 @@ class MissionFSM:
         self._table: CurbTable | None = None
         self._sc = None
 
-    def reset(self, scenario, wheel_radius: float = 0.15) -> None:
+    def reset(self, scenario, wheel_radius: float = 0.15, design: str = "nominal") -> None:
         self._sc = scenario
-        self._table = CurbTable.load(wheel_radius=wheel_radius)
+        self._table = CurbTable.load(wheel_radius=wheel_radius, design=design)      # the kerb table measured for THIS vehicle'
         self.state = State.DISPATCH
         self.transitions = []
 
@@ -138,12 +145,28 @@ class MissionFSM:
 
 
 class FSMSupervisor:
-    """Controller wrapper: planner proposal, FSM speed cap. Satisfies the ``Controller`` protocol."""
+    """Controller wrapper: planner proposal, FSM speed cap. Satisfies the ``Controller`` protocol.
 
-    def __init__(self, inner: Controller, params: FSMParams | None = None):
+    Two optional behaviours (both off by default, so the original controller is unchanged):
+
+    ``climb_assist``  inside ``assist_m`` of a kerb *up* the planner may have slowed for a pedestrian or obstacle and
+                      left too little run-up to climb the lip (the wheels stall on it). The supervisor raises the speed to the
+                      measured minimum climbing speed plus a margin; the safety filter still has the last word.
+    ``unblock``       when the filtered speed stays below ``blocked_v`` for ``unblock_s`` seconds the planner's arc is blocked
+                      and the robot is standing still. The supervisor then searches steering angles with the safety filter's
+                      own stopping-distance barrier and takes the one that allows the most speed (ties go to the planner's angle).
+    """
+
+    BLOCKED_V = 0.3        # m/s, filtered speed below which the arc counts as blocked
+
+    def __init__(self, inner: Controller, params: FSMParams | None = None, safety=None):
         self.inner = inner
         self.fsm = MissionFSM(params or FSMParams())
         self.name = f"fsm_{inner.name}"
+        self.safety = safety
+        self._blocked_since: float | None = None
+        self.n_assists = 0
+        self.n_unblocks = 0
 
     @property
     def state(self) -> State:
@@ -151,15 +174,55 @@ class FSMSupervisor:
 
     def reset(self, env) -> None:
         self.inner.reset(env)
-        self.fsm.reset(env.scenario, wheel_radius=env.veh0.wheel_radius)
+        self.fsm.reset(env.scenario, wheel_radius=env.veh0.wheel_radius, design=env.veh0.name)
+        self._blocked_since = None
+        self.n_assists = self.n_unblocks = 0
+
+    def _climb_assist(self, obs: dict, v: float) -> float:
+        p, sc = self.fsm.params, self.fsm._sc
+        if not (p.climb_assist and sc.has_kerb):
+            return v
+        gap = sc.x_up - obs["x"]
+        if 0.0 <= gap <= p.assist_m:
+            need = self.fsm._table.v_climb(sc.kerb_h, min(p.mu_belief, sc.tyre_mu)) + p.climb_margin
+            if v < need:
+                self.n_assists += 1
+                return need
+        return v
+
+    def _unblock(self, obs: dict, v: float, delta: float) -> tuple[float, float]:
+        p = self.fsm.params
+        if not (p.unblock and self.safety is not None) or self.fsm.state in (State.ARRIVE, State.AED_HANDOVER):
+            return v, delta
+        lim = self.safety.v_limit(obs, delta)
+        if lim >= self.BLOCKED_V:
+            self._blocked_since = None
+            return v, delta
+        t = obs["t"]
+        if self._blocked_since is None:
+            self._blocked_since = t
+        if t - self._blocked_since < p.unblock_s:
+            return v, delta
+        grid = np.linspace(-0.5, 0.5, 21)
+        limits = np.array([self.safety.v_limit(obs, float(g)) for g in grid])
+        best = limits.max()
+        near = np.flatnonzero(limits >= best - 1e-9)
+        d_best = float(grid[near[np.argmin(np.abs(grid[near] - delta))]])
+        if best >= self.BLOCKED_V:
+            self.n_unblocks += 1
+            return min(max(v, self.BLOCKED_V), best), d_best
+        return v, delta
 
     def act(self, obs: dict) -> tuple[float, float]:
         v, delta = self.inner.act(obs)
         self.fsm.update(obs)
+        v = self._climb_assist(obs, v)
+        v, delta = self._unblock(obs, v, delta)
         return min(v, self.fsm.speed_cap(obs)), delta
 
 
 @register("fsm_dwa")
-def _fsm_dwa(fsm_kwargs: dict | None = None, **planner_kwargs):
+def _fsm_dwa(fsm_kwargs: dict | None = None, safety_kwargs: dict | None = None, **planner_kwargs):
     planner_kwargs.setdefault("v_cruise", FSMParams().v_cruise)
-    return FSMSupervisor(make_controller("dwa", **planner_kwargs), FSMParams(**(fsm_kwargs or {})))
+    return FSMSupervisor(make_controller("dwa", **planner_kwargs), FSMParams(**(fsm_kwargs or {})),
+                         SafetyFilter(SafetyParams(**(safety_kwargs or {}))))

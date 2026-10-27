@@ -45,7 +45,9 @@ DAYS_PER_YEAR = 365.0
 @dataclass(frozen=True)
 class Inputs:
     # ---- geography and demand
-    zone_area_km2: float = 50.0            # served urban zone                                    ASSUMPTION
+    zone_area_km2: float = 50.0            # urban zone whose arrests are counted                  ASSUMPTION
+    coverage_fraction: float = 1.0         # share of the zone that gets pods (1 = uniform grid)  design choice, see SCENARIOS
+    hotspot_factor: float = 1.0            # arrest rate in the covered part / zone average        ASSUMPTION (1 = no clustering)
     pop_density_per_km2: float = 20_000.0  # dense metropolitan core                              ASSUMPTION
     ohca_incidence_per_100k_yr: float = 55.0   # OHCA events per 100,000 per year                 ASSUMPTION
     suspected_call_factor: float = 2.5     # dispatched suspected-arrest calls per true OHCA      ASSUMPTION
@@ -73,6 +75,8 @@ class Inputs:
 # name -> (unit, source). SOURCE is a docs/references.json key, a repo document, or ASSUMPTION.
 INPUT_TABLE: dict[str, tuple[str, str]] = {
     "zone_area_km2": ("km^2", "ASSUMPTION"),
+    "coverage_fraction": ("-", "design choice (scenario)"),
+    "hotspot_factor": ("-", "ASSUMPTION (scenario)"),
     "pop_density_per_km2": ("persons/km^2", "ASSUMPTION"),
     "ohca_incidence_per_100k_yr": ("events/100k/yr", "ASSUMPTION (unverified order of magnitude)"),
     "suspected_call_factor": ("-", "ASSUMPTION"),
@@ -137,9 +141,10 @@ def pods_needed(lam: float, mu: float, p_wait_max: float, c_max: int = 50) -> in
 def evaluate(x: Inputs) -> dict[str, float]:
     """All dimensionless results for one input set."""
     hub_area = 3 * math.sqrt(3) / 2 * (x.hub_radius_m / 1000.0) ** 2         # regular hexagon of circumradius r
-    hubs = max(1, math.ceil(x.zone_area_km2 / hub_area))
-    population = x.zone_area_km2 * x.pop_density_per_km2
-    ohca_per_yr = population * x.ohca_incidence_per_100k_yr / 1e5
+    served_km2 = x.zone_area_km2 * x.coverage_fraction
+    hubs = max(1, math.ceil(served_km2 / hub_area))
+    population = served_km2 * x.pop_density_per_km2
+    ohca_per_yr = population * x.ohca_incidence_per_100k_yr / 1e5 * x.hotspot_factor
     calls_per_day = ohca_per_yr * x.suspected_call_factor / DAYS_PER_YEAR
 
     one_way_h = x.hub_radius_m * x.route_factor / x.v_amr_mps / 3600.0
@@ -303,3 +308,39 @@ def with_measured_speed(x: Inputs, trials: pd.DataFrame, label: str = "proposed"
 def input_records(x: Inputs) -> list[dict]:
     d = asdict(x)
     return [{"input": k, "value": d[k], "unit": INPUT_TABLE[k][0], "source": INPUT_TABLE[k][1]} for k in INPUT_TABLE]
+
+
+# ----------------------------------------------------- what would have to be true
+# Scenarios are labelled design alternatives. Their inputs are ASSUMPTIONS: the point of the table is to show how far the
+# inputs must move, not to claim that any of them is the likely case.
+SCENARIOS: dict[str, dict] = {
+    "base: uniform grid over the zone": {},
+    "siting: pods only in the densest 10 % of the zone, 4x arrest rate there": {"coverage_fraction": 0.10, "hotspot_factor": 4.0},
+    "siting + unmanned pod at 3 % and shared hubs at 0.5 % of an ambulance-year": {
+        "coverage_fraction": 0.10, "hotspot_factor": 4.0, "pod_opex": 0.03, "hub_opex": 0.005},
+    "siting + cheap pods + half of suspected calls resolved without an ambulance": {
+        "coverage_fraction": 0.10, "hotspot_factor": 4.0, "pod_opex": 0.03, "hub_opex": 0.005, "p_standdown": 0.5},
+    "dual-use fleet: AED added to existing delivery robots (marginal 0.5 % per pod, no new hubs), siting, half stood down": {
+        "coverage_fraction": 0.10, "hotspot_factor": 4.0, "pod_opex": 0.005, "hub_opex": 0.0, "p_standdown": 0.5},
+}
+
+
+def scenario_table(x: Inputs) -> pd.DataFrame:
+    rows = []
+    for name, over in SCENARIOS.items():
+        r = evaluate(replace(x, **over))
+        rows.append({"scenario": name, "pods": r["pods"], "H_reclaimed_veh_h_per_day": r["H_reclaimed_veh_h_per_day"],
+                     "kappa": r["kappa"], "NCRI": r["NCRI"], "T_payback_months": r["T_payback_months"],
+                     "meets_kappa_target": r["meets_kappa_target"]})
+    return pd.DataFrame(rows)
+
+
+def required_standdown_calls_per_pod_day(x: Inputs, target: float = KAPPA_TARGET) -> float:
+    """Stand-down calls per pod per day needed for ``kappa <= target`` at this pod and hub cost (hubs shared one per pod).
+
+    Each pod-year costs ``pod_opex + hub_opex`` ambulance-years; each stand-down call frees ``h_als_per_call`` ambulance-hours.
+    A pod that serves fewer calls than this cannot meet the target whatever the arrest rate of the zone it sits in.
+    """
+    cost_veh_years = x.pod_opex + x.hub_opex
+    hours_needed_per_day = cost_veh_years * HOURS_PER_VEHICLE_YEAR / DAYS_PER_YEAR / target
+    return hours_needed_per_day / x.h_als_per_call

@@ -39,7 +39,7 @@ import pandas as pd
 
 from ..analysis.stats import TTestResult, welch_t, wilson_ci
 from ..clinical.decision import DispatchTimes
-from ..control.safety_filter import SafetyFilter
+from ..control.safety_filter import SafetyFilter, SafetyParams
 from ..nav.base import make_controller
 from ..parallel import pmap
 from ..sim.env import AEDRoverEnv
@@ -56,7 +56,9 @@ CONDITIONS = {
     "slippery": "slippery",
 }
 CRUISE_MPS = 3.5              # ROAD_CRUISE speed in the course guide (the CURB_SIDEWALK speed is 1.2 m/s, FSMParams.v_curb)
-_PROPOSED = {"v_cruise": CRUISE_MPS, "fsm_kwargs": {"v_cruise": CRUISE_MPS}}
+# Settings chosen on TUNING seeds (60000+, experiments/10_capstone_tuning.py), never on the evaluation seeds (70000+): the kerb friction
+# belief is the lowest friction the sampler draws (0.35), and the safety filter assumes a 50 ms reaction time (the ISO 3691-4 figure).
+_PROPOSED = {"v_cruise": CRUISE_MPS, "fsm_kwargs": {"v_cruise": CRUISE_MPS, "mu_belief": 0.35}, "safety_kwargs": {"t_react": 0.05}}
 # label -> (planner, safety filter, vehicle preset, planner kwargs). ``course`` is the starter pack's vehicle (VehicleParams.course);
 # ``optimized`` is this repository's co-designed chassis (experiment 06).
 CONTROLLERS = {
@@ -105,7 +107,7 @@ def run_mc_job(job: McJob) -> dict:
     name, shielded, vehicle, kwargs = CONTROLLERS[job.label]
     env = _env(vehicle)
     ctrl = make_controller(name, **kwargs)
-    shield = SafetyFilter() if shielded else None
+    shield = SafetyFilter(SafetyParams(**kwargs.get("safety_kwargs", {}))) if shielded else None
     family = CONDITIONS[job.condition]
     t0 = time.perf_counter()
 

@@ -1,4 +1,4 @@
-"""Kerb traversability study: success and payload shock versus kerb height, approach speed,
+﻿"""Kerb traversability study: success and payload shock versus kerb height, approach speed,
 approach angle, wheel radius and friction, for kerb-up and kerb-down.
 
 The trial function is module-level and picklable so grids run under ``aedrover.parallel.pmap``.
@@ -32,6 +32,7 @@ class KerbTrial:
     iso_cz: float = 180.0
     motor_peak_torque: float = 25.0
     payload_mass: float = 4.0
+    tyre_solref: tuple[float, float] = (0.03, 1.0)     # contact time constant and damping ratio; sets the radial tyre stiffness
 
 
 @functools.lru_cache(maxsize=3)
@@ -42,7 +43,7 @@ def _world_for(veh: VehicleParams) -> World:
 def run_kerb_trial(t: KerbTrial, x_kerb: float = 7.0) -> dict:
     veh = VehicleParams(wheel_radius=t.wheel_radius, susp_c=t.susp_c, susp_k=t.susp_k,
                         iso_kz=t.iso_kz, iso_cz=t.iso_cz, motor_peak_torque=t.motor_peak_torque,
-                        wheel_mass=wheel_mass_for(t.wheel_radius, t.motor_peak_torque))
+                        wheel_mass=wheel_mass_for(t.wheel_radius, t.motor_peak_torque), tyre_solref=t.tyre_solref)
     w = _world_for(veh)
     w.clear_all()
     if t.payload_mass != float(w.model.body_mass[w.b_payload]):
