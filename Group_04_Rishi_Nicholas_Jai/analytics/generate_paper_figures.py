@@ -257,6 +257,139 @@ def generate_figure3(records):
     print(f"[SUCCESS] Wrote Figure 3: {out_path}")
 
 
+def generate_dossier_placeholders(records):
+    """Generates the four specific figures designated for the MDRIIA Technical Dossier placeholders."""
+    # 1. Sensitivity graph: P_payback / NCRI vs uncertain input (P_success)
+    fig, ax1 = plt.subplots(figsize=(6.2, 4.2), dpi=300)
+    ps = np.linspace(0.70, 0.99, 60)
+    kappa = 0.08
+    n_targets = 5.0
+    gamma = (n_targets * ps) / (1.0 + kappa * n_targets)
+    ncri = 1.0 - (1.0 / gamma)
+    p_payback = 1.0 / (ps * (1.0 - kappa))
+
+    color1 = '#1565C0'
+    color2 = '#C62828'
+
+    ax1.plot(ps * 100, ncri, color=color1, lw=2.4, label='Net Cost Reduction Index (NCRI)')
+    ax1.set_xlabel('Debris Capture Success Rate P_s (%)', fontweight='bold', fontsize=9.5)
+    ax1.set_ylabel('NCRI (Dimensionless Efficiency)', color=color1, fontweight='bold', fontsize=9.5)
+    ax1.tick_params(axis='y', labelcolor=color1)
+    ax1.grid(True, linestyle='--', alpha=0.5)
+
+    ax2 = ax1.twinx()
+    ax2.plot(ps * 100, p_payback, color=color2, lw=2.2, linestyle='--', label='Payback Horizon P_payback')
+    ax2.set_ylabel('Payback Horizon P_payback (Sorties)', color=color2, fontweight='bold', fontsize=9.5)
+    ax2.tick_params(axis='y', labelcolor=color2)
+
+    # Operating point (Impedance controller ~96.7% success)
+    ax1.scatter([96.7], [1.0 - 1.0 / ((5.0 * 0.967) / (1.0 + 0.08 * 5.0))], color='#2E7D32', s=50, zorder=5)
+    ax1.annotate('Impedance (96.7%)', xy=(96.7, 0.71), xytext=(88, 0.65),
+                 arrowprops=dict(arrowstyle='->', lw=1.2, color='#2E7D32'), fontweight='bold', fontsize=8, color='#2E7D32')
+
+    plt.title('Sensitivity Analysis: NCRI & Payback vs Capture Success Rate', fontweight='bold', fontsize=10.5, pad=12)
+    plt.tight_layout()
+    p1 = FIGURES_DIR / 'graph_sensitivity_ncri.png'
+    fig.savefig(p1, dpi=300)
+    plt.close(fig)
+    print(f"[SUCCESS] Wrote Dossier Slot 1 (Sensitivity): {p1}")
+
+    # 2. Queuing graph: W_q vs utilisation rho
+    fig, ax = plt.subplots(figsize=(6.2, 4.2), dpi=300)
+    rho = np.linspace(0.10, 0.92, 60)
+    mu = 1.0
+    wq = rho / (mu * (1.0 - rho))
+
+    ax.plot(rho, wq, color='#2E7D32', lw=2.4, label='Expected Queue Delay W_q = rho / (mu * (1 - rho))')
+    ax.axvline(x=0.75, color='#E65100', linestyle=':', lw=1.8, label='Nominal Operating Point (rho = 0.75)')
+    ax.scatter([0.75], [0.75 / (1.0 * (1.0 - 0.75))], color='#E65100', s=45, zorder=5)
+    ax.annotate('W_q = 3.0 intervals at rho = 0.75', xy=(0.75, 3.0), xytext=(0.38, 5.5),
+                arrowprops=dict(arrowstyle='->', lw=1.2, color='#E65100'), fontweight='bold', fontsize=8.5, color='#E65100')
+    ax.set_xlabel('ADR Servicer Fleet Utilisation rho', fontweight='bold', fontsize=9.5)
+    ax.set_ylabel('Mean Queue Waiting Time W_q (Normalized)', fontweight='bold', fontsize=9.5)
+    ax.set_title('ADR Constellation Operations: Queuing Delay vs Utilisation rho', fontweight='bold', fontsize=10.5, pad=12)
+    ax.set_ylim(0, 11)
+    ax.grid(True, linestyle='--', alpha=0.5)
+    ax.legend(loc='upper left', fontsize=8.5)
+    plt.tight_layout()
+    p2 = FIGURES_DIR / 'graph_queuing_delay.png'
+    fig.savefig(p2, dpi=300)
+    plt.close(fig)
+    print(f"[SUCCESS] Wrote Dossier Slot 2 (Queuing): {p2}")
+
+    # 3. Trajectory plot: reference vs actual (End-Effector and Target Position)
+    fig, (ax_xy, ax_z) = plt.subplots(2, 1, figsize=(6.2, 4.4), dpi=300, sharex=True)
+    run_file = RUNS_DIR / "impedance_seed9835_tumble5.0" / "telemetry_real_trials.csv.gz"
+    if not run_file.exists():
+        subdirs = [d for d in RUNS_DIR.iterdir() if d.is_dir() and d.name.startswith("impedance_")]
+        if subdirs:
+            run_file = subdirs[0] / "telemetry_real_trials.csv.gz"
+
+    times, ref_x, act_x = [], [], []
+    ref_z, act_z = [], []
+    if run_file.exists():
+        with gzip.open(run_file, 'rt') as f:
+            r = csv.DictReader(f)
+            for row in r:
+                t = float(row['time_s'])
+                if 2.0 <= t <= 7.5:
+                    times.append(t)
+                    ref_x.append(float(row['target_p_x']))
+                    ref_z.append(float(row['target_p_z']))
+                    act_x.append(float(row['L_ee_x']))
+                    act_z.append(float(row['L_ee_z']))
+
+    ax_xy.plot(times, ref_x, color='#1565C0', linestyle='--', lw=1.8, label='Target Trajectory p_ref,x')
+    ax_xy.plot(times, act_x, color='#2E7D32', lw=2.0, label='Gripper Actual Position p_ee,x')
+    ax_xy.set_ylabel('X Position (m)', fontweight='bold', fontsize=8.5)
+    ax_xy.grid(True, linestyle='--', alpha=0.5)
+    ax_xy.legend(loc='lower right', fontsize=8)
+    ax_xy.set_title('Representative Run Trajectory: Gripper Tracking vs Target Coordinate', fontweight='bold', fontsize=10)
+
+    ax_z.plot(times, ref_z, color='#C62828', linestyle='--', lw=1.8, label='Target Trajectory p_ref,z')
+    ax_z.plot(times, act_z, color='#6A1B9A', lw=2.0, label='Gripper Actual Position p_ee,z')
+    ax_z.set_xlabel('Simulation Time (s)', fontweight='bold', fontsize=8.5)
+    ax_z.set_ylabel('Z Position (m)', fontweight='bold', fontsize=8.5)
+    ax_z.grid(True, linestyle='--', alpha=0.5)
+    ax_z.legend(loc='lower right', fontsize=8)
+
+    plt.tight_layout()
+    p3 = FIGURES_DIR / 'graph_trajectory_tracking.png'
+    fig.savefig(p3, dpi=300)
+    plt.close(fig)
+    print(f"[SUCCESS] Wrote Dossier Slot 3 (Trajectory): {p3}")
+
+    # 4. Box-plot of primary metric: baseline vs proposed
+    fig, ax = plt.subplots(figsize=(5.6, 4.2), dpi=300)
+    imp_forces = [r['impact_peak_force_N'] for r in records if r['controller'] == 'impedance']
+    rig_forces = [r['impact_peak_force_N'] for r in records if r['controller'] == 'rigid']
+
+    bp = ax.boxplot([imp_forces, rig_forces],
+                    tick_labels=[f'Compliant Impedance\n(Proposed, N={len(imp_forces)})',
+                                 f'Rigid PD Control\n(Baseline, N={len(rig_forces)})'],
+                    patch_artist=True, widths=0.45)
+    colors = ['#C8E6C9', '#FFCDD2']
+    for patch, c in zip(bp['boxes'], colors):
+        patch.set_facecolor(c)
+        patch.set_edgecolor('#37474F')
+        patch.set_linewidth(1.5)
+
+    ax.set_ylabel('Impact Peak Contact Force (N)', fontweight='bold', fontsize=9.5)
+    ax.set_title('Primary Metric: Peak Contact Force (Baseline vs Proposed)', fontweight='bold', fontsize=10.5, pad=12)
+    ax.grid(True, linestyle='--', alpha=0.5)
+
+    m_imp = np.mean(imp_forces) if imp_forces else 0.0
+    m_rig = np.mean(rig_forces) if rig_forces else 0.0
+    ax.text(1, m_imp + 120, f'Mean: {m_imp:.1f} N', ha='center', fontweight='bold', fontsize=8.5, color='#1B5E20')
+    ax.text(2, m_rig + 150, f'Mean: {m_rig:.1f} N', ha='center', fontweight='bold', fontsize=8.5, color='#B71C1C')
+
+    plt.tight_layout()
+    p4 = FIGURES_DIR / 'graph_boxplot_force.png'
+    fig.savefig(p4, dpi=300)
+    plt.close(fig)
+    print(f"[SUCCESS] Wrote Dossier Slot 4 (Box-plot): {p4}")
+
+
 def main():
     print("=" * 70)
     print("GENERATING PUBLICATION ASSETS FROM GENUINE TELEMETRY")
@@ -270,6 +403,7 @@ def main():
     generate_figure1()
     generate_figure2()
     generate_figure3(records)
+    generate_dossier_placeholders(records)
     print("=" * 70)
     print("[SUCCESS] All publication figures regenerated successfully at 300 DPI.")
 
