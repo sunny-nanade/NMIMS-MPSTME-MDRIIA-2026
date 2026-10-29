@@ -7,6 +7,11 @@ import math
 import csv
 import os
 
+# The kinematic values below are SCRIPTED scaffold values (fixed outcomes), not measurements, so their
+# output is labelled SIMULATED. When you replace them with measured MediaPipe / MuJoCo data, set this
+# flag to False and the same code writes analytics/fall_triage_real_trials.csv instead.
+SCRIPTED_SCAFFOLD = True
+
 def detect_fall_and_respond(trials=100):
     print("==================================================")
     print("GROUP 02 - ELDERLY FALL KINEMATICS & TRIAGE BENCHMARK")
@@ -137,7 +142,7 @@ def detect_fall_and_respond(trials=100):
     # Save telemetry log
     out_dir = os.path.join(os.path.dirname(__file__), "..", "analytics")
     os.makedirs(out_dir, exist_ok=True)
-    out_csv = os.path.join(out_dir, "fall_triage_benchmark.csv")
+    out_csv = os.path.join(out_dir, "SIMULATED_fall_triage_benchmark.csv" if SCRIPTED_SCAFFOLD else "fall_triage_real_trials.csv")
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(records[0].keys()))
         writer.writeheader()

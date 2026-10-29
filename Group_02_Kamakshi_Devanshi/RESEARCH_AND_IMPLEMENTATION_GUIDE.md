@@ -163,7 +163,7 @@ $$F_{\text{confirmed}}(t) = D_{\text{impact}}(t) \land \left( \frac{1}{\tau_{\te
 
 ### 5.2 Quantitative Kinematic Differentiation Matrix
 
-| Activity Scenario | Max Descent Velocity $|v_z|$ | Torso Pitch $\theta_{\text{torso}}$ | Aspect Ratio $\text{AR}$ | Terminal Elevation $z_h$ | State Decision |
+| Activity Scenario | Max Descent Velocity $\lvert v_z \rvert$ | Torso Pitch $\theta_{\text{torso}}$ | Aspect Ratio $\text{AR}$ | Terminal Elevation $z_h$ | State Decision |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Bipedal Fall (Slip/Trip/Syncope)** | $\mathbf{\ge 1.80\text{ m/s}}$ | $\mathbf{\ge 60.0^\circ}$ | $\mathbf{\ge 1.20}$ | $\mathbf{\le 0.15\text{ m}}$ | **CONFIRMED FALL** |
 | **Rapid Sitting (Low Armchair)** | $0.60 - 1.10\text{ m/s}$ | $15.0^\circ - 32.0^\circ$ | $0.55 - 0.78$ | $0.42 - 0.52\text{ m}$ | ADL (Negative) |

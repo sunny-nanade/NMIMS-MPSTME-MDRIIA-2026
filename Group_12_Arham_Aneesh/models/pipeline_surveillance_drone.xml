@@ -1,0 +1,57 @@
+<mujoco model="pipeline_surveillance_drone">
+  <compiler angle="radian" coordinate="local"/>
+  <option gravity="0 0 -9.81" timestep="0.004" solver="Newton" iterations="40"/>
+
+  <default>
+    <geom condim="3" friction="1.0 0.01 0.005"/>
+    <motor ctrllimited="true" ctrlrange="0 8.0"/>
+  </default>
+
+  <worldbody>
+    <!-- Desert / Industrial Ground Plane -->
+    <geom name="ground" type="plane" size="60 30 0.1" rgba="0.45 0.40 0.32 1"/>
+    <light directional="true" pos="0 0 35" dir="0 0 -1" castshadow="false"/>
+
+    <!-- =================================================================== -->
+    <!-- ABOVE-GROUND INDUSTRIAL OIL & GAS PIPELINE CORRIDOR                 -->
+    <!-- =================================================================== -->
+    <!-- Main Pipeline Section 1 -->
+    <geom name="pipeline_main_1" type="cylinder" size="0.45 25" pos="0 0 0.9" zaxis="0 1 0" rgba="0.75 0.72 0.68 1" mass="4500.0"/>
+    <!-- Support Trestle Structures -->
+    <geom name="trestle_1" type="box" size="0.6 0.15 0.45" pos="0 -18 0.45" rgba="0.3 0.3 0.35 1"/>
+    <geom name="trestle_2" type="box" size="0.6 0.15 0.45" pos="0 -6 0.45" rgba="0.3 0.3 0.35 1"/>
+    <geom name="trestle_3" type="box" size="0.6 0.15 0.45" pos="0 6 0.45" rgba="0.3 0.3 0.35 1"/>
+    <geom name="trestle_4" type="box" size="0.6 0.15 0.45" pos="0 18 0.45" rgba="0.3 0.3 0.35 1"/>
+
+    <!-- Valve Station Junction -->
+    <geom name="valve_junction" type="cylinder" size="0.75 0.6" pos="0 0 0.9" zaxis="0 0 1" rgba="0.85 0.35 0.1 1"/>
+    <!-- Simulated Pipeline Leak / Defect Site -->
+    <site name="pipeline_defect_site" pos="0.46 8.0 0.9" size="0.12 0.12 0.02" rgba="1 0.1 0.1 0.9"/>
+
+    <!-- =================================================================== -->
+    <!-- AUTONOMOUS SURVEILLANCE QUADROTOR UAV                                -->
+    <!-- =================================================================== -->
+    <body name="uav_quad" pos="0 -22 6.0">
+      <freejoint name="uav_root"/>
+      <geom name="quad_chassis" type="box" size="0.22 0.22 0.06" rgba="0.15 0.45 0.85 1" mass="1.85"/>
+      <site name="quad_imu" pos="0 0 0"/>
+
+      <!-- Downward Optical & Thermal Inspection Camera -->
+      <camera name="pipeline_cam" pos="0 0 -0.07" euler="3.1415 0 0" fovy="65"/>
+      <site name="thermal_sensor_site" pos="0 0 -0.07" size="0.03" rgba="1 0 0 1"/>
+
+      <!-- 4 Rotors for Quadrotor Dynamics -->
+      <site name="rotor0" pos="0.25 0.25 0.03"/>
+      <site name="rotor1" pos="-0.25 0.25 0.03"/>
+      <site name="rotor2" pos="-0.25 -0.25 0.03"/>
+      <site name="rotor3" pos="0.25 -0.25 0.03"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="motor_rotor0" site="rotor0" gear="0 0 1 0 0 -0.04"/>
+    <motor name="motor_rotor1" site="rotor1" gear="0 0 1 0 0 0.04"/>
+    <motor name="motor_rotor2" site="rotor2" gear="0 0 1 0 0 -0.04"/>
+    <motor name="motor_rotor3" site="rotor3" gear="0 0 1 0 0 0.04"/>
+  </actuator>
+</mujoco>

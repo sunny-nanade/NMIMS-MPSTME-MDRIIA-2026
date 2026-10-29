@@ -11,6 +11,7 @@ Student Work Distribution:
 
 import math
 import csv
+import os
 
 def normalize_angle(theta):
     """
@@ -28,7 +29,9 @@ def compute_anti_slosh_speed_limit(omega, a_lat_crit=0.40):
     epsilon = 1e-6
     return a_lat_crit / (abs(omega) + epsilon)
 
-def run_simulation(duration_sec=15.0, output_csv="icu_amr_telemetry.csv"):
+REAL_TRIALS_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analytics", "icu_amr_real_trials.csv")
+
+def run_simulation(duration_sec=15.0, output_csv=REAL_TRIALS_CSV):  # real controller telemetry, never SIMULATED_*
     print("[Group 01] Initializing ICU Medicine Delivery AMR Simulation...")
     
     # Kinematic Calibration (r = 0.08m, b = 0.42m)

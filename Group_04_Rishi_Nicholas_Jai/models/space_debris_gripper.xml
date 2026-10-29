@@ -1,96 +1,309 @@
-<mujoco model="leo_orbital_debris_capture">
-  <compiler angle="radian" coordinate="local" balanceinertia="true"/>
-
-  <!-- Microgravity Simulation: gravity="0 0 0", High-Precision Implicit Integrator -->
-  <option gravity="0 0 0" timestep="0.001" integrator="implicit" iterations="50" tolerance="1e-10"/>
-
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="Group_04_tumbling_debris_impedance">
+  <compiler angle="degree" inertiafromgeom="true" />
+  <option gravity="0 0 0" timestep="0.002" integrator="implicitfast" iterations="50" tolerance="1e-8" />
+  <statistic extent="48" center="0 0 5" />
+  <visual>
+    <map znear="0.002" zfar="100" />
+    <global offwidth="640" offheight="480" />
+    <quality shadowsize="2048" />
+    <headlight ambient="0.35 0.35 0.4" diffuse="0.5 0.5 0.5" specular="0.1 0.1 0.1" />
+  </visual>
   <default>
-    <joint damping="0.08" armature="0.02"/>
-    <geom condim="4" friction="1.5 0.05 0.002" solref="0.004 1.0" solimp="0.9 0.95 0.001 0.5 2"/>
-    <motor ctrllimited="true"/>
+    <joint armature="0.02" damping="0.5" />
+    <geom solref="0.008 1" solimp="0.9 0.95 0.001 0.5 2" friction="1.5 .05 .002" condim="4" />
+    <default class="free">
+      <joint damping="0" armature="0" />
+    </default>
   </default>
-
+  <asset>
+    <texture name="stars" type="skybox" builtin="gradient" rgb1="0.02 0.02 0.06" rgb2="0 0 0" width="512" height="512" mark="random" markrgb="1 1 1" />
+    <material name="robot_light" rgba="0.85 0.87 0.9 1" specular="0.4" />
+    <material name="robot_dark" rgba="0.25 0.27 0.3 1" specular="0.4" />
+    <material name="finger" rgba="0.9 0.5 0.1 1" />
+    <material name="metal" rgba="0.6 0.6 0.65 1" specular="0.5" />
+    <material name="dark_metal" rgba="0.3 0.3 0.35 1" specular="0.5" />
+    <material name="gold" rgba="0.85 0.65 0.2 1" specular="0.6" />
+    <material name="solar_panel" rgba="0.1 0.2 0.5 1" specular="0.6" />
+    <material name="earth_ocean" rgba="0.1 0.3 0.7 1" />
+    <material name="earth_land" rgba="0.2 0.5 0.25 1" />
+    <material name="station_white" rgba="0.92 0.92 0.90 1" specular="0.35" />
+    <material name="collector_interior" rgba="0.15 0.18 0.22 1" specular="0.2" />
+    <texture name="sphere_texture" file="/Users/jaimaini/Developer/final robotics/Main/Group_04_Rishi_Nicholas_Jai/models/earth_2048x1024.png" type="2d"/>
+    <material name="earth_mat" texture="sphere_texture" texrepeat="1 1" texuniform="false" rgba="1 1 1 1" />
+  </asset>
   <worldbody>
-    <light directional="true" diffuse="0.9 0.9 0.9" specular="0.3 0.3 0.3" pos="2 2 5" dir="-0.5 -0.5 -1"/>
-
-    <!-- =================================================================== -->
-    <!-- 1. SERVICER SPACECRAFT BUS (Free-Floating Base, Mass: 180 kg)        -->
-    <!-- =================================================================== -->
-    <body name="servicer_bus" pos="0 0 0">
-      <freejoint name="servicer_root"/>
-      <geom name="bus_geom" type="box" size="0.45 0.40 0.35" rgba="0.25 0.30 0.40 1.0" mass="150.0"/>
-      <site name="bus_imu" pos="0 0 0.35"/>
-
-      <!-- Arm 1 (Left Arm, 3-DOF articulated) -->
-      <body name="arm1_link1" pos="0.35 0.30 0.20">
-        <joint name="arm1_joint1" type="hinge" axis="0 0 1" range="-2.5 2.5"/>
-        <geom name="arm1_l1_geom" type="capsule" fromto="0 0 0 0.35 0 0" size="0.04" rgba="0.7 0.7 0.7 1" mass="4.0"/>
-
-        <body name="arm1_link2" pos="0.35 0 0">
-          <joint name="arm1_joint2" type="hinge" axis="0 1 0" range="-2.0 2.0"/>
-          <geom name="arm1_l2_geom" type="capsule" fromto="0 0 0 0.30 0 0" size="0.035" rgba="0.6 0.6 0.6 1" mass="3.5"/>
-
-          <body name="arm1_gripper" pos="0.30 0 0">
-            <joint name="arm1_joint3" type="hinge" axis="0 1 0" range="-1.8 1.8"/>
-            <geom name="arm1_palm" type="box" size="0.05 0.04 0.03" rgba="0.2 0.2 0.2 1" mass="1.5"/>
-            <geom name="arm1_finger_pad" type="box" size="0.04 0.02 0.02" pos="0.05 0 0" rgba="0.9 0.2 0.2 1" mass="0.5"/>
-            <site name="arm1_contact_sensor" pos="0.06 0 0"/>
-          </body>
-        </body>
-      </body>
-
-      <!-- Arm 2 (Right Arm, 3-DOF articulated) -->
-      <body name="arm2_link1" pos="0.35 -0.30 0.20">
-        <joint name="arm2_joint1" type="hinge" axis="0 0 1" range="-2.5 2.5"/>
-        <geom name="arm2_l1_geom" type="capsule" fromto="0 0 0 0.35 0 0" size="0.04" rgba="0.7 0.7 0.7 1" mass="4.0"/>
-
-        <body name="arm2_link2" pos="0.35 0 0">
-          <joint name="arm2_joint2" type="hinge" axis="0 1 0" range="-2.0 2.0"/>
-          <geom name="arm2_l2_geom" type="capsule" fromto="0 0 0 0.30 0 0" size="0.035" rgba="0.6 0.6 0.6 1" mass="3.5"/>
-
-          <body name="arm2_gripper" pos="0.30 0 0">
-            <joint name="arm2_joint3" type="hinge" axis="0 1 0" range="-1.8 1.8"/>
-            <geom name="arm2_palm" type="box" size="0.05 0.04 0.03" rgba="0.2 0.2 0.2 1" mass="1.5"/>
-            <geom name="arm2_finger_pad" type="box" size="0.04 0.02 0.02" pos="0.05 0 0" rgba="0.2 0.2 0.9 1" mass="0.5"/>
-            <site name="arm2_contact_sensor" pos="0.06 0 0"/>
-          </body>
-        </body>
-      </body>
+    <light name="sun" pos="0 0 15" dir="-0.4 0.3 -1" directional="true" diffuse="0.9 0.9 0.85" specular="0.3 0.3 0.3" castshadow="false" />
+    <geom name="earth" type="sphere" pos="0 0 -30" size="20" material="earth_mat" contype="0" conaffinity="0" />
+    
+    
+    <camera name="space_camera" pos="-9 -9 5" xyaxes="1 -1 0 0.3 0.3 1" fovy="55" />
+    <camera name="station_view" pos="5 -22 12" xyaxes="1 0.3 0 -0.1 0.3 1" fovy="65" />
+    <camera name="collector_close" pos="6 -6 5" xyaxes="0.9 0.45 0 -0.1 0.2 1" fovy="50" />
+    <body name="space_station" pos="20 0 5">
+      <geom name="truss_main" type="box" size="0.15 9.5 0.15" mass="300" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="truss_cross1" type="box" pos="0 3 0" size="0.8 0.08 0.08" mass="10" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="truss_cross2" type="box" pos="0 -3 0" size="0.8 0.08 0.08" mass="10" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="hub_module" type="cylinder" fromto="0 -1.8 0 0 1.8 0" size="1.6" mass="250" material="station_white" contype="0" conaffinity="0" />
+      <geom name="hub_ring1" type="cylinder" fromto="0 -0.9 0 0 -0.8 0" size="1.65" mass="5" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="hub_ring2" type="cylinder" fromto="0 0.8 0 0 0.9 0" size="1.65" mass="5" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="lab_module" type="cylinder" fromto="0 2.2 0 0 5.5 0" size="1.1" mass="180" material="station_white" contype="0" conaffinity="0" />
+      <geom name="lab_ring" type="cylinder" fromto="0 3.8 0 0 3.9 0" size="1.15" mass="3" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="hab_module" type="cylinder" fromto="0 -2.2 0 0 -5.5 0" size="1.1" mass="180" material="station_white" contype="0" conaffinity="0" />
+      <geom name="hab_ring" type="cylinder" fromto="0 -3.8 0 0 -3.9 0" size="1.15" mass="3" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="node_connector" type="cylinder" fromto="-1.6 0 0 -3.0 0 0" size="0.9" mass="80" material="station_white" contype="0" conaffinity="0" />
+      <geom name="node_ring" type="cylinder" fromto="-2.9 0 0 -3.0 0 0" size="0.95" mass="3" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="dock_adapter" type="cylinder" fromto="1.6 0 0 2.5 0 0" size="0.6" mass="30" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="dock_ring" type="cylinder" fromto="2.4 0 0 2.5 0 0" size="0.65" mass="2" material="gold" contype="0" conaffinity="0" />
+      <geom name="solar_port_panel" type="box" pos="0 8 0" size="0.015 2.0 3.5" mass="30" material="solar_panel" contype="0" conaffinity="0" />
+      <geom name="solar_port_spar1" type="capsule" fromto="0 6 -3.5 0 6 3.5" size="0.04" mass="5" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="solar_port_spar2" type="capsule" fromto="0 10 -3.5 0 10 3.5" size="0.04" mass="5" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="solar_stbd_panel" type="box" pos="0 -8 0" size="0.015 2.0 3.5" mass="30" material="solar_panel" contype="0" conaffinity="0" />
+      <geom name="solar_stbd_spar1" type="capsule" fromto="0 -6 -3.5 0 -6 3.5" size="0.04" mass="5" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="solar_stbd_spar2" type="capsule" fromto="0 -10 -3.5 0 -10 3.5" size="0.04" mass="5" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="radiator_top" type="box" pos="0 0 2.5" size="0.01 1.5 0.8" mass="10" rgba="0.9 0.9 0.9 0.8" contype="0" conaffinity="0" />
+      <geom name="radiator_bot" type="box" pos="0 0 -2.5" size="0.01 1.5 0.8" mass="10" rgba="0.9 0.9 0.9 0.8" contype="0" conaffinity="0" />
+      <geom name="antenna_mast" type="capsule" fromto="0 0 1.6 0 0 3.5" size="0.03" mass="3" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="antenna_dish" type="cylinder" fromto="0 0 3.5 0 0 4.65" size="0.7" mass="8" material="station_white" contype="0" conaffinity="0" />
+      <geom name="cupola" type="sphere" pos="0 0 1.8" size="0.5" mass="15" rgba="0.7 0.8 0.9 0.6" contype="0" conaffinity="0" />
+      <geom name="gc_connector" type="cylinder" fromto="-3.0 0 0 -4.2 0 0" size="0.8" mass="30" material="dark_metal" contype="0" conaffinity="0" />
+      <light name="gc_interior_light" pos="-7.5 0 2.0" dir="0 0 -1" diffuse="0.4 0.4 0.5" specular="0.05 0.05 0.05" />
+      <geom name="gc_floor" type="box" pos="-7.5 0 -2.65" size="3.15 4.65 0.15" mass="120" material="collector_interior" />
+      <geom name="gc_back" type="box" pos="-4.35 0 0" size="0.15 4.65 2.65" mass="100" material="collector_interior" />
+      <geom name="gc_wall_left" type="box" pos="-7.5 4.65 0" size="3.15 0.15 2.65" mass="100" material="collector_interior" />
+      <geom name="gc_wall_right" type="box" pos="-7.5 -4.65 0" size="3.15 0.15 2.65" mass="100" material="collector_interior" />
+      <geom name="gc_ceiling" type="box" pos="-7.5 0 2.65" size="3.15 4.65 0.15" mass="80" rgba="0.2 0.22 0.28 0.4" />
+      <geom name="gc_lip_top" type="box" pos="-10.65 0 2.65" size="0.12 4.9 0.22" mass="8" material="gold" />
+      <geom name="gc_lip_bot" type="box" pos="-10.65 0 -2.65" size="0.12 4.9 0.22" mass="8" material="gold" />
+      <geom name="gc_lip_left" type="box" pos="-10.65 4.65 0" size="0.12 0.22 2.65" mass="8" material="gold" />
+      <geom name="gc_lip_right" type="box" pos="-10.65 -4.65 0" size="0.12 0.22 2.65" mass="8" material="gold" />
+      <geom name="gc_post_tl" type="capsule" fromto="-10.65 4.65 -2.65 -10.65 4.65 2.65" size="0.06" mass="3" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="gc_post_tr" type="capsule" fromto="-10.65 -4.65 -2.65 -10.65 -4.65 2.65" size="0.06" mass="3" material="dark_metal" contype="0" conaffinity="0" />
+      <geom name="gc_pad_back" type="box" pos="-4.5 0 0" size="0.05 3.0 2.0" mass="3" material="finger" contype="0" conaffinity="0" />
+      <geom name="gc_pad_floor" type="box" pos="-7.5 0 -2.35" size="2.5 3.0 0.05" mass="3" material="finger" contype="0" conaffinity="0" />
+      <geom name="gc_light_tl" type="sphere" pos="-10.8 3.5 2.4" size="0.1" rgba="0 1 0 1" contype="0" conaffinity="0" />
+      <geom name="gc_light_tr" type="sphere" pos="-10.8 -3.5 2.4" size="0.1" rgba="0 1 0 1" contype="0" conaffinity="0" />
+      <geom name="gc_light_bl" type="sphere" pos="-10.8 3.5 -2.4" size="0.1" rgba="1 0 0 1" contype="0" conaffinity="0" />
+      <geom name="gc_light_br" type="sphere" pos="-10.8 -3.5 -2.4" size="0.1" rgba="1 0 0 1" contype="0" conaffinity="0" />
+      <camera name="gc_camera" pos="-10.65 0 0" xyaxes="0 1 0 0 0 1" fovy="90" />
+      <site name="gc_target" pos="-7.5 0 0" size="0.2" rgba="0 0.8 1 0.4" />
+      <site name="storage_slot_1" type="box" pos="-7 -2 0" size=".65 .85 .8" rgba="0 .8 1 .12" />
+      <site name="storage_slot_2" type="box" pos="-7 0 0" size=".65 .85 .8" rgba="0 .8 1 .12" />
+      <site name="storage_slot_3" type="box" pos="-7 2 0" size=".65 .85 .8" rgba="0 .8 1 .12" />
     </body>
+    <body name="servicer" pos="0 0 4">
+      <freejoint name="servicer_free" />
+      <geom name="servicer_body" type="box" size="0.9 0.85 0.45" mass="110" material="robot_light" />
+      <geom name="servicer_front" type="box" pos="0.91 0 0" size="0.06 0.78 0.39" mass="3" material="robot_dark" />
+      <geom name="solar_-1" type="box" pos="-0.25 -1.13 0" size="0.6 0.25 0.035" mass="1" material="solar_panel" contype="0" conaffinity="0" />
+      <geom name="solar_1" type="box" pos="-0.25 1.13 0" size="0.6 0.25 0.035" mass="1" material="solar_panel" contype="0" conaffinity="0" />
+      <geom name="camera_housing" type="box" pos=".85 1.5 1.5" size="0.12 0.18 0.12" mass="0.5" material="robot_dark" contype="0" conaffinity="0" />
+      <camera name="front_camera" pos="1.02 1.5 1.5" xyaxes="0 -1 0 0 0 1" fovy="105" />
+            <!-- 3-point compliant claw gripper (120 deg symmetric distribution) -->
+      <body name="finger1_mount" pos="0.91 0 0.52" euler="0 0 0">
+        <geom name="f1_base" type="sphere" size="0.08" mass="1.0" material="robot_dark" contype="0" conaffinity="0" />
+        <body name="finger1_proximal" pos="0 0 0">
+          <joint name="f1_pitch1" type="hinge" axis="0 1 0" range="-20 60" damping="30" armature="0.1" />
+          <geom name="f1_prox_geom" type="capsule" fromto="0 0 0 0.70 0 0.05" size="0.055" mass="2.0" material="station_white" />
+          <body name="finger1_distal" pos="0.70 0 0.05">
+            <joint name="f1_pitch2" type="hinge" axis="0 1 0" range="-20 75" damping="25" armature="0.08" />
+            <geom name="f1_dist_geom" type="capsule" fromto="0 0 0 0.65 0 -0.05" size="0.045" mass="1.5" material="station_white" />
+            <geom name="f1_pad" type="box" pos="0.52 0 -0.05" size="0.12 0.08 0.025" mass="0.4" material="finger" friction="2.5 0.1 0.005" condim="4" solref="0.005 1" solimp="0.95 0.99 0.001 0.5 2" />
+            <geom name="f1_hook" type="box" pos="0.65 0 -0.09" size="0.03 0.08 0.06" mass="0.2" material="finger" friction="2.5 0.1 0.005" condim="4" solref="0.005 1" solimp="0.95 0.99 0.001 0.5 2" />
+            <site name="f1_grip" pos="0.55 0 -0.06" size="0.03" rgba="0 1 1 0.8" />
+          </body>
+        </body>
+      </body>
 
-    <!-- =================================================================== -->
-    <!-- 2. TUMBLING NON-COOPERATIVE SATELLITE TARGET (Mass: 28.0 kg)        -->
-    <!-- =================================================================== -->
-    <body name="debris_target" pos="1.4 0 0.25">
-      <freejoint name="debris_root"/>
-      <geom name="debris_body" type="box" size="0.25 0.20 0.30" rgba="0.8 0.6 0.2 1.0" mass="22.0"/>
-      <!-- Asymmetric solar panel mock to generate unconstrained tumbling -->
-      <geom name="debris_panel_left" type="box" size="0.02 0.35 0.12" pos="0 0.40 0" rgba="0.1 0.3 0.6 1" mass="3.5"/>
-      <geom name="debris_panel_right" type="box" size="0.02 0.25 0.12" pos="0 -0.32 0" rgba="0.1 0.3 0.6 1" mass="2.5"/>
-      <site name="debris_grapple_fixture" pos="-0.26 0 0"/>
+      <body name="finger2_mount" pos="0.91 -0.4503 -0.26" euler="120 0 0">
+        <geom name="f2_base" type="sphere" size="0.08" mass="1.0" material="robot_dark" contype="0" conaffinity="0" />
+        <body name="finger2_proximal" pos="0 0 0">
+          <joint name="f2_pitch1" type="hinge" axis="0 1 0" range="-20 60" damping="30" armature="0.1" />
+          <geom name="f2_prox_geom" type="capsule" fromto="0 0 0 0.70 0 0.05" size="0.055" mass="2.0" material="station_white" />
+          <body name="finger2_distal" pos="0.70 0 0.05">
+            <joint name="f2_pitch2" type="hinge" axis="0 1 0" range="-20 75" damping="25" armature="0.08" />
+            <geom name="f2_dist_geom" type="capsule" fromto="0 0 0 0.65 0 -0.05" size="0.045" mass="1.5" material="station_white" />
+            <geom name="f2_pad" type="box" pos="0.52 0 -0.05" size="0.12 0.08 0.025" mass="0.4" material="finger" friction="2.5 0.1 0.005" condim="4" solref="0.005 1" solimp="0.95 0.99 0.001 0.5 2" />
+            <geom name="f2_hook" type="box" pos="0.65 0 -0.09" size="0.03 0.08 0.06" mass="0.2" material="finger" friction="2.5 0.1 0.005" condim="4" solref="0.005 1" solimp="0.95 0.99 0.001 0.5 2" />
+            <site name="f2_grip" pos="0.55 0 -0.06" size="0.03" rgba="0 1 1 0.8" />
+          </body>
+        </body>
+      </body>
+
+      <body name="finger3_mount" pos="0.91 0.4503 -0.26" euler="240 0 0">
+        <geom name="f3_base" type="sphere" size="0.08" mass="1.0" material="robot_dark" contype="0" conaffinity="0" />
+        <body name="finger3_proximal" pos="0 0 0">
+          <joint name="f3_pitch1" type="hinge" axis="0 1 0" range="-20 60" damping="30" armature="0.1" />
+          <geom name="f3_prox_geom" type="capsule" fromto="0 0 0 0.70 0 0.05" size="0.055" mass="2.0" material="station_white" />
+          <body name="finger3_distal" pos="0.70 0 0.05">
+            <joint name="f3_pitch2" type="hinge" axis="0 1 0" range="-20 75" damping="25" armature="0.08" />
+            <geom name="f3_dist_geom" type="capsule" fromto="0 0 0 0.65 0 -0.05" size="0.045" mass="1.5" material="station_white" />
+            <geom name="f3_pad" type="box" pos="0.52 0 -0.05" size="0.12 0.08 0.025" mass="0.4" material="finger" friction="2.5 0.1 0.005" condim="4" solref="0.005 1" solimp="0.95 0.99 0.001 0.5 2" />
+            <geom name="f3_hook" type="box" pos="0.65 0 -0.09" size="0.03 0.08 0.06" mass="0.2" material="finger" friction="2.5 0.1 0.005" condim="4" solref="0.005 1" solimp="0.95 0.99 0.001 0.5 2" />
+            <site name="f3_grip" pos="0.55 0 -0.06" size="0.03" rgba="0 1 1 0.8" />
+          </body>
+        </body>
+      </body>
+      <site name="claw_center" pos="2.05 0 0" size="0.04" rgba="1 1 0 0.5" />
+      <camera name="rear_camera"  pos="-1.02 0 .58" xyaxes="0 1 0 0 0 1" fovy="105" />
+      <camera name="left_camera" pos="0 1.02 .58" xyaxes="1 0 0 0 0 1" fovy="105" />
+      <camera name="right_camera" pos="0 -1.02 .58" xyaxes="-1 0 0 0 0 1" fovy="105" />
+      <camera name="down_camera" pos="0 0 -.52" xyaxes="1 0 0 0 1 0" fovy="105" />
+      <camera name="up_camera" pos="0 0 .8" xyaxes="1 0 0 0 -1 0" fovy="105" />
+      <body name="wheel_x" pos="-.25 0 0">
+        <inertial pos="0 0 0" mass="8" diaginertia="2 2 2" />
+        <joint name="wheel_x" type="hinge" axis="1 0 0" limited="false" damping="0" armature="0" />
+        <geom type="sphere" size=".13" rgba=".25 .5 .8 1" contype="0" conaffinity="0" mass="0" />
+      </body>
+      <body name="wheel_y" pos="-.25 0 0">
+        <inertial pos="0 0 0" mass="8" diaginertia="2 2 2" />
+        <joint name="wheel_y" type="hinge" axis="0 1 0" limited="false" damping="0" armature="0" />
+        <geom type="sphere" size=".13" rgba=".25 .5 .8 1" contype="0" conaffinity="0" mass="0" />
+      </body>
+      <body name="wheel_z" pos="-.25 0 0">
+        <inertial pos="0 0 0" mass="8" diaginertia="2 2 2" />
+        <joint name="wheel_z" type="hinge" axis="0 0 1" limited="false" damping="0" armature="0" />
+        <geom type="sphere" size=".13" rgba=".25 .5 .8 1" contype="0" conaffinity="0" mass="0" />
+      </body>
+      <geom name="camera_mast" type="capsule" fromto=".7 .65 .4 .85 1.5 1.5" size=".035" mass=".05" material="robot_dark" contype="0" conaffinity="0" />
+    </body>
+    <body name="debris_01" pos="6 -4 4" euler="12 -10 24">
+      <freejoint name="debris_01_free" />
+      <geom name="debris_01_geom" type="box" size=".42 .28 .50" mass="22" material="metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_02" pos="-7 3 5" euler="-17 20 65">
+      <freejoint name="debris_02_free" />
+      <geom name="debris_02_geom" type="box" size=".42 .28 .50" mass="26" material="dark_metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_03" pos="2 8 3" euler="-14 12 -28">
+      <freejoint name="debris_03_free" />
+      <geom name="debris_03_geom" type="box" size=".42 .28 .50" mass="30" material="solar_panel" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_04" pos="-12 -6 5" euler="20 -18 40">
+      <freejoint name="debris_04_free" />
+      <geom name="debris_04_geom" type="box" size=".42 .28 .50" mass="22" material="metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_05" pos="11 -11 6" euler="-25 15 -55">
+      <freejoint name="debris_05_free" />
+      <geom name="debris_05_geom" type="box" size=".42 .28 .50" mass="26" material="dark_metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_06" pos="-15 8 3" euler="18 22 80">
+      <freejoint name="debris_06_free" />
+      <geom name="debris_06_geom" type="box" size=".42 .28 .50" mass="30" material="solar_panel" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_07" pos="-20 0 7" euler="-20 -15 -70">
+      <freejoint name="debris_07_free" />
+      <geom name="debris_07_geom" type="box" size=".42 .28 .50" mass="22" material="metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_08" pos="0 16 6" euler="25 10 110">
+      <freejoint name="debris_08_free" />
+      <geom name="debris_08_geom" type="box" size=".42 .28 .50" mass="26" material="dark_metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_09" pos="-3 -16 3" euler="-16 24 -105">
+      <freejoint name="debris_09_free" />
+      <geom name="debris_09_geom" type="box" size=".42 .28 .50" mass="30" material="solar_panel" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_10" pos="11 16 4" euler="14 -22 135">
+      <freejoint name="debris_10_free" />
+      <geom name="debris_10_geom" type="box" size=".42 .28 .50" mass="22" material="metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_11" pos="16 -20 12" euler="-24 12 -140">
+      <freejoint name="debris_11_free" />
+      <geom name="debris_11_geom" type="box" size=".42 .28 .50" mass="26" material="dark_metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_12" pos="-12 18 5" euler="21 17 155">
+      <freejoint name="debris_12_free" />
+      <geom name="debris_12_geom" type="box" size=".42 .28 .50" mass="30" material="solar_panel" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_13" pos="-14 -18 6" euler="-18 -20 -160">
+      <freejoint name="debris_13_free" />
+      <geom name="debris_13_geom" type="box" size=".42 .28 .50" mass="22" material="metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_14" pos="-4 4 18" euler="15 25 175">
+      <freejoint name="debris_14_free" />
+      <geom name="debris_14_geom" type="box" size=".42 .28 .50" mass="26" material="dark_metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_15" pos="4 -25 5" euler="-22 18 -20">
+      <freejoint name="debris_15_free" />
+      <geom name="debris_15_geom" type="box" size=".42 .28 .50" mass="30" material="solar_panel" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_16" pos="-23 12 4" euler="18 -24 45">
+      <freejoint name="debris_16_free" />
+      <geom name="debris_16_geom" type="box" size=".42 .28 .50" mass="22" material="metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_17" pos="-20 -15 14" euler="-26 14 95">
+      <freejoint name="debris_17_free" />
+      <geom name="debris_17_geom" type="box" size=".42 .28 .50" mass="26" material="dark_metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_18" pos="1 26 4" euler="24 -16 -85">
+      <freejoint name="debris_18_free" />
+      <geom name="debris_18_geom" type="box" size=".42 .28 .50" mass="30" material="solar_panel" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_19" pos="18 4 18" euler="-12 26 125">
+      <freejoint name="debris_19_free" />
+      <geom name="debris_19_geom" type="box" size=".42 .28 .50" mass="22" material="metal" friction="1.5 .05 .002" condim="4" />
+    </body>
+    <body name="debris_20" pos="-28 2 3" euler="27 15 -130">
+      <freejoint name="debris_20_free" />
+      <geom name="debris_20_geom" type="box" size=".42 .28 .50" mass="26" material="dark_metal" friction="1.5 .05 .002" condim="4" />
     </body>
   </worldbody>
-
-  <actuator>
-    <!-- Arm 1 Actuators -->
-    <motor name="arm1_m1" joint="arm1_joint1" ctrlrange="-80 80"/>
-    <motor name="arm1_m2" joint="arm1_joint2" ctrlrange="-80 80"/>
-    <motor name="arm1_m3" joint="arm1_joint3" ctrlrange="-50 50"/>
-
-    <!-- Arm 2 Actuators -->
-    <motor name="arm2_m1" joint="arm2_joint1" ctrlrange="-80 80"/>
-    <motor name="arm2_m2" joint="arm2_joint2" ctrlrange="-80 80"/>
-    <motor name="arm2_m3" joint="arm2_joint3" ctrlrange="-50 50"/>
-
-    <!-- Reaction Wheel Bus Attitude Actuators -->
-    <motor name="bus_rw_pitch" body="servicer_bus" gear="0 1 0 0 0 0" ctrlrange="-10 10"/>
-    <motor name="bus_rw_yaw" body="servicer_bus" gear="0 0 1 0 0 0" ctrlrange="-10 10"/>
+    <actuator>
+    <position name="f1_pitch1_act" joint="f1_pitch1" kp="300" kv="35" ctrlrange="-20 60" forcerange="-150 150" />
+    <position name="f1_pitch2_act" joint="f1_pitch2" kp="250" kv="30" ctrlrange="-20 75" forcerange="-120 120" />
+    <position name="f2_pitch1_act" joint="f2_pitch1" kp="300" kv="35" ctrlrange="-20 60" forcerange="-150 150" />
+    <position name="f2_pitch2_act" joint="f2_pitch2" kp="250" kv="30" ctrlrange="-20 75" forcerange="-120 120" />
+    <position name="f3_pitch1_act" joint="f3_pitch1" kp="300" kv="35" ctrlrange="-20 60" forcerange="-150 150" />
+    <position name="f3_pitch2_act" joint="f3_pitch2" kp="250" kv="30" ctrlrange="-20 75" forcerange="-120 120" />
+    <motor name="wheel_x_act" joint="wheel_x" ctrlrange="-18 18" gear="1" />
+    <motor name="wheel_y_act" joint="wheel_y" ctrlrange="-18 18" gear="1" />
+    <motor name="wheel_z_act" joint="wheel_z" ctrlrange="-18 18" gear="1" />
   </actuator>
-
-  <sensor>
-    <accelerometer name="servicer_accel" site="bus_imu"/>
-    <gyro name="servicer_gyro" site="bus_imu"/>
-    <touch name="arm1_touch" site="arm1_contact_sensor"/>
-    <touch name="arm2_touch" site="arm2_contact_sensor"/>
-  </sensor>
+    <contact>
+    <exclude body1="servicer" body2="finger1_proximal" />
+    <exclude body1="servicer" body2="finger2_proximal" />
+    <exclude body1="servicer" body2="finger3_proximal" />
+  </contact>
+  <equality>
+    <weld name="grasp_debris_01" body1="finger1_distal" body2="debris_01" active="false" solref=".02 1" />
+    <weld name="store_debris_01" body1="space_station" body2="debris_01" active="false" solref=".02 1" />
+    <weld name="grasp_debris_02" body1="finger1_distal" body2="debris_02" active="false" solref=".02 1" />
+    <weld name="store_debris_02" body1="space_station" body2="debris_02" active="false" solref=".02 1" />
+    <weld name="grasp_debris_03" body1="finger1_distal" body2="debris_03" active="false" solref=".02 1" />
+    <weld name="store_debris_03" body1="space_station" body2="debris_03" active="false" solref=".02 1" />
+    <weld name="grasp_debris_04" body1="finger1_distal" body2="debris_04" active="false" solref=".02 1" />
+    <weld name="store_debris_04" body1="space_station" body2="debris_04" active="false" solref=".02 1" />
+    <weld name="grasp_debris_05" body1="finger1_distal" body2="debris_05" active="false" solref=".02 1" />
+    <weld name="store_debris_05" body1="space_station" body2="debris_05" active="false" solref=".02 1" />
+    <weld name="grasp_debris_06" body1="finger1_distal" body2="debris_06" active="false" solref=".02 1" />
+    <weld name="store_debris_06" body1="space_station" body2="debris_06" active="false" solref=".02 1" />
+    <weld name="grasp_debris_07" body1="finger1_distal" body2="debris_07" active="false" solref=".02 1" />
+    <weld name="store_debris_07" body1="space_station" body2="debris_07" active="false" solref=".02 1" />
+    <weld name="grasp_debris_08" body1="finger1_distal" body2="debris_08" active="false" solref=".02 1" />
+    <weld name="store_debris_08" body1="space_station" body2="debris_08" active="false" solref=".02 1" />
+    <weld name="grasp_debris_09" body1="finger1_distal" body2="debris_09" active="false" solref=".02 1" />
+    <weld name="store_debris_09" body1="space_station" body2="debris_09" active="false" solref=".02 1" />
+    <weld name="grasp_debris_10" body1="finger1_distal" body2="debris_10" active="false" solref=".02 1" />
+    <weld name="store_debris_10" body1="space_station" body2="debris_10" active="false" solref=".02 1" />
+    <weld name="grasp_debris_11" body1="finger1_distal" body2="debris_11" active="false" solref=".02 1" />
+    <weld name="store_debris_11" body1="space_station" body2="debris_11" active="false" solref=".02 1" />
+    <weld name="grasp_debris_12" body1="finger1_distal" body2="debris_12" active="false" solref=".02 1" />
+    <weld name="store_debris_12" body1="space_station" body2="debris_12" active="false" solref=".02 1" />
+    <weld name="grasp_debris_13" body1="finger1_distal" body2="debris_13" active="false" solref=".02 1" />
+    <weld name="store_debris_13" body1="space_station" body2="debris_13" active="false" solref=".02 1" />
+    <weld name="grasp_debris_14" body1="finger1_distal" body2="debris_14" active="false" solref=".02 1" />
+    <weld name="store_debris_14" body1="space_station" body2="debris_14" active="false" solref=".02 1" />
+    <weld name="grasp_debris_15" body1="finger1_distal" body2="debris_15" active="false" solref=".02 1" />
+    <weld name="store_debris_15" body1="space_station" body2="debris_15" active="false" solref=".02 1" />
+    <weld name="grasp_debris_16" body1="finger1_distal" body2="debris_16" active="false" solref=".02 1" />
+    <weld name="store_debris_16" body1="space_station" body2="debris_16" active="false" solref=".02 1" />
+    <weld name="grasp_debris_17" body1="finger1_distal" body2="debris_17" active="false" solref=".02 1" />
+    <weld name="store_debris_17" body1="space_station" body2="debris_17" active="false" solref=".02 1" />
+    <weld name="grasp_debris_18" body1="finger1_distal" body2="debris_18" active="false" solref=".02 1" />
+    <weld name="store_debris_18" body1="space_station" body2="debris_18" active="false" solref=".02 1" />
+    <weld name="grasp_debris_19" body1="finger1_distal" body2="debris_19" active="false" solref=".02 1" />
+    <weld name="store_debris_19" body1="space_station" body2="debris_19" active="false" solref=".02 1" />
+    <weld name="grasp_debris_20" body1="finger1_distal" body2="debris_20" active="false" solref=".02 1" />
+    <weld name="store_debris_20" body1="space_station" body2="debris_20" active="false" solref=".02 1" />
+  </equality>
 </mujoco>

@@ -1,0 +1,80 @@
+{
+  "group_id": "MDRIIA_GROUP_11",
+  "folder_name": "Group_11_Daneeka",
+  "domain": "Autonomous Mobile Robot for Solar PV Defect Inspection & Anomaly Detection",
+  "authorized_title": "How can autonomous mobile-robot navigation and sensor-based anomaly detection improve the speed and accuracy of locating defective solar panels in large-scale solar installations compared with manual inspection?",
+  "members": [
+    {
+      "roll_no": "E057",
+      "sap_id": "70362400081",
+      "name": "Daneeka Abhijeet Roy",
+      "role": "Lead Autonomous Systems Architect & Sensor Anomaly Modeler",
+      "assigned_branch": "feat/e057-solar-defect-anomal",
+      "viva_focus": "Autonomous mobile-robot SLAM navigation across large-scale photovoltaic installations, infrared thermography anomaly detection, and automated defect localization throughput."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Salazar & Macabebe",
+      "year": 2016,
+      "title": "Hotspots Detection in Photovoltaic Modules Using Infrared Thermography",
+      "venue": "MATEC Web of Conferences",
+      "doi": "https://doi.org/10.1051/matecconf/20167010015",
+      "lead": "Daneeka Abhijeet Roy (E057)"
+    },
+    {
+      "id": 2,
+      "authors": "Vaněk & Repko",
+      "year": 2016,
+      "title": "Automation Capabilities of Solar Modules Defect Detection by Thermography",
+      "venue": "ECS Transactions",
+      "doi": "https://doi.org/10.1149/07401.0293ecst",
+      "lead": "Daneeka Abhijeet Roy (E057)"
+    },
+    {
+      "id": 3,
+      "authors": "Ma & Zhang",
+      "year": 2021,
+      "title": "Photovoltaic Module Current Mismatch Fault Diagnosis Based on I-V Data",
+      "venue": "IEEE Journal of Photovoltaics",
+      "doi": "https://doi.org/10.1109/jphotov.2021.3059425",
+      "lead": "Daneeka Abhijeet Roy (E057)"
+    },
+    {
+      "id": 4,
+      "authors": "Oliveira & Bracht",
+      "year": 2023,
+      "title": "Automatic fault detection of utility-scale photovoltaic solar generators applying aerial infrared thermography and orthomosaicking",
+      "venue": "Solar Energy",
+      "doi": "https://doi.org/10.1016/j.solener.2023.01.058",
+      "lead": "Daneeka Abhijeet Roy (E057)"
+    },
+    {
+      "id": 5,
+      "authors": "Spajić & Talajić",
+      "year": 2024,
+      "title": "Using CNNs for Photovoltaic Panel Defect Detection via Infrared Thermography to Support Industry 4.0",
+      "venue": "Business Systems Research Journal",
+      "doi": "https://doi.org/10.2478/bsrj-2024-0003",
+      "lead": "Daneeka Abhijeet Roy (E057)"
+    },
+    {
+      "id": 6,
+      "authors": "Liu & Wu",
+      "year": 2025,
+      "title": "Fault diagnosis of photovoltaic modules: A review",
+      "venue": "Solar Energy",
+      "doi": "https://doi.org/10.1016/j.solener.2025.113489",
+      "lead": "Daneeka Abhijeet Roy (E057)"
+    }
+  ],
+  "project_showcase": {
+    "platform": "LinkedIn Video",
+    "linkedin_url": "PENDING_SUBMISSION",
+    "video_poster_path": "docs/figures/video_poster.png",
+    "video_duration_target": "60-90 seconds",
+    "submission_status": "PENDING",
+    "submission_instructions": "Paste your published LinkedIn post URL into 'linkedin_url' and submit a Pull Request"
+  }
+}

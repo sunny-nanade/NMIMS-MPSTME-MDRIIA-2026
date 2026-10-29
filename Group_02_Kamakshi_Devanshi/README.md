@@ -1,90 +1,139 @@
-# Group 02: AI Companion Robot for Remote Elderly Supervision and Fall Emergency Response
+# MDRIIA Group 02: AI Companion Robot for Remote Elderly Supervision and Fall Emergency Response
+**Course:** Modern Day Robotics and Its Industrial Applications (MDRIIA - Course Code: 702CO0E012)  
+**Academic Term:** Academic Year 2026–2027 | Semester VI (B.Tech CSBS)  
+**Institution:** SVKM's NMIMS MPSTME, Mumbai  
 
 ---
 
-## 1. Authorized Research Title
+## 1. Authorized Research Title & Problem Statement
+
 > "How can a vision-based mobile companion robot in MuJoCo integrate MediaPipe fall-detection kinematics to reduce emergency dispatch latency within the critical 6-minute cardiac arrest survival window for elderly individuals living alone?"
 
 ### Core Engineering Focus
-* Physics and Kinematics: Google DeepMind MuJoCo multi-body physics simulation with differential-drive base, elevated camera mast ($1.10\text{ m}$), and residential clutter.
-* Kinematic Vision: MediaPipe BlazePose 33-point skeletal extraction, 2nd-order Butterworth filtering ($f_c = 5.0\text{ Hz}$), vertical descent velocity ($|v_z| \ge 1.80\text{ m/s}$), aspect ratio inversion ($\text{AR} \ge 1.20$), and torso inclination ($\theta_{\text{torso}} \ge 60^\circ$).
-* Safe Navigation & Standoff: ISO 13482:2014 compliant deceleration controller maintaining standoff distance $d_{\text{stop}} \in [0.80, 1.20]\text{ m}$.
-* CSBS Healthcare Economics: Dimensionless model demonstrating long-lie reduction ($97.45\%$), acute hospital bed-day conservation ($14.20\text{ days}$), operational parity ratio $\kappa \le 0.30$, and capital payback horizon ($4.13\text{ months}$).
+* **Physics & Kinematics:** Google DeepMind MuJoCo multi-body dynamic physics simulation (`models/elderly_companion_base.xml`).
+* **Autonomous Control:** Closed-loop Python control architecture with student implementation boundaries (`src/fall_detection_kinematics.py`).
+* **Technoeconomic Evaluation:** Dimensionless CSBS operational economics and return on investment model (`analytics/geriatric_care_economics.py`).
+* **Empirical Validation:** Reproducible benchmark trials and statistical hypothesis testing (`analytics/fall_triage_real_trials.csv`).
+
+---
+
+> [!NOTE]
+> ### The Devil's Advocate: Reality Check & Theoretical Roast
+> *"An autonomous mobile companion equipped with pan-tilt MediaPipe vision to detect sudden falls within the 6-minute golden window, which will inevitably trigger a code-red 911 emergency dispatch because grandpa dropped his TV remote and decided to take an afternoon nap on the living room rug."*
 
 ---
 
 ## 2. Student Engineering Team Matrix
 
-| Roll No | SAP ID | Student Name | Technical Specialization | Assigned Branch |
-| :--- | :--- | :--- | :--- | :--- |
-| `E007` | `70362400022` | **Kamakshi Bahuguna** | Computer Vision, Pose Kinematics & Edge Inference Specialist | `feat/e007-vision-pose-kinematics` |
-| `B029` | `70362400037` | **Devanshi Sachin Kambli** | MuJoCo Physics, Domestic Navigation & Healthcare Economics Lead | `feat/b029-mujoco-physics-navigation` |
+| Roll No | SAP ID | Student Name | Technical Role | Assigned Git Branch | Core Viva Defense Area |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `E007` | `70362400022` | **Kamakshi Bahuguna** | Computer Vision, Pose Kinematics & Edge Inference Specialist | `feat/e007-vision-pose-kinematics` | MediaPipe skeletal landmark tracking, bounding-box aspect ratio inversion, vertical centroid velocity thresholding, and confusion matrix validation. |
+| `B029` | `70362400037` | **Devanshi Sachin Kambli** | MuJoCo Physics, Domestic Navigation & Healthcare Economics Lead | `feat/b029-mujoco-physics-navigation` | Differential mobile base physics, pan-tilt mast observation angles, post-fall approach trajectory, and 'long lie' clinical cost model. |
+
+
+### Student Engineering Commendation & Acknowledgments
+SVKM's NMIMS MPSTME conveys sincere appreciation and heartfelt gratitude to **Kamakshi Bahuguna (E007)** and **Devanshi Sachin Kambli (B029)** for their disciplined commitment, late-night debugging, and technical craftsmanship throughout Semester VI. Your rigorous work in DeepMind MuJoCo physics modeling, closed-loop telemetry instrumentation, and Computer Science & Business Systems (CSBS) technoeconomic modeling exemplifies the highest standards of undergraduate engineering inquiry.
+
+> *"Scientists discover the world that exists; engineers create the world that never was."*  
+> — **Theodore von Kármán**
+
+> *"There is no substitute for hard work. Genius is one percent inspiration and ninety-nine percent perspiration."*  
+> — **Thomas A. Edison**
 
 ---
 
-## 3. Foundational Literature and Academic Benchmarks (5 Verified Papers)
+## 3. Foundational Literature Benchmarks (Strict 2 Seminal : 4 Recent Ratio)
 
-Students must study, benchmark against, and cite these 5 authentic peer-reviewed papers. See [docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md](./docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md) for the complete mathematical extraction and gap analysis.
+The research project is theoretically anchored on six foundational peer-reviewed publications validated against global bibliographic databases.
 
-1. **Lightweight Edge Pose Kinematics for Fall Detection (2024):**
-   * *Wang & Deng*, "Enhancing elderly care: Efficient and reliable real-time fall detection algorithm", *Digital Health*, vol. 10, art. no. 20552076241233690, 2024.
-   * DOI: [10.1177/20552076241233690](https://doi.org/10.1177/20552076241233690)
-   * Focus: BlazePose 33-point skeletal landmark extraction, mid-hip descent velocity, bounding box aspect ratio inversion, $29.7\text{ FPS}$ edge CPU inference.
+| # | Author (Year) | Type | Paper Title | Venue / Indexing | Active DOI Link | Primary Extracted Formulation | Student Lead |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Wang & Deng (2024)** | Recent | *Enhancing elderly care: Efficient and reliable real-time fall detection algorithm* | Digital Health | [https://doi.org/10.1177/20552076241233690](https://doi.org/10.1177/20552076241233690) | `Aspect ratio $AR = \frac{w_b}{h_b}$; vertical...` | Kamakshi Bahuguna (E007) |
+| 2 | **Kothari & Chakurkar (2025)** | Recent | *Towards safer environments: A YOLO and MediaPipe-based human fall detection system* | MethodsX | [https://doi.org/10.1016/j.mex.2025.103623](https://doi.org/10.1016/j.mex.2025.103623) | `Keypoint angle $\theta = \arccos\left(\frac{\...` | Kamakshi Bahuguna (E007) |
+| 3 | **Romero-Garces et al. (2022)** | Recent | *CLARA: Building a Socially Assistive Robot to Interact with Elderly People* | Designs | [https://doi.org/10.3390/designs6060125](https://doi.org/10.3390/designs6060125) | `Mast center-of-mass height $h_{\text{mast}} \...` | Devanshi Sachin Kambli (B029) |
+| 4 | **Ding & Wang (2020)** | Seminal | *A WiFi-Based Smart Home Fall Detection System Using Recurrent Neural Network* | IEEE Transactions on Consumer Electronics | [https://doi.org/10.1109/TCE.2020.3021398](https://doi.org/10.1109/TCE.2020.3021398) | `CSI phase difference $\Delta \phi = \arg(H_i)...` | Devanshi Sachin Kambli (B029) |
+| 5 | **Kubitza et al. (2022)** | Recent | *Therapy options for those affected by a long lie after a fall: a scoping review* | BMC Geriatrics | [https://doi.org/10.1186/s12877-022-03258-2](https://doi.org/10.1186/s12877-022-03258-2) | `Hospital stay duration $D_{\text{stay}} = 18....` | Devanshi Sachin Kambli (B029) |
+| 6 | **Chen et al. (2021)** | Seminal | *Vision-Based Elderly Fall Detection Algorithm for Mobile Robot* | IEEE International Conference on Electronics Technology (ICET) | [https://doi.org/10.1109/ICET51757.2021.9450950](https://doi.org/10.1109/ICET51757.2021.9450950) | `Major-to-minor axis ratio $\lambda = \frac{a}...` | Kamakshi Bahuguna (E007) & Devanshi Sachin Kambli (B029) |
 
-2. **Automated Edge Fall Detection with YOLO & MediaPipe (2025):**
-   * *Kothari & Chakurkar*, "Towards safer environments: A YOLO and MediaPipe-based human fall detection system with alert automation", *MethodsX*, vol. 15, art. no. 103623, 2025.
-   * DOI: [10.1016/j.mex.2025.103623](https://doi.org/10.1016/j.mex.2025.103623)
-   * Focus: Dual-stage bounding box filtering, automated alert dispatch pipeline, and post-fall stillness observation window ($\tau_{\text{quiet}} = 3.0\text{ s}$).
-
-3. **Socially Assistive Robot Architecture for Eldercare (2022):**
-   * *Romero-Garces et al.*, "CLARA: Building a Socially Assistive Robot to Interact with Elderly People", *Designs*, vol. 6, no. 6, art. no. 125, 2022.
-   * DOI: [10.3390/designs6060125](https://doi.org/10.3390/designs6060125)
-   * Focus: Mechatronic mast height ($1.10\text{ m}$), differential-drive base dimensioning, and safe domestic navigation in eldercare facilities.
-
-4. **Smart Home Fall Detection and Ambient Baselines (2020):**
-   * *Ding & Wang*, "A WiFi-Based Smart Home Fall Detection System Using Recurrent Neural Network", *IEEE Transactions on Consumer Electronics*, vol. 66, no. 4, pp. 308–317, 2020.
-   * DOI: [10.1109/TCE.2020.3021398](https://doi.org/10.1109/TCE.2020.3021398)
-   * Focus: Benchmarking detection latency and multipath noise filtering in domestic environments, providing an ambient sensing comparison baseline.
-
-5. **Clinical Consequences of the "Long Lie" (2022):**
-   * *Kubitza et al.*, "Therapy options for those affected by a long lie after a fall: a scoping review", *BMC Geriatrics*, vol. 22, art. no. 582, 2022.
-   * DOI: [10.1186/s12877-022-03258-2](https://doi.org/10.1186/s12877-022-03258-2)
-   * Focus: Clinical definition of the long lie ($> 1\text{ hr}$), establishing the baseline $18.4\text{ day}$ acute hospital stay and muscle breakdown pathology.
+For the exhaustive literature analysis, mathematical derivations, and viva defense questions, refer to:
+* [`docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md`](docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md)
+* [`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`](docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md)
 
 ---
 
-## 4. Directory Structure
+## 4. Project Demonstration & Academic Showcase (LinkedIn)
+
+[![Watch Video Demonstration on LinkedIn](docs/figures/video_poster.png)](https://www.linkedin.com/)
+
+* **Video Demonstration:** [Watch 60-Second Walkthrough on LinkedIn](https://www.linkedin.com/) *(Click thumbnail above to open LinkedIn post)*
+* **Student Presenters:** **Kamakshi Bahuguna (E007)**, **Devanshi Sachin Kambli (B029)**
+* **Academic Institutional Tags:** SVKM's NMIMS MPSTME | Academic Directorate | Industry 4.0 Robotics
+* **Submission Protocol:** Record a 60–90 second demonstration of your MuJoCo simulation and telemetry. Publish on LinkedIn tagging MPSTME, Dean, and Course Faculty. Insert your live post URL in `docs/TEAM_ROSTER.json` under `"linkedin_url"`, and submit a pull request to update this project dossier and the cohort dashboard.
+
+---
+
+## 5. Repository Directory Architecture
+
 ```
-Group_02_Kamakshi_Devanshi/
-|-- README.md                             <- Group research charter, literature matrix, and status
-|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md  <- Complete technical dossier, kinematic proofs, and viva defense
+.
+|-- README.md                                          <- Front-page research charter, student roster & literature
+|-- RESEARCH_AND_IMPLEMENTATION_GUIDE.md               <- Comprehensive technical engineering guide
 |-- docs/
-|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md <- Detailed analysis of 5 papers & gap matrix
-|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md       <- Full 4-page IEEE/ACM paper template with Tables 1 & 2
-|   |-- figures/
-|   |   |-- figure1_system_architecture.png          <- Publication-ready Figure 1
-|   |   |-- figure2_kinematic_telemetry.png          <- Publication-ready Figure 2
-|   |   `-- figure3_diagnostic_performance_and_survival.png <- Publication-ready Figure 3
-|   `-- TEAM_ROSTER.json                  <- Commit attribution registry
+|   |-- TEAM_ROSTER.json                               <- Machine-readable team configuration
+|   |-- LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md   <- Exhaustive literature dossier (6 verified papers)
+|   |-- RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md         <- 4-page IEEE conference manuscript blueprint
+|   `-- figures/
+|       |-- figure1_system_architecture.png            <- 300 DPI system architecture diagram
+|       |-- figure2_kinematic_telemetry.png            <- 300 DPI kinematics and simulation telemetry
+|       `-- figure3_comparative_performance.png        <- 300 DPI comparative benchmark visualization
 |-- models/
-|   `-- elderly_companion_base.xml        <- Physical MuJoCo MJCF model with elevated mast
+|   |-- .gitkeep
+|   `-- elderly_companion_base.xml                                    <- MuJoCo MJCF simulation model
 |-- src/
-|   |-- fall_detection_kinematics.py      <- MediaPipe pose kinematics and alert state machine
-|   `-- test_env.py                       <- Local toolchain verification script
+|   |-- test_env.py                                    <- Physics validation & environment tester
+|   `-- fall_detection_kinematics.py                                      <- Autonomous control loop (# TODO student boundaries)
 `-- analytics/
-    |-- fall_triage_benchmark.csv         <- N=100 experimental trial telemetry dataset
-    |-- generate_paper_figures.py         <- Python script generating all 3 publication figures
-    `-- geriatric_care_economics.py       <- CSBS dimensionless healthcare economic model
+    |-- .gitkeep
+    |-- geriatric_care_economics.py                                      <- CSBS dimensionless technoeconomic model
+    |-- generate_paper_figures.py                      <- Standalone 300 DPI publication figure generator
+    `-- SIMULATED_fall_triage_benchmark.csv                                    <- SIMULATED starter targets (np.random), NOT results
 ```
 
 ---
 
-## 5. Sprint Onboarding Checklist (Sprint 0)
-- [ ] Every team member clones repository locally.
-- [ ] Each student creates their assigned feature branch (`feat/<roll_no>-...`).
-- [ ] Study assigned research papers in [docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md](./docs/LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md).
-- [ ] Execute `python src/test_env.py` and confirm clean execution.
-- [ ] Execute `python src/fall_detection_kinematics.py` and review simulated fall vs ADL detection logs.
-- [ ] Execute `python analytics/geriatric_care_economics.py` and inspect dimensionless ROI outputs.
-- [ ] Update `docs/TEAM_ROSTER.json` with verified GitHub usernames.
-- [ ] Submit and merge Sprint 0 Pull Request into `main`.
+## 5. Pedagogical Boundaries: Guidance vs Student Ownership
+
+To ensure academic rigor and authentic student learning, this repository enforces strict boundaries between scaffolding and student deliverables:
+
+* **Provided by Course Scaffolding:**
+  * Validated physical model architecture in MuJoCo MJCF (`models/elderly_companion_base.xml`).
+  * Verification toolchain and smoke test script (`src/test_env.py`).
+  * Literature foundation, mathematical formulations, and conference paper blueprint (`docs/`).
+  * Dimensionless technoeconomic framework (`analytics/geriatric_care_economics.py`).
+* **Student Technical Deliverables (Required for Evaluation):**
+  * Implement and tune the control algorithm in `src/fall_detection_kinematics.py` (filling all marked `# TODO [Student Roll / Name]` blocks).
+  * Run physics simulation trials to collect and expand empirical data in `analytics/fall_triage_real_trials.csv`.
+  * Re-run `analytics/generate_paper_figures.py` to regenerate publication figures with live experimental telemetry.
+  * Author the final 4-page IEEE conference paper in `docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md` and defend individual Git commits during the oral viva.
+
+---
+
+## 6. Sprint 0 Onboarding & Physics Environment Verification
+
+Verify your local Python and MuJoCo simulation environment:
+
+```powershell
+# Step 1: Clone repository and navigate to group directory
+git clone <repository_url>
+cd <repository_root>/Group_02_Kamakshi_Devanshi
+
+# Step 2: Checkout your individual feature branch
+# Example for lead student:
+git checkout -b feat/e007-vision-pose-kinematics
+
+# Step 3: Run environment smoke test
+python src/test_env.py
+
+# Step 4: Verify 300 DPI publication figures
+python analytics/generate_paper_figures.py
+```

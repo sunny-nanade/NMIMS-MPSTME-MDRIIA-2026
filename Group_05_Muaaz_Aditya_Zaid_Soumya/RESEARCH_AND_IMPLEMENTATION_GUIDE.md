@@ -111,5 +111,5 @@ To complete the project, the student team must commit the following:
 
 1. **`models/campus_perimeter_patrol.xml`:** Verified MuJoCo MJCF model with campus buildings, perimeter fence, dual quadrotors, cameras, and intruder geom.
 2. **`src/aerial_patrol_swarm.py`:** Working implementation of `# TODO` blocks for cascaded flight control, APF collision avoidance, OpenCV vision extraction, and geofence alerting.
-3. **`analytics/campus_patrol_benchmark.csv`:** Real simulation telemetry dataset generated from at least 80 experimental runs.
+3. **`analytics/campus_patrol_real_trials.csv`:** Your real simulation telemetry (N >= 30 runs per condition) written by your controller. The starter file SIMULATED_solar_cleaning_benchmark.csv holds generated targets, not results.
 4. **`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`:** Completed 4-page conference manuscript with all sections drafted and student findings recorded.

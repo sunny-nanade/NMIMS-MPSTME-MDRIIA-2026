@@ -1,0 +1,89 @@
+<mujoco model="solar_defect_amr">
+  <compiler angle="radian" coordinate="local"/>
+  <option gravity="0 0 -9.81" timestep="0.002" solver="Newton" iterations="40"/>
+
+  <default>
+    <geom condim="4" friction="1.2 0.05 0.002" solref="0.005 1.0" solimp="0.9 0.95 0.001 0.5 2"/>
+    <motor ctrllimited="true"/>
+  </default>
+
+  <worldbody>
+    <!-- Ground Base Plane -->
+    <geom name="floor" type="plane" size="20 20 0.1" rgba="0.32 0.30 0.28 1"/>
+    <light directional="true" pos="0 0 15" dir="0 0 -1" castshadow="false"/>
+
+    <!-- Photovoltaic Panel Row 1 (East Row) -->
+    <body name="pv_row_east" pos="2.5 0 0.8" euler="0.349066 0 0">
+      <geom name="pv_glass_east" type="box" size="0.9 6.0 0.02" rgba="0.1 0.18 0.32 0.9" friction="0.4 0.005 0.0001" mass="120.0"/>
+      <!-- Simulated Defective Hotspot Module on East String -->
+      <site name="hotspot_defect_east" pos="0 1.5 0.03" size="0.15 0.15 0.01" rgba="0.9 0.2 0.1 0.8"/>
+    </body>
+
+    <!-- Photovoltaic Panel Row 2 (West Row) -->
+    <body name="pv_row_west" pos="-2.5 0 0.8" euler="0.349066 0 0">
+      <geom name="pv_glass_west" type="box" size="0.9 6.0 0.02" rgba="0.1 0.18 0.32 0.9" friction="0.4 0.005 0.0001" mass="120.0"/>
+      <site name="hotspot_defect_west" pos="0 -2.0 0.03" size="0.15 0.15 0.01" rgba="0.9 0.2 0.1 0.8"/>
+    </body>
+
+    <!-- =================================================================== -->
+    <!-- AUTONOMOUS SOLAR INSPECTION AMR (Differential Drive + Sensor Mast)   -->
+    <!-- =================================================================== -->
+    <body name="amr_chassis" pos="0 -5.0 0.18">
+      <freejoint name="amr_root"/>
+      <geom name="chassis_geom" type="box" size="0.35 0.25 0.08" rgba="0.15 0.55 0.75 1" mass="18.0"/>
+      <site name="amr_imu" pos="0 0 0.04"/>
+
+      <!-- Left Drive Wheel -->
+      <body name="wheel_left" pos="0 0.28 -0.04">
+        <joint name="wheel_left_joint" type="hinge" axis="0 1 0" damping="0.1"/>
+        <geom name="wheel_left_geom" type="cylinder" size="0.12 0.04" zaxis="0 1 0" rgba="0.1 0.1 0.1 1" mass="2.0"/>
+      </body>
+
+      <!-- Right Drive Wheel -->
+      <body name="wheel_right" pos="0 -0.28 -0.04">
+        <joint name="wheel_right_joint" type="hinge" axis="0 1 0" damping="0.1"/>
+        <geom name="wheel_right_geom" type="cylinder" size="0.12 0.04" zaxis="0 1 0" rgba="0.1 0.1 0.1 1" mass="2.0"/>
+      </body>
+
+      <!-- Front Passive Caster -->
+      <body name="caster_front" pos="0.26 0 -0.09">
+        <joint name="caster_front_joint" type="ball" damping="0.01"/>
+        <geom name="caster_front_geom" type="sphere" size="0.05" rgba="0.2 0.2 0.2 1" mass="0.8"/>
+      </body>
+
+      <!-- Rear Passive Caster -->
+      <body name="caster_rear" pos="-0.26 0 -0.09">
+        <joint name="caster_rear_joint" type="ball" damping="0.01"/>
+        <geom name="caster_rear_geom" type="sphere" size="0.05" rgba="0.2 0.2 0.2 1" mass="0.8"/>
+      </body>
+
+      <!-- Sensor Mast with Pan-Tilt Thermal & Optical Camera -->
+      <body name="sensor_mast" pos="0.15 0 0.35">
+        <geom name="mast_tube" type="cylinder" size="0.03 0.25" rgba="0.7 0.7 0.7 1" mass="1.5"/>
+        <body name="gimbal_pan" pos="0 0 0.28">
+          <joint name="pan_joint" type="hinge" axis="0 0 1" range="-1.57 1.57"/>
+          <geom name="gimbal_bracket" type="box" size="0.04 0.04 0.02" rgba="0.2 0.2 0.2 1" mass="0.4"/>
+          <body name="gimbal_tilt" pos="0.03 0 0">
+            <joint name="tilt_joint" type="hinge" axis="0 1 0" range="-0.785 0.785"/>
+            <geom name="camera_housing" type="box" size="0.06 0.05 0.04" rgba="0.85 0.3 0.1 1" mass="0.6"/>
+            <!-- Thermal Radiometric Camera Sensor Site -->
+            <camera name="thermal_camera" pos="0.06 0 0" euler="1.570796 0 1.570796" fovy="45"/>
+            <site name="thermal_optical_lens" pos="0.06 0 0" size="0.02" rgba="1 0 0 1"/>
+          </body>
+        </body>
+      </body>
+
+      <!-- LiDAR / Obstacle Rangefinder Sites -->
+      <site name="lidar_front" pos="0.36 0 0.02"/>
+      <site name="bumper_fl" pos="0.35 0.25 -0.04"/>
+      <site name="bumper_fr" pos="0.35 -0.25 -0.04"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="motor_wheel_left" joint="wheel_left_joint" ctrlrange="-18 18"/>
+    <motor name="motor_wheel_right" joint="wheel_right_joint" ctrlrange="-18 18"/>
+    <motor name="motor_pan" joint="pan_joint" ctrlrange="-3 3"/>
+    <motor name="motor_tilt" joint="tilt_joint" ctrlrange="-3 3"/>
+  </actuator>
+</mujoco>

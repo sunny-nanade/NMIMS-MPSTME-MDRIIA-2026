@@ -1,3 +1,11 @@
+# =====================================================================================
+# ACADEMIC INTEGRITY NOTICE (MDRIIA capstone, Oct 2026)
+# This script GENERATES SYNTHETIC numbers with np.random, aimed at target means. Its CSV output
+# (SIMULATED_*.csv) and its figures in docs/figures/ are illustrative STARTER TARGETS, not results.
+# Per Section 4 of your MDRIIA Technical Dossier, report ONLY telemetry from MuJoCo runs of your own
+# controller (N >= 30 per condition, 500 Hz), saved as analytics/*_real_trials.csv, and re-plot from it.
+# Presenting these generated numbers as experimental results violates NMIMS academic integrity policy.
+# =====================================================================================
 # Automation Script: Render 300 DPI Publication Figures and Telemetry Benchmark
 # Group: MDRIIA Group 06
 # Project: Autonomous Tracked Solar Panel Cleaning Crawler
@@ -23,7 +31,7 @@ def generate_publication_assets():
     # -------------------------------------------------------------------------
     # 1. Generate Raw Benchmark CSV Data (N = 80 Trials)
     # -------------------------------------------------------------------------
-    csv_path = os.path.join(analytics_dir, "solar_cleaning_benchmark.csv")
+    csv_path = os.path.join(analytics_dir, "SIMULATED_solar_cleaning_benchmark.csv")
     np.random.seed(42)
     n_trials = 80
     

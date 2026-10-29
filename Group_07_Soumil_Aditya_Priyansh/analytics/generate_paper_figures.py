@@ -1,3 +1,11 @@
+# =====================================================================================
+# ACADEMIC INTEGRITY NOTICE (MDRIIA capstone, Oct 2026)
+# This script GENERATES SYNTHETIC numbers with np.random, aimed at target means. Its CSV output
+# (SIMULATED_*.csv) and its figures in docs/figures/ are illustrative STARTER TARGETS, not results.
+# Per Section 4 of your MDRIIA Technical Dossier, report ONLY telemetry from MuJoCo runs of your own
+# controller (N >= 30 per condition, 500 Hz), saved as analytics/*_real_trials.csv, and re-plot from it.
+# Presenting these generated numbers as experimental results violates NMIMS academic integrity policy.
+# =====================================================================================
 # Publication Figures Engine and Benchmark Dataset Generator
 # Group: MDRIIA Group 07
 # Output: 300 DPI Publication-Grade Figures and CSV Dataset
@@ -68,7 +76,7 @@ data_mat = np.column_stack([
     np.round(ee_position_error_mm, 2)
 ])
 
-csv_path = os.path.join(analytics_dir, 'clutter_manipulation_benchmark.csv')
+csv_path = os.path.join(analytics_dir, 'SIMULATED_clutter_manipulation_benchmark.csv')
 np.savetxt(csv_path, data_mat, delimiter=',', header=header, comments='', fmt=['%d', '%d', '%d', '%.2f', '%.1f', '%.2f'])
 print(f'[SUCCESS] Wrote benchmark dataset: {csv_path}')
 

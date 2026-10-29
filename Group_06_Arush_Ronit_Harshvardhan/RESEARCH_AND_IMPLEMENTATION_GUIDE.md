@@ -107,5 +107,5 @@ To complete the project, the student team must commit the following:
 
 1. **`models/solar_cleaning_crawler.xml`:** Verified MuJoCo MJCF model with 20-degree inclined PV rack, aluminum frame, and tracked crawler chassis.
 2. **`src/crawler_cleaning_controller.py`:** Working implementation of `# TODO` blocks for boustrophedon path planning, anti-slip velocity control, and edge-fall detection.
-3. **`analytics/solar_cleaning_benchmark.csv`:** Real simulation telemetry dataset generated from at least 80 experimental runs.
+3. **`analytics/solar_cleaning_real_trials.csv`:** Your real simulation telemetry (N >= 30 runs per condition) written by your controller. The starter file SIMULATED_solar_cleaning_benchmark.csv holds generated targets, not results.
 4. **`docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md`:** Completed 4-page conference manuscript with all sections drafted and student findings recorded.

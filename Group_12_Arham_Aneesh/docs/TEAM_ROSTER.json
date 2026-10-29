@@ -1,0 +1,88 @@
+{
+  "group_id": "MDRIIA_GROUP_12",
+  "folder_name": "Group_12_Arham_Aneesh",
+  "domain": "Autonomous Drone for Industrial Pipeline Surveillance & Defect Detection",
+  "authorized_title": "To what extent can an autonomous aerial drone simulated in MuJoCo with optical and thermal vision optimize defect localization latency and structural coverage for industrial pipeline surveillance compared to manual ground inspection?",
+  "members": [
+    {
+      "roll_no": "E069",
+      "sap_id": "70362400047",
+      "name": "Arham Khan",
+      "role": "Lead Autonomous Aerial Robotics Architect & Optical/Thermal Vision Modeler",
+      "assigned_branch": "feat/e069-uav-pipeline-survei",
+      "viva_focus": "Multirotor drone aerodynamics, MuJoCo waypoint navigation along linear pipeline corridors, and real-time visual-thermal feature extraction for structural defect localization."
+    },
+    {
+      "roll_no": "E076",
+      "sap_id": "70362400010",
+      "name": "Aneesh Kumar",
+      "role": "Aerial Corridor Guidance, Geo-Referencing & Pipeline Asset ROI Analyst",
+      "assigned_branch": "feat/e076-corridor-guidance-",
+      "viva_focus": "Corridor guidance state machines, GPS-denied visual geo-referencing, and CSBS pipeline maintenance technoeconomic models evaluating CapEx/OpEx payback without fiat currency."
+    }
+  ],
+  "foundational_papers": [
+    {
+      "id": 1,
+      "authors": "Stokkeland, Klausen, & Johansen",
+      "year": 2015,
+      "title": "Autonomous visual navigation of Unmanned Aerial Vehicle for infrastructure inspection",
+      "venue": "2015 International Conference on Unmanned Aircraft Systems (ICUAS)",
+      "doi": "https://doi.org/10.1109/icuas.2015.7152389",
+      "lead": "Arham Khan (E069)"
+    },
+    {
+      "id": 2,
+      "authors": "Hui & Bian",
+      "year": 2018,
+      "title": "Vision-based autonomous navigation approach for unmanned aerial vehicle transmission-line inspection",
+      "venue": "International Journal of Advanced Robotic Systems",
+      "doi": "https://doi.org/10.1177/1729881417752821",
+      "lead": "Arham Khan (E069) & Aneesh Kumar (E076)"
+    },
+    {
+      "id": 3,
+      "authors": "Car & Markovic",
+      "year": 2020,
+      "title": "Autonomous Wind-Turbine Blade Inspection Using LiDAR-Equipped Unmanned Aerial Vehicle",
+      "venue": "IEEE Access",
+      "doi": "https://doi.org/10.1109/access.2020.3009738",
+      "lead": "Arham Khan (E069)"
+    },
+    {
+      "id": 4,
+      "authors": "Okoli & Ubochi",
+      "year": 2022,
+      "title": "Autonomous Robot for Gas Pipeline Inspection and Leak Detection",
+      "venue": "International Journal of Computing and Digital Systems",
+      "doi": "https://doi.org/10.12785/ijcds/110166",
+      "lead": "Aneesh Kumar (E076)"
+    },
+    {
+      "id": 5,
+      "authors": "Shadrenkin & Tokarev",
+      "year": 2023,
+      "title": "Automated Pipeline Inspection Using Unmanned Aerial Vehicles",
+      "venue": "Problems of Gathering Treatment and Transportation of Oil and Oil Products",
+      "doi": "https://doi.org/10.17122/ntj-oil-2023-3-103-115",
+      "lead": "Aneesh Kumar (E076) & Arham Khan (E069)"
+    },
+    {
+      "id": 6,
+      "authors": "Bretschneider & Bollmann",
+      "year": 2024,
+      "title": "Concepts for drone based pipeline leak detection",
+      "venue": "Frontiers in Robotics and AI",
+      "doi": "https://doi.org/10.3389/frobt.2024.1426206",
+      "lead": "Aneesh Kumar (E076)"
+    }
+  ],
+  "project_showcase": {
+    "platform": "LinkedIn Video",
+    "linkedin_url": "PENDING_SUBMISSION",
+    "video_poster_path": "docs/figures/video_poster.png",
+    "video_duration_target": "60-90 seconds",
+    "submission_status": "PENDING",
+    "submission_instructions": "Paste your published LinkedIn post URL into 'linkedin_url' and submit a Pull Request"
+  }
+}
