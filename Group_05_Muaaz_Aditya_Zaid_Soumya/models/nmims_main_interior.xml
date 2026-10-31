@@ -1,0 +1,774 @@
+<!-- ======================================================================
+     GENERATED FILE -- do not hand-edit. Regenerate with:
+         python models/scene_source/build_nmims_interior.py
+     NMIMS Main Building INTERIOR, Vile Parle (West), Mumbai 400056.
+     Shell: (c) OpenStreetMap contributors, ODbL 1.0. Atrium: satellite skylight.
+     Appearance: NMIMS official virtual tour interior panoramas (reference only).
+     Room placement ASSUMED -- see scene_source/interior_manifest.csv.
+     ====================================================================== -->
+<mujoco>
+  <custom>
+    <text name="scene_name" data="NMIMS Main Building -- interior (atrium + ground floor)"/>
+    <text name="vision_cams" data="cam_alpha_fwd cam_bravo_fwd"/>
+    <numeric name="transit_alt" data="0"/>
+    <numeric name="alt_layer_bravo" data="0"/>
+    <numeric name="cruise_speed" data="2.5"/>
+    <numeric name="max_tilt_deg" data="15"/>
+    <numeric name="d_warn" data="4.5"/>
+    <numeric name="sidestep" data="0.4"/>
+    <numeric name="wind_scale" data="0.08"/>
+    <numeric name="yaw_mode_alpha" data="1"/>
+    <numeric name="yaw_mode_bravo" data="2"/>
+    <numeric name="intruder_path" data="0 -50  0 -42  0 -27.4  -12.3 -27.4  -12.3 4  -16.5 4  -18.5 9"/>
+  </custom>
+  <asset>
+    <mesh name="gf_floor" vertex="-23.973 -32.093 0.000 -18.597 -59.523 0.000 20.028 -59.834 0.000 23.731 -32.338 0.000 24.509 -3.451 0.000 19.250 23.065 0.000 -18.976 23.121 0.000 -21.890 8.382 0.000 -23.720 -5.722 0.000 -23.973 -32.093 0.020 -18.597 -59.523 0.020 20.028 -59.834 0.020 23.731 -32.338 0.020 24.509 -3.451 0.020 19.250 23.065 0.020 -18.976 23.121 0.020 -21.890 8.382 0.020 -23.720 -5.722 0.020"/>
+    <mesh name="slab_n" vertex="21.325 12.600 0.000 19.250 23.065 0.000 -18.976 23.121 0.000 -21.056 12.600 0.000 21.325 12.600 0.300 19.250 23.065 0.300 -18.976 23.121 0.300 -21.056 12.600 0.300"/>
+    <mesh name="slab_s" vertex="-23.973 -32.093 0.000 -18.597 -59.523 0.000 20.028 -59.834 0.000 23.731 -32.338 0.000 23.904 -25.900 0.000 -23.913 -25.900 0.000 -23.973 -32.093 0.300 -18.597 -59.523 0.300 20.028 -59.834 0.300 23.731 -32.338 0.300 23.904 -25.900 0.300 -23.913 -25.900 0.300"/>
+    <mesh name="slab_w" vertex="-10.800 -25.900 0.000 -10.800 12.600 0.000 -21.056 12.600 0.000 -21.890 8.382 0.000 -23.720 -5.722 0.000 -23.913 -25.900 0.000 -10.800 -25.900 0.300 -10.800 12.600 0.300 -21.056 12.600 0.300 -21.890 8.382 0.300 -23.720 -5.722 0.300 -23.913 -25.900 0.300"/>
+    <mesh name="slab_e" vertex="23.904 -25.900 0.000 24.509 -3.451 0.000 21.325 12.600 0.000 10.800 12.600 0.000 10.800 -25.900 0.000 23.904 -25.900 0.300 24.509 -3.451 0.300 21.325 12.600 0.300 10.800 12.600 0.300 10.800 -25.900 0.300"/>
+  </asset>
+  <worldbody>
+    <!-- ===== SHELL: OSM way 791070239, 3714 m2 hull ===== -->
+    <geom name="ext_wall_gf_0" type="box" material="wall_cream" size="14.150 0.175 1.800" pos="-21.285 -45.808 1.800" euler="0 0 -1.37728"/>
+    <geom name="ext_wall_up_0" type="box" material="wall_white" size="14.150 0.175 16.200" pos="-21.285 -45.808 19.800" euler="0 0 -1.37728" group="2"/>
+    <geom name="ext_wall_gf_1" type="box" material="wall_cream" size="19.488 0.175 1.800" pos="0.715 -59.678 1.800" euler="0 0 -0.00807"/>
+    <geom name="ext_wall_up_1" type="box" material="wall_white" size="19.488 0.175 16.200" pos="0.715 -59.678 19.800" euler="0 0 -0.00807" group="2"/>
+    <geom name="ext_wall_gf_2" type="box" material="wall_cream" size="14.047 0.175 1.800" pos="21.879 -46.086 1.800" euler="0 0 1.43694"/>
+    <geom name="ext_wall_up_2" type="box" material="wall_white" size="14.047 0.175 16.200" pos="21.879 -46.086 19.800" euler="0 0 1.43694" group="2"/>
+    <geom name="ext_wall_gf_3" type="box" material="wall_cream" size="14.624 0.175 1.800" pos="24.120 -17.895 1.800" euler="0 0 1.54386"/>
+    <geom name="ext_wall_up_3" type="box" material="wall_white" size="14.624 0.175 16.200" pos="24.120 -17.895 19.800" euler="0 0 1.54386" group="2"/>
+    <geom name="ext_wall_gf_4" type="box" material="wall_cream" size="13.691 0.175 1.800" pos="21.879 9.807 1.800" euler="0 0 1.76660"/>
+    <geom name="ext_wall_up_4" type="box" material="wall_white" size="13.691 0.175 16.200" pos="21.879 9.807 19.800" euler="0 0 1.76660" group="2"/>
+    <geom name="ext_wall_gf_5" type="box" material="wall_cream" size="19.288 0.175 1.800" pos="0.137 23.093 1.800" euler="0 0 3.14014"/>
+    <geom name="ext_wall_up_5" type="box" material="wall_white" size="19.288 0.175 16.200" pos="0.137 23.093 19.800" euler="0 0 3.14014" group="2"/>
+    <geom name="ext_wall_gf_6" type="box" material="wall_cream" size="7.687 0.175 1.800" pos="-20.433 15.752 1.800" euler="0 0 -1.76597"/>
+    <geom name="ext_wall_up_6" type="box" material="wall_white" size="7.687 0.175 16.200" pos="-20.433 15.752 19.800" euler="0 0 -1.76597" group="2"/>
+    <geom name="ext_wall_gf_7" type="box" material="wall_cream" size="7.286 0.175 1.800" pos="-22.805 1.330 1.800" euler="0 0 -1.69984"/>
+    <geom name="ext_wall_up_7" type="box" material="wall_white" size="7.286 0.175 16.200" pos="-22.805 1.330 19.800" euler="0 0 -1.69984" group="2"/>
+    <geom name="ext_wall_gf_8" type="box" material="wall_cream" size="13.361 0.175 1.800" pos="-23.846 -18.908 1.800" euler="0 0 -1.58037"/>
+    <geom name="ext_wall_up_8" type="box" material="wall_white" size="13.361 0.175 16.200" pos="-23.846 -18.908 19.800" euler="0 0 -1.58037" group="2"/>
+    <geom name="gf_floor" type="mesh" mesh="gf_floor" class="visual" material="stone_floor"/>
+    <!-- ===== FLOOR SLABS x10 around the atrium void (galleries) ===== -->
+    <geom name="slab_01_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 3.30" group="2"/>
+    <geom name="slab_01_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 3.30" group="2"/>
+    <geom name="slab_01_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 3.30" group="2"/>
+    <geom name="slab_01_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 3.30" group="2"/>
+    <geom name="slab_02_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 6.90" group="2"/>
+    <geom name="slab_02_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 6.90" group="2"/>
+    <geom name="slab_02_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 6.90" group="2"/>
+    <geom name="slab_02_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 6.90" group="2"/>
+    <geom name="slab_03_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 10.50" group="2"/>
+    <geom name="slab_03_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 10.50" group="2"/>
+    <geom name="slab_03_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 10.50" group="2"/>
+    <geom name="slab_03_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 10.50" group="2"/>
+    <geom name="slab_04_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 14.10" group="2"/>
+    <geom name="slab_04_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 14.10" group="2"/>
+    <geom name="slab_04_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 14.10" group="2"/>
+    <geom name="slab_04_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 14.10" group="2"/>
+    <geom name="slab_05_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 17.70" group="2"/>
+    <geom name="slab_05_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 17.70" group="2"/>
+    <geom name="slab_05_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 17.70" group="2"/>
+    <geom name="slab_05_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 17.70" group="2"/>
+    <geom name="slab_06_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 21.30" group="2"/>
+    <geom name="slab_06_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 21.30" group="2"/>
+    <geom name="slab_06_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 21.30" group="2"/>
+    <geom name="slab_06_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 21.30" group="2"/>
+    <geom name="slab_07_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 24.90" group="2"/>
+    <geom name="slab_07_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 24.90" group="2"/>
+    <geom name="slab_07_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 24.90" group="2"/>
+    <geom name="slab_07_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 24.90" group="2"/>
+    <geom name="slab_08_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 28.50" group="2"/>
+    <geom name="slab_08_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 28.50" group="2"/>
+    <geom name="slab_08_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 28.50" group="2"/>
+    <geom name="slab_08_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 28.50" group="2"/>
+    <geom name="slab_09_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 32.10" group="2"/>
+    <geom name="slab_09_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 32.10" group="2"/>
+    <geom name="slab_09_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 32.10" group="2"/>
+    <geom name="slab_09_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 32.10" group="2"/>
+    <geom name="slab_10_n" type="mesh" mesh="slab_n" material="slab_edge" pos="0 0 35.70" group="2"/>
+    <geom name="slab_10_s" type="mesh" mesh="slab_s" material="slab_edge" pos="0 0 35.70" group="2"/>
+    <geom name="slab_10_w" type="mesh" mesh="slab_w" material="slab_edge" pos="0 0 35.70" group="2"/>
+    <geom name="slab_10_e" type="mesh" mesh="slab_e" material="slab_edge" pos="0 0 35.70" group="2"/>
+    <geom name="skylight" type="box" material="skylight" size="10.800 19.250 0.050" pos="0.000 -6.650 35.950" group="2"/>
+    <geom name="skylight_beam_0" type="box" material="steel" size="0.080 19.250 0.120" pos="-7.200 -6.650 35.800" group="2"/>
+    <geom name="skylight_beam_1" type="box" material="steel" size="0.080 19.250 0.120" pos="-3.600 -6.650 35.800" group="2"/>
+    <geom name="skylight_beam_2" type="box" material="steel" size="0.080 19.250 0.120" pos="0.000 -6.650 35.800" group="2"/>
+    <geom name="skylight_beam_3" type="box" material="steel" size="0.080 19.250 0.120" pos="3.600 -6.650 35.800" group="2"/>
+    <geom name="skylight_beam_4" type="box" material="steel" size="0.080 19.250 0.120" pos="7.200 -6.650 35.800" group="2"/>
+    <!-- ===== GALLERIES: glass railings, corridor back walls with doors ===== -->
+    <geom name="rail_01_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 4.150" group="2"/>
+    <geom name="rail_01_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 4.700" group="2"/>
+    <geom name="rail_01_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 4.150" group="2"/>
+    <geom name="rail_01_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 4.700" group="2"/>
+    <geom name="rail_01_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 4.150" group="2"/>
+    <geom name="rail_01_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 4.700" group="2"/>
+    <geom name="rail_01_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 4.150" group="2"/>
+    <geom name="rail_01_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 4.700" group="2"/>
+    <geom name="gal_wall_01_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 5.250" group="2"/>
+    <geom name="gal_wall_01_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 5.250" group="2"/>
+    <geom name="gal_wall_01_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 5.250" group="2"/>
+    <geom name="gal_wall_01_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 5.250" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 4.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 4.700" group="2"/>
+    <geom name="rail_02_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 7.750" group="2"/>
+    <geom name="rail_02_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 8.300" group="2"/>
+    <geom name="rail_02_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 7.750" group="2"/>
+    <geom name="rail_02_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 8.300" group="2"/>
+    <geom name="rail_02_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 7.750" group="2"/>
+    <geom name="rail_02_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 8.300" group="2"/>
+    <geom name="rail_02_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 7.750" group="2"/>
+    <geom name="rail_02_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 8.300" group="2"/>
+    <geom name="gal_wall_02_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 8.850" group="2"/>
+    <geom name="gal_wall_02_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 8.850" group="2"/>
+    <geom name="gal_wall_02_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 8.850" group="2"/>
+    <geom name="gal_wall_02_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 8.850" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 8.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 8.300" group="2"/>
+    <geom name="rail_03_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 11.350" group="2"/>
+    <geom name="rail_03_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 11.900" group="2"/>
+    <geom name="rail_03_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 11.350" group="2"/>
+    <geom name="rail_03_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 11.900" group="2"/>
+    <geom name="rail_03_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 11.350" group="2"/>
+    <geom name="rail_03_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 11.900" group="2"/>
+    <geom name="rail_03_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 11.350" group="2"/>
+    <geom name="rail_03_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 11.900" group="2"/>
+    <geom name="gal_wall_03_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 12.450" group="2"/>
+    <geom name="gal_wall_03_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 12.450" group="2"/>
+    <geom name="gal_wall_03_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 12.450" group="2"/>
+    <geom name="gal_wall_03_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 12.450" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 11.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 11.900" group="2"/>
+    <geom name="rail_04_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 14.950" group="2"/>
+    <geom name="rail_04_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 15.500" group="2"/>
+    <geom name="rail_04_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 14.950" group="2"/>
+    <geom name="rail_04_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 15.500" group="2"/>
+    <geom name="rail_04_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 14.950" group="2"/>
+    <geom name="rail_04_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 15.500" group="2"/>
+    <geom name="rail_04_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 14.950" group="2"/>
+    <geom name="rail_04_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 15.500" group="2"/>
+    <geom name="gal_wall_04_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 16.050" group="2"/>
+    <geom name="gal_wall_04_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 16.050" group="2"/>
+    <geom name="gal_wall_04_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 16.050" group="2"/>
+    <geom name="gal_wall_04_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 16.050" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 15.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 15.500" group="2"/>
+    <geom name="rail_05_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 18.550" group="2"/>
+    <geom name="rail_05_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 19.100" group="2"/>
+    <geom name="rail_05_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 18.550" group="2"/>
+    <geom name="rail_05_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 19.100" group="2"/>
+    <geom name="rail_05_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 18.550" group="2"/>
+    <geom name="rail_05_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 19.100" group="2"/>
+    <geom name="rail_05_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 18.550" group="2"/>
+    <geom name="rail_05_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 19.100" group="2"/>
+    <geom name="gal_wall_05_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 19.650" group="2"/>
+    <geom name="gal_wall_05_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 19.650" group="2"/>
+    <geom name="gal_wall_05_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 19.650" group="2"/>
+    <geom name="gal_wall_05_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 19.650" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 19.100" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 19.100" group="2"/>
+    <geom name="rail_06_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 22.150" group="2"/>
+    <geom name="rail_06_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 22.700" group="2"/>
+    <geom name="rail_06_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 22.150" group="2"/>
+    <geom name="rail_06_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 22.700" group="2"/>
+    <geom name="rail_06_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 22.150" group="2"/>
+    <geom name="rail_06_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 22.700" group="2"/>
+    <geom name="rail_06_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 22.150" group="2"/>
+    <geom name="rail_06_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 22.700" group="2"/>
+    <geom name="gal_wall_06_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 23.250" group="2"/>
+    <geom name="gal_wall_06_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 23.250" group="2"/>
+    <geom name="gal_wall_06_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 23.250" group="2"/>
+    <geom name="gal_wall_06_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 23.250" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 22.700" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 22.700" group="2"/>
+    <geom name="rail_07_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 25.750" group="2"/>
+    <geom name="rail_07_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 26.300" group="2"/>
+    <geom name="rail_07_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 25.750" group="2"/>
+    <geom name="rail_07_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 26.300" group="2"/>
+    <geom name="rail_07_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 25.750" group="2"/>
+    <geom name="rail_07_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 26.300" group="2"/>
+    <geom name="rail_07_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 25.750" group="2"/>
+    <geom name="rail_07_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 26.300" group="2"/>
+    <geom name="gal_wall_07_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 26.850" group="2"/>
+    <geom name="gal_wall_07_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 26.850" group="2"/>
+    <geom name="gal_wall_07_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 26.850" group="2"/>
+    <geom name="gal_wall_07_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 26.850" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 26.300" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 26.300" group="2"/>
+    <geom name="rail_08_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 29.350" group="2"/>
+    <geom name="rail_08_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 29.900" group="2"/>
+    <geom name="rail_08_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 29.350" group="2"/>
+    <geom name="rail_08_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 29.900" group="2"/>
+    <geom name="rail_08_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 29.350" group="2"/>
+    <geom name="rail_08_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 29.900" group="2"/>
+    <geom name="rail_08_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 29.350" group="2"/>
+    <geom name="rail_08_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 29.900" group="2"/>
+    <geom name="gal_wall_08_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 30.450" group="2"/>
+    <geom name="gal_wall_08_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 30.450" group="2"/>
+    <geom name="gal_wall_08_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 30.450" group="2"/>
+    <geom name="gal_wall_08_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 30.450" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 29.900" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 29.900" group="2"/>
+    <geom name="rail_09_n" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 12.600 32.950" group="2"/>
+    <geom name="rail_09_n_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 12.600 33.500" group="2"/>
+    <geom name="rail_09_s" type="box" material="glass_rail" size="10.800 0.040 0.550" pos="0.000 -25.900 32.950" group="2"/>
+    <geom name="rail_09_s_cap" type="box" material="steel" size="10.800 0.050 0.030" pos="0.000 -25.900 33.500" group="2"/>
+    <geom name="rail_09_w" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="-10.800 -6.650 32.950" group="2"/>
+    <geom name="rail_09_w_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="-10.800 -6.650 33.500" group="2"/>
+    <geom name="rail_09_e" type="box" material="glass_rail" size="0.040 19.250 0.550" pos="10.800 -6.650 32.950" group="2"/>
+    <geom name="rail_09_e_cap" type="box" material="steel" size="0.050 19.250 0.030" pos="10.800 -6.650 33.500" group="2"/>
+    <geom name="gal_wall_09_w" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="-13.800 -6.650 34.050" group="2"/>
+    <geom name="gal_wall_09_e" type="box" material="wall_cream" size="0.110 22.250 1.650" pos="13.800 -6.650 34.050" group="2"/>
+    <geom name="gal_wall_09_n" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 15.600 34.050" group="2"/>
+    <geom name="gal_wall_09_s" type="box" material="wall_cream" size="13.800 0.110 1.650" pos="0.000 -28.900 34.050" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -25.900 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -25.900 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -20.400 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -20.400 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -14.900 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -14.900 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -9.400 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -9.400 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 -3.900 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 -3.900 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 1.600 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 1.600 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 7.100 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 7.100 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="-13.670 12.600 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.020 0.550 1.100" pos="13.670 12.600 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 -28.770 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-8.000 15.470 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 -28.770 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="-3.000 15.470 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 -28.770 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="3.000 15.470 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 -28.770 33.500" group="2"/>
+    <geom class="visual" type="box" material="door_dark" size="0.550 0.020 1.100" pos="8.000 15.470 33.500" group="2"/>
+    <!-- ===== GROUND FLOOR (room placement ASSUMED from tour topology) ===== -->
+    <geom name="gf_w_0" type="box" material="wall_cream" size="0.110 3.000 1.650" pos="-13.800 -25.900 1.650"/>
+    <geom name="gf_w_1" type="box" material="wall_cream" size="0.110 5.100 1.650" pos="-13.800 -16.000 1.650"/>
+    <geom name="gf_w_2" type="box" material="wall_cream" size="0.110 6.050 1.650" pos="-13.800 -3.050 1.650"/>
+    <geom name="gf_w_3" type="box" material="wall_cream" size="0.110 5.300 1.650" pos="-13.800 10.300 1.650"/>
+    <geom name="gf_w_lintel_+4" type="box" material="wall_cream" size="0.110 1.000 0.450" pos="-13.800 4.000 2.850"/>
+    <geom name="gf_w_lintel_-10" type="box" material="wall_cream" size="0.110 0.900 0.450" pos="-13.800 -10.000 2.850"/>
+    <geom name="gf_w_lintel_-22" type="box" material="wall_cream" size="0.110 0.900 0.450" pos="-13.800 -22.000 2.850"/>
+    <geom name="gf_e_0" type="box" material="wall_cream" size="0.110 3.650 1.650" pos="13.800 -25.250 1.650"/>
+    <geom name="gf_e_1" type="box" material="wall_cream" size="0.110 10.900 1.650" pos="13.800 -7.500 1.650"/>
+    <geom name="gf_e_2" type="box" material="wall_cream" size="0.110 4.500 1.650" pos="13.800 11.100 1.650"/>
+    <geom name="gf_e_lintel_+5" type="box" material="wall_cream" size="0.110 1.600 0.450" pos="13.800 5.000 2.850"/>
+    <geom name="gf_e_lintel_-20" type="box" material="wall_cream" size="0.110 1.600 0.450" pos="13.800 -20.000 2.850"/>
+    <geom name="gf_n_0" type="box" material="wall_cream" size="3.150 0.110 1.650" pos="-10.650 15.600 1.650"/>
+    <geom name="gf_n_1" type="box" material="wall_cream" size="4.500 0.110 1.650" pos="0.000 15.600 1.650"/>
+    <geom name="gf_n_2" type="box" material="wall_cream" size="3.150 0.110 1.650" pos="10.650 15.600 1.650"/>
+    <geom name="gf_n_lintel_-6" type="box" material="wall_cream" size="1.500 0.110 0.450" pos="-6.000 15.600 2.850"/>
+    <geom name="gf_n_lintel_+6" type="box" material="wall_cream" size="1.500 0.110 0.450" pos="6.000 15.600 2.850"/>
+    <geom name="gf_s_0" type="box" material="stone_clad" size="5.650 0.110 1.650" pos="-8.150 -28.900 1.650"/>
+    <geom name="gf_s_1" type="box" material="stone_clad" size="5.650 0.110 1.650" pos="8.150 -28.900 1.650"/>
+    <geom name="gf_s_lintel_+0" type="box" material="stone_clad" size="2.500 0.110 0.450" pos="0.000 -28.900 2.850"/>
+    <geom name="gf_vip_board_0" type="box" material="wood_panel" size="5.000 0.110 1.650" pos="-18.800 -4.000 1.650"/>
+    <geom name="gf_board_conf_0" type="box" material="wood_panel" size="5.100 0.110 1.650" pos="-18.900 -16.000 1.650"/>
+    <geom name="gf_lift_w_0" type="box" material="wood_panel" size="0.110 5.550 1.650" pos="-6.000 -34.450 1.650"/>
+    <geom name="gf_lift_e_0" type="box" material="wood_panel" size="0.110 5.550 1.650" pos="6.000 -34.450 1.650"/>
+    <geom name="gf_foyer_0" type="box" material="stone_clad" size="10.000 0.110 1.650" pos="-12.500 -40.000 1.650"/>
+    <geom name="gf_foyer_1" type="box" material="stone_clad" size="10.000 0.110 1.650" pos="12.500 -40.000 1.650"/>
+    <geom name="gf_foyer_lintel_+0" type="box" material="stone_clad" size="2.500 0.110 0.450" pos="0.000 -40.000 2.850"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.030 1.150 1.350" pos="-5.860 -32.000 1.350"/>
+    <geom class="visual" type="box" material="steel" size="0.020 0.620 1.100" pos="-5.820 -32.000 1.100"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.030 1.150 1.350" pos="5.860 -32.000 1.350"/>
+    <geom class="visual" type="box" material="steel" size="0.020 0.620 1.100" pos="5.820 -32.000 1.100"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.030 1.150 1.350" pos="-5.860 -36.500 1.350"/>
+    <geom class="visual" type="box" material="steel" size="0.020 0.620 1.100" pos="-5.820 -36.500 1.100"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.030 1.150 1.350" pos="5.860 -36.500 1.350"/>
+    <geom class="visual" type="box" material="steel" size="0.020 0.620 1.100" pos="5.820 -36.500 1.100"/>
+    <geom name="floor_cafe" class="visual" type="box" material="cafe_floor" size="4.700 22.250 0.005" pos="18.500 -6.650 0.025"/>
+    <geom name="floor_vip" class="visual" type="box" material="carpet" size="3.900 9.800 0.005" pos="-17.700 5.800 0.025"/>
+    <geom name="floor_board" class="visual" type="box" material="carpet" size="3.900 6.000 0.005" pos="-17.700 -10.000 0.025"/>
+    <geom name="floor_lifts" class="visual" type="box" material="lobby_floor" size="6.000 5.550 0.005" pos="0.000 -34.450 0.025"/>
+    <geom name="floor_foyer" class="visual" type="box" material="marble_floor" size="17.000 8.300 0.005" pos="0.000 -48.500 0.025"/>
+    <geom name="floor_audlobby" class="visual" type="box" material="marble_floor" size="17.000 2.700 0.005" pos="0.000 18.300 0.025"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 -26.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 -22.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 -18.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 -14.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 -10.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 -6.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 -2.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 2.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 6.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.300 10.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 -26.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 -22.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 -18.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 -14.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 -10.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 -6.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 -2.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 2.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 6.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.300 10.000 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.000 -27.400 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-12.000 14.100 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-8.000 -27.400 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-8.000 14.100 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-4.000 -27.400 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="-4.000 14.100 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="0.000 -27.400 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="0.000 14.100 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="4.000 -27.400 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="4.000 14.100 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="8.000 -27.400 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="8.000 14.100 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.000 -27.400 3.280" group="2"/>
+    <geom class="visual" type="box" material="ceiling_light" size="0.500 0.500 0.010" pos="12.000 14.100 3.280" group="2"/>
+    <!-- Wall of Fame (tour: "NMIMS Wall of Fame") -->
+    <geom class="visual" type="box" material="stone_clad" size="4.600 0.030 1.550" pos="-8.000 -28.760 1.650"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="-11.600 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-11.300 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-11.900 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-11.300 -28.680 2.200"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="-9.800 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-9.500 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-10.100 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-9.500 -28.680 2.200"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="-8.000 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-7.700 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-8.300 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-7.700 -28.680 2.200"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="-6.200 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-5.900 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-6.500 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-5.900 -28.680 2.200"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="-4.400 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-4.100 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-4.700 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="-4.100 -28.680 2.200"/>
+    <geom class="visual" type="box" material="stone_clad" size="4.600 0.030 1.550" pos="8.000 -28.760 1.650"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="4.400 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="4.700 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="4.100 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="4.700 -28.680 2.200"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="6.200 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="6.500 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="5.900 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="6.500 -28.680 2.200"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="8.000 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="8.300 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="7.700 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="8.300 -28.680 2.200"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="9.800 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="10.100 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="9.500 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="10.100 -28.680 2.200"/>
+    <geom class="visual" type="box" material="wood_panel" size="0.750 0.025 1.200" pos="11.600 -28.710 1.700"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="11.900 -28.680 1.100"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="11.300 -28.680 1.650"/>
+    <geom class="visual" type="box" material="frame_photo" size="0.180 0.012 0.220" pos="11.900 -28.680 2.200"/>
+    <geom class="visual" type="box" material="dark_wood" size="2.400 0.030 1.200" pos="0.000 -29.040 1.600"/>
+    <!-- Cafeteria (tour: "Cafeteria") -->
+    <geom name="furn_cafe_counter" type="box" material="counter" size="0.450 20.250 0.550" pos="22.400 -6.650 0.550"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 -25.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 -21.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 -17.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 -13.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 -9.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 -5.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 -1.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 3.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 7.000 2.450"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.400 0.350" pos="22.800 11.000 2.450"/>
+    <geom name="furn_cafe_bench_table_16_-25" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="16.000 -23.400 0.740"/>
+    <geom name="furn_cafe_bench_15.2_-25" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="15.250 -23.400 0.440"/>
+    <geom name="furn_cafe_bench_16.8_-25" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="16.750 -23.400 0.440"/>
+    <geom name="furn_cafe_bench_table_16_-20" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="16.000 -18.400 0.740"/>
+    <geom name="furn_cafe_bench_15.2_-20" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="15.250 -18.400 0.440"/>
+    <geom name="furn_cafe_bench_16.8_-20" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="16.750 -18.400 0.440"/>
+    <geom name="furn_cafe_bench_table_16_-15" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="16.000 -13.400 0.740"/>
+    <geom name="furn_cafe_bench_15.2_-15" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="15.250 -13.400 0.440"/>
+    <geom name="furn_cafe_bench_16.8_-15" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="16.750 -13.400 0.440"/>
+    <geom name="furn_cafe_bench_table_16_-10" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="16.000 -8.400 0.740"/>
+    <geom name="furn_cafe_bench_15.2_-10" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="15.250 -8.400 0.440"/>
+    <geom name="furn_cafe_bench_16.8_-10" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="16.750 -8.400 0.440"/>
+    <geom name="furn_cafe_bench_table_16_-5" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="16.000 -3.400 0.740"/>
+    <geom name="furn_cafe_bench_15.2_-5" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="15.250 -3.400 0.440"/>
+    <geom name="furn_cafe_bench_16.8_-5" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="16.750 -3.400 0.440"/>
+    <geom name="furn_cafe_bench_table_16_0" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="16.000 1.600 0.740"/>
+    <geom name="furn_cafe_bench_15.2_0" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="15.250 1.600 0.440"/>
+    <geom name="furn_cafe_bench_16.8_0" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="16.750 1.600 0.440"/>
+    <geom name="furn_cafe_bench_table_16_5" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="16.000 6.600 0.740"/>
+    <geom name="furn_cafe_bench_15.2_5" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="15.250 6.600 0.440"/>
+    <geom name="furn_cafe_bench_16.8_5" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="16.750 6.600 0.440"/>
+    <geom name="furn_cafe_bench_table_16_10" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="16.000 11.600 0.740"/>
+    <geom name="furn_cafe_bench_15.2_10" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="15.250 11.600 0.440"/>
+    <geom name="furn_cafe_bench_16.8_10" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="16.750 11.600 0.440"/>
+    <geom name="furn_cafe_bench_table_19_-25" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="19.200 -23.400 0.740"/>
+    <geom name="furn_cafe_bench_18.4_-25" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="18.450 -23.400 0.440"/>
+    <geom name="furn_cafe_bench_19.9_-25" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="19.950 -23.400 0.440"/>
+    <geom name="furn_cafe_bench_table_19_-20" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="19.200 -18.400 0.740"/>
+    <geom name="furn_cafe_bench_18.4_-20" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="18.450 -18.400 0.440"/>
+    <geom name="furn_cafe_bench_19.9_-20" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="19.950 -18.400 0.440"/>
+    <geom name="furn_cafe_bench_table_19_-15" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="19.200 -13.400 0.740"/>
+    <geom name="furn_cafe_bench_18.4_-15" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="18.450 -13.400 0.440"/>
+    <geom name="furn_cafe_bench_19.9_-15" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="19.950 -13.400 0.440"/>
+    <geom name="furn_cafe_bench_table_19_-10" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="19.200 -8.400 0.740"/>
+    <geom name="furn_cafe_bench_18.4_-10" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="18.450 -8.400 0.440"/>
+    <geom name="furn_cafe_bench_19.9_-10" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="19.950 -8.400 0.440"/>
+    <geom name="furn_cafe_bench_table_19_-5" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="19.200 -3.400 0.740"/>
+    <geom name="furn_cafe_bench_18.4_-5" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="18.450 -3.400 0.440"/>
+    <geom name="furn_cafe_bench_19.9_-5" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="19.950 -3.400 0.440"/>
+    <geom name="furn_cafe_bench_table_19_0" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="19.200 1.600 0.740"/>
+    <geom name="furn_cafe_bench_18.4_0" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="18.450 1.600 0.440"/>
+    <geom name="furn_cafe_bench_19.9_0" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="19.950 1.600 0.440"/>
+    <geom name="furn_cafe_bench_table_19_5" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="19.200 6.600 0.740"/>
+    <geom name="furn_cafe_bench_18.4_5" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="18.450 6.600 0.440"/>
+    <geom name="furn_cafe_bench_19.9_5" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="19.950 6.600 0.440"/>
+    <geom name="furn_cafe_bench_table_19_10" type="box" material="bench_wood" size="0.450 1.800 0.030" pos="19.200 11.600 0.740"/>
+    <geom name="furn_cafe_bench_18.4_10" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="18.450 11.600 0.440"/>
+    <geom name="furn_cafe_bench_19.9_10" type="box" material="bench_wood" size="0.150 1.800 0.030" pos="19.950 11.600 0.440"/>
+    <!-- VIP Lounge (tour: "VIP Lounge") -- RESTRICTED ZONE -->
+    <geom name="furn_vip_chair_00" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-19.800 9.500 0.420"/>
+    <geom name="furn_vip_chair_00_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-19.800 9.920 0.850"/>
+    <geom name="furn_vip_chair_01" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-18.550 9.500 0.420"/>
+    <geom name="furn_vip_chair_01_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-18.550 9.920 0.850"/>
+    <geom name="furn_vip_chair_02" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-17.300 9.500 0.420"/>
+    <geom name="furn_vip_chair_02_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-17.300 9.920 0.850"/>
+    <geom name="furn_vip_chair_03" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-16.050 9.500 0.420"/>
+    <geom name="furn_vip_chair_03_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-16.050 9.920 0.850"/>
+    <geom name="furn_vip_chair_10" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-19.800 8.100 0.420"/>
+    <geom name="furn_vip_chair_10_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-19.800 8.520 0.850"/>
+    <geom name="furn_vip_chair_11" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-18.550 8.100 0.420"/>
+    <geom name="furn_vip_chair_11_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-18.550 8.520 0.850"/>
+    <geom name="furn_vip_chair_12" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-17.300 8.100 0.420"/>
+    <geom name="furn_vip_chair_12_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-17.300 8.520 0.850"/>
+    <geom name="furn_vip_chair_13" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-16.050 8.100 0.420"/>
+    <geom name="furn_vip_chair_13_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-16.050 8.520 0.850"/>
+    <geom name="furn_vip_chair_20" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-19.800 6.700 0.420"/>
+    <geom name="furn_vip_chair_20_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-19.800 7.120 0.850"/>
+    <geom name="furn_vip_chair_21" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-18.550 6.700 0.420"/>
+    <geom name="furn_vip_chair_21_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-18.550 7.120 0.850"/>
+    <geom name="furn_vip_chair_22" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-17.300 6.700 0.420"/>
+    <geom name="furn_vip_chair_22_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-17.300 7.120 0.850"/>
+    <geom name="furn_vip_chair_23" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-16.050 6.700 0.420"/>
+    <geom name="furn_vip_chair_23_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-16.050 7.120 0.850"/>
+    <geom name="furn_vip_chair_30" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-19.800 5.300 0.420"/>
+    <geom name="furn_vip_chair_30_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-19.800 5.720 0.850"/>
+    <geom name="furn_vip_chair_31" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-18.550 5.300 0.420"/>
+    <geom name="furn_vip_chair_31_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-18.550 5.720 0.850"/>
+    <geom name="furn_vip_chair_32" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-17.300 5.300 0.420"/>
+    <geom name="furn_vip_chair_32_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-17.300 5.720 0.850"/>
+    <geom name="furn_vip_chair_33" type="box" material="leather_black" size="0.500 0.450 0.220" pos="-16.050 5.300 0.420"/>
+    <geom name="furn_vip_chair_33_back" type="box" material="leather_black" size="0.500 0.080 0.350" pos="-16.050 5.720 0.850"/>
+    <geom class="visual" type="box" material="screen" size="0.040 1.000 0.600" pos="-22.200 3.000 1.900"/>
+    <geom class="visual" type="box" material="wood_panel" size="3.600 0.040 1.500" pos="-17.600 15.000 1.600"/>
+    <geom name="furn_board_table" type="box" material="dark_wood" size="1.000 4.000 0.040" pos="-17.800 -10.000 0.750"/>
+    <geom name="furn_board_chair_-19_-13" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-19.200 -12.500 0.500"/>
+    <geom name="furn_board_chair_-16_-13" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-16.400 -12.500 0.500"/>
+    <geom name="furn_board_chair_-19_-12" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-19.200 -11.500 0.500"/>
+    <geom name="furn_board_chair_-16_-12" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-16.400 -11.500 0.500"/>
+    <geom name="furn_board_chair_-19_-11" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-19.200 -10.500 0.500"/>
+    <geom name="furn_board_chair_-16_-11" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-16.400 -10.500 0.500"/>
+    <geom name="furn_board_chair_-19_-10" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-19.200 -9.500 0.500"/>
+    <geom name="furn_board_chair_-16_-10" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-16.400 -9.500 0.500"/>
+    <geom name="furn_board_chair_-19_-9" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-19.200 -8.500 0.500"/>
+    <geom name="furn_board_chair_-16_-9" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-16.400 -8.500 0.500"/>
+    <geom name="furn_board_chair_-19_-8" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-19.200 -7.500 0.500"/>
+    <geom name="furn_board_chair_-16_-8" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-16.400 -7.500 0.500"/>
+    <geom name="furn_board_chair_-19_-7" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-19.200 -6.500 0.500"/>
+    <geom name="furn_board_chair_-16_-7" type="box" material="leather_black" size="0.250 0.250 0.250" pos="-16.400 -6.500 0.500"/>
+    <geom name="furn_conf_table" type="box" material="dark_wood" size="1.200 3.000 0.040" pos="-17.800 -22.500 0.750"/>
+    <!-- Entry foyer (tour: "Entry Staircase") -->
+    <geom name="furn_reception_desk" type="box" material="table_white" size="1.600 0.450 0.550" pos="-3.000 -47.000 0.550"/>
+    <geom name="stair_step_00" type="box" material="marble_floor" size="3.000 0.160 0.090" pos="12.000 -44.000 0.090"/>
+    <geom name="stair_step_01" type="box" material="marble_floor" size="3.000 0.160 0.260" pos="12.000 -44.320 0.260"/>
+    <geom name="stair_step_02" type="box" material="marble_floor" size="3.000 0.160 0.430" pos="12.000 -44.640 0.430"/>
+    <geom name="stair_step_03" type="box" material="marble_floor" size="3.000 0.160 0.600" pos="12.000 -44.960 0.600"/>
+    <geom name="stair_step_04" type="box" material="marble_floor" size="3.000 0.160 0.770" pos="12.000 -45.280 0.770"/>
+    <geom name="stair_step_05" type="box" material="marble_floor" size="3.000 0.160 0.940" pos="12.000 -45.600 0.940"/>
+    <geom name="stair_step_06" type="box" material="marble_floor" size="3.000 0.160 1.110" pos="12.000 -45.920 1.110"/>
+    <geom name="stair_step_07" type="box" material="marble_floor" size="3.000 0.160 1.280" pos="12.000 -46.240 1.280"/>
+    <geom name="stair_step_08" type="box" material="marble_floor" size="3.000 0.160 1.450" pos="12.000 -46.560 1.450"/>
+    <geom name="stair_step_09" type="box" material="marble_floor" size="3.000 0.160 1.620" pos="12.000 -46.880 1.620"/>
+    <geom name="stair_step_10" type="box" material="marble_floor" size="3.000 0.160 1.790" pos="12.000 -47.200 1.790"/>
+    <geom name="stair_step_11" type="box" material="marble_floor" size="3.000 0.160 1.960" pos="12.000 -47.520 1.960"/>
+    <geom name="foyer_planter_-9" type="box" material="planter" size="1.000 1.000 0.450" pos="-9.000 -44.000 0.450"/>
+    <geom name="foyer_shrub_-9" type="ellipsoid" size="1.1 1.1 1.3" pos="-9.0 -44 2.0" material="foliage"/>
+    <geom name="foyer_planter_+9" type="box" material="planter" size="1.000 1.000 0.450" pos="9.000 -44.000 0.450"/>
+    <geom name="foyer_shrub_+9" type="ellipsoid" size="1.1 1.1 1.3" pos="9.0 -44 2.0" material="foliage"/>
+    <!-- Auditorium lobby (tour: "Auditorium Lobby") -->
+    <geom name="escalator_-1" type="box" material="escalator" size="0.55 3.2 0.35" pos="-1.0 18.90 1.4" euler="0.45 0 0"/>
+    <geom name="escalator_+1" type="box" material="escalator" size="0.55 3.2 0.35" pos="1.0 18.90 1.4" euler="0.45 0 0"/>
+    <!-- ===== ATRIUM (tour: "Atrium Sitting Area") ===== -->
+    <geom name="atrium_stone" class="visual" type="box" material="stone_floor" size="10.800 19.250 0.004" pos="0.000 -6.650 0.026"/>
+    <geom name="atrium_deck" class="visual" type="box" material="deck_wood" size="5.500 5.000 0.004" pos="0.000 -6.000 0.030"/>
+    <geom name="atrium_turf" class="visual" type="box" material="grass_turf" size="6.000 3.500 0.004" pos="0.000 -20.000 0.030"/>
+    <geom name="planter_0" type="box" material="planter" size="2.400 1.600 0.350" pos="0.000 6.500 0.350"/>
+    <geom class="visual" type="box" material="deck_wood" size="2.600 1.800 0.030" pos="0.000 6.500 0.720"/>
+    <body name="atrium_tree_1" pos="-1.2 6.5 0.7"><geom type="capsule" size="0.12" fromto="0 0 0 0 0 3.6" material="bark"/><geom type="ellipsoid" size="1.6 1.6 1.4" pos="0 0 4.3" material="foliage"/><geom type="ellipsoid" size="1.2 1.2 1.0" pos="0.5 0.3 5.3" material="foliage_dark"/></body>
+    <body name="atrium_tree_2" pos="1.2 6.5 0.7"><geom type="capsule" size="0.12" fromto="0 0 0 0 0 3.6" material="bark"/><geom type="ellipsoid" size="1.6 1.6 1.4" pos="0 0 4.3" material="foliage"/><geom type="ellipsoid" size="1.2 1.2 1.0" pos="0.5 0.3 5.3" material="foliage_dark"/></body>
+    <geom name="planter_shrub_0_-2+1" type="ellipsoid" size="0.6 0.6 0.5" pos="-2.0 7.7 1.0" material="foliage"/>
+    <geom name="planter_shrub_0_+2-1" type="ellipsoid" size="0.6 0.6 0.5" pos="2.0 5.3 1.0" material="foliage"/>
+    <geom name="planter_shrub_0_+2+1" type="ellipsoid" size="0.6 0.6 0.5" pos="1.8 7.8 1.0" material="foliage"/>
+    <geom name="planter_shrub_0_-2-1" type="ellipsoid" size="0.6 0.6 0.5" pos="-1.9 5.4 1.0" material="foliage"/>
+    <geom name="planter_1" type="box" material="planter" size="2.400 1.600 0.350" pos="0.000 -6.000 0.350"/>
+    <geom class="visual" type="box" material="deck_wood" size="2.600 1.800 0.030" pos="0.000 -6.000 0.720"/>
+    <body name="atrium_tree_3" pos="-1.2 -6.0 0.7"><geom type="capsule" size="0.12" fromto="0 0 0 0 0 3.6" material="bark"/><geom type="ellipsoid" size="1.6 1.6 1.4" pos="0 0 4.3" material="foliage"/><geom type="ellipsoid" size="1.2 1.2 1.0" pos="0.5 0.3 5.3" material="foliage_dark"/></body>
+    <body name="atrium_tree_4" pos="1.2 -6.0 0.7"><geom type="capsule" size="0.12" fromto="0 0 0 0 0 3.6" material="bark"/><geom type="ellipsoid" size="1.6 1.6 1.4" pos="0 0 4.3" material="foliage"/><geom type="ellipsoid" size="1.2 1.2 1.0" pos="0.5 0.3 5.3" material="foliage_dark"/></body>
+    <geom name="planter_shrub_1_-2+1" type="ellipsoid" size="0.6 0.6 0.5" pos="-2.0 -4.8 1.0" material="foliage"/>
+    <geom name="planter_shrub_1_+2-1" type="ellipsoid" size="0.6 0.6 0.5" pos="2.0 -7.2 1.0" material="foliage"/>
+    <geom name="planter_shrub_1_+2+1" type="ellipsoid" size="0.6 0.6 0.5" pos="1.8 -4.7 1.0" material="foliage"/>
+    <geom name="planter_shrub_1_-2-1" type="ellipsoid" size="0.6 0.6 0.5" pos="-1.9 -7.1 1.0" material="foliage"/>
+    <geom name="planter_2" type="box" material="planter" size="2.400 1.600 0.350" pos="0.000 -15.000 0.350"/>
+    <geom class="visual" type="box" material="deck_wood" size="2.600 1.800 0.030" pos="0.000 -15.000 0.720"/>
+    <body name="atrium_tree_5" pos="-1.2 -15.0 0.7"><geom type="capsule" size="0.12" fromto="0 0 0 0 0 3.6" material="bark"/><geom type="ellipsoid" size="1.6 1.6 1.4" pos="0 0 4.3" material="foliage"/><geom type="ellipsoid" size="1.2 1.2 1.0" pos="0.5 0.3 5.3" material="foliage_dark"/></body>
+    <body name="atrium_tree_6" pos="1.2 -15.0 0.7"><geom type="capsule" size="0.12" fromto="0 0 0 0 0 3.6" material="bark"/><geom type="ellipsoid" size="1.6 1.6 1.4" pos="0 0 4.3" material="foliage"/><geom type="ellipsoid" size="1.2 1.2 1.0" pos="0.5 0.3 5.3" material="foliage_dark"/></body>
+    <geom name="planter_shrub_2_-2+1" type="ellipsoid" size="0.6 0.6 0.5" pos="-2.0 -13.8 1.0" material="foliage"/>
+    <geom name="planter_shrub_2_+2-1" type="ellipsoid" size="0.6 0.6 0.5" pos="2.0 -16.2 1.0" material="foliage"/>
+    <geom name="planter_shrub_2_+2+1" type="ellipsoid" size="0.6 0.6 0.5" pos="1.8 -13.7 1.0" material="foliage"/>
+    <geom name="planter_shrub_2_-2-1" type="ellipsoid" size="0.6 0.6 0.5" pos="-1.9 -16.1 1.0" material="foliage"/>
+    <body name="grand_piano" pos="3.4 -8.6 0"><geom name="furn_piano_body" type="box" size="0.75 0.8 0.15" pos="0 0 0.85" material="piano"/><geom name="furn_piano_lid" type="box" size="0.72 0.1 0.45" pos="0 0.5 1.28" euler="-0.9 0 0" material="piano"/><geom name="furn_piano_leg" type="cylinder" size="0.05 0.35" pos="0 -0.55 0.35" material="piano"/><geom name="furn_piano_keys" type="box" size="0.7 0.08 0.05" pos="0 -0.85 0.9" material="table_white"/><geom name="furn_piano_bench" type="box" size="0.4 0.2 0.22" pos="0 -1.35 0.22" material="leather_black"/></body>
+    <body name="cafe_table_0" pos="-7.2 9.5 0"><geom name="furn_cafe_table_0" type="cylinder" size="0.55 0.02" pos="0 0 0.74" material="table_white"/><geom name="furn_cafe_table_0_stem" type="cylinder" size="0.04 0.36" pos="0 0 0.37" material="steel"/><geom name="furn_cafe_chair_0_0" type="box" size="0.22 0.22 0.22" pos="0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_0_0_back" type="box" size="0.22 0.04 0.2" pos="1.05 0.00 0.65" euler="0 0 1.571" material="chair_pink"/><geom name="furn_cafe_chair_0_1" type="box" size="0.22 0.22 0.22" pos="0.00 0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_0_1_back" type="box" size="0.22 0.04 0.2" pos="0.00 1.05 0.65" euler="0 0 3.142" material="chair_pink"/><geom name="furn_cafe_chair_0_2" type="box" size="0.22 0.22 0.22" pos="-0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_0_2_back" type="box" size="0.22 0.04 0.2" pos="-1.05 0.00 0.65" euler="0 0 4.712" material="chair_pink"/><geom name="furn_cafe_chair_0_3" type="box" size="0.22 0.22 0.22" pos="-0.00 -0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_0_3_back" type="box" size="0.22 0.04 0.2" pos="-0.00 -1.05 0.65" euler="0 0 6.283" material="chair_pink"/></body>
+    <body name="cafe_table_1" pos="-7.2 1.5 0"><geom name="furn_cafe_table_1" type="cylinder" size="0.55 0.02" pos="0 0 0.74" material="table_white"/><geom name="furn_cafe_table_1_stem" type="cylinder" size="0.04 0.36" pos="0 0 0.37" material="steel"/><geom name="furn_cafe_chair_1_0" type="box" size="0.22 0.22 0.22" pos="0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_1_0_back" type="box" size="0.22 0.04 0.2" pos="1.05 0.00 0.65" euler="0 0 1.571" material="chair_pink"/><geom name="furn_cafe_chair_1_1" type="box" size="0.22 0.22 0.22" pos="0.00 0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_1_1_back" type="box" size="0.22 0.04 0.2" pos="0.00 1.05 0.65" euler="0 0 3.142" material="chair_pink"/><geom name="furn_cafe_chair_1_2" type="box" size="0.22 0.22 0.22" pos="-0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_1_2_back" type="box" size="0.22 0.04 0.2" pos="-1.05 0.00 0.65" euler="0 0 4.712" material="chair_pink"/><geom name="furn_cafe_chair_1_3" type="box" size="0.22 0.22 0.22" pos="-0.00 -0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_1_3_back" type="box" size="0.22 0.04 0.2" pos="-0.00 -1.05 0.65" euler="0 0 6.283" material="chair_pink"/></body>
+    <body name="cafe_table_2" pos="-7.2 -11.5 0"><geom name="furn_cafe_table_2" type="cylinder" size="0.55 0.02" pos="0 0 0.74" material="table_white"/><geom name="furn_cafe_table_2_stem" type="cylinder" size="0.04 0.36" pos="0 0 0.37" material="steel"/><geom name="furn_cafe_chair_2_0" type="box" size="0.22 0.22 0.22" pos="0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_2_0_back" type="box" size="0.22 0.04 0.2" pos="1.05 0.00 0.65" euler="0 0 1.571" material="chair_pink"/><geom name="furn_cafe_chair_2_1" type="box" size="0.22 0.22 0.22" pos="0.00 0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_2_1_back" type="box" size="0.22 0.04 0.2" pos="0.00 1.05 0.65" euler="0 0 3.142" material="chair_pink"/><geom name="furn_cafe_chair_2_2" type="box" size="0.22 0.22 0.22" pos="-0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_2_2_back" type="box" size="0.22 0.04 0.2" pos="-1.05 0.00 0.65" euler="0 0 4.712" material="chair_pink"/><geom name="furn_cafe_chair_2_3" type="box" size="0.22 0.22 0.22" pos="-0.00 -0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_2_3_back" type="box" size="0.22 0.04 0.2" pos="-0.00 -1.05 0.65" euler="0 0 6.283" material="chair_pink"/></body>
+    <body name="cafe_table_3" pos="-7.2 -23.0 0"><geom name="furn_cafe_table_3" type="cylinder" size="0.55 0.02" pos="0 0 0.74" material="table_white"/><geom name="furn_cafe_table_3_stem" type="cylinder" size="0.04 0.36" pos="0 0 0.37" material="steel"/><geom name="furn_cafe_chair_3_0" type="box" size="0.22 0.22 0.22" pos="0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_3_0_back" type="box" size="0.22 0.04 0.2" pos="1.05 0.00 0.65" euler="0 0 1.571" material="chair_pink"/><geom name="furn_cafe_chair_3_1" type="box" size="0.22 0.22 0.22" pos="0.00 0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_3_1_back" type="box" size="0.22 0.04 0.2" pos="0.00 1.05 0.65" euler="0 0 3.142" material="chair_pink"/><geom name="furn_cafe_chair_3_2" type="box" size="0.22 0.22 0.22" pos="-0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_3_2_back" type="box" size="0.22 0.04 0.2" pos="-1.05 0.00 0.65" euler="0 0 4.712" material="chair_pink"/><geom name="furn_cafe_chair_3_3" type="box" size="0.22 0.22 0.22" pos="-0.00 -0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_3_3_back" type="box" size="0.22 0.04 0.2" pos="-0.00 -1.05 0.65" euler="0 0 6.283" material="chair_pink"/></body>
+    <body name="cafe_table_4" pos="7.2 9.5 0"><geom name="furn_cafe_table_4" type="cylinder" size="0.55 0.02" pos="0 0 0.74" material="table_white"/><geom name="furn_cafe_table_4_stem" type="cylinder" size="0.04 0.36" pos="0 0 0.37" material="steel"/><geom name="furn_cafe_chair_4_0" type="box" size="0.22 0.22 0.22" pos="0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_4_0_back" type="box" size="0.22 0.04 0.2" pos="1.05 0.00 0.65" euler="0 0 1.571" material="chair_pink"/><geom name="furn_cafe_chair_4_1" type="box" size="0.22 0.22 0.22" pos="0.00 0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_4_1_back" type="box" size="0.22 0.04 0.2" pos="0.00 1.05 0.65" euler="0 0 3.142" material="chair_pink"/><geom name="furn_cafe_chair_4_2" type="box" size="0.22 0.22 0.22" pos="-0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_4_2_back" type="box" size="0.22 0.04 0.2" pos="-1.05 0.00 0.65" euler="0 0 4.712" material="chair_pink"/><geom name="furn_cafe_chair_4_3" type="box" size="0.22 0.22 0.22" pos="-0.00 -0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_4_3_back" type="box" size="0.22 0.04 0.2" pos="-0.00 -1.05 0.65" euler="0 0 6.283" material="chair_pink"/></body>
+    <body name="cafe_table_5" pos="7.2 1.5 0"><geom name="furn_cafe_table_5" type="cylinder" size="0.55 0.02" pos="0 0 0.74" material="table_white"/><geom name="furn_cafe_table_5_stem" type="cylinder" size="0.04 0.36" pos="0 0 0.37" material="steel"/><geom name="furn_cafe_chair_5_0" type="box" size="0.22 0.22 0.22" pos="0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_5_0_back" type="box" size="0.22 0.04 0.2" pos="1.05 0.00 0.65" euler="0 0 1.571" material="chair_pink"/><geom name="furn_cafe_chair_5_1" type="box" size="0.22 0.22 0.22" pos="0.00 0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_5_1_back" type="box" size="0.22 0.04 0.2" pos="0.00 1.05 0.65" euler="0 0 3.142" material="chair_pink"/><geom name="furn_cafe_chair_5_2" type="box" size="0.22 0.22 0.22" pos="-0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_5_2_back" type="box" size="0.22 0.04 0.2" pos="-1.05 0.00 0.65" euler="0 0 4.712" material="chair_pink"/><geom name="furn_cafe_chair_5_3" type="box" size="0.22 0.22 0.22" pos="-0.00 -0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_5_3_back" type="box" size="0.22 0.04 0.2" pos="-0.00 -1.05 0.65" euler="0 0 6.283" material="chair_pink"/></body>
+    <body name="cafe_table_6" pos="7.2 -11.5 0"><geom name="furn_cafe_table_6" type="cylinder" size="0.55 0.02" pos="0 0 0.74" material="table_white"/><geom name="furn_cafe_table_6_stem" type="cylinder" size="0.04 0.36" pos="0 0 0.37" material="steel"/><geom name="furn_cafe_chair_6_0" type="box" size="0.22 0.22 0.22" pos="0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_6_0_back" type="box" size="0.22 0.04 0.2" pos="1.05 0.00 0.65" euler="0 0 1.571" material="chair_pink"/><geom name="furn_cafe_chair_6_1" type="box" size="0.22 0.22 0.22" pos="0.00 0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_6_1_back" type="box" size="0.22 0.04 0.2" pos="0.00 1.05 0.65" euler="0 0 3.142" material="chair_pink"/><geom name="furn_cafe_chair_6_2" type="box" size="0.22 0.22 0.22" pos="-0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_6_2_back" type="box" size="0.22 0.04 0.2" pos="-1.05 0.00 0.65" euler="0 0 4.712" material="chair_pink"/><geom name="furn_cafe_chair_6_3" type="box" size="0.22 0.22 0.22" pos="-0.00 -0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_6_3_back" type="box" size="0.22 0.04 0.2" pos="-0.00 -1.05 0.65" euler="0 0 6.283" material="chair_pink"/></body>
+    <body name="cafe_table_7" pos="7.2 -23.0 0"><geom name="furn_cafe_table_7" type="cylinder" size="0.55 0.02" pos="0 0 0.74" material="table_white"/><geom name="furn_cafe_table_7_stem" type="cylinder" size="0.04 0.36" pos="0 0 0.37" material="steel"/><geom name="furn_cafe_chair_7_0" type="box" size="0.22 0.22 0.22" pos="0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_7_0_back" type="box" size="0.22 0.04 0.2" pos="1.05 0.00 0.65" euler="0 0 1.571" material="chair_pink"/><geom name="furn_cafe_chair_7_1" type="box" size="0.22 0.22 0.22" pos="0.00 0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_7_1_back" type="box" size="0.22 0.04 0.2" pos="0.00 1.05 0.65" euler="0 0 3.142" material="chair_pink"/><geom name="furn_cafe_chair_7_2" type="box" size="0.22 0.22 0.22" pos="-0.85 0.00 0.25" material="chair_pink"/><geom name="furn_cafe_chair_7_2_back" type="box" size="0.22 0.04 0.2" pos="-1.05 0.00 0.65" euler="0 0 4.712" material="chair_pink"/><geom name="furn_cafe_chair_7_3" type="box" size="0.22 0.22 0.22" pos="-0.00 -0.85 0.25" material="chair_pink"/><geom name="furn_cafe_chair_7_3_back" type="box" size="0.22 0.04 0.2" pos="-0.00 -1.05 0.65" euler="0 0 6.283" material="chair_pink"/></body>
+    <!-- Restricted zone = VIP Lounge (scaffold name "substation_zone" kept for API compatibility) -->
+    <geom name="substation_zone" class="visual" type="box" material="restricted_soft" size="3.700 9.600 0.004" pos="-17.700 5.800 0.035"/>
+    <body name="human_intruder" pos="0 0 -10"><freejoint name="intruder_root"/><geom name="intruder_geom" type="cylinder" size="0.28 0.85" material="intruder" mass="75.0" contype="0" conaffinity="0"/><site name="intruder_head" pos="0 0 0.85"/></body>
+    <site name="dock_alpha" pos="0 -27.40 0.03" type="cylinder" size="0.6 0.01" rgba="0.95 0.75 0.1 1"/>
+    <site name="dock_bravo" pos="-8.30 -19.0 0.04" type="cylinder" size="0.6 0.01" rgba="0.95 0.75 0.1 1"/>
+    <!-- Alpha: ground-floor corridor loop at 2.4 m (a guard's round) -->
+    <site name="patrol_cp0" pos="-12.30 -27.40 2.4" type="sphere" size="0.15" rgba="0.1 0.85 0.55 0.6" group="4"/>
+    <site name="patrol_cp1" pos="-12.30 -6.65 2.4" type="sphere" size="0.15" rgba="0.1 0.85 0.55 0.6" group="4"/>
+    <site name="patrol_cp2" pos="-12.30 14.10 2.4" type="sphere" size="0.15" rgba="0.1 0.85 0.55 0.6" group="4"/>
+    <site name="patrol_cp3" pos="0.00 14.10 2.4" type="sphere" size="0.15" rgba="0.1 0.85 0.55 0.6" group="4"/>
+    <site name="patrol_cp4" pos="12.30 14.10 2.4" type="sphere" size="0.15" rgba="0.1 0.85 0.55 0.6" group="4"/>
+    <site name="patrol_cp5" pos="12.30 -6.65 2.4" type="sphere" size="0.15" rgba="0.1 0.85 0.55 0.6" group="4"/>
+    <site name="patrol_cp6" pos="12.30 -27.40 2.4" type="sphere" size="0.15" rgba="0.1 0.85 0.55 0.6" group="4"/>
+    <site name="patrol_cp7" pos="0.00 -27.40 2.4" type="sphere" size="0.15" rgba="0.1 0.85 0.55 0.6" group="4"/>
+    <!-- Bravo: atrium sweep, one loop per gallery level, mid-storey height -->
+    <site name="atrium_cp0" pos="-8.30 -23.40 5.40" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp1" pos="-8.30 10.10 5.40" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp2" pos="8.30 10.10 5.40" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp3" pos="8.30 -23.40 5.40" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp4" pos="-8.30 -23.40 9.00" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp5" pos="-8.30 10.10 9.00" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp6" pos="8.30 10.10 9.00" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp7" pos="8.30 -23.40 9.00" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp8" pos="-8.30 -23.40 12.60" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp9" pos="-8.30 10.10 12.60" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp10" pos="8.30 10.10 12.60" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp11" pos="8.30 -23.40 12.60" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp12" pos="-8.30 -23.40 16.20" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp13" pos="-8.30 10.10 16.20" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp14" pos="8.30 10.10 16.20" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp15" pos="8.30 -23.40 16.20" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp16" pos="-8.30 -23.40 19.80" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp17" pos="-8.30 10.10 19.80" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp18" pos="8.30 10.10 19.80" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp19" pos="8.30 -23.40 19.80" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp20" pos="-8.30 -23.40 23.40" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp21" pos="-8.30 10.10 23.40" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp22" pos="8.30 10.10 23.40" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp23" pos="8.30 -23.40 23.40" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp24" pos="-8.30 -23.40 27.00" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp25" pos="-8.30 10.10 27.00" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp26" pos="8.30 10.10 27.00" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp27" pos="8.30 -23.40 27.00" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp28" pos="-8.30 -23.40 30.60" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp29" pos="-8.30 10.10 30.60" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp30" pos="8.30 10.10 30.60" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp31" pos="8.30 -23.40 30.60" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp32" pos="-8.30 -23.40 34.20" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp33" pos="-8.30 10.10 34.20" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp34" pos="8.30 10.10 34.20" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <site name="atrium_cp35" pos="8.30 -23.40 34.20" type="sphere" size="0.15" rgba="0.2 0.5 1 0.6" group="4"/>
+    <light name="skylight_sun" directional="true" pos="0 -7 60" dir="0.12 0.18 -1" diffuse="0.62 0.62 0.6" specular="0.1 0.1 0.1" castshadow="true"/>
+    <light name="interior_fill" directional="true" pos="0 -18 30" dir="-0.25 0.15 -1" diffuse="0.38 0.37 0.35" specular="0 0 0" castshadow="false"/>
+    <camera name="atrium_view" pos="-6.5 -21.0 1.6" xyaxes="0.9505 -0.3107 0.0000 -0.0708 -0.2165 0.9737" fovy="78"/>
+    <camera name="wall_of_fame_view" pos="-2.0 -23.5 1.6" xyaxes="-0.6757 0.7372 0.0000 0.0000 0.0000 1.0000" fovy="78"/>
+    <camera name="cafeteria_view" pos="17.6 14.0 1.6" xyaxes="-1.0000 -0.0000 0.0000 0.0000 -0.0250 0.9997" fovy="78"/>
+    <camera name="lift_lobby_view" pos="0.0 -29.6 1.6" xyaxes="-1.0000 -0.0000 0.0000 0.0000 -0.0288 0.9996" fovy="78"/>
+    <camera name="vip_lounge_view" pos="-14.4 -3.2 1.7" xyaxes="0.9443 0.3291 0.0000 -0.0211 0.0607 0.9979" fovy="78"/>
+    <camera name="gallery_view" pos="-12.3 -12.0 19.6" xyaxes="0.3247 -0.9458 0.0000 0.1953 0.0671 0.9784" fovy="78"/>
+    <camera name="atrium_top" pos="0.0 -24.5 33.0" xyaxes="1.0000 -0.0000 0.0000 0.0000 0.7568 0.6536" fovy="70"/>
+  </worldbody>
+</mujoco>

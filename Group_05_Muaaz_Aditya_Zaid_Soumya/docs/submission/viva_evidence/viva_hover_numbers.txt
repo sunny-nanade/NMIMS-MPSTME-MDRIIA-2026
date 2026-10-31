@@ -1,0 +1,6 @@
+interior: nu=8 timestep=0.002
+  alpha: body_subtreemass=1.3500 kg  m*g=13.244 N  per rotor=3.311 N  F_MAX*4=30.0 N  T/W=2.265
+  bravo: body_subtreemass=1.3500 kg  m*g=13.244 N  per rotor=3.311 N  F_MAX*4=30.0 N  T/W=2.265
+exterior: nu=8 timestep=0.002
+  alpha: body_subtreemass=1.3500 kg  m*g=13.244 N  per rotor=3.311 N  F_MAX*4=30.0 N  T/W=2.265
+  bravo: body_subtreemass=1.3500 kg  m*g=13.244 N  per rotor=3.311 N  F_MAX*4=30.0 N  T/W=2.265

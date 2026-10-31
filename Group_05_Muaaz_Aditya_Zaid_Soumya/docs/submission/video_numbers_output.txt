@@ -1,0 +1,97 @@
+VIDEO NUMBERS  (source: analytics/campus_patrol_real_trials.csv, 180 rows)
+command: python docs/submission/print_video_numbers.py   (run inside the group folder)
+statistics: scipy 1.18.1, Welch two-sided, Welch-Satterthwaite df, Cohen's d (pooled sd), 95% CI of mean difference
+timestep_s values in CSV: ['0.002']
+guard walk speed range (m/s), provenance guard_config.walk_speed_mps: [1.272, 1.462]
+guard walk speed source: Bohannon RW, Age Ageing 1997;26(1):15-19, doi 10.1093/ageing/26.1.15: comfortable gait speed, strata means 1.272-1.462 m
+
+==============================================================================
+1. cycle_time_s, guard_baseline vs UAV policy (difference = guard - UAV)
+==============================================================================
+[interior] guard_baseline vs uav_sectors
+  n_guard=30 n_uav=30
+  mean_guard=2460.4638 s sd_guard=593.2051 s
+  mean_uav=56.8981 s sd_uav=2.3746 s
+  mean_difference=2403.5657 s  guard/uav ratio=43.2434
+  Welch t=22.1926  df=29.001  p(two-sided)=9.60822e-20  Cohen d=5.7301
+  95% CI of mean difference: 2182.0578 to 2625.0736 s
+[interior] guard_baseline vs uav_offset_ring
+  n_guard=30 n_uav=30
+  mean_guard=2460.4638 s sd_guard=593.2051 s
+  mean_uav=40.3593 s sd_uav=4.4451 s
+  mean_difference=2420.1045 s  guard/uav ratio=60.9640
+  Welch t=22.3449  df=29.003  p(two-sided)=7.94561e-20  Cohen d=5.7694
+  95% CI of mean difference: 2198.5929 to 2641.6160 s
+
+[exterior] guard_baseline vs uav_sectors
+  n_guard=30 n_uav=30
+  mean_guard=532.9093 s sd_guard=141.6419 s
+  mean_uav=71.0988 s sd_uav=3.3020 s
+  mean_difference=461.8105 s  guard/uav ratio=7.4953
+  Welch t=17.8531  df=29.032  p(two-sided)=3.39140e-17  Cohen d=4.6097
+  95% CI of mean difference: 408.9087 to 514.7123 s
+[exterior] guard_baseline vs uav_offset_ring
+  n_guard=30 n_uav=30
+  mean_guard=532.9093 s sd_guard=141.6419 s
+  mean_uav=44.2760 s sd_uav=6.6739 s
+  mean_difference=488.6333 s  guard/uav ratio=12.0361
+  Welch t=18.8743  df=29.129  p(two-sided)=7.03503e-18  Cohen d=4.8733
+  95% CI of mean difference: 435.6948 to 541.5718 s
+
+==============================================================================
+2. detection (detected = 1 if the intruder was verified inside the run window)
+==============================================================================
+[interior] guard_baseline   detected 11/30  mean detection_latency_s=38.6726  (n_latency=11)  run duration_s=5000.0
+[interior] uav_sectors      detected 11/30  mean detection_latency_s=29.8656  (n_latency=11)  run duration_s=500.0
+[interior] uav_offset_ring  detected 10/30  mean detection_latency_s=37.0344  (n_latency=10)  run duration_s=500.0
+[exterior] guard_baseline   detected 30/30  mean detection_latency_s=281.0518  (n_latency=30)  run duration_s=1800.0
+[exterior] uav_sectors      detected 30/30  mean detection_latency_s=18.6190  (n_latency=30)  run duration_s=500.0
+[exterior] uav_offset_ring  detected 30/30  mean detection_latency_s=35.7629  (n_latency=30)  run duration_s=500.0
+CAVEAT: interior detection is 11/30 for the guard and 11/30 for uav_sectors; the UAV runs last 500 s and the guard runs last 5000 s (interior), so the windows differ. Interior detection is NOT an improvement over the guard in this data.
+
+==============================================================================
+3. safety (UAV cells only; the guard has no UAV columns)
+==============================================================================
+[interior] uav_sectors      runs=30
+   min of min_obstacle_clearance_m = 0.2933 m
+   obstacle_contacts: total=3 over 30 runs; runs with contacts=1 of 30; seeds with contacts=[(7, 3)]
+   min of min_inter_uav_m = 5.0907 m (mean of per-run minima 5.2164 m)
+   uav_uav_contacts total = 0
+[interior] uav_offset_ring  runs=30
+   min of min_obstacle_clearance_m = 0.5343 m
+   obstacle_contacts: total=0 over 30 runs; runs with contacts=0 of 30; seeds with contacts=none
+   min of min_inter_uav_m = 1.6339 m (mean of per-run minima 8.0876 m)
+   uav_uav_contacts total = 0
+[exterior] uav_sectors      runs=30
+   min of min_obstacle_clearance_m = 2.1958 m
+   obstacle_contacts: total=0 over 30 runs; runs with contacts=0 of 30; seeds with contacts=none
+   min of min_inter_uav_m = 9.3947 m (mean of per-run minima 11.3748 m)
+   uav_uav_contacts total = 0
+[exterior] uav_offset_ring  runs=30
+   min of min_obstacle_clearance_m = 0.9709 m
+   obstacle_contacts: total=0 over 30 runs; runs with contacts=0 of 30; seeds with contacts=none
+   min of min_inter_uav_m = 1.7967 m (mean of per-run minima 3.4970 m)
+   uav_uav_contacts total = 0
+[interior] UAV runs (both policies) with 0 obstacle contacts: 59 of 60
+[exterior] UAV runs (both policies) with 0 obstacle contacts: 60 of 60
+[interior] uav_sectors runs with 0 obstacle contacts: 29 of 30
+
+==============================================================================
+4. other UAV metrics (mean, sd over 30 runs)
+==============================================================================
+[interior] uav_sectors      tracking_rmse_m          mean=0.4878 sd=0.1415 n=30
+[interior] uav_sectors      control_effort_N2s       mean=44529.5278 sd=12.4664 n=30
+[interior] uav_sectors      worst_revisit_ground_s   mean=65.1939 sd=15.7015 n=30
+[interior] uav_offset_ring  tracking_rmse_m          mean=0.3944 sd=0.0487 n=30
+[interior] uav_offset_ring  control_effort_N2s       mean=44519.3600 sd=9.3838 n=30
+[interior] uav_offset_ring  worst_revisit_ground_s   mean=54.7529 sd=10.9708 n=30
+[exterior] uav_sectors      tracking_rmse_m          mean=0.2726 sd=0.0103 n=30
+[exterior] uav_sectors      control_effort_N2s       mean=46835.8942 sd=101.1792 n=30
+[exterior] uav_sectors      worst_revisit_ground_s   mean=130.2597 sd=16.8017 n=30
+[exterior] uav_offset_ring  tracking_rmse_m          mean=0.6637 sd=0.0790 n=30
+[exterior] uav_offset_ring  control_effort_N2s       mean=47106.2402 sd=130.7066 n=30
+[exterior] uav_offset_ring  worst_revisit_ground_s   mean=84.5547 sd=9.3777 n=30
+[interior] guard_baseline worst_revisit_ground_s mean=2494.1635 sd=598.6991 n=30
+[exterior] guard_baseline worst_revisit_ground_s mean=570.9600 sd=152.0636 n=30
+
+END

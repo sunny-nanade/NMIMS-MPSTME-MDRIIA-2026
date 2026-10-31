@@ -1,0 +1,5576 @@
+{
+  "csv_sha256": "d806974f764a62928d6ded2e83a58985a1e16b6e6ff8aa710329793892a81cd3",
+  "generated_utc": "2026-10-31T05:52:05+00:00",
+  "generator": "analytics/run_ablations.py",
+  "command": "python analytics/run_ablations.py --mode all --trials 10 --duration 90 --workers 10",
+  "git_commit": "dad31cb",
+  "python": "3.12.13",
+  "mujoco": "3.13.0",
+  "numpy": "2.5.3",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "code_sha256_16": {
+    "src/aerial_patrol_swarm.py": "314f42bdb8b115df",
+    "src/foot_patrol_baseline.py": "ace80e2f770a73d4",
+    "src/patrol_metrics.py": "b4a135e900faa229",
+    "src/run_telemetry.py": "87155cc6f92b8aa7",
+    "analytics/run_benchmark.py": "56eeebd4f7ebc8fc",
+    "analytics/run_ablations.py": "82e462123eafa6fc"
+  },
+  "model_sha256_16": {
+    "models/common.xml": "f5fca9d55c2982be",
+    "models/uav_fleet.xml": "770811514e3a023b",
+    "models/nmims_main_interior.xml": "e0a373530e6cf448",
+    "models/nmims_main_campus.xml": "d21caf901f012a42",
+    "models/campus_perimeter_patrol.xml": "5be60b3356b6b311",
+    "models/campus_perimeter_patrol_exterior.xml": "d73186ccde359e53"
+  },
+  "code_sha_combined": "7a8299357bf2e953",
+  "model_sha_combined": "84e9a9e95193ab11",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "trials_per_arm": 10,
+  "duration_s": 90.0,
+  "vision_hz": 10.0,
+  "timestep_s": [
+    0.002
+  ],
+  "modes": {
+    "separation": {
+      "flag": "layered_separation",
+      "scene": "interior",
+      "condition": "uav_offset_ring",
+      "off_arm": "layered_separation=False (only this flag)",
+      "on_arm": "no flag passed: the production code path"
+    },
+    "fr18": {
+      "flag": "obstacle_avoidance",
+      "scene": "interior",
+      "condition": "uav_sectors",
+      "off_arm": "obstacle_avoidance=False (only this flag)",
+      "on_arm": "no flag passed: the production code path"
+    },
+    "geofence": {
+      "flag": "geofence_hysteresis",
+      "scene": "interior",
+      "condition": "uav_sectors",
+      "geofence_probe": true,
+      "off_arm": "geofence_hysteresis=False (only this flag)",
+      "on_arm": "no flag passed: the production code path"
+    },
+    "twilight": {
+      "flag": "auto_exposure",
+      "scene": "interior",
+      "condition": "uav_sectors",
+      "lighting_scale": 0.15,
+      "off_arm": "auto_exposure=False (only this flag)",
+      "on_arm": "no flag passed: the production code path"
+    }
+  },
+  "intruder_appear_s": {
+    "rule": "uniform(5.0, 30.0) per seed (design, so every short run contains an intrusion); identical for both arms",
+    "by_seed": {
+      "1": 9.071,
+      "2": 12.725,
+      "3": 24.237,
+      "4": 15.121,
+      "5": 27.223,
+      "6": 21.369,
+      "7": 23.541,
+      "8": 26.768,
+      "9": 20.498,
+      "10": 22.479
+    }
+  },
+  "twilight_scale": {
+    "value": 0.15,
+    "label": "ASSUMPTION (vision_illumination_benchmark.py)"
+  },
+  "definitions": {
+    "min_inter_uav_m, uav_uav_contacts, obstacle_contacts, min_obstacle_clearance_m, detected, detection_latency_s": "as in analytics/campus_patrol_real_trials.provenance.json (run_benchmark.run_one)",
+    "sep_below_2p5": "1 if min_inter_uav_m < 2.5 m",
+    "geofence_*": "run_benchmark.geofence_probe: the intruder's position over [appear, end] at 10 Hz plus Gaussian noise sigma = GEOFENCE_NOISE_SIGMA_M (ASSUMPTION) fed to evaluate_geofence_status; spurious = reported tier rises above the noise-free tier; log_events = tier changes written to the breach log"
+  },
+  "wall_s_total": 737.7,
+  "runs": {
+    "interior_uav_offset_ring_s1_abl_separation_off": {
+      "wall_s": 112.64,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.632,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 35.802,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 2
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 56.712,
+            "t_verify": 56.916,
+            "fix_verify": [
+              -12.757,
+              3.063,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "bravo",
+            "t_track": 57.018,
+            "t_close": 65.824,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s2_abl_separation_off": {
+      "wall_s": 114.39,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 2,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.632,
+            "t_verify": 35.802,
+            "fix_verify": [
+              -19.77,
+              -47.834,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 35.904,
+            "t_close": 38.216,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 62.118,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 62.22,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 62.322,
+            "t_verify": 62.526,
+            "fix_verify": [
+              -13.292,
+              4.964,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 62.628,
+            "t_close": 65.008,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "bravo",
+            "t_detect": 71.502,
+            "t_verify": 71.706,
+            "fix_verify": [
+              -21.584,
+              12.477,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 71.808,
+            "t_close": 74.222,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s3_abl_separation_off": {
+      "wall_s": 110.41,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 37.332,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 37.4,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.604,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 37.706,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 37.808,
+            "t_verify": 38.012,
+            "fix_verify": [
+              3.64,
+              -20.723,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 38.114,
+            "t_close": 68.204,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s4_abl_separation_off": {
+      "wall_s": 115.73,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 3,
+        "verify_rejects": 3,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.632,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 35.7,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 35.802,
+            "t_verify": 36.006,
+            "fix_verify": [
+              -12.689,
+              -42.344,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.108,
+            "t_close": 38.216,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.122,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.224,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 62.118,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 62.22,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.322,
+            "t_verify": 62.526,
+            "fix_verify": [
+              -12.5,
+              4.692,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 62.628,
+            "t_close": 67.728,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 6,
+            "owner": "bravo",
+            "t_detect": 71.502,
+            "t_verify": 71.706,
+            "fix_verify": [
+              -21.551,
+              12.105,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 71.808,
+            "t_close": 73.916,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s5_abl_separation_off": {
+      "wall_s": 112.39,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.12,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 40.222,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 40.324,
+            "t_verify": 40.528,
+            "fix_verify": [
+              3.957,
+              -22.541,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.63,
+            "t_close": 45.22,
+            "close_reason": "lost",
+            "handoffs": 4,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "bravo",
+            "t_detect": 48.926,
+            "t_verify": 49.13,
+            "fix_verify": [
+              -7.454,
+              -27.981,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 49.232,
+            "t_close": 79.322,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s6_abl_separation_off": {
+      "wall_s": 112.34,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.632,
+            "t_verify": 35.802,
+            "fix_verify": [
+              3.581,
+              -18.585,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 35.904,
+            "t_close": 42.126,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.326,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.428,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.53,
+            "t_verify": 52.7,
+            "fix_verify": [
+              -13.388,
+              -19.651,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 52.802,
+            "t_close": 73.916,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s7_abl_separation_off": {
+      "wall_s": 111.94,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.618,
+            "t_verify": 36.822,
+            "fix_verify": [
+              3.564,
+              -20.533,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.924,
+            "t_close": 43.01,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.02,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.122,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.224,
+            "t_verify": 52.428,
+            "fix_verify": [
+              -13.403,
+              -23.133,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 52.53,
+            "t_close": 76.228,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s8_abl_separation_off": {
+      "wall_s": 110.8,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 39.712,
+            "t_verify": 39.916,
+            "fix_verify": [
+              3.9,
+              -22.165,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.018,
+            "t_close": 45.016,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 47.532,
+            "t_verify": 47.702,
+            "fix_verify": [
+              -5.027,
+              -27.181,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 47.804,
+            "t_close": 77.826,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s9_abl_separation_off": {
+      "wall_s": 110.35,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 2,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.428,
+            "t_verify": 35.632,
+            "fix_verify": [
+              3.536,
+              -18.084,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 35.7,
+            "t_close": 41.718,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.428,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.53,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.632,
+            "t_verify": 52.802,
+            "fix_verify": [
+              -12.935,
+              -18.457,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 52.904,
+            "t_close": 55.93,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 62.016,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 62.22,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 2
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.322,
+            "t_verify": 62.526,
+            "fix_verify": [
+              -12.325,
+              -4.948,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 62.628,
+            "t_close": 72.828,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 6,
+            "owner": "bravo",
+            "t_detect": 82.518,
+            "t_verify": 82.722,
+            "fix_verify": [
+              -22.462,
+              13.646,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 82.824,
+            "t_close": 85.816,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s10_abl_separation_off": {
+      "wall_s": 111.65,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "layered_separation": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.108,
+            "t_verify": 36.312,
+            "fix_verify": [
+              3.672,
+              -19.33,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 36.414,
+            "t_close": 66.504,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s1_abl_separation_on": {
+      "wall_s": 113.23,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.632,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 35.802,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 2
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 56.712,
+            "t_verify": 56.916,
+            "fix_verify": [
+              -12.757,
+              3.063,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "bravo",
+            "t_track": 57.018,
+            "t_close": 65.824,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s2_abl_separation_on": {
+      "wall_s": 115.98,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 2,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.632,
+            "t_verify": 35.802,
+            "fix_verify": [
+              -19.77,
+              -47.834,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 35.904,
+            "t_close": 38.216,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 62.118,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 62.22,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 62.322,
+            "t_verify": 62.526,
+            "fix_verify": [
+              -13.292,
+              4.964,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 62.628,
+            "t_close": 65.008,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "bravo",
+            "t_detect": 71.332,
+            "t_verify": 71.502,
+            "fix_verify": [
+              -21.968,
+              13.039,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 71.604,
+            "t_close": 75.922,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s3_abl_separation_on": {
+      "wall_s": 112.67,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 37.332,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 37.4,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.604,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 37.706,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 37.808,
+            "t_verify": 38.012,
+            "fix_verify": [
+              3.64,
+              -20.723,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 38.114,
+            "t_close": 68.204,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s4_abl_separation_on": {
+      "wall_s": 113.46,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 3,
+        "verify_rejects": 3,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.632,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 35.7,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 35.802,
+            "t_verify": 36.006,
+            "fix_verify": [
+              -12.689,
+              -42.344,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.108,
+            "t_close": 38.216,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.122,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.224,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 62.118,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 62.22,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.322,
+            "t_verify": 62.526,
+            "fix_verify": [
+              -12.5,
+              4.692,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 62.628,
+            "t_close": 67.728,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 6,
+            "owner": "alpha",
+            "t_detect": 73.304,
+            "t_verify": 73.508,
+            "fix_verify": [
+              -23.45,
+              14.147,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 73.61,
+            "t_close": 76.806,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s5_abl_separation_on": {
+      "wall_s": 112.5,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.12,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 40.222,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 40.324,
+            "t_verify": 40.528,
+            "fix_verify": [
+              3.957,
+              -22.541,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.63,
+            "t_close": 45.22,
+            "close_reason": "lost",
+            "handoffs": 4,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "bravo",
+            "t_detect": 48.926,
+            "t_verify": 49.13,
+            "fix_verify": [
+              -7.454,
+              -27.981,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 49.232,
+            "t_close": 79.322,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s6_abl_separation_on": {
+      "wall_s": 111.96,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.632,
+            "t_verify": 35.802,
+            "fix_verify": [
+              3.581,
+              -18.585,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 35.904,
+            "t_close": 42.126,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 54.604,
+            "t_verify": 54.808,
+            "fix_verify": [
+              -13.127,
+              -16.822,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 54.91,
+            "t_close": 73.916,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s7_abl_separation_on": {
+      "wall_s": 110.65,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 2,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.618,
+            "t_verify": 36.822,
+            "fix_verify": [
+              3.564,
+              -20.533,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.924,
+            "t_close": 43.01,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 53.108,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.21,
+            "t_verify": 53.414,
+            "fix_verify": [
+              -16.822,
+              -20.967,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 53.516,
+            "t_close": 75.922,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s8_abl_separation_on": {
+      "wall_s": 112.73,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 39.712,
+            "t_verify": 39.916,
+            "fix_verify": [
+              3.9,
+              -22.165,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.018,
+            "t_close": 45.016,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 47.532,
+            "t_verify": 47.702,
+            "fix_verify": [
+              -5.027,
+              -27.181,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 47.804,
+            "t_close": 77.826,
+            "close_reason": "track_timeout",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s9_abl_separation_on": {
+      "wall_s": 113.68,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 2,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 35.428,
+            "t_verify": 35.632,
+            "fix_verify": [
+              3.536,
+              -18.084,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 35.7,
+            "t_close": 41.718,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 54.502,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 54.604,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 54.706,
+            "t_verify": 54.91,
+            "fix_verify": [
+              -13.018,
+              -15.493,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 55.012,
+            "t_close": 57.426,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 68.306,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 68.408,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 68.51,
+            "t_verify": 68.714,
+            "fix_verify": [
+              -12.353,
+              3.625,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 68.816,
+            "t_close": 72.828,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 6,
+            "owner": "bravo",
+            "t_detect": 88.4,
+            "t_verify": 88.604,
+            "fix_verify": [
+              -21.927,
+              13.0,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 88.706,
+            "t_close": null,
+            "close_reason": null,
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_offset_ring_s10_abl_separation_on": {
+      "wall_s": 112.15,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.108,
+            "t_verify": 36.312,
+            "fix_verify": [
+              3.672,
+              -19.33,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 36.414,
+            "t_close": 66.504,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s1_abl_fr18_off": {
+      "wall_s": 109.72,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.516,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s2_abl_fr18_off": {
+      "wall_s": 109.65,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -20.992,
+              -46.992,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 38.93,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 61.71,
+            "t_verify": 61.914,
+            "fix_verify": [
+              -11.923,
+              3.39,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 62.016,
+            "t_close": 63.92,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s3_abl_fr18_off": {
+      "wall_s": 109.22,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 37.332,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 37.502,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 2
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.706,
+            "t_verify": 37.91,
+            "fix_verify": [
+              3.664,
+              -20.061,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 38.012,
+            "t_close": 43.826,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.181,
+              -22.87,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 57.902,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.832,
+            "t_verify": 63.002,
+            "fix_verify": [
+              -12.316,
+              -9.426,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 63.104,
+            "t_close": 67.626,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 6,
+            "owner": "alpha",
+            "t_detect": 70.516,
+            "t_verify": 70.72,
+            "fix_verify": [
+              -12.321,
+              -0.155,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 70.822,
+            "t_close": 76.704,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s4_abl_fr18_off": {
+      "wall_s": 109.21,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -14.577,
+              -43.788,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 38.828,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 63.002,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 63.104,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 63.206,
+            "t_verify": 63.41,
+            "fix_verify": [
+              -12.338,
+              3.616,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 63.512,
+            "t_close": 67.422,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s5_abl_fr18_off": {
+      "wall_s": 108.8,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.324,
+            "t_verify": 40.528,
+            "fix_verify": [
+              3.862,
+              -22.087,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.63,
+            "t_close": 46.818,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 48.11,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 48.212,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "bravo",
+            "t_detect": 55.42,
+            "t_verify": 55.624,
+            "fix_verify": [
+              -11.786,
+              -23.581,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 55.726,
+            "t_close": 65.314,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s6_abl_fr18_off": {
+      "wall_s": 108.68,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.312,
+            "t_verify": 36.516,
+            "fix_verify": [
+              3.366,
+              -18.563,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.618,
+            "t_close": 42.602,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -13.044,
+              -19.054,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 56.712,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 62.9,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 63.002,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 63.104,
+            "t_verify": 63.308,
+            "fix_verify": [
+              -12.33,
+              -4.963,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.41,
+            "t_close": 73.712,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s7_abl_fr18_off": {
+      "wall_s": 109.0,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.822,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.924,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.026,
+            "t_verify": 37.23,
+            "fix_verify": [
+              3.595,
+              -19.809,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 37.332,
+            "t_close": 43.418,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.903,
+              -21.679,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 58.208,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.9,
+            "t_verify": 63.104,
+            "fix_verify": [
+              -12.322,
+              -8.336,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.206,
+            "t_close": 75.922,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s8_abl_fr18_off": {
+      "wall_s": 107.95,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.018,
+            "t_verify": 40.222,
+            "fix_verify": [
+              3.79,
+              -21.796,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.324,
+            "t_close": 48.008,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -13.178,
+              -26.608,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 59.806,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 62.832,
+            "t_verify": 63.002,
+            "fix_verify": [
+              -12.315,
+              -12.91,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.104,
+            "t_close": 80.002,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s9_abl_fr18_off": {
+      "wall_s": 107.96,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -0.777,
+              -30.806,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 45.424,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": 53.006,
+            "fix_verify": [
+              -13.139,
+              -18.092,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 53.108,
+            "t_close": 71.706,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s10_abl_fr18_off": {
+      "wall_s": 107.76,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "obstacle_avoidance": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.312,
+            "t_verify": 36.516,
+            "fix_verify": [
+              3.553,
+              -19.122,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.618,
+            "t_close": 43.01,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.0,
+              -20.301,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 59.908,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 63.104,
+            "t_verify": 63.308,
+            "fix_verify": [
+              -12.326,
+              -6.401,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.41,
+            "t_close": 74.902,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s1_abl_fr18_on": {
+      "wall_s": 92.56,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.516,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s2_abl_fr18_on": {
+      "wall_s": 92.43,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -20.992,
+              -46.992,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 38.93,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 61.71,
+            "t_verify": 61.914,
+            "fix_verify": [
+              -11.923,
+              3.39,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 62.016,
+            "t_close": 63.92,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s3_abl_fr18_on": {
+      "wall_s": 90.63,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 37.332,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 37.502,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 2
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.706,
+            "t_verify": 37.91,
+            "fix_verify": [
+              3.664,
+              -20.061,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 38.012,
+            "t_close": 43.826,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.181,
+              -22.87,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 57.902,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.832,
+            "t_verify": 63.002,
+            "fix_verify": [
+              -12.316,
+              -9.426,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 63.104,
+            "t_close": 67.626,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 6,
+            "owner": "alpha",
+            "t_detect": 70.516,
+            "t_verify": 70.72,
+            "fix_verify": [
+              -12.321,
+              -0.155,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 70.822,
+            "t_close": 76.704,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s4_abl_fr18_on": {
+      "wall_s": 92.85,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -14.577,
+              -43.788,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 38.828,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 63.002,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 63.104,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 63.206,
+            "t_verify": 63.41,
+            "fix_verify": [
+              -12.338,
+              3.616,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 63.512,
+            "t_close": 67.422,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s5_abl_fr18_on": {
+      "wall_s": 90.19,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.324,
+            "t_verify": 40.528,
+            "fix_verify": [
+              3.862,
+              -22.087,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.63,
+            "t_close": 47.022,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 48.11,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 48.212,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "bravo",
+            "t_detect": 55.42,
+            "t_verify": 55.624,
+            "fix_verify": [
+              -11.775,
+              -23.566,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 55.726,
+            "t_close": 65.314,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s6_abl_fr18_on": {
+      "wall_s": 92.5,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.312,
+            "t_verify": 36.516,
+            "fix_verify": [
+              3.366,
+              -18.563,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.618,
+            "t_close": 42.602,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -13.044,
+              -19.054,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 56.712,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 62.9,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 63.002,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 63.104,
+            "t_verify": 63.308,
+            "fix_verify": [
+              -12.33,
+              -4.963,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.41,
+            "t_close": 73.712,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s7_abl_fr18_on": {
+      "wall_s": 90.71,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.822,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.924,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.026,
+            "t_verify": 37.23,
+            "fix_verify": [
+              3.595,
+              -19.809,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 37.332,
+            "t_close": 43.418,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.903,
+              -21.679,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 58.208,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.9,
+            "t_verify": 63.104,
+            "fix_verify": [
+              -12.322,
+              -8.336,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.206,
+            "t_close": 75.922,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s8_abl_fr18_on": {
+      "wall_s": 92.3,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.018,
+            "t_verify": 40.222,
+            "fix_verify": [
+              3.79,
+              -21.796,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.324,
+            "t_close": 48.008,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -13.178,
+              -26.608,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 59.806,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 62.832,
+            "t_verify": 63.002,
+            "fix_verify": [
+              -12.315,
+              -12.91,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.104,
+            "t_close": 80.002,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s9_abl_fr18_on": {
+      "wall_s": 91.82,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -0.777,
+              -30.806,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 45.424,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": 53.006,
+            "fix_verify": [
+              -13.139,
+              -18.092,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 53.108,
+            "t_close": 72.216,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s10_abl_fr18_on": {
+      "wall_s": 92.7,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.312,
+            "t_verify": 36.516,
+            "fix_verify": [
+              3.553,
+              -19.122,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.618,
+            "t_close": 43.01,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.0,
+              -20.301,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 59.908,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 63.104,
+            "t_verify": 63.308,
+            "fix_verify": [
+              -12.326,
+              -6.401,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.41,
+            "t_close": 74.902,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s1_abl_geofence_off": {
+      "wall_s": 107.26,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.516,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s2_abl_geofence_off": {
+      "wall_s": 106.96,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -20.992,
+              -46.992,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 38.93,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 61.71,
+            "t_verify": 61.914,
+            "fix_verify": [
+              -11.923,
+              3.39,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 62.016,
+            "t_close": 63.92,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s3_abl_geofence_off": {
+      "wall_s": 106.01,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 37.332,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 37.502,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 2
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.706,
+            "t_verify": 37.91,
+            "fix_verify": [
+              3.664,
+              -20.061,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 38.012,
+            "t_close": 43.826,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.181,
+              -22.87,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 57.902,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.832,
+            "t_verify": 63.002,
+            "fix_verify": [
+              -12.316,
+              -9.426,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 63.104,
+            "t_close": 67.626,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 6,
+            "owner": "alpha",
+            "t_detect": 70.516,
+            "t_verify": 70.72,
+            "fix_verify": [
+              -12.321,
+              -0.155,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 70.822,
+            "t_close": 76.704,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s4_abl_geofence_off": {
+      "wall_s": 105.74,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -14.577,
+              -43.788,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 38.828,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 63.002,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 63.104,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 63.206,
+            "t_verify": 63.41,
+            "fix_verify": [
+              -12.338,
+              3.616,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 63.512,
+            "t_close": 67.422,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s5_abl_geofence_off": {
+      "wall_s": 105.37,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.324,
+            "t_verify": 40.528,
+            "fix_verify": [
+              3.862,
+              -22.087,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.63,
+            "t_close": 47.022,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 48.11,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 48.212,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "bravo",
+            "t_detect": 55.42,
+            "t_verify": 55.624,
+            "fix_verify": [
+              -11.775,
+              -23.566,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 55.726,
+            "t_close": 65.314,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s6_abl_geofence_off": {
+      "wall_s": 105.94,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.312,
+            "t_verify": 36.516,
+            "fix_verify": [
+              3.366,
+              -18.563,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.618,
+            "t_close": 42.602,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -13.044,
+              -19.054,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 56.712,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 62.9,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 63.002,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 63.104,
+            "t_verify": 63.308,
+            "fix_verify": [
+              -12.33,
+              -4.963,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.41,
+            "t_close": 73.712,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s7_abl_geofence_off": {
+      "wall_s": 105.87,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.822,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.924,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.026,
+            "t_verify": 37.23,
+            "fix_verify": [
+              3.595,
+              -19.809,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 37.332,
+            "t_close": 43.418,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.903,
+              -21.679,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 58.208,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.9,
+            "t_verify": 63.104,
+            "fix_verify": [
+              -12.322,
+              -8.336,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.206,
+            "t_close": 75.922,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s8_abl_geofence_off": {
+      "wall_s": 106.06,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.018,
+            "t_verify": 40.222,
+            "fix_verify": [
+              3.79,
+              -21.796,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.324,
+            "t_close": 48.008,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -13.178,
+              -26.608,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 59.806,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 62.832,
+            "t_verify": 63.002,
+            "fix_verify": [
+              -12.315,
+              -12.91,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.104,
+            "t_close": 80.002,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s9_abl_geofence_off": {
+      "wall_s": 104.49,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -0.777,
+              -30.806,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 45.424,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": 53.006,
+            "fix_verify": [
+              -13.139,
+              -18.092,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 53.108,
+            "t_close": 72.216,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s10_abl_geofence_off": {
+      "wall_s": 104.45,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "geofence_hysteresis": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.312,
+            "t_verify": 36.516,
+            "fix_verify": [
+              3.553,
+              -19.122,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.618,
+            "t_close": 43.01,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.0,
+              -20.301,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 59.908,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 63.104,
+            "t_verify": 63.308,
+            "fix_verify": [
+              -12.326,
+              -6.401,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.41,
+            "t_close": 74.902,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s1_abl_geofence_on": {
+      "wall_s": 75.02,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.516,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s2_abl_geofence_on": {
+      "wall_s": 74.36,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -20.992,
+              -46.992,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 38.93,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 61.71,
+            "t_verify": 61.914,
+            "fix_verify": [
+              -11.923,
+              3.39,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 62.016,
+            "t_close": 63.92,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s3_abl_geofence_on": {
+      "wall_s": 74.47,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 37.332,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 37.502,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 2
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.706,
+            "t_verify": 37.91,
+            "fix_verify": [
+              3.664,
+              -20.061,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 38.012,
+            "t_close": 43.826,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.181,
+              -22.87,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 57.902,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.832,
+            "t_verify": 63.002,
+            "fix_verify": [
+              -12.316,
+              -9.426,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 63.104,
+            "t_close": 67.626,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 6,
+            "owner": "alpha",
+            "t_detect": 70.516,
+            "t_verify": 70.72,
+            "fix_verify": [
+              -12.321,
+              -0.155,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 70.822,
+            "t_close": 76.704,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s4_abl_geofence_on": {
+      "wall_s": 75.29,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -14.577,
+              -43.788,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 38.828,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 63.002,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 63.104,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 63.206,
+            "t_verify": 63.41,
+            "fix_verify": [
+              -12.338,
+              3.616,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 63.512,
+            "t_close": 67.422,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s5_abl_geofence_on": {
+      "wall_s": 74.36,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.324,
+            "t_verify": 40.528,
+            "fix_verify": [
+              3.862,
+              -22.087,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.63,
+            "t_close": 47.022,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 48.11,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 48.212,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "bravo",
+            "t_detect": 55.42,
+            "t_verify": 55.624,
+            "fix_verify": [
+              -11.775,
+              -23.566,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 55.726,
+            "t_close": 65.314,
+            "close_reason": "lost",
+            "handoffs": 2,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s6_abl_geofence_on": {
+      "wall_s": 74.17,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.312,
+            "t_verify": 36.516,
+            "fix_verify": [
+              3.366,
+              -18.563,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.618,
+            "t_close": 42.602,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -13.044,
+              -19.054,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 56.712,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 62.9,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 63.002,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 63.104,
+            "t_verify": 63.308,
+            "fix_verify": [
+              -12.33,
+              -4.963,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.41,
+            "t_close": 73.712,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s7_abl_geofence_on": {
+      "wall_s": 74.54,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 2,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.822,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.924,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 37.026,
+            "t_verify": 37.23,
+            "fix_verify": [
+              3.595,
+              -19.809,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 37.332,
+            "t_close": 43.418,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.903,
+              -21.679,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 58.208,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 5,
+            "owner": "alpha",
+            "t_detect": 62.9,
+            "t_verify": 63.104,
+            "fix_verify": [
+              -12.322,
+              -8.336,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.206,
+            "t_close": 75.922,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s8_abl_geofence_on": {
+      "wall_s": 73.77,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 40.018,
+            "t_verify": 40.222,
+            "fix_verify": [
+              3.79,
+              -21.796,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 40.324,
+            "t_close": 48.008,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -13.178,
+              -26.608,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 59.806,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 62.832,
+            "t_verify": 63.002,
+            "fix_verify": [
+              -12.315,
+              -12.91,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.104,
+            "t_close": 80.002,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s9_abl_geofence_on": {
+      "wall_s": 73.81,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.21,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 36.312,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 36.414,
+            "t_verify": 36.618,
+            "fix_verify": [
+              -0.777,
+              -30.806,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.72,
+            "t_close": 45.424,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": 53.006,
+            "fix_verify": [
+              -13.139,
+              -18.092,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "bravo",
+            "t_track": 53.108,
+            "t_close": 72.216,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s10_abl_geofence_on": {
+      "wall_s": 74.45,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "alpha",
+            "t_detect": 36.312,
+            "t_verify": 36.516,
+            "fix_verify": [
+              3.553,
+              -19.122,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 36.618,
+            "t_close": 43.01,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 52.802,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 52.904,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          },
+          {
+            "id": 3,
+            "owner": "alpha",
+            "t_detect": 53.006,
+            "t_verify": 53.21,
+            "fix_verify": [
+              -14.0,
+              -20.301,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 53.312,
+            "t_close": 59.908,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 4,
+            "owner": "alpha",
+            "t_detect": 63.104,
+            "t_verify": 63.308,
+            "fix_verify": [
+              -12.326,
+              -6.401,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 63.41,
+            "t_close": 74.902,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s1_abl_twilight_off": {
+      "wall_s": 63.48,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s2_abl_twilight_off": {
+      "wall_s": 63.37,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s3_abl_twilight_off": {
+      "wall_s": 63.76,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s4_abl_twilight_off": {
+      "wall_s": 63.59,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s5_abl_twilight_off": {
+      "wall_s": 63.97,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s6_abl_twilight_off": {
+      "wall_s": 63.82,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s7_abl_twilight_off": {
+      "wall_s": 63.5,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s8_abl_twilight_off": {
+      "wall_s": 62.97,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s9_abl_twilight_off": {
+      "wall_s": 63.91,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s10_abl_twilight_off": {
+      "wall_s": 63.91,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {
+        "auto_exposure": false
+      },
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 0,
+        "verify_rejects": 0,
+        "incidents": []
+      }
+    },
+    "interior_uav_sectors_s1_abl_twilight_on": {
+      "wall_s": 65.94,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.13,
+            "t_verify": 15.3,
+            "fix_verify": [
+              -13.247,
+              3.518,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.402,
+            "t_close": 45.424,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 47.702,
+            "t_verify": 47.906,
+            "fix_verify": [
+              -12.306,
+              -10.154,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 2,
+            "tracker": "alpha",
+            "t_track": 48.008,
+            "t_close": 54.706,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s2_abl_twilight_on": {
+      "wall_s": 65.73,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 1,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.232,
+            "t_verify": 15.402,
+            "fix_verify": [
+              -13.251,
+              3.532,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.504,
+            "t_close": 45.526,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 47.906,
+            "t_verify": null,
+            "fix_verify": null,
+            "tier_alert": null,
+            "tier_max": null,
+            "tracker": null,
+            "t_track": null,
+            "t_close": 48.008,
+            "close_reason": "verify_reject",
+            "handoffs": 0,
+            "hits": 1
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s3_abl_twilight_on": {
+      "wall_s": 65.8,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.13,
+            "t_verify": 15.3,
+            "fix_verify": [
+              -13.251,
+              3.497,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.402,
+            "t_close": 45.424,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 47.702,
+            "t_verify": 47.906,
+            "fix_verify": [
+              -9.2,
+              -28.584,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 48.008,
+            "t_close": 53.21,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s4_abl_twilight_on": {
+      "wall_s": 65.95,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.13,
+            "t_verify": 15.3,
+            "fix_verify": [
+              -13.251,
+              3.518,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.402,
+            "t_close": 45.424,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 47.702,
+            "t_verify": 47.906,
+            "fix_verify": [
+              -12.295,
+              -18.657,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 48.008,
+            "t_close": 54.128,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s5_abl_twilight_on": {
+      "wall_s": 65.91,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 2,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.13,
+            "t_verify": 15.3,
+            "fix_verify": [
+              -13.249,
+              3.521,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.402,
+            "t_close": 45.424,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 47.532,
+            "t_verify": 47.702,
+            "fix_verify": [
+              -3.594,
+              -32.797,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 47.804,
+            "t_close": 52.904,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s6_abl_twilight_on": {
+      "wall_s": 65.86,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.232,
+            "t_verify": 15.402,
+            "fix_verify": [
+              -13.249,
+              3.55,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.504,
+            "t_close": 45.526,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "bravo",
+            "t_detect": 56.406,
+            "t_verify": 56.61,
+            "fix_verify": [
+              -11.906,
+              -14.557,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 56.712,
+            "t_close": 60.316,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s7_abl_twilight_on": {
+      "wall_s": 65.54,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.232,
+            "t_verify": 15.402,
+            "fix_verify": [
+              -13.251,
+              3.537,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.504,
+            "t_close": 45.526,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 47.702,
+            "t_verify": 47.906,
+            "fix_verify": [
+              -10.202,
+              -28.307,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 48.008,
+            "t_close": 53.006,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s8_abl_twilight_on": {
+      "wall_s": 65.49,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 2,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.028,
+            "t_verify": 15.232,
+            "fix_verify": [
+              -13.25,
+              3.493,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.3,
+            "t_close": 45.322,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 47.6,
+            "t_verify": 47.804,
+            "fix_verify": [
+              -3.956,
+              -34.846,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "bravo",
+            "t_track": 47.906,
+            "t_close": 51.204,
+            "close_reason": "lost",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s9_abl_twilight_on": {
+      "wall_s": 65.4,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.13,
+            "t_verify": 15.3,
+            "fix_verify": [
+              -13.249,
+              3.524,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.402,
+            "t_close": 45.424,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          }
+        ]
+      }
+    },
+    "interior_uav_sectors_s10_abl_twilight_on": {
+      "wall_s": 64.99,
+      "vision_status": "active",
+      "resumed": null,
+      "ablation_flags": {},
+      "code_sha": "7a8299357bf2e953",
+      "model_sha": "84e9a9e95193ab11",
+      "surveillance": {
+        "false_alarms": 1,
+        "verify_rejects": 0,
+        "incidents": [
+          {
+            "id": 1,
+            "owner": "bravo",
+            "t_detect": 15.13,
+            "t_verify": 15.3,
+            "fix_verify": [
+              -13.25,
+              3.507,
+              0.85
+            ],
+            "tier_alert": 2,
+            "tier_max": 3,
+            "tracker": "alpha",
+            "t_track": 15.402,
+            "t_close": 45.424,
+            "close_reason": "track_timeout",
+            "handoffs": 1,
+            "hits": 3,
+            "true_detection": false
+          },
+          {
+            "id": 2,
+            "owner": "alpha",
+            "t_detect": 47.702,
+            "t_verify": 47.906,
+            "fix_verify": [
+              -11.69,
+              -28.228,
+              0.85
+            ],
+            "tier_alert": 0,
+            "tier_max": 0,
+            "tracker": "alpha",
+            "t_track": 48.008,
+            "t_close": 49.912,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          },
+          {
+            "id": 3,
+            "owner": "bravo",
+            "t_detect": 55.42,
+            "t_verify": 55.624,
+            "fix_verify": [
+              -11.874,
+              -17.346,
+              0.85
+            ],
+            "tier_alert": 1,
+            "tier_max": 1,
+            "tracker": "bravo",
+            "t_track": 55.726,
+            "t_close": 59.33,
+            "close_reason": "lost",
+            "handoffs": 0,
+            "hits": 3,
+            "true_detection": true
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,562 @@
+<!-- ======================================================================
+     GENERATED FILE -- do not hand-edit. Regenerate with:
+         python models/scene_source/build_nmims_scene.py
+     NMIMS Main Building campus, V.L. Mehta Road x Gulmohar Road,
+     Vile Parle (West), Mumbai 400056.
+     Geometry: (c) OpenStreetMap contributors, ODbL 1.0  (extract 2026-10-08T04:18:09Z)
+     Appearance reference: NMIMS official virtual tour, exterior panorama.
+     Frame: local ENU metres, origin 19.10344 N 72.83646 E, +x East, +y North.
+     Values marked ASSUMED are estimates -- see building_manifest.csv.
+     ====================================================================== -->
+<mujoco>
+  <custom>
+    <text name="scene_name" data="NMIMS campus -- inside the boundary wall"/>
+    <text name="vision_cams" data="cam_alpha cam_bravo"/>
+    <numeric name="transit_alt" data="44"/>
+    <numeric name="alt_layer_bravo" data="4"/>
+    <numeric name="cruise_speed" data="6"/>
+    <numeric name="max_tilt_deg" data="28"/>
+    <numeric name="d_warn" data="14"/>
+    <numeric name="sidestep" data="1.6"/>
+    <numeric name="wind_scale" data="1"/>
+    <numeric name="intruder_path" data="-21 41  -21 34  -21 29  -14 29"/>
+  </custom>
+  <asset>
+    <mesh name="nmims_main_collision" vertex="-23.973 -32.093 0.000 -18.597 -59.523 0.000 20.028 -59.834 0.000 23.731 -32.338 0.000 24.509 -3.451 0.000 19.250 23.065 0.000 -18.976 23.121 0.000 -21.890 8.382 0.000 -23.720 -5.722 0.000 -23.973 -32.093 36.000 -18.597 -59.523 36.000 20.028 -59.834 36.000 23.731 -32.338 36.000 24.509 -3.451 36.000 19.250 23.065 36.000 -18.976 23.121 36.000 -21.890 8.382 36.000 -23.720 -5.722 36.000"/>
+    <mesh name="nmims_main_core" vertex="-22.571 -31.964 0.000 -17.443 -58.132 0.000 18.805 -58.424 0.000 22.333 -32.226 0.000 23.105 -3.570 0.000 18.100 21.667 0.000 -17.826 21.719 0.000 -20.507 8.156 0.000 -22.321 -5.819 0.000 -22.571 -31.964 35.940 -17.443 -58.132 35.940 18.805 -58.424 35.940 22.333 -32.226 35.940 23.105 -3.570 35.940 18.100 21.667 35.940 -17.826 21.719 35.940 -20.507 8.156 35.940 -22.321 -5.819 35.940"/>
+    <mesh name="nmims_main_roof" vertex="-23.672 -32.066 0.000 -18.350 -59.225 0.000 19.766 -59.532 0.000 23.431 -32.314 0.000 24.208 -3.476 0.000 19.003 22.766 0.000 -18.730 22.821 0.000 -21.594 8.334 0.000 -23.420 -5.743 0.000 -23.672 -32.066 0.250 -18.350 -59.225 0.250 19.766 -59.532 0.250 23.431 -32.314 0.250 24.208 -3.476 0.250 19.003 22.766 0.250 -18.730 22.821 0.250 -21.594 8.334 0.250 -23.420 -5.743 0.250"/>
+    <mesh name="nmims_main_band" vertex="-23.973 -32.093 0.000 -18.597 -59.523 0.000 20.028 -59.834 0.000 23.731 -32.338 0.000 24.509 -3.451 0.000 19.250 23.065 0.000 -18.976 23.121 0.000 -21.890 8.382 0.000 -23.720 -5.722 0.000 -23.973 -32.093 1.450 -18.597 -59.523 1.450 20.028 -59.834 1.450 23.731 -32.338 1.450 24.509 -3.451 1.450 19.250 23.065 1.450 -18.976 23.121 1.450 -21.890 8.382 1.450 -23.720 -5.722 1.450"/>
+    <mesh name="nmims_main_podium" vertex="-23.372 -32.038 0.000 -18.103 -58.927 0.000 19.504 -59.230 0.000 23.132 -32.290 0.000 23.907 -3.502 0.000 18.757 22.466 0.000 -18.483 22.520 0.000 -21.297 8.285 0.000 -23.121 -5.763 0.000 -23.372 -32.038 3.600 -18.103 -58.927 3.600 19.504 -59.230 3.600 23.132 -32.290 3.600 23.907 -3.502 3.600 18.757 22.466 3.600 -18.483 22.520 3.600 -21.297 8.285 3.600 -23.121 -5.763 3.600"/>
+    <mesh name="campus_paving_0" vertex="-33.429 -52.999 0.000 -32.020 -62.306 0.000 -23.552 -68.517 0.000 -33.429 -52.999 0.030 -32.020 -62.306 0.030 -23.552 -68.517 0.030"/>
+    <mesh name="campus_paving_1" vertex="-33.429 -52.999 0.000 -23.552 -68.517 0.000 13.117 -71.055 0.000 -33.429 -52.999 0.030 -23.552 -68.517 0.030 13.117 -71.055 0.030"/>
+    <mesh name="campus_paving_2" vertex="-33.429 -52.999 0.000 13.117 -71.055 0.000 23.278 -66.825 0.000 -33.429 -52.999 0.030 13.117 -71.055 0.030 23.278 -66.825 0.030"/>
+    <mesh name="campus_paving_3" vertex="-33.429 -52.999 0.000 23.278 -66.825 0.000 28.359 -52.710 0.000 -33.429 -52.999 0.030 23.278 -66.825 0.030 28.359 -52.710 0.030"/>
+    <mesh name="campus_paving_4" vertex="-33.429 -52.999 0.000 28.359 -52.710 0.000 31.178 -32.962 0.000 -33.429 -52.999 0.030 28.359 -52.710 0.030 31.178 -32.962 0.030"/>
+    <mesh name="campus_paving_5" vertex="-33.429 -52.999 0.000 31.178 -32.962 0.000 33.156 33.340 0.000 -33.429 -52.999 0.030 31.178 -32.962 0.030 33.156 33.340 0.030"/>
+    <mesh name="campus_paving_6" vertex="33.156 33.340 0.000 -31.736 33.574 0.000 -33.429 -52.999 0.000 33.156 33.340 0.030 -31.736 33.574 0.030 -33.429 -52.999 0.030"/>
+    <mesh name="bldg_79670766_0" vertex="68.562 10.486 0.000 120.157 9.919 0.000 119.905 24.078 0.000 68.562 10.486 12.800 120.157 9.919 12.800 119.905 24.078 12.800"/>
+    <mesh name="bldg_79670766_1" vertex="68.562 10.486 0.000 119.905 24.078 0.000 114.435 23.867 0.000 68.562 10.486 12.800 119.905 24.078 12.800 114.435 23.867 12.800"/>
+    <mesh name="bldg_79670766_2" vertex="114.435 23.867 0.000 114.267 27.819 0.000 105.515 27.808 0.000 114.435 23.867 12.800 114.267 27.819 12.800 105.515 27.808 12.800"/>
+    <mesh name="bldg_79670766_3" vertex="114.435 23.867 0.000 105.515 27.808 0.000 105.420 23.878 0.000 114.435 23.867 12.800 105.515 27.808 12.800 105.420 23.878 12.800"/>
+    <mesh name="bldg_79670766_4" vertex="68.562 10.486 0.000 114.435 23.867 0.000 105.420 23.878 0.000 68.562 10.486 12.800 114.435 23.867 12.800 105.420 23.878 12.800"/>
+    <mesh name="bldg_79670766_5" vertex="68.562 10.486 0.000 105.420 23.878 0.000 92.419 24.134 0.000 68.562 10.486 12.800 105.420 23.878 12.800 92.419 24.134 12.800"/>
+    <mesh name="bldg_79670766_6" vertex="68.562 10.486 0.000 92.419 24.134 0.000 89.221 30.635 0.000 68.562 10.486 12.800 92.419 24.134 12.800 89.221 30.635 12.800"/>
+    <mesh name="bldg_79670766_7" vertex="68.562 10.486 0.000 89.221 30.635 0.000 83.383 33.696 0.000 68.562 10.486 12.800 89.221 30.635 12.800 83.383 33.696 12.800"/>
+    <mesh name="bldg_79670766_8" vertex="68.699 52.120 0.000 68.562 10.486 0.000 83.383 33.696 0.000 68.699 52.120 12.800 68.562 10.486 12.800 83.383 33.696 12.800"/>
+    <mesh name="bldg_79670766_9" vertex="83.383 33.696 0.000 83.257 52.242 0.000 68.699 52.120 0.000 83.383 33.696 12.800 83.257 52.242 12.800 68.699 52.120 12.800"/>
+    <mesh name="bldg_255383281_0" vertex="-64.050 158.975 0.000 -63.366 130.834 0.000 -51.721 131.123 0.000 -52.405 159.265 0.000 -64.050 158.975 9.600 -63.366 130.834 9.600 -51.721 131.123 9.600 -52.405 159.265 9.600"/>
+    <mesh name="bldg_255383338_0" vertex="-73.390 -24.401 0.000 -55.887 -24.401 0.000 -55.887 -11.366 0.000 -73.390 -11.366 0.000 -73.390 -24.401 19.200 -55.887 -24.401 19.200 -55.887 -11.366 19.200 -73.390 -11.366 19.200"/>
+    <mesh name="bldg_255383365_0" vertex="-62.893 -55.849 0.000 -50.228 -55.849 0.000 -50.228 -36.824 0.000 -62.893 -36.824 0.000 -62.893 -55.849 19.200 -50.228 -55.849 19.200 -50.228 -36.824 19.200 -62.893 -36.824 19.200"/>
+    <mesh name="bldg_255383378_0" vertex="-108.050 -3.996 0.000 -107.871 -18.724 0.000 -80.407 -18.379 0.000 -80.596 -3.651 0.000 -108.050 -3.996 19.200 -107.871 -18.724 19.200 -80.407 -18.379 19.200 -80.596 -3.651 19.200"/>
+    <mesh name="bldg_255383421_0" vertex="6.311 127.205 0.000 20.722 127.205 0.000 20.722 157.061 0.000 6.311 157.061 0.000 6.311 127.205 9.600 20.722 127.205 9.600 20.722 157.061 9.600 6.311 157.061 9.600"/>
+    <mesh name="bldg_255383430_0" vertex="-72.402 -6.512 0.000 -51.122 -6.512 0.000 -51.122 6.523 0.000 -72.402 6.523 0.000 -72.402 -6.512 19.200 -51.122 -6.512 19.200 -51.122 6.523 19.200 -72.402 6.523 19.200"/>
+    <mesh name="bldg_255383450_0" vertex="-138.523 110.384 0.000 -137.840 87.397 0.000 -124.123 87.809 0.000 -124.807 110.796 0.000 -138.523 110.384 19.200 -137.840 87.397 19.200 -124.123 87.809 19.200 -124.807 110.796 19.200"/>
+    <mesh name="bldg_255383486_0" vertex="-31.788 82.989 0.000 -31.504 62.784 0.000 -6.795 63.129 0.000 -7.079 83.334 0.000 -31.788 82.989 25.600 -31.504 62.784 25.600 -6.795 63.129 25.600 -7.079 83.334 25.600"/>
+    <mesh name="bldg_255383530_0" vertex="-11.886 127.205 0.000 0.147 127.071 0.000 0.484 156.582 0.000 -11.539 156.716 0.000 -11.886 127.205 9.600 0.147 127.071 9.600 0.484 156.582 9.600 -11.539 156.716 9.600"/>
+    <mesh name="bldg_255383626_0" vertex="-32.819 87.397 0.000 -17.714 87.397 0.000 -17.714 110.050 0.000 -32.819 110.050 0.000 -32.819 87.397 9.600 -17.714 87.397 9.600 -17.714 110.050 9.600 -32.819 110.050 9.600"/>
+    <mesh name="bldg_255383669_0" vertex="-156.406 73.972 0.000 -155.848 60.892 0.000 -124.765 62.216 0.000 -125.448 78.347 0.000 -142.941 77.601 0.000 -156.406 73.972 19.200 -155.848 60.892 19.200 -124.765 62.216 19.200 -125.448 78.347 19.200 -142.941 77.601 19.200"/>
+    <mesh name="bldg_255383677_0" vertex="-108.871 58.521 0.000 -85.876 57.140 0.000 -84.635 77.790 0.000 -107.629 79.159 0.000 -108.871 58.521 9.600 -85.876 57.140 9.600 -84.635 77.790 9.600 -107.629 79.159 9.600"/>
+    <mesh name="bldg_255383700_0" vertex="62.346 140.418 0.000 63.503 122.830 0.000 84.435 124.199 0.000 83.278 141.799 0.000 62.346 140.418 19.200 63.503 122.830 19.200 84.435 124.199 19.200 83.278 141.799 19.200"/>
+    <mesh name="bldg_255383711_0" vertex="-86.287 83.723 0.000 -71.486 83.723 0.000 -71.486 106.711 0.000 -86.287 106.711 0.000 -86.287 83.723 19.200 -71.486 83.723 19.200 -71.486 106.711 19.200 -86.287 106.711 19.200"/>
+    <mesh name="bldg_255383807_0" vertex="-153.618 18.757 0.000 -153.408 9.551 0.000 -138.986 9.896 0.000 -139.207 19.102 0.000 -153.618 18.757 9.600 -153.408 9.551 9.600 -138.986 9.896 9.600 -139.207 19.102 9.600"/>
+    <mesh name="bldg_255383850_0" vertex="-11.192 109.360 0.000 -10.856 86.028 0.000 3.208 86.228 0.000 2.872 109.572 0.000 -11.192 109.360 9.600 -10.856 86.028 9.600 3.208 86.228 9.600 2.872 109.572 9.600"/>
+    <mesh name="bldg_255383856_0" vertex="-137.145 3.651 0.000 -126.164 3.651 0.000 -126.164 13.269 0.000 -137.145 13.269 0.000 -137.145 3.651 9.600 -126.164 3.651 9.600 -126.164 13.269 9.600 -137.145 13.269 9.600"/>
+    <mesh name="bldg_255383909_0" vertex="13.422 87.430 0.000 25.982 87.330 0.000 26.171 111.008 0.000 13.611 111.108 0.000 13.422 87.430 9.600 25.982 87.330 9.600 26.171 111.008 9.600 13.611 111.108 9.600"/>
+    <mesh name="bldg_255383935_0" vertex="-153.618 53.077 0.000 -153.324 41.077 0.000 -126.206 41.767 0.000 -126.511 53.767 0.000 -153.618 53.077 19.200 -153.324 41.077 19.200 -126.206 41.767 19.200 -126.511 53.767 19.200"/>
+    <mesh name="bldg_255383940_0" vertex="-68.362 57.096 0.000 -68.184 44.762 0.000 -49.060 45.040 0.000 -49.239 57.385 0.000 -68.362 57.096 19.200 -68.184 44.762 19.200 -49.060 45.040 19.200 -49.239 57.385 19.200"/>
+    <mesh name="bldg_255383988_0" vertex="-69.730 42.123 0.000 -69.151 31.503 0.000 -51.658 32.461 0.000 -52.237 43.081 0.000 -69.730 42.123 19.200 -69.151 31.503 19.200 -51.658 32.461 19.200 -52.237 43.081 19.200"/>
+    <mesh name="bldg_255384026_0" vertex="-71.939 22.876 0.000 -71.739 11.243 0.000 -51.837 11.588 0.000 -52.037 23.221 0.000 -71.939 22.876 19.200 -71.739 11.243 19.200 -51.837 11.588 19.200 -52.037 23.221 19.200"/>
+    <mesh name="bldg_255384037_0" vertex="-152.366 -18.624 0.000 -135.946 -18.624 0.000 -135.946 -8.160 0.000 -152.366 -8.160 0.000 -152.366 -18.624 9.600 -135.946 -18.624 9.600 -135.946 -8.160 9.600 -152.366 -8.160 9.600"/>
+    <mesh name="bldg_356467330_0" vertex="-108.155 109.761 0.000 -107.798 88.555 0.000 -92.651 88.811 0.000 -93.008 110.017 0.000 -108.155 109.761 9.600 -107.798 88.555 9.600 -92.651 88.811 9.600 -93.008 110.017 9.600"/>
+    <mesh name="bldg_357373433_0" vertex="-125.985 -113.190 0.000 -114.930 -116.106 0.000 -107.366 -87.419 0.000 -118.422 -84.503 0.000 -125.985 -113.190 9.600 -114.930 -116.106 9.600 -107.366 -87.419 9.600 -118.422 -84.503 9.600"/>
+    <mesh name="bldg_357373438_0" vertex="-65.901 -121.450 0.000 -51.153 -125.335 0.000 -44.737 -100.989 0.000 -59.484 -97.104 0.000 -65.901 -121.450 9.600 -51.153 -125.335 9.600 -44.737 -100.989 9.600 -59.484 -97.104 9.600"/>
+    <mesh name="bldg_357373443_0" vertex="-43.348 -130.934 0.000 -22.300 -136.489 0.000 -13.980 -104.941 0.000 -35.038 -99.386 0.000 -43.348 -130.934 19.200 -22.300 -136.489 19.200 -13.980 -104.941 19.200 -35.038 -99.386 19.200"/>
+    <mesh name="bldg_360286693_0" vertex="-62.083 83.534 0.000 -51.816 83.423 0.000 -51.511 109.817 0.000 -61.778 109.939 0.000 -62.083 83.534 19.200 -51.816 83.423 19.200 -51.511 109.817 19.200 -61.778 109.939 19.200"/>
+    <mesh name="bldg_360286728_0" vertex="-82.815 -53.522 0.000 -71.171 -53.578 0.000 -71.066 -31.726 0.000 -82.710 -31.670 0.000 -82.815 -53.522 19.200 -71.171 -53.578 19.200 -71.066 -31.726 19.200 -82.710 -31.670 19.200"/>
+    <mesh name="bldg_360286730_0" vertex="-71.486 78.681 0.000 -71.055 68.818 0.000 -50.512 69.731 0.000 -50.954 79.593 0.000 -71.486 78.681 19.200 -71.055 68.818 19.200 -50.512 69.731 19.200 -50.954 79.593 19.200"/>
+    <mesh name="bldg_360286749_0" vertex="-150.862 -35.578 0.000 -126.763 -41.222 0.000 -126.322 -24.691 0.000 -150.210 -24.056 0.000 -150.862 -35.578 19.200 -126.763 -41.222 19.200 -126.322 -24.691 19.200 -150.210 -24.056 19.200"/>
+    <mesh name="bldg_774171656_0" vertex="33.366 -138.949 0.000 52.552 -144.170 0.000 57.139 -127.338 0.000 37.952 -122.117 0.000 33.366 -138.949 9.600 52.552 -144.170 9.600 57.139 -127.338 9.600 37.952 -122.117 9.600"/>
+    <mesh name="bldg_791070233_0" vertex="-32.472 130.511 0.000 -18.524 130.389 0.000 -18.639 159.699 0.000 -32.472 159.821 0.000 -32.472 130.511 19.200 -18.524 130.389 19.200 -18.639 159.699 19.200 -32.472 159.821 19.200"/>
+    <mesh name="bldg_791070235_0" vertex="5.628 70.076 0.000 24.572 69.786 0.000 24.698 78.703 0.000 5.754 78.981 0.000 5.628 70.076 19.200 24.572 69.786 19.200 24.698 78.703 19.200 5.754 78.981 19.200"/>
+    <mesh name="bldg_791070236_0" vertex="5.049 65.278 0.000 5.081 54.636 0.000 8.268 53.010 0.000 24.414 53.066 0.000 24.372 65.345 0.000 5.049 65.278 19.200 5.081 54.636 19.200 8.268 53.010 19.200 24.414 53.066 19.200 24.372 65.345 19.200"/>
+    <mesh name="bldg_791070237_0" vertex="3.440 32.472 0.000 25.834 32.004 0.000 25.719 47.366 0.000 3.555 47.255 0.000 3.440 32.472 19.200 25.834 32.004 19.200 25.719 47.366 19.200 3.555 47.255 19.200"/>
+    <mesh name="bldg_791070238_0" vertex="-33.503 54.836 0.000 -33.471 44.149 0.000 -31.473 38.873 0.000 -3.103 38.528 0.000 -3.566 54.702 0.000 -33.503 54.836 19.200 -33.471 44.149 19.200 -31.473 38.873 19.200 -3.103 38.528 19.200 -3.566 54.702 19.200"/>
+    <mesh name="bldg_791070240_0" vertex="68.909 2.694 0.000 70.677 -51.485 0.000 78.650 -56.060 0.000 68.909 2.694 16.000 70.677 -51.485 16.000 78.650 -56.060 16.000"/>
+    <mesh name="bldg_791070240_1" vertex="68.909 2.694 0.000 78.650 -56.060 0.000 87.307 -63.875 0.000 68.909 2.694 16.000 78.650 -56.060 16.000 87.307 -63.875 16.000"/>
+    <mesh name="bldg_791070240_2" vertex="68.909 2.694 0.000 87.307 -63.875 0.000 93.755 -73.549 0.000 68.909 2.694 16.000 87.307 -63.875 16.000 93.755 -73.549 16.000"/>
+    <mesh name="bldg_791070240_3" vertex="68.909 2.694 0.000 93.755 -73.549 0.000 99.014 -86.440 0.000 68.909 2.694 16.000 93.755 -73.549 16.000 99.014 -86.440 16.000"/>
+    <mesh name="bldg_791070240_4" vertex="99.014 -86.440 0.000 101.223 -97.471 0.000 131.939 -112.922 0.000 99.014 -86.440 16.000 101.223 -97.471 16.000 131.939 -112.922 16.000"/>
+    <mesh name="bldg_791070240_5" vertex="68.909 2.694 0.000 99.014 -86.440 0.000 131.939 -112.922 0.000 68.909 2.694 16.000 99.014 -86.440 16.000 131.939 -112.922 16.000"/>
+    <mesh name="bldg_791070240_6" vertex="131.939 -112.922 0.000 141.101 -94.076 0.000 130.750 -88.310 0.000 131.939 -112.922 16.000 141.101 -94.076 16.000 130.750 -88.310 16.000"/>
+    <mesh name="bldg_791070240_7" vertex="68.909 2.694 0.000 131.939 -112.922 0.000 130.750 -88.310 0.000 68.909 2.694 16.000 131.939 -112.922 16.000 130.750 -88.310 16.000"/>
+    <mesh name="bldg_791070240_8" vertex="68.909 2.694 0.000 130.750 -88.310 0.000 139.744 -81.686 0.000 68.909 2.694 16.000 130.750 -88.310 16.000 139.744 -81.686 16.000"/>
+    <mesh name="bldg_791070240_9" vertex="68.909 2.694 0.000 139.744 -81.686 0.000 129.393 -66.591 0.000 68.909 2.694 16.000 139.744 -81.686 16.000 129.393 -66.591 16.000"/>
+    <mesh name="bldg_791070240_10" vertex="68.909 2.694 0.000 129.393 -66.591 0.000 138.639 -60.925 0.000 68.909 2.694 16.000 129.393 -66.591 16.000 138.639 -60.925 16.000"/>
+    <mesh name="bldg_791070240_11" vertex="118.779 -32.416 0.000 127.952 -26.817 0.000 131.549 -24.334 0.000 118.779 -32.416 16.000 127.952 -26.817 16.000 131.549 -24.334 16.000"/>
+    <mesh name="bldg_791070240_12" vertex="118.779 -32.416 0.000 131.549 -24.334 0.000 119.021 -7.380 0.000 118.779 -32.416 16.000 131.549 -24.334 16.000 119.021 -7.380 16.000"/>
+    <mesh name="bldg_791070240_13" vertex="118.779 -32.416 0.000 119.021 -7.380 0.000 95.932 -21.384 0.000 118.779 -32.416 16.000 119.021 -7.380 16.000 95.932 -21.384 16.000"/>
+    <mesh name="bldg_791070240_14" vertex="138.639 -60.925 0.000 118.779 -32.416 0.000 95.932 -21.384 0.000 138.639 -60.925 16.000 118.779 -32.416 16.000 95.932 -21.384 16.000"/>
+    <mesh name="bldg_791070240_15" vertex="68.909 2.694 0.000 138.639 -60.925 0.000 95.932 -21.384 0.000 68.909 2.694 16.000 138.639 -60.925 16.000 95.932 -21.384 16.000"/>
+    <mesh name="bldg_791070240_16" vertex="95.932 -21.384 0.000 95.680 2.939 0.000 68.909 2.694 0.000 95.932 -21.384 16.000 95.680 2.939 16.000 68.909 2.694 16.000"/>
+    <mesh name="bldg_791070241_0" vertex="-104.632 -117.208 0.000 -93.576 -120.125 0.000 -86.013 -91.438 0.000 -97.068 -88.521 0.000 -104.632 -117.208 9.600 -93.576 -120.125 9.600 -86.013 -91.438 9.600 -97.068 -88.521 9.600"/>
+    <mesh name="bldg_791070242_0" vertex="-84.004 -121.873 0.000 -72.949 -124.789 0.000 -65.386 -96.102 0.000 -76.441 -93.186 0.000 -84.004 -121.873 9.600 -72.949 -124.789 9.600 -65.386 -96.102 9.600 -76.441 -93.186 9.600"/>
+    <mesh name="bldg_960135834_0" vertex="-109.544 -48.480 0.000 -85.066 -48.602 0.000 -85.003 -35.455 0.000 -109.481 -35.333 0.000 -109.544 -48.480 19.200 -85.066 -48.602 19.200 -85.003 -35.455 19.200 -109.481 -35.333 19.200"/>
+  </asset>
+  <worldbody>
+    <!-- ===== NMIMS MAIN BUILDING  (OSM way 791070239, footprint 3606 m2) =====
+         10 storeys x 3.6 m = 36.0 m  -- storey count ASSUMED from tour panorama -->
+    <body name="nmims_main_building">
+      <geom name="nmims_main_collision" type="mesh" mesh="nmims_main_collision" group="3" rgba="1 0 0 0.15"/>
+      <geom name="nmims_main_core" type="mesh" mesh="nmims_main_core" class="visual" material="glazing"/>
+      <geom name="nmims_main_podium" type="mesh" mesh="nmims_main_podium" class="visual" material="podium"/>
+      <geom name="nmims_band_01" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 3.60"/>
+      <geom name="nmims_band_02" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 7.20"/>
+      <geom name="nmims_band_03" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 10.80"/>
+      <geom name="nmims_band_04" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 14.40"/>
+      <geom name="nmims_band_05" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 18.00"/>
+      <geom name="nmims_band_06" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 21.60"/>
+      <geom name="nmims_band_07" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 25.20"/>
+      <geom name="nmims_band_08" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 28.80"/>
+      <geom name="nmims_band_09" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 32.40"/>
+      <geom name="nmims_band_10" type="mesh" mesh="nmims_main_band" class="visual" material="facade_white" pos="0 0 34.55"/>
+      <geom name="nmims_roof" type="mesh" mesh="nmims_main_roof" class="visual" material="roof" pos="0 0 35.80"/>
+      <geom name="nmims_fin_0" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-22.39 -36.53 19.80" euler="0 0 -1.3773"/>
+      <geom name="nmims_fin_1" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-21.49 -41.10 19.80" euler="0 0 -1.3773"/>
+      <geom name="nmims_fin_2" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-20.60 -45.67 19.80" euler="0 0 -1.3773"/>
+      <geom name="nmims_fin_3" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-19.70 -50.24 19.80" euler="0 0 -1.3773"/>
+      <geom name="nmims_fin_4" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-18.81 -54.82 19.80" euler="0 0 -1.3773"/>
+      <geom name="nmims_fin_5" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-14.30 -58.86 19.80" euler="0 0 -0.0081"/>
+      <geom name="nmims_fin_6" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-10.01 -58.89 19.80" euler="0 0 -0.0081"/>
+      <geom name="nmims_fin_7" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-5.72 -58.93 19.80" euler="0 0 -0.0081"/>
+      <geom name="nmims_fin_8" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-1.42 -58.96 19.80" euler="0 0 -0.0081"/>
+      <geom name="nmims_fin_9" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="2.87 -59.00 19.80" euler="0 0 -0.0081"/>
+      <geom name="nmims_fin_10" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="7.16 -59.03 19.80" euler="0 0 -0.0081"/>
+      <geom name="nmims_fin_11" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="11.45 -59.06 19.80" euler="0 0 -0.0081"/>
+      <geom name="nmims_fin_12" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="15.74 -59.10 19.80" euler="0 0 -0.0081"/>
+      <geom name="nmims_fin_13" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="19.95 -55.16 19.80" euler="0 0 1.4369"/>
+      <geom name="nmims_fin_14" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="20.57 -50.58 19.80" euler="0 0 1.4369"/>
+      <geom name="nmims_fin_15" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="21.19 -45.99 19.80" euler="0 0 1.4369"/>
+      <geom name="nmims_fin_16" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="21.80 -41.41 19.80" euler="0 0 1.4369"/>
+      <geom name="nmims_fin_17" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="22.42 -36.83 19.80" euler="0 0 1.4369"/>
+      <geom name="nmims_fin_18" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="23.16 -27.50 19.80" euler="0 0 1.5439"/>
+      <geom name="nmims_fin_19" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="23.29 -22.69 19.80" euler="0 0 1.5439"/>
+      <geom name="nmims_fin_20" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="23.42 -17.88 19.80" euler="0 0 1.5439"/>
+      <geom name="nmims_fin_21" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="23.55 -13.06 19.80" euler="0 0 1.5439"/>
+      <geom name="nmims_fin_22" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="23.68 -8.25 19.80" euler="0 0 1.5439"/>
+      <geom name="nmims_fin_23" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="22.95 0.83 19.80" euler="0 0 1.7666"/>
+      <geom name="nmims_fin_24" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="22.07 5.25 19.80" euler="0 0 1.7666"/>
+      <geom name="nmims_fin_25" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="21.19 9.67 19.80" euler="0 0 1.7666"/>
+      <geom name="nmims_fin_26" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="20.32 14.09 19.80" euler="0 0 1.7666"/>
+      <geom name="nmims_fin_27" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="19.44 18.51 19.80" euler="0 0 1.7666"/>
+      <geom name="nmims_fin_28" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="15.00 22.37 19.80" euler="0 0 3.1401"/>
+      <geom name="nmims_fin_29" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="10.75 22.38 19.80" euler="0 0 3.1401"/>
+      <geom name="nmims_fin_30" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="6.51 22.38 19.80" euler="0 0 3.1401"/>
+      <geom name="nmims_fin_31" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="2.26 22.39 19.80" euler="0 0 3.1401"/>
+      <geom name="nmims_fin_32" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-1.99 22.40 19.80" euler="0 0 3.1401"/>
+      <geom name="nmims_fin_33" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-6.24 22.40 19.80" euler="0 0 3.1401"/>
+      <geom name="nmims_fin_34" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-10.48 22.41 19.80" euler="0 0 3.1401"/>
+      <geom name="nmims_fin_35" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-14.73 22.41 19.80" euler="0 0 3.1401"/>
+      <geom name="nmims_fin_36" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-19.26 18.07 19.80" euler="0 0 -1.7660"/>
+      <geom name="nmims_fin_37" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-20.23 13.16 19.80" euler="0 0 -1.7660"/>
+      <geom name="nmims_fin_38" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-21.81 3.59 19.80" euler="0 0 -1.6998"/>
+      <geom name="nmims_fin_39" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-22.42 -1.11 19.80" euler="0 0 -1.6998"/>
+      <geom name="nmims_fin_40" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-23.06 -10.12 19.80" euler="0 0 -1.5804"/>
+      <geom name="nmims_fin_41" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-23.10 -14.52 19.80" euler="0 0 -1.5804"/>
+      <geom name="nmims_fin_42" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-23.15 -18.91 19.80" euler="0 0 -1.5804"/>
+      <geom name="nmims_fin_43" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-23.19 -23.31 19.80" euler="0 0 -1.5804"/>
+      <geom name="nmims_fin_44" type="box" class="visual" material="facade_white" size="0.12 0.70 16.20" pos="-23.23 -27.70 19.80" euler="0 0 -1.5804"/>
+      <geom name="nmims_lift_room" type="box" class="visual" material="facade_white" size="6 4 2.2" pos="-2.18 -15.38 38.20"/>
+      <site name="dock_alpha" pos="6.82 2.62 36.02" type="cylinder" size="0.7 0.01" rgba="0.95 0.75 0.1 1"/>
+      <site name="dock_bravo" pos="-11.18 -33.38 36.02" type="cylinder" size="0.7 0.01" rgba="0.95 0.75 0.1 1"/>
+    </body>
+    <!-- ===== CAMPUS BOUNDARY (OSM way 1170351966) =====  wall height ASSUMED -->
+    <geom name="campus_paving_0" type="mesh" mesh="campus_paving_0" class="visual" material="paving"/>
+    <geom name="campus_paving_1" type="mesh" mesh="campus_paving_1" class="visual" material="paving"/>
+    <geom name="campus_paving_2" type="mesh" mesh="campus_paving_2" class="visual" material="paving"/>
+    <geom name="campus_paving_3" type="mesh" mesh="campus_paving_3" class="visual" material="paving"/>
+    <geom name="campus_paving_4" type="mesh" mesh="campus_paving_4" class="visual" material="paving"/>
+    <geom name="campus_paving_5" type="mesh" mesh="campus_paving_5" class="visual" material="paving"/>
+    <geom name="campus_paving_6" type="mesh" mesh="campus_paving_6" class="visual" material="paving"/>
+    <geom name="boundary_wall_0" type="box" material="wall" size="5.376 0.125 1.200" pos="-27.786 -65.411 1.200" euler="0 0 -0.63290"/>
+    <geom name="boundary_wall_1" type="box" material="wall" size="18.503 0.125 1.200" pos="-5.217 -69.786 1.200" euler="0 0 -0.06911"/>
+    <geom name="boundary_wall_2" type="box" material="wall" size="5.628 0.125 1.200" pos="18.198 -68.940 1.200" euler="0 0 0.39448"/>
+    <geom name="boundary_wall_3" type="box" material="wall" size="7.626 0.125 1.200" pos="25.819 -59.767 1.200" euler="0 0 1.22530"/>
+    <geom name="boundary_wall_4" type="box" material="wall" size="10.099 0.125 1.200" pos="29.768 -42.836 1.200" euler="0 0 1.42900"/>
+    <geom name="boundary_wall_5" type="box" material="wall" size="33.291 0.125 1.200" pos="32.167 0.189 1.200" euler="0 0 1.54098"/>
+    <geom name="boundary_wall_6" type="box" material="wall" size="32.571 0.125 1.200" pos="0.710 33.457 1.200" euler="0 0 3.13799"/>
+    <geom name="boundary_wall_7" type="box" material="wall" size="43.420 0.125 1.200" pos="-32.582 -9.713 1.200" euler="0 0 -1.59036"/>
+    <geom name="boundary_wall_8" type="box" material="wall" size="4.831 0.125 1.200" pos="-32.724 -57.652 1.200" euler="0 0 -1.42048"/>
+    <!-- ===== PATROL RING: campus boundary offset 3 m INWARD, inside the wall (299 m) =====
+         Read by name (patrol_cp*) from Python -- the model is the single source of truth. -->
+    <site name="patrol_cp0" pos="-29.240 -60.624 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark0" class="visual" type="cylinder" size="1.2 0.02" pos="-29.240 -60.624 0.06" material="checkpoint"/>
+    <site name="patrol_cp1" pos="-22.478 -65.584 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark1" class="visual" type="cylinder" size="1.2 0.02" pos="-22.478 -65.584 0.06" material="checkpoint"/>
+    <site name="patrol_cp2" pos="12.618 -68.013 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark2" class="visual" type="cylinder" size="1.2 0.02" pos="12.618 -68.013 0.06" material="checkpoint"/>
+    <site name="patrol_cp3" pos="20.904 -64.564 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark3" class="visual" type="cylinder" size="1.2 0.02" pos="20.904 -64.564 0.06" material="checkpoint"/>
+    <site name="patrol_cp4" pos="25.432 -51.982 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark4" class="visual" type="cylinder" size="1.2 0.02" pos="25.432 -51.982 0.06" material="checkpoint"/>
+    <site name="patrol_cp5" pos="28.184 -32.704 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark5" class="visual" type="cylinder" size="1.2 0.02" pos="28.184 -32.704 0.06" material="checkpoint"/>
+    <site name="patrol_cp6" pos="30.065 30.351 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark6" class="visual" type="cylinder" size="1.2 0.02" pos="30.065 30.351 0.06" material="checkpoint"/>
+    <site name="patrol_cp7" pos="-28.794 30.563 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark7" class="visual" type="cylinder" size="1.2 0.02" pos="-28.794 30.563 0.06" material="checkpoint"/>
+    <site name="patrol_cp8" pos="-30.425 -52.803 22.0" type="sphere" size="0.25" rgba="0.1 0.85 0.55 0.5" group="4"/>
+    <geom name="patrol_mark8" class="visual" type="cylinder" size="1.2 0.02" pos="-30.425 -52.803 0.06" material="checkpoint"/>
+    <!-- Restricted zone: electrical substation / service yard. LOCATION ASSUMED. -->
+    <geom name="substation_zone" class="visual" type="box" material="restricted" size="9 4 0.02" pos="-21 28.5 0.05"/>
+    <body name="human_intruder" pos="0 0 -10"><freejoint name="intruder_root"/><geom name="intruder_geom" type="cylinder" size="0.28 0.85" material="intruder" mass="75.0" contype="0" conaffinity="0"/><site name="intruder_head" pos="0 0 0.85"/></body>
+    <!-- ===== TREES along V.L. Mehta Rd (south) and Gulmohar Rd (east) frontages =====
+         canopy tops ~15 m, ASSUMED from the panorama; they DO occlude the gimbal cameras -->
+    <body name="tree_0" pos="-26.25 -63.31 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_1" pos="-19.71 -66.18 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_2" pos="-12.37 -66.68 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_3" pos="-5.04 -67.19 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_4" pos="2.30 -67.70 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_5" pos="9.63 -68.21 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_6" pos="17.20 -66.54 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_7" pos="22.10 -62.42 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_8" pos="24.64 -55.36 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_9" pos="26.49 -47.41 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_10" pos="27.90 -37.53 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_11" pos="28.69 -29.20 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_12" pos="28.91 -21.83 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_13" pos="29.13 -14.47 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_14" pos="29.35 -7.10 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_15" pos="29.57 0.27 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_16" pos="29.79 7.63 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_17" pos="30.01 15.00 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_18" pos="30.23 22.37 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <body name="tree_19" pos="30.45 29.73 0"><geom type="capsule" size="0.18" fromto="0 0 0 0 0 3" material="bark"/><geom type="ellipsoid" size="1.15 1.15 6.2" pos="0 0 8.8" material="foliage_dark"/></body>
+    <body name="tree_20" pos="-30.15 -57.26 0"><geom type="capsule" size="0.3" fromto="0 0 0 0 0 7.5" material="bark"/><geom type="ellipsoid" size="3.6 3.6 3.2" pos="0 0 11.4" material="foliage"/></body>
+    <!-- ===== Parked vehicles on Gulmohar Rd (visual only) ===== -->
+    <body name="parked_0" pos="-20.72 -71.12 0" euler="0 0 -0.0691"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_1" pos="-15.34 -71.49 0" euler="0 0 -0.0691"><geom class="visual" type="box" size="2.1 0.85 0.5" pos="0 0 0.65" material="car_silver"/><geom class="visual" type="box" size="1.2 0.8 0.35" pos="-0.2 0 1.4" material="car_silver"/></body>
+    <body name="parked_2" pos="-9.95 -71.86 0" euler="0 0 -0.0691"><geom class="visual" type="box" size="2.3 0.9 1.1" pos="0 0 1.2" material="tempo"/><geom class="visual" type="box" size="0.6 0.88 0.8" pos="1.9 0 0.95" material="tempo_cab"/></body>
+    <body name="parked_3" pos="-4.56 -72.24 0" euler="0 0 -0.0691"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_4" pos="0.82 -72.61 0" euler="0 0 -0.0691"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_5" pos="6.21 -72.98 0" euler="0 0 -0.0691"><geom class="visual" type="box" size="2.1 0.85 0.5" pos="0 0 0.65" material="car_silver"/><geom class="visual" type="box" size="1.2 0.8 0.35" pos="-0.2 0 1.4" material="car_silver"/></body>
+    <body name="parked_6" pos="26.55 -64.82 0" euler="0 0 1.2253"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_7" pos="28.38 -59.73 0" euler="0 0 1.2253"><geom class="visual" type="box" size="2.1 0.85 0.5" pos="0 0 0.65" material="car_silver"/><geom class="visual" type="box" size="1.2 0.8 0.35" pos="-0.2 0 1.4" material="car_silver"/></body>
+    <body name="parked_8" pos="31.16 -50.08 0" euler="0 0 1.4290"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_9" pos="31.92 -44.73 0" euler="0 0 1.4290"><geom class="visual" type="box" size="2.1 0.85 0.5" pos="0 0 0.65" material="car_silver"/><geom class="visual" type="box" size="1.2 0.8 0.35" pos="-0.2 0 1.4" material="car_silver"/></body>
+    <body name="parked_10" pos="32.69 -39.39 0" euler="0 0 1.4290"><geom class="visual" type="box" size="2.3 0.9 1.1" pos="0 0 1.2" material="tempo"/><geom class="visual" type="box" size="0.6 0.88 0.8" pos="1.9 0 0.95" material="tempo_cab"/></body>
+    <body name="parked_11" pos="33.67 -30.03 0" euler="0 0 1.5410"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_12" pos="33.83 -24.64 0" euler="0 0 1.5410"><geom class="visual" type="box" size="2.1 0.85 0.5" pos="0 0 0.65" material="car_silver"/><geom class="visual" type="box" size="1.2 0.8 0.35" pos="-0.2 0 1.4" material="car_silver"/></body>
+    <body name="parked_13" pos="33.99 -19.24 0" euler="0 0 1.5410"><geom class="visual" type="box" size="2.3 0.9 1.1" pos="0 0 1.2" material="tempo"/><geom class="visual" type="box" size="0.6 0.88 0.8" pos="1.9 0 0.95" material="tempo_cab"/></body>
+    <body name="parked_14" pos="34.15 -13.84 0" euler="0 0 1.5410"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_15" pos="34.31 -8.44 0" euler="0 0 1.5410"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_16" pos="34.47 -3.05 0" euler="0 0 1.5410"><geom class="visual" type="box" size="2.1 0.85 0.5" pos="0 0 0.65" material="car_silver"/><geom class="visual" type="box" size="1.2 0.8 0.35" pos="-0.2 0 1.4" material="car_silver"/></body>
+    <body name="parked_17" pos="34.63 2.35 0" euler="0 0 1.5410"><geom class="visual" type="box" size="2.3 0.9 1.1" pos="0 0 1.2" material="tempo"/><geom class="visual" type="box" size="0.6 0.88 0.8" pos="1.9 0 0.95" material="tempo_cab"/></body>
+    <body name="parked_18" pos="34.79 7.75 0" euler="0 0 1.5410"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_19" pos="34.95 13.15 0" euler="0 0 1.5410"><geom class="visual" type="box" size="2.1 0.85 0.5" pos="0 0 0.65" material="car_silver"/><geom class="visual" type="box" size="1.2 0.8 0.35" pos="-0.2 0 1.4" material="car_silver"/></body>
+    <body name="parked_20" pos="35.12 18.54 0" euler="0 0 1.5410"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_21" pos="35.28 23.94 0" euler="0 0 1.5410"><geom class="visual" type="box" size="1.3 0.65 0.55" pos="0 0 0.75" material="auto_black"/><geom class="visual" type="box" size="1.05 0.62 0.07" pos="-0.1 0 1.65" material="auto_yellow"/></body>
+    <body name="parked_22" pos="35.44 29.34 0" euler="0 0 1.5410"><geom class="visual" type="box" size="2.3 0.9 1.1" pos="0 0 1.2" material="tempo"/><geom class="visual" type="box" size="0.6 0.88 0.8" pos="1.9 0 0.95" material="tempo_cab"/></body>
+    <!-- ===== SURROUNDING BUILDINGS within 165 m (OSM; heights mostly ASSUMED) ===== -->
+    <geom name="bldg_79670766_0" type="mesh" mesh="bldg_79670766_0" material="context_college"/>
+    <geom name="bldg_79670766_1" type="mesh" mesh="bldg_79670766_1" material="context_college"/>
+    <geom name="bldg_79670766_2" type="mesh" mesh="bldg_79670766_2" material="context_college"/>
+    <geom name="bldg_79670766_3" type="mesh" mesh="bldg_79670766_3" material="context_college"/>
+    <geom name="bldg_79670766_4" type="mesh" mesh="bldg_79670766_4" material="context_college"/>
+    <geom name="bldg_79670766_5" type="mesh" mesh="bldg_79670766_5" material="context_college"/>
+    <geom name="bldg_79670766_6" type="mesh" mesh="bldg_79670766_6" material="context_college"/>
+    <geom name="bldg_79670766_7" type="mesh" mesh="bldg_79670766_7" material="context_college"/>
+    <geom name="bldg_79670766_8" type="mesh" mesh="bldg_79670766_8" material="context_college"/>
+    <geom name="bldg_79670766_9" type="mesh" mesh="bldg_79670766_9" material="context_college"/>
+    <geom name="bldg_255383281_0" type="mesh" mesh="bldg_255383281_0" material="context"/>
+    <geom name="bldg_255383338_0" type="mesh" mesh="bldg_255383338_0" material="context"/>
+    <geom name="bldg_255383365_0" type="mesh" mesh="bldg_255383365_0" material="context"/>
+    <geom name="bldg_255383378_0" type="mesh" mesh="bldg_255383378_0" material="context"/>
+    <geom name="bldg_255383421_0" type="mesh" mesh="bldg_255383421_0" material="context"/>
+    <geom name="bldg_255383430_0" type="mesh" mesh="bldg_255383430_0" material="context"/>
+    <geom name="bldg_255383450_0" type="mesh" mesh="bldg_255383450_0" material="context"/>
+    <geom name="bldg_255383486_0" type="mesh" mesh="bldg_255383486_0" material="context"/>
+    <geom name="bldg_255383530_0" type="mesh" mesh="bldg_255383530_0" material="context"/>
+    <geom name="bldg_255383626_0" type="mesh" mesh="bldg_255383626_0" material="context"/>
+    <geom name="bldg_255383669_0" type="mesh" mesh="bldg_255383669_0" material="context"/>
+    <geom name="bldg_255383677_0" type="mesh" mesh="bldg_255383677_0" material="context"/>
+    <geom name="bldg_255383700_0" type="mesh" mesh="bldg_255383700_0" material="context"/>
+    <geom name="bldg_255383711_0" type="mesh" mesh="bldg_255383711_0" material="context"/>
+    <geom name="bldg_255383807_0" type="mesh" mesh="bldg_255383807_0" material="context"/>
+    <geom name="bldg_255383850_0" type="mesh" mesh="bldg_255383850_0" material="context"/>
+    <geom name="bldg_255383856_0" type="mesh" mesh="bldg_255383856_0" material="context"/>
+    <geom name="bldg_255383909_0" type="mesh" mesh="bldg_255383909_0" material="context"/>
+    <geom name="bldg_255383935_0" type="mesh" mesh="bldg_255383935_0" material="context"/>
+    <geom name="bldg_255383940_0" type="mesh" mesh="bldg_255383940_0" material="context"/>
+    <geom name="bldg_255383988_0" type="mesh" mesh="bldg_255383988_0" material="context"/>
+    <geom name="bldg_255384026_0" type="mesh" mesh="bldg_255384026_0" material="context"/>
+    <geom name="bldg_255384037_0" type="mesh" mesh="bldg_255384037_0" material="context"/>
+    <geom name="bldg_356467330_0" type="mesh" mesh="bldg_356467330_0" material="context"/>
+    <geom name="bldg_357373433_0" type="mesh" mesh="bldg_357373433_0" material="context"/>
+    <geom name="bldg_357373438_0" type="mesh" mesh="bldg_357373438_0" material="context"/>
+    <geom name="bldg_357373443_0" type="mesh" mesh="bldg_357373443_0" material="context"/>
+    <geom name="bldg_360286693_0" type="mesh" mesh="bldg_360286693_0" material="context"/>
+    <geom name="bldg_360286728_0" type="mesh" mesh="bldg_360286728_0" material="context"/>
+    <geom name="bldg_360286730_0" type="mesh" mesh="bldg_360286730_0" material="context"/>
+    <geom name="bldg_360286749_0" type="mesh" mesh="bldg_360286749_0" material="context"/>
+    <geom name="bldg_774171656_0" type="mesh" mesh="bldg_774171656_0" material="context"/>
+    <geom name="bldg_791070233_0" type="mesh" mesh="bldg_791070233_0" material="context"/>
+    <geom name="bldg_791070235_0" type="mesh" mesh="bldg_791070235_0" material="context"/>
+    <geom name="bldg_791070236_0" type="mesh" mesh="bldg_791070236_0" material="context"/>
+    <geom name="bldg_791070237_0" type="mesh" mesh="bldg_791070237_0" material="context"/>
+    <geom name="bldg_791070238_0" type="mesh" mesh="bldg_791070238_0" material="context"/>
+    <geom name="bldg_791070240_0" type="mesh" mesh="bldg_791070240_0" material="context_college"/>
+    <geom name="bldg_791070240_1" type="mesh" mesh="bldg_791070240_1" material="context_college"/>
+    <geom name="bldg_791070240_2" type="mesh" mesh="bldg_791070240_2" material="context_college"/>
+    <geom name="bldg_791070240_3" type="mesh" mesh="bldg_791070240_3" material="context_college"/>
+    <geom name="bldg_791070240_4" type="mesh" mesh="bldg_791070240_4" material="context_college"/>
+    <geom name="bldg_791070240_5" type="mesh" mesh="bldg_791070240_5" material="context_college"/>
+    <geom name="bldg_791070240_6" type="mesh" mesh="bldg_791070240_6" material="context_college"/>
+    <geom name="bldg_791070240_7" type="mesh" mesh="bldg_791070240_7" material="context_college"/>
+    <geom name="bldg_791070240_8" type="mesh" mesh="bldg_791070240_8" material="context_college"/>
+    <geom name="bldg_791070240_9" type="mesh" mesh="bldg_791070240_9" material="context_college"/>
+    <geom name="bldg_791070240_10" type="mesh" mesh="bldg_791070240_10" material="context_college"/>
+    <geom name="bldg_791070240_11" type="mesh" mesh="bldg_791070240_11" material="context_college"/>
+    <geom name="bldg_791070240_12" type="mesh" mesh="bldg_791070240_12" material="context_college"/>
+    <geom name="bldg_791070240_13" type="mesh" mesh="bldg_791070240_13" material="context_college"/>
+    <geom name="bldg_791070240_14" type="mesh" mesh="bldg_791070240_14" material="context_college"/>
+    <geom name="bldg_791070240_15" type="mesh" mesh="bldg_791070240_15" material="context_college"/>
+    <geom name="bldg_791070240_16" type="mesh" mesh="bldg_791070240_16" material="context_college"/>
+    <geom name="bldg_791070241_0" type="mesh" mesh="bldg_791070241_0" material="context"/>
+    <geom name="bldg_791070242_0" type="mesh" mesh="bldg_791070242_0" material="context"/>
+    <geom name="bldg_960135834_0" type="mesh" mesh="bldg_960135834_0" material="context"/>
+    <!-- ===== ROADS (OSM highways), visual only ===== -->
+    <geom name="road_0" class="visual" type="box" material="asphalt" size="6.86 3.00 0.016" pos="43.45 117.68 0" euler="0 0 -3.11238"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="36.60 117.48 0"/>
+    <geom name="road_1" class="visual" type="box" material="asphalt" size="37.18 3.00 0.016" pos="-0.58 116.90 0" euler="0 0 -3.12617"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="-37.76 116.33 0"/>
+    <geom name="road_2" class="visual" type="box" material="asphalt" size="38.50 3.00 0.016" pos="-76.25 115.34 0" euler="0 0 -3.11600"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="-114.74 114.36 0"/>
+    <geom name="road_3" class="visual" type="box" material="asphalt" size="36.68 3.00 0.016" pos="-151.42 114.30 0" euler="0 0 -3.13992"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="-188.10 114.24 0"/>
+    <geom name="road_4" class="visual" type="box" material="asphalt" size="75.51 3.00 0.013" pos="-187.14 38.73 0" euler="0 0 -1.55812"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="-186.18 -36.78 0"/>
+    <geom name="road_5" class="visual" type="box" material="asphalt" size="72.12 3.00 0.016" pos="-113.10 42.26 0" euler="0 0 -1.54804"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="-111.46 -29.84 0"/>
+    <geom name="road_6" class="visual" type="box" material="asphalt" size="12.68 3.00 0.016" pos="-111.17 -42.52 0" euler="0 0 -1.54798"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="-110.88 -55.19 0"/>
+    <geom name="road_7" class="visual" type="box" material="asphalt" size="43.24 3.00 0.018" pos="-37.68 159.57 0" euler="0 0 -1.57274"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.018" pos="-37.76 116.33 0"/>
+    <geom name="road_8" class="visual" type="box" material="asphalt" size="51.91 3.00 0.018" pos="-37.22 64.43 0" euler="0 0 -1.56026"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.018" pos="-36.67 12.52 0"/>
+    <geom name="road_9" class="visual" type="box" material="asphalt" size="23.16 3.00 0.018" pos="-36.43 -10.64 0" euler="0 0 -1.56035"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.018" pos="-36.19 -33.80 0"/>
+    <geom name="road_10" class="visual" type="box" material="asphalt" size="9.91 3.00 0.018" pos="-36.08 -43.71 0" euler="0 0 -1.56019"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.018" pos="-35.97 -53.62 0"/>
+    <geom name="road_11" class="visual" type="box" material="asphalt" size="11.15 3.00 0.018" pos="-35.86 -64.78 0" euler="0 0 -1.56042"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.018" pos="-35.74 -75.93 0"/>
+    <geom name="road_12" class="visual" type="box" material="asphalt" size="6.90 3.50 0.013" pos="50.97 -57.94 0" euler="0 0 -1.32361"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.013" pos="52.66 -64.63 0"/>
+    <geom name="road_13" class="visual" type="box" material="asphalt" size="4.74 3.50 0.013" pos="54.47 -69.01 0" euler="0 0 -1.17911"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.013" pos="56.28 -73.39 0"/>
+    <geom name="road_14" class="visual" type="box" material="asphalt" size="5.62 3.50 0.013" pos="59.01 -78.30 0" euler="0 0 -1.06252"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.013" pos="61.75 -83.21 0"/>
+    <geom name="road_15" class="visual" type="box" material="asphalt" size="5.81 3.50 0.013" pos="64.95 -88.05 0" euler="0 0 -0.98566"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.013" pos="68.16 -92.90 0"/>
+    <geom name="road_16" class="visual" type="box" material="asphalt" size="5.70 3.50 0.013" pos="71.89 -97.20 0" euler="0 0 -0.85733"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.013" pos="75.62 -101.51 0"/>
+    <geom name="road_17" class="visual" type="box" material="asphalt" size="7.17 3.50 0.013" pos="81.15 -106.07 0" euler="0 0 -0.68914"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.013" pos="86.69 -110.63 0"/>
+    <geom name="road_18" class="visual" type="box" material="asphalt" size="4.38 3.50 0.016" pos="9.30 -84.05 0" euler="0 0 0.30560"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.016" pos="13.49 -82.73 0"/>
+    <geom name="road_19" class="visual" type="box" material="asphalt" size="6.44 3.50 0.016" pos="19.27 -79.91 0" euler="0 0 0.45382"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.016" pos="25.06 -77.09 0"/>
+    <geom name="road_20" class="visual" type="box" material="asphalt" size="4.94 3.50 0.016" pos="28.51 -73.56 0" euler="0 0 0.79590"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.016" pos="31.97 -70.03 0"/>
+    <geom name="road_21" class="visual" type="box" material="asphalt" size="10.11 3.50 0.016" pos="35.14 -60.43 0" euler="0 0 1.25127"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.016" pos="38.32 -50.83 0"/>
+    <geom name="road_22" class="visual" type="box" material="asphalt" size="4.88 3.00 0.019" pos="174.11 39.25 0" euler="0 0 0.15472"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.019" pos="178.93 40.00 0"/>
+    <geom name="road_23" class="visual" type="box" material="asphalt" size="1.92 3.00 0.019" pos="180.83 39.79 0" euler="0 0 -0.10775"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.019" pos="182.73 39.59 0"/>
+    <geom name="road_24" class="visual" type="box" material="asphalt" size="1.89 3.00 0.019" pos="184.00 38.18 0" euler="0 0 -0.83792"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.019" pos="185.27 36.77 0"/>
+    <geom name="road_25" class="visual" type="box" material="asphalt" size="16.21 3.00 0.019" pos="187.61 20.73 0" euler="0 0 -1.42587"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.019" pos="189.95 4.70 0"/>
+    <geom name="road_26" class="visual" type="box" material="asphalt" size="11.64 3.00 0.013" pos="119.02 127.55 0" euler="0 0 -1.56267"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="119.12 115.91 0"/>
+    <geom name="road_27" class="visual" type="box" material="asphalt" size="53.09 3.00 0.013" pos="125.62 63.22 0" euler="0 0 -1.44794"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="132.13 10.53 0"/>
+    <geom name="road_28" class="visual" type="box" material="asphalt" size="48.38 3.00 0.013" pos="138.85 -37.38 0" euler="0 0 -1.43140"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="145.57 -85.28 0"/>
+    <geom name="road_29" class="visual" type="box" material="asphalt" size="27.87 3.00 0.013" pos="149.36 -112.89 0" euler="0 0 -1.43429"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="153.16 -140.50 0"/>
+    <geom name="road_30" class="visual" type="box" material="asphalt" size="9.30 3.00 0.013" pos="-193.77 -158.45 0" euler="0 0 -0.15208"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="-184.59 -159.85 0"/>
+    <geom name="road_31" class="visual" type="box" material="asphalt" size="10.32 3.00 0.013" pos="-174.50 -162.03 0" euler="0 0 -0.21196"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="-164.41 -164.20 0"/>
+    <geom name="road_32" class="visual" type="box" material="asphalt" size="13.31 3.00 0.013" pos="-151.52 -167.51 0" euler="0 0 -0.25187"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="-138.63 -170.83 0"/>
+    <geom name="road_33" class="visual" type="box" material="asphalt" size="15.88 3.00 0.013" pos="-123.05 -173.89 0" euler="0 0 -0.19403"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="-107.47 -176.95 0"/>
+    <geom name="road_34" class="visual" type="box" material="asphalt" size="14.55 3.00 0.013" pos="-93.30 -180.28 0" euler="0 0 -0.23036"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="-79.13 -183.60 0"/>
+    <geom name="road_35" class="visual" type="box" material="asphalt" size="21.04 3.00 0.013" pos="-59.35 -190.75 0" euler="0 0 -0.34662"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="-39.56 -197.89 0"/>
+    <geom name="road_36" class="visual" type="box" material="asphalt" size="12.11 3.00 0.013" pos="-28.84 -203.51 0" euler="0 0 -0.48242"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.013" pos="-18.11 -209.12 0"/>
+    <geom name="road_37" class="visual" type="box" material="asphalt" size="36.44 6.00 0.019" pos="119.92 -125.56 0" euler="0 0 -0.42230"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="6.00 0.019" pos="153.16 -140.50 0"/>
+    <geom name="road_38" class="visual" type="box" material="asphalt" size="5.05 6.00 0.022" pos="43.70 -109.58 0" euler="0 0 2.84751"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="6.00 0.022" pos="38.87 -108.11 0"/>
+    <geom name="road_39" class="visual" type="box" material="asphalt" size="38.75 2.00 0.015" pos="-160.97 -109.42 0" euler="0 0 -0.22013"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.015" pos="-123.16 -117.88 0"/>
+    <geom name="road_40" class="visual" type="box" material="asphalt" size="18.22 2.00 0.015" pos="-105.66 -122.96 0" euler="0 0 -0.28272"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.015" pos="-88.17 -128.04 0"/>
+    <geom name="road_41" class="visual" type="box" material="asphalt" size="60.23 2.00 0.015" pos="-29.48 -141.58 0" euler="0 0 -0.22679"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.015" pos="29.20 -155.12 0"/>
+    <geom name="road_42" class="visual" type="box" material="asphalt" size="2.38 3.00 0.016" pos="-109.08 -29.97 0" euler="0 0 -0.05146"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="-106.70 -30.09 0"/>
+    <geom name="road_43" class="visual" type="box" material="asphalt" size="31.12 3.00 0.016" pos="-75.63 -31.73 0" euler="0 0 -0.05261"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="-44.56 -33.36 0"/>
+    <geom name="road_44" class="visual" type="box" material="asphalt" size="4.19 3.00 0.016" pos="-40.37 -33.58 0" euler="0 0 -0.05180"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.016" pos="-36.19 -33.80 0"/>
+    <geom name="road_45" class="visual" type="box" material="asphalt" size="38.76 6.00 0.025" pos="-148.53 -45.99 0" euler="0 0 -0.23980"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="6.00 0.025" pos="-110.88 -55.19 0"/>
+    <geom name="road_46" class="visual" type="box" material="asphalt" size="38.97 6.00 0.025" pos="-73.31 -65.56 0" euler="0 0 -0.26931"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="6.00 0.025" pos="-35.74 -75.93 0"/>
+    <geom name="road_47" class="visual" type="box" material="asphalt" size="20.97 6.00 0.025" pos="-15.31 -80.65 0" euler="0 0 -0.22701"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="6.00 0.025" pos="5.12 -85.37 0"/>
+    <geom name="road_48" class="visual" type="box" material="asphalt" size="17.58 6.00 0.025" pos="22.07 -90.05 0" euler="0 0 -0.26912"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="6.00 0.025" pos="39.03 -94.72 0"/>
+    <geom name="road_49" class="visual" type="box" material="asphalt" size="5.04 6.00 0.025" pos="43.92 -95.94 0" euler="0 0 -0.24423"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="6.00 0.025" pos="48.81 -97.16 0"/>
+    <geom name="road_50" class="visual" type="box" material="asphalt" size="20.10 6.00 0.025" pos="67.75 -103.89 0" euler="0 0 -0.34166"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="6.00 0.025" pos="86.69 -110.63 0"/>
+    <geom name="road_51" class="visual" type="box" material="asphalt" size="22.96 7.00 0.022" pos="49.04 -74.21 0" euler="0 0 -1.58111"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.022" pos="48.81 -97.16 0"/>
+    <geom name="road_52" class="visual" type="box" material="asphalt" size="6.94 7.00 0.022" pos="48.67 -104.10 0" euler="0 0 -1.59050"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.022" pos="48.53 -111.04 0"/>
+    <geom name="road_53" class="visual" type="box" material="asphalt" size="6.70 7.00 0.025" pos="38.95 -101.42 0" euler="0 0 1.55901"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.025" pos="39.03 -94.72 0"/>
+    <geom name="road_54" class="visual" type="box" material="asphalt" size="21.95 7.00 0.025" pos="38.67 -72.78 0" euler="0 0 1.58685"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.025" pos="38.32 -50.83 0"/>
+    <geom name="road_55" class="visual" type="box" material="asphalt" size="20.89 7.00 0.021" pos="38.10 -29.94 0" euler="0 0 1.58112"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.021" pos="37.89 -9.05 0"/>
+    <geom name="road_56" class="visual" type="box" material="asphalt" size="5.06 7.00 0.021" pos="37.84 -3.99 0" euler="0 0 1.58119"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.021" pos="37.78 1.07 0"/>
+    <geom name="road_57" class="visual" type="box" material="asphalt" size="14.00 7.00 0.021" pos="37.64 15.07 0" euler="0 0 1.58094"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.021" pos="37.50 29.08 0"/>
+    <geom name="road_58" class="visual" type="box" material="asphalt" size="8.42 7.00 0.021" pos="37.42 37.49 0" euler="0 0 1.58080"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.021" pos="37.33 45.91 0"/>
+    <geom name="road_59" class="visual" type="box" material="asphalt" size="35.79 7.00 0.021" pos="36.96 81.69 0" euler="0 0 1.58108"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.021" pos="36.60 117.48 0"/>
+    <geom name="road_60" class="visual" type="box" material="asphalt" size="20.43 7.00 0.021" pos="36.66 137.90 0" euler="0 0 1.56771"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.021" pos="36.72 158.33 0"/>
+    <geom name="road_61" class="visual" type="box" material="asphalt" size="17.46 7.00 0.019" pos="50.19 135.34 0" euler="0 0 -1.56387"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.019" pos="50.31 117.88 0"/>
+    <geom name="road_62" class="visual" type="box" material="asphalt" size="71.34 7.00 0.019" pos="46.34 46.64 0" euler="0 0 -1.62648"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.019" pos="42.37 -24.59 0"/>
+    <geom name="road_63" class="visual" type="box" material="asphalt" size="13.77 7.00 0.019" pos="45.83 -37.92 0" euler="0 0 -1.31716"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="7.00 0.019" pos="49.28 -51.25 0"/>
+    <geom name="road_64" class="visual" type="box" material="asphalt" size="4.14 3.00 0.010" pos="194.04 5.38 0" euler="0 0 0.16599"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.010" pos="198.12 6.07 0"/>
+    <geom name="road_65" class="visual" type="box" material="asphalt" size="5.13 3.00 0.010" pos="190.34 37.58 0" euler="0 0 -2.98267"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.010" pos="185.27 36.77 0"/>
+    <geom name="road_66" class="visual" type="box" material="asphalt" size="21.03 3.00 0.011" pos="71.09 152.08 0" euler="0 0 -0.03388"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.00 0.011" pos="92.11 151.37 0"/>
+    <geom name="road_67" class="visual" type="box" material="asphalt" size="2.13 2.00 0.011" pos="25.73 26.72 0" euler="0 0 0.03666"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.011" pos="27.85 26.79 0"/>
+    <geom name="road_68" class="visual" type="box" material="asphalt" size="0.56 2.00 0.011" pos="28.37 27.02 0" euler="0 0 0.41681"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.011" pos="28.88 27.25 0"/>
+    <geom name="road_69" class="visual" type="box" material="asphalt" size="0.56 2.00 0.011" pos="29.26 27.67 0" euler="0 0 0.83405"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.011" pos="29.64 28.09 0"/>
+    <geom name="road_70" class="visual" type="box" material="asphalt" size="0.49 2.00 0.011" pos="30.06 28.34 0" euler="0 0 0.54249"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.011" pos="30.47 28.59 0"/>
+    <geom name="road_71" class="visual" type="box" material="asphalt" size="0.61 2.00 0.011" pos="31.06 28.76 0" euler="0 0 0.28737"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.011" pos="31.64 28.93 0"/>
+    <geom name="road_72" class="visual" type="box" material="asphalt" size="0.33 2.00 0.011" pos="31.97 28.94 0" euler="0 0 0.01707"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.011" pos="32.29 28.94 0"/>
+    <geom name="road_73" class="visual" type="box" material="asphalt" size="2.60 2.00 0.011" pos="34.90 29.01 0" euler="0 0 0.02565"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.011" pos="37.50 29.08 0"/>
+    <geom name="road_74" class="visual" type="box" material="asphalt" size="3.78 2.00 0.013" pos="-15.70 32.30 0" euler="0 0 3.05901"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-19.47 32.62 0"/>
+    <geom name="road_75" class="visual" type="box" material="asphalt" size="1.94 2.00 0.013" pos="-21.41 32.54 0" euler="0 0 -3.10135"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-23.34 32.46 0"/>
+    <geom name="road_76" class="visual" type="box" material="asphalt" size="0.93 2.00 0.013" pos="-24.15 32.00 0" euler="0 0 -2.62324"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-24.96 31.54 0"/>
+    <geom name="road_77" class="visual" type="box" material="asphalt" size="1.04 2.00 0.013" pos="-25.35 30.57 0" euler="0 0 -1.95291"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-25.74 29.60 0"/>
+    <geom name="road_78" class="visual" type="box" material="asphalt" size="1.31 2.00 0.013" pos="-26.04 28.33 0" euler="0 0 -1.80570"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-26.35 27.05 0"/>
+    <geom name="road_79" class="visual" type="box" material="asphalt" size="4.36 2.00 0.013" pos="-26.80 22.71 0" euler="0 0 -1.67461"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-27.25 18.37 0"/>
+    <geom name="road_80" class="visual" type="box" material="asphalt" size="2.77 2.00 0.013" pos="-27.42 15.61 0" euler="0 0 -1.62979"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-27.58 12.85 0"/>
+    <geom name="road_81" class="visual" type="box" material="asphalt" size="9.07 2.00 0.013" pos="-28.12 3.80 0" euler="0 0 -1.63000"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-28.65 -5.25 0"/>
+    <geom name="road_82" class="visual" type="box" material="asphalt" size="11.27 2.00 0.013" pos="-29.00 -16.52 0" euler="0 0 -1.60160"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-29.35 -27.79 0"/>
+    <geom name="road_83" class="visual" type="box" material="asphalt" size="12.85 2.00 0.013" pos="-29.73 -40.63 0" euler="0 0 -1.60027"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-30.11 -53.48 0"/>
+    <geom name="road_84" class="visual" type="box" material="asphalt" size="1.14 2.00 0.013" pos="-30.14 -54.62 0" euler="0 0 -1.59845"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-30.17 -55.76 0"/>
+    <geom name="road_85" class="visual" type="box" material="asphalt" size="1.02 2.00 0.013" pos="-30.13 -56.78 0" euler="0 0 -1.52951"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-30.08 -57.80 0"/>
+    <geom name="road_86" class="visual" type="box" material="asphalt" size="1.37 2.00 0.013" pos="-29.72 -59.12 0" euler="0 0 -1.30341"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-29.36 -60.45 0"/>
+    <geom name="road_87" class="visual" type="box" material="asphalt" size="0.95 2.00 0.013" pos="-28.91 -61.29 0" euler="0 0 -1.08194"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-28.46 -62.13 0"/>
+    <geom name="road_88" class="visual" type="box" material="asphalt" size="1.94 2.00 0.013" pos="-27.01 -63.41 0" euler="0 0 -0.72488"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-25.56 -64.70 0"/>
+    <geom name="road_89" class="visual" type="box" material="asphalt" size="1.71 2.00 0.013" pos="-24.06 -65.51 0" euler="0 0 -0.49532"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-22.55 -66.32 0"/>
+    <geom name="road_90" class="visual" type="box" material="asphalt" size="1.92 2.00 0.013" pos="-20.65 -66.60 0" euler="0 0 -0.14267"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="-18.76 -66.87 0"/>
+    <geom name="road_91" class="visual" type="box" material="asphalt" size="13.58 2.00 0.013" pos="-5.20 -67.65 0" euler="0 0 -0.05784"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="8.35 -68.44 0"/>
+    <geom name="road_92" class="visual" type="box" material="asphalt" size="1.82 2.00 0.013" pos="10.16 -68.19 0" euler="0 0 0.13493"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="11.96 -67.95 0"/>
+    <geom name="road_93" class="visual" type="box" material="asphalt" size="1.96 2.00 0.013" pos="13.82 -67.33 0" euler="0 0 0.32394"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="15.67 -66.70 0"/>
+    <geom name="road_94" class="visual" type="box" material="asphalt" size="1.35 2.00 0.013" pos="16.84 -66.01 0" euler="0 0 0.53937"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="18.00 -65.31 0"/>
+    <geom name="road_95" class="visual" type="box" material="asphalt" size="1.50 2.00 0.013" pos="19.08 -64.27 0" euler="0 0 0.76534"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="20.16 -63.23 0"/>
+    <geom name="road_96" class="visual" type="box" material="asphalt" size="1.22 2.00 0.013" pos="20.86 -62.22 0" euler="0 0 0.96741"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="21.55 -61.21 0"/>
+    <geom name="road_97" class="visual" type="box" material="asphalt" size="3.94 2.00 0.013" pos="22.87 -57.50 0" euler="0 0 1.23041"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="24.18 -53.79 0"/>
+    <geom name="road_98" class="visual" type="box" material="asphalt" size="1.34 2.00 0.013" pos="24.45 -52.48 0" euler="0 0 1.36936"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="24.72 -51.16 0"/>
+    <geom name="road_99" class="visual" type="box" material="asphalt" size="7.44 2.00 0.013" pos="25.40 -43.75 0" euler="0 0 1.47947"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="26.08 -36.35 0"/>
+    <geom name="road_100" class="visual" type="box" material="asphalt" size="11.96 2.00 0.013" pos="27.18 -24.44 0" euler="0 0 1.47829"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="28.29 -12.53 0"/>
+    <geom name="road_101" class="visual" type="box" material="asphalt" size="1.76 2.00 0.013" pos="28.37 -10.78 0" euler="0 0 1.52299"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="28.45 -9.02 0"/>
+    <geom name="road_102" class="visual" type="box" material="asphalt" size="5.08 2.00 0.013" pos="28.52 -3.94 0" euler="0 0 1.55733"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="28.59 1.14 0"/>
+    <geom name="road_103" class="visual" type="box" material="asphalt" size="9.17 2.00 0.013" pos="28.47 10.31 0" euler="0 0 1.58341"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="28.36 19.48 0"/>
+    <geom name="road_104" class="visual" type="box" material="asphalt" size="3.67 2.00 0.013" pos="28.11 23.14 0" euler="0 0 1.63972"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.013" pos="27.85 26.79 0"/>
+    <geom name="road_105" class="visual" type="box" material="asphalt" size="1.47 2.00 0.015" pos="-35.20 12.57 0" euler="0 0 0.03400"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.015" pos="-33.72 12.62 0"/>
+    <geom name="road_106" class="visual" type="box" material="asphalt" size="3.07 2.00 0.015" pos="-30.65 12.73 0" euler="0 0 0.03623"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.015" pos="-27.58 12.85 0"/>
+    <geom name="road_107" class="visual" type="box" material="asphalt" size="0.93 2.00 0.016" pos="-35.04 -53.60 0" euler="0 0 0.02391"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.016" pos="-34.11 -53.58 0"/>
+    <geom name="road_108" class="visual" type="box" material="asphalt" size="2.00 2.00 0.016" pos="-32.11 -53.53 0" euler="0 0 0.02499"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.016" pos="-30.11 -53.48 0"/>
+    <geom name="road_109" class="visual" type="box" material="asphalt" size="1.52 2.00 0.016" pos="-28.59 -53.43 0" euler="0 0 0.02939"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.016" pos="-27.08 -53.39 0"/>
+    <geom name="road_110" class="visual" type="box" material="asphalt" size="5.76 2.00 0.018" pos="6.20 -79.71 0" euler="0 0 1.38258"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.018" pos="7.28 -74.05 0"/>
+    <geom name="road_111" class="visual" type="box" material="asphalt" size="2.86 2.00 0.018" pos="7.82 -71.24 0" euler="0 0 1.38184"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.018" pos="8.35 -68.44 0"/>
+    <geom name="road_112" class="visual" type="box" material="asphalt" size="35.34 3.50 0.019" pos="39.85 10.66 0" euler="0 0 -1.49945"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="3.50 0.019" pos="42.37 -24.59 0"/>
+    <geom name="road_113" class="visual" type="box" material="asphalt" size="2.75 2.00 0.016" pos="194.82 74.04 0" euler="0 0 -2.30290"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.016" pos="192.98 71.99 0"/>
+    <geom name="road_114" class="visual" type="box" material="asphalt" size="15.86 2.00 0.016" pos="177.13 71.54 0" euler="0 0 -3.11316"/>
+    <geom class="visual" type="cylinder" material="asphalt" size="2.00 0.016" pos="161.28 71.09 0"/>
+    <body name="signal_623223512" pos="48.53 -111.04 0"><geom type="cylinder" size="0.09 2.8" pos="0 0 2.8" material="pole"/><geom class="visual" type="box" size="0.18 0.18 0.55" pos="0 0 5.2" material="pole"/><geom class="visual" type="sphere" size="0.12" pos="0.19 0 5.5" rgba="0.9 0.1 0.1 1"/><geom class="visual" type="sphere" size="0.12" pos="0.19 0 4.95" rgba="0.1 0.85 0.3 1"/></body>
+    <body name="signal_866807207" pos="48.81 -97.16 0"><geom type="cylinder" size="0.09 2.8" pos="0 0 2.8" material="pole"/><geom class="visual" type="box" size="0.18 0.18 0.55" pos="0 0 5.2" material="pole"/><geom class="visual" type="sphere" size="0.12" pos="0.19 0 5.5" rgba="0.9 0.1 0.1 1"/><geom class="visual" type="sphere" size="0.12" pos="0.19 0 4.95" rgba="0.1 0.85 0.3 1"/></body>
+    <body name="signal_866807402" pos="39.03 -94.72 0"><geom type="cylinder" size="0.09 2.8" pos="0 0 2.8" material="pole"/><geom class="visual" type="box" size="0.18 0.18 0.55" pos="0 0 5.2" material="pole"/><geom class="visual" type="sphere" size="0.12" pos="0.19 0 5.5" rgba="0.9 0.1 0.1 1"/><geom class="visual" type="sphere" size="0.12" pos="0.19 0 4.95" rgba="0.1 0.85 0.3 1"/></body>
+  </worldbody>
+</mujoco>

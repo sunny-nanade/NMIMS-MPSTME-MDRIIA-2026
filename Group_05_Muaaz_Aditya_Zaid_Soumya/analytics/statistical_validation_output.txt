@@ -1,0 +1,146 @@
+file: campus_patrol_real_trials.csv   rows: 180   sha256: 1ecc25f0be6d0a817fbe01ad74bd9e5438fedba7616180f90f5a57a430c06ca6 (matches provenance csv_sha256)   alpha: 0.05
+primary metric: cycle_time_s; equal-window metric: worst_revisit_ground_eqwin_s
+provenance: generator analytics/run_benchmark.py, git_commit 8085b85, trials_per_cell 30, timestep_s [0.002]
+
+=== scene: interior ===
+  runs guard_baseline: 30
+  runs uav_sectors: 30
+  runs uav_offset_ring: 30
+  run windows (duration_s): guard_baseline 5000 s; uav_sectors 300 s; uav_offset_ring 300 s
+  equal window for the revisit comparison (eqwin_s): 300 s
+  Caption: PRIMARY metric cycle_time_s = mean time per completed full ground lap, window-independent; equal-window revisit = longest unserviced interval of any ground checkpoint inside the common window (descriptive only, right-censored, no test); Welch two-sided t (Satterthwaite df), exact p, Cohen's d (pooled sd), t-based 95 % CI of the difference; runs treated as independent; N per cell as printed.
+
+PRIMARY: guard_baseline (A) vs uav_sectors (B), metric cycle_time_s
+  guard_baseline   n= 30  mean=2460.4638  sd=593.2051
+  uav_sectors      n= 30  mean=57.4086  sd=5.9314
+  mean difference A - B = 2403.0552   se = 108.3093
+  Welch t = 22.1870   df (Welch-Satterthwaite) = 29.006   two-sided p = 9.629081e-20
+  Cohen's d = 5.7286  (pooled sd = sqrt(((nA-1)sA^2 + (nB-1)sB^2)/(nA+nB-2)))
+  95 % CI of the mean difference (t, Welch df): [2181.5396, 2624.5707]
+  decision at alpha = 0.05: p < 0.05 -> REJECT equal means
+SECONDARY: uav_sectors (A) vs uav_offset_ring (B), metric cycle_time_s
+  uav_sectors      n= 30  mean=57.4086  sd=5.9314
+  uav_offset_ring  n= 30  mean=37.9682  sd=2.2661
+  mean difference A - B = 19.4404   se = 1.1593
+  Welch t = 16.7696   df (Welch-Satterthwaite) = 37.289   two-sided p = 5.897519e-19
+  Cohen's d = 4.3299  (pooled sd = sqrt(((nA-1)sA^2 + (nB-1)sB^2)/(nA+nB-2)))
+  95 % CI of the mean difference (t, Welch df): [17.0921, 21.7887]
+  decision at alpha = 0.05: p < 0.05 -> REJECT equal means
+Context only (window-dependent, never a cross-condition comparison): worst_revisit_ground_s over each run's own window
+  guard_baseline   worst_revisit_ground_s: n=30 mean=2494.1635 sd=598.6991 95 % CI [2270.6056, 2717.7214]
+  uav_sectors      worst_revisit_ground_s: n=30 mean=67.1621 sd=17.8853 95 % CI [60.4836, 73.8405]
+  uav_offset_ring  worst_revisit_ground_s: n=30 mean=53.8402 sd=10.0045 95 % CI [50.1045, 57.5759]
+Equal-window worst revisit (worst_revisit_ground_eqwin_s), descriptive only: right-censored at eqwin_s, NO t test / d / CI
+  guard_baseline   worst revisit >= 300 s (right-censored); censored runs (no revisit inside 300 s): 30 of 30
+  uav_sectors      n=30 mean=68.1647 sd=17.1403 min=55.8680 max=108.6480 (values >= 300 s are lower bounds); censored runs (no revisit inside 300 s): 0 of 30
+  uav_offset_ring  n=30 mean=53.8402 sd=10.0045 min=43.3940 max=74.2320 (values >= 300 s are lower bounds); censored runs (no revisit inside 300 s): 0 of 30
+  30 of 30 guard runs had no revisit inside 300 s; UAV worst revisit max 108.65 s
+
+DETECTION (intruder verified inside the run window; windows differ by condition, see above; 95 % intervals)
+  guard_baseline   detected 11/30 = 0.3667  Wilson [0.2187, 0.5449]  exact [0.1993, 0.5614]; detection_latency_s mean=38.67 s (n=11)
+  uav_sectors      detected 10/30 = 0.3333  Wilson [0.1923, 0.5122]  exact [0.1729, 0.5281]; detection_latency_s mean=25.07 s (n=10)
+  uav_offset_ring  detected 13/30 = 0.4333  Wilson [0.2738, 0.6080]  exact [0.2546, 0.6257]; detection_latency_s mean=29.91 s (n=13)
+
+UAV EFFORT AND TRACKING (UAV cells; the guard is a kinematic walker, no actuators)
+  uav_sectors      thrust effort sum F^2 dt (N^2 s): n=30 mean=26742.7172 sd=13.3810 95 % CI [26737.7207, 26747.7138]
+  uav_offset_ring  thrust effort sum F^2 dt (N^2 s): n=30 mean=26731.6104 sd=15.9118 95 % CI [26725.6689, 26737.5520]
+  uav_sectors      torque effort int |tau|^2 dt (N^2 m^2 s): n=30 mean=0.2244 sd=0.0136 95 % CI [0.2193, 0.2295]
+  uav_offset_ring  torque effort int |tau|^2 dt (N^2 m^2 s): n=30 mean=0.2779 sd=0.0181 95 % CI [0.2712, 0.2847]
+  uav_sectors      cross-track RMSE (m): n=30 mean=0.4972 sd=0.0712 95 % CI [0.4706, 0.5237]
+  uav_offset_ring  cross-track RMSE (m): n=30 mean=0.3578 sd=0.1646 95 % CI [0.2964, 0.4193]
+  uav_sectors      waypoint RMSE (m): n=30 mean=1.3434 sd=0.0350 95 % CI [1.3304, 1.3565]
+  uav_offset_ring  waypoint RMSE (m): n=30 mean=1.5002 sd=0.0969 95 % CI [1.4640, 1.5364]
+  uav_sectors      energy (Wh): n=30 mean=22.3698 sd=0.0074 95 % CI [22.3670, 22.3726]
+  uav_offset_ring  energy (Wh): n=30 mean=22.3666 sd=0.0082 95 % CI [22.3635, 22.3697]
+  guard_baseline   n_laps_alpha: not applicable or not measured (no values)
+  uav_sectors      n_laps_alpha: n=30 mean=4.8000 sd=0.4068 95 % CI [4.6481, 4.9519] min=4.0000 max=5.0000
+  uav_offset_ring  n_laps_alpha: n=30 mean=4.9000 sd=0.3051 95 % CI [4.7861, 5.0139] min=4.0000 max=5.0000
+  guard_baseline   n_laps_bravo: not applicable or not measured (no values)
+  uav_sectors      n_laps_bravo: n=30 mean=0.0000 sd=0.0000 95 % CI [0.0000, 0.0000] min=0.0000 max=0.0000
+  uav_offset_ring  n_laps_bravo: n=30 mean=4.6333 sd=0.4901 95 % CI [4.4503, 4.8164] min=4.0000 max=5.0000
+  guard_baseline   n_laps_guard: n=30 mean=2.5000 sd=0.5085 95 % CI [2.3101, 2.6899] min=2.0000 max=3.0000
+  uav_sectors      n_laps_guard: not applicable or not measured (no values)
+  uav_offset_ring  n_laps_guard: not applicable or not measured (no values)
+  guard_baseline   n_ground_laps: n=30 mean=2.5000 sd=0.5085 95 % CI [2.3101, 2.6899] min=2.0000 max=3.0000
+  uav_sectors      n_ground_laps: n=30 mean=4.8000 sd=0.4068 95 % CI [4.6481, 4.9519] min=4.0000 max=5.0000
+  uav_offset_ring  n_ground_laps: n=30 mean=7.3333 sd=0.5467 95 % CI [7.1292, 7.5375] min=6.0000 max=8.0000
+
+SAFETY (FR-18 obstacle sensing; in the interior the UAVs must sense all obstacles)
+  uav_sectors      min_obstacle_clearance_m: n=30 mean=0.8606 sd=0.1000 95 % CI [0.8232, 0.8979] min=0.4379 max=0.8982
+  uav_offset_ring  min_obstacle_clearance_m: n=30 mean=0.7972 sd=0.1364 95 % CI [0.7463, 0.8481] min=0.3651 max=0.8982
+  uav_sectors      min_inter_uav_m (m): n=30 mean=5.6981 sd=0.0505 95 % CI [5.6792, 5.7169] min=5.6041 max=5.8234
+  uav_offset_ring  min_inter_uav_m (m): n=30 mean=8.0524 sd=3.6646 95 % CI [6.6840, 9.4208] min=3.0525 max=11.6717
+  uav_sectors      obstacle_contacts total=0 over 30 runs (0 runs with contact); uav_uav_contacts total=0 over 30 runs; runs with min_inter_uav_m < 2.5 m: 0 of 30
+  uav_offset_ring  obstacle_contacts total=0 over 30 runs (0 runs with contact); uav_uav_contacts total=0 over 30 runs; runs with min_inter_uav_m < 2.5 m: 0 of 30
+
+=== scene: exterior ===
+  runs guard_baseline: 30
+  runs uav_sectors: 30
+  runs uav_offset_ring: 30
+  run windows (duration_s): guard_baseline 1800 s; uav_sectors 300 s; uav_offset_ring 300 s
+  equal window for the revisit comparison (eqwin_s): 300 s
+  Caption: PRIMARY metric cycle_time_s = mean time per completed full ground lap, window-independent; equal-window revisit = longest unserviced interval of any ground checkpoint inside the common window (descriptive only, right-censored, no test); Welch two-sided t (Satterthwaite df), exact p, Cohen's d (pooled sd), t-based 95 % CI of the difference; runs treated as independent; N per cell as printed.
+
+PRIMARY: guard_baseline (A) vs uav_sectors (B), metric cycle_time_s
+  guard_baseline   n= 30  mean=532.9093  sd=141.6419
+  uav_sectors      n= 30  mean=71.8236  sd=8.2237
+  mean difference A - B = 461.0857   se = 25.9037
+  Welch t = 17.8000   df (Welch-Satterthwaite) = 29.196   two-sided p = 3.223302e-17
+  Cohen's d = 4.5959  (pooled sd = sqrt(((nA-1)sA^2 + (nB-1)sB^2)/(nA+nB-2)))
+  95 % CI of the mean difference (t, Welch df): [408.1221, 514.0494]
+  decision at alpha = 0.05: p < 0.05 -> REJECT equal means
+SECONDARY: uav_sectors (A) vs uav_offset_ring (B), metric cycle_time_s
+  uav_sectors      n= 30  mean=71.8236  sd=8.2237
+  uav_offset_ring  n= 30  mean=35.5816  sd=6.3632
+  mean difference A - B = 36.2420   se = 1.8984
+  Welch t = 19.0906   df (Welch-Satterthwaite) = 54.562   two-sided p = 8.086426e-26
+  Cohen's d = 4.9292  (pooled sd = sqrt(((nA-1)sA^2 + (nB-1)sB^2)/(nA+nB-2)))
+  95 % CI of the mean difference (t, Welch df): [32.4368, 40.0472]
+  decision at alpha = 0.05: p < 0.05 -> REJECT equal means
+Context only (window-dependent, never a cross-condition comparison): worst_revisit_ground_s over each run's own window
+  guard_baseline   worst_revisit_ground_s: n=30 mean=570.9600 sd=152.0636 95 % CI [514.1785, 627.7415]
+  uav_sectors      worst_revisit_ground_s: n=30 mean=112.3836 sd=13.4158 95 % CI [107.3740, 117.3932]
+  uav_offset_ring  worst_revisit_ground_s: n=30 mean=82.6318 sd=3.9856 95 % CI [81.1436, 84.1200]
+Equal-window worst revisit (worst_revisit_ground_eqwin_s), descriptive only: right-censored at eqwin_s, NO t test / d / CI
+  guard_baseline   worst revisit >= 300 s (right-censored); censored runs (no revisit inside 300 s): 30 of 30
+  uav_sectors      n=30 mean=113.1541 sd=13.3592 min=95.4600 max=133.6260 (values >= 300 s are lower bounds); censored runs (no revisit inside 300 s): 0 of 30
+  uav_offset_ring  n=30 mean=113.2678 sd=4.0025 min=107.3340 max=126.3420 (values >= 300 s are lower bounds); censored runs (no revisit inside 300 s): 0 of 30
+  30 of 30 guard runs had no revisit inside 300 s; UAV worst revisit max 133.63 s
+
+DETECTION (intruder verified inside the run window; windows differ by condition, see above; 95 % intervals)
+  guard_baseline   detected 30/30 = 1.0000  Wilson [0.8865, 1.0000]  exact [0.8843, 1.0000]; detection_latency_s mean=281.05 s (n=30)
+  uav_sectors      detected 30/30 = 1.0000  Wilson [0.8865, 1.0000]  exact [0.8843, 1.0000]; detection_latency_s mean=12.80 s (n=30)
+  uav_offset_ring  detected 30/30 = 1.0000  Wilson [0.8865, 1.0000]  exact [0.8843, 1.0000]; detection_latency_s mean=24.87 s (n=30)
+
+UAV EFFORT AND TRACKING (UAV cells; the guard is a kinematic walker, no actuators)
+  uav_sectors      thrust effort sum F^2 dt (N^2 s): n=30 mean=28080.5400 sd=51.0277 95 % CI [28061.4859, 28099.5941]
+  uav_offset_ring  thrust effort sum F^2 dt (N^2 s): n=30 mean=28242.1907 sd=56.1372 95 % CI [28221.2287, 28263.1527]
+  uav_sectors      torque effort int |tau|^2 dt (N^2 m^2 s): n=30 mean=0.3504 sd=0.0081 95 % CI [0.3474, 0.3535]
+  uav_offset_ring  torque effort int |tau|^2 dt (N^2 m^2 s): n=30 mean=0.4589 sd=0.0159 95 % CI [0.4530, 0.4649]
+  uav_sectors      cross-track RMSE (m): n=30 mean=0.2586 sd=0.0206 95 % CI [0.2509, 0.2663]
+  uav_offset_ring  cross-track RMSE (m): n=30 mean=0.9690 sd=0.2416 95 % CI [0.8788, 1.0592]
+  uav_sectors      waypoint RMSE (m): n=30 mean=4.3312 sd=0.1596 95 % CI [4.2716, 4.3909]
+  uav_offset_ring  waypoint RMSE (m): n=30 mean=4.7281 sd=0.1644 95 % CI [4.6666, 4.7895]
+  uav_sectors      energy (Wh): n=30 mean=23.2063 sd=0.0313 95 % CI [23.1946, 23.2180]
+  uav_offset_ring  energy (Wh): n=30 mean=23.3046 sd=0.0343 95 % CI [23.2918, 23.3174]
+  guard_baseline   n_laps_alpha: not applicable or not measured (no values)
+  uav_sectors      n_laps_alpha: n=30 mean=3.0000 sd=0.0000 95 % CI [3.0000, 3.0000] min=3.0000 max=3.0000
+  uav_offset_ring  n_laps_alpha: n=30 mean=3.7000 sd=0.4661 95 % CI [3.5260, 3.8740] min=3.0000 max=4.0000
+  guard_baseline   n_laps_bravo: not applicable or not measured (no values)
+  uav_sectors      n_laps_bravo: n=30 mean=7.9000 sd=0.4026 95 % CI [7.7497, 8.0503] min=7.0000 max=9.0000
+  uav_offset_ring  n_laps_bravo: n=30 mean=3.1000 sd=0.3051 95 % CI [2.9861, 3.2139] min=3.0000 max=4.0000
+  guard_baseline   n_laps_guard: n=30 mean=3.2000 sd=0.9965 95 % CI [2.8279, 3.5721] min=2.0000 max=5.0000
+  uav_sectors      n_laps_guard: not applicable or not measured (no values)
+  uav_offset_ring  n_laps_guard: not applicable or not measured (no values)
+  guard_baseline   n_ground_laps: n=30 mean=3.2000 sd=0.9965 95 % CI [2.8279, 3.5721] min=2.0000 max=5.0000
+  uav_sectors      n_ground_laps: n=30 mean=3.0000 sd=0.0000 95 % CI [3.0000, 3.0000] min=3.0000 max=3.0000
+  uav_offset_ring  n_ground_laps: n=30 mean=6.1333 sd=0.9732 95 % CI [5.7699, 6.4967] min=4.0000 max=7.0000
+
+SAFETY (FR-18 obstacle sensing; in the interior the UAVs must sense all obstacles)
+  uav_sectors      min_obstacle_clearance_m: n=30 mean=2.2102 sd=0.0645 95 % CI [2.1861, 2.2343] min=1.9807 max=2.3168
+  uav_offset_ring  min_obstacle_clearance_m: n=30 mean=2.7047 sd=0.8235 95 % CI [2.3972, 3.0122] min=0.7316 max=3.8812
+  uav_sectors      min_inter_uav_m (m): n=30 mean=12.7415 sd=1.1468 95 % CI [12.3133, 13.1697] min=9.2803 max=14.1667
+  uav_offset_ring  min_inter_uav_m (m): n=30 mean=5.9318 sd=0.8300 95 % CI [5.6218, 6.2417] min=4.0002 max=6.9332
+  uav_sectors      obstacle_contacts total=0 over 30 runs (0 runs with contact); uav_uav_contacts total=0 over 30 runs; runs with min_inter_uav_m < 2.5 m: 0 of 30
+  uav_offset_ring  obstacle_contacts total=0 over 30 runs (0 runs with contact); uav_uav_contacts total=0 over 30 runs; runs with min_inter_uav_m < 2.5 m: 0 of 30
+

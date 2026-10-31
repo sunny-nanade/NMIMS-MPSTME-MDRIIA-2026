@@ -1,0 +1,10 @@
+element,source,status
+Building shell,OSM way 791070239 convex hull,MEASURED
+Atrium void 21.6 x 38.5 m,"satellite skylight, parallax-aligned to OSM",MEASURED +/- ~2 m
+Storeys 10 x 3.6 m,exterior panorama band count,ASSUMED
+Gallery corridor width 3.0 m,"tour panoramas (Wall of Fame, Lifts)",ASSUMED
+"VIP Lounge, Board Room, Conference -- west wing",tour links from Atrium/Entry,ASSUMED
+Cafeteria -- east wing,tour link Wall of Fame -> Cafeteria,ASSUMED
+Lift lobby + entry foyer -- south wing,satellite: lift cores in south wing,PARTLY MEASURED
+Auditorium lobby -- north strip,tour links,ASSUMED
+Restricted zone = VIP Lounge,design choice for the geofence,DESIGN

@@ -1,0 +1,4 @@
+interior  noon      frames kept 58
+HSV_SAT_FRAC=0.66: S_min=149  interior noon n=58 mean IoU(all)=0.874 hit rate(IoU>=0.5)=0.862 det rate=1.000 worst frame IoU=0.000
+interior  noon      frames kept 58
+HSV_SAT_FRAC=0.75: S_min=169  interior noon n=58 mean IoU(all)=0.985 hit rate(IoU>=0.5)=1.000 det rate=1.000 worst frame IoU=0.939

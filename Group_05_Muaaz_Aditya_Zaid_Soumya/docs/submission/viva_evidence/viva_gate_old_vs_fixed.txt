@@ -1,0 +1,24 @@
+# OLD gate (parent of 40a811f), author E051 against main, run from group folder (rc after)
+[BLOCKED] 48 change(s) outside E051's ownership:
+    .gitignore: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/.gitignore: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/README.md: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/analytics/SIMULATED_campus_patrol_benchmark.csv: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/analytics/campus_patrol_real_trials.csv: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/analytics/campus_patrol_real_trials.provenance.json: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/analytics/generate_paper_figures.py: owned by E043
+rc=0
+
+# FIXED gate (branch tip), same args
+[BLOCKED] 713 change(s) outside E051's ownership:
+    .gitignore: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/.gitignore: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/README.md: owned by E043
+    Group_05_Muaaz_Aditya_Zaid_Soumya/analytics/campus_patrol_benchmark.csv: renamed away, owned by someone else
+    Group_05_Muaaz_Aditya_Zaid_Soumya/analytics/SIMULATED_campus_patrol_benchmark.csv: owned by E043
+
+# FIXED gate, author E043
+[OK] all 48 changed file(s) are within E043's ownership.
+
+# lines mentioning src/aerial_patrol_swarm.py: old gate 1, fixed gate 24
+# correction of the line above: per-line entries in the fixed gate output = 22 shown (list is truncated: "... and 653 more", 713 violations in total); old gate header "[BLOCKED] 48 change(s)", all whole-file lines.

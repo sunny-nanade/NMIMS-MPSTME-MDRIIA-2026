@@ -1,0 +1,156 @@
+<mujoco>
+  <!-- Dual-UAV fleet shared by both NMIMS scenes | Owner: E043 Muaaz
+       Scaffold names preserved. Initial body positions are placeholders: the
+       controller moves each airframe onto its scene's dock site at reset. -->
+  <worldbody>
+    <!-- ===================================================================
+         UAV ALPHA -- placed on its scene dock (site dock_alpha) at reset
+         "+" configuration, l = 0.26 m. Rotor numbering and spin:
+            rotor0 (+l, 0)  CCW      rotor2 (0, +l)  CW
+            rotor1 (-l, 0)  CCW      rotor3 (0, -l)  CW
+         Mapping to the guide's T1..T4: T1=rotor1, T2=rotor3, T3=rotor0, T4=rotor2
+         =================================================================== -->
+    <body name="uav_alpha" pos="-12.3 -24.0 0.25" childclass="quad">
+      <freejoint name="uav_alpha_root"/>
+      <geom name="alpha_chassis" type="box" size="0.09 0.09 0.035" mass="0.83" material="uav_alpha"/>
+      <geom name="alpha_arm_x" type="box" size="0.26 0.014 0.008" pos="0 0 0.012" mass="0.07" material="uav_alpha"/>
+      <geom name="alpha_arm_y" type="box" size="0.014 0.26 0.008" pos="0 0 0.012" mass="0.07" material="uav_alpha"/>
+      <geom name="alpha_gimbal" type="sphere" size="0.035" pos="0 0 -0.045" mass="0.10" material="rotor"/>
+      <geom name="alpha_prop0" type="cylinder" size="0.12 0.005" pos=" 0.26 0 0.03" mass="0.05" material="rotor"/>
+      <geom name="alpha_prop1" type="cylinder" size="0.12 0.005" pos="-0.26 0 0.03" mass="0.05" material="rotor"/>
+      <geom name="alpha_prop2" type="cylinder" size="0.12 0.005" pos="0  0.26 0.03" mass="0.05" material="rotor"/>
+      <geom name="alpha_prop3" type="cylinder" size="0.12 0.005" pos="0 -0.26 0.03" mass="0.05" material="rotor"/>
+      <geom name="alpha_leg0" type="capsule" size="0.008" fromto=" 0.07  0.07 -0.03  0.10  0.10 -0.18" mass="0.02"/>
+      <geom name="alpha_leg1" type="capsule" size="0.008" fromto="-0.07  0.07 -0.03 -0.10  0.10 -0.18" mass="0.02"/>
+      <geom name="alpha_leg2" type="capsule" size="0.008" fromto=" 0.07 -0.07 -0.03  0.10 -0.10 -0.18" mass="0.02"/>
+      <geom name="alpha_leg3" type="capsule" size="0.008" fromto="-0.07 -0.07 -0.03 -0.10 -0.10 -0.18" mass="0.02"/>
+      <site name="alpha_imu" pos="0 0 0"/>
+      <site name="alpha_agl" pos="0 0 -0.04" zaxis="0 0 -1"/>
+      <!-- Downward nadir camera: 640x480, fovy 56.14 deg  =>  f = 450 px -->
+      <camera name="cam_alpha" pos="0 0 -0.085" fovy="56.14"/>
+      <camera name="chase_alpha" pos="-2.3 0 0.45" xyaxes="0 -1 0 0.2 0 0.98" fovy="70"/>
+      <!-- forward-oblique camera, 30 deg below horizon: indoors a nadir camera at 2.4 m sees only ~2.5 m of floor -->
+      <camera name="cam_alpha_fwd" pos="0.16 0 -0.04" xyaxes="0 -1 0 0.5 0 0.866" fovy="56.14"/>
+      <site name="alpha_rotor0" pos=" 0.26 0 0.03"/>
+      <site name="alpha_rotor1" pos="-0.26 0 0.03"/>
+      <site name="alpha_rotor2" pos="0  0.26 0.03"/>
+      <site name="alpha_rotor3" pos="0 -0.26 0.03"/>
+      <!-- FR-18 range ring, 26 single-beam rangefinders from the airframe centre (beam = site +z):
+           8 horizontal (45 deg apart, body frame), 8 tilted +20 deg and 8 tilted -20 deg at the same
+           azimuths (catch lintels, slab edges and furniture just off the rotor plane), up, down.
+           Read by DualUAVSurveillanceController._sense -->
+      <site name="alpha_rf_h0" pos="0 0 0" zaxis="1.0000 0.0000 0"/>
+      <site name="alpha_rf_h1" pos="0 0 0" zaxis="0.7071 0.7071 0"/>
+      <site name="alpha_rf_h2" pos="0 0 0" zaxis="0.0000 1.0000 0"/>
+      <site name="alpha_rf_h3" pos="0 0 0" zaxis="-0.7071 0.7071 0"/>
+      <site name="alpha_rf_h4" pos="0 0 0" zaxis="-1.0000 0.0000 0"/>
+      <site name="alpha_rf_h5" pos="0 0 0" zaxis="-0.7071 -0.7071 0"/>
+      <site name="alpha_rf_h6" pos="0 0 0" zaxis="-0.0000 -1.0000 0"/>
+      <site name="alpha_rf_h7" pos="0 0 0" zaxis="0.7071 -0.7071 0"/>
+      <site name="alpha_rf_u0" pos="0 0 0" zaxis="0.9397 0.0000 0.3420"/>
+      <site name="alpha_rf_u1" pos="0 0 0" zaxis="0.6645 0.6645 0.3420"/>
+      <site name="alpha_rf_u2" pos="0 0 0" zaxis="0.0000 0.9397 0.3420"/>
+      <site name="alpha_rf_u3" pos="0 0 0" zaxis="-0.6645 0.6645 0.3420"/>
+      <site name="alpha_rf_u4" pos="0 0 0" zaxis="-0.9397 0.0000 0.3420"/>
+      <site name="alpha_rf_u5" pos="0 0 0" zaxis="-0.6645 -0.6645 0.3420"/>
+      <site name="alpha_rf_u6" pos="0 0 0" zaxis="-0.0000 -0.9397 0.3420"/>
+      <site name="alpha_rf_u7" pos="0 0 0" zaxis="0.6645 -0.6645 0.3420"/>
+      <site name="alpha_rf_d0" pos="0 0 0" zaxis="0.9397 0.0000 -0.3420"/>
+      <site name="alpha_rf_d1" pos="0 0 0" zaxis="0.6645 0.6645 -0.3420"/>
+      <site name="alpha_rf_d2" pos="0 0 0" zaxis="0.0000 0.9397 -0.3420"/>
+      <site name="alpha_rf_d3" pos="0 0 0" zaxis="-0.6645 0.6645 -0.3420"/>
+      <site name="alpha_rf_d4" pos="0 0 0" zaxis="-0.9397 0.0000 -0.3420"/>
+      <site name="alpha_rf_d5" pos="0 0 0" zaxis="-0.6645 -0.6645 -0.3420"/>
+      <site name="alpha_rf_d6" pos="0 0 0" zaxis="-0.0000 -0.9397 -0.3420"/>
+      <site name="alpha_rf_d7" pos="0 0 0" zaxis="0.6645 -0.6645 -0.3420"/>
+      <site name="alpha_rf_up" pos="0 0 0" zaxis="0 0 1"/>
+      <site name="alpha_rf_dn" pos="0 0 0" zaxis="0 0 -1"/>
+    </body>
+
+    <!-- UAV BRAVO -- identical airframe, placed on its scene dock (site dock_bravo) at reset -->
+    <body name="uav_bravo" pos="0 -20.0 0.25" childclass="quad">
+      <freejoint name="uav_bravo_root"/>
+      <geom name="bravo_chassis" type="box" size="0.09 0.09 0.035" mass="0.83" material="uav_bravo"/>
+      <geom name="bravo_arm_x" type="box" size="0.26 0.014 0.008" pos="0 0 0.012" mass="0.07" material="uav_bravo"/>
+      <geom name="bravo_arm_y" type="box" size="0.014 0.26 0.008" pos="0 0 0.012" mass="0.07" material="uav_bravo"/>
+      <geom name="bravo_gimbal" type="sphere" size="0.035" pos="0 0 -0.045" mass="0.10" material="rotor"/>
+      <geom name="bravo_prop0" type="cylinder" size="0.12 0.005" pos=" 0.26 0 0.03" mass="0.05" material="rotor"/>
+      <geom name="bravo_prop1" type="cylinder" size="0.12 0.005" pos="-0.26 0 0.03" mass="0.05" material="rotor"/>
+      <geom name="bravo_prop2" type="cylinder" size="0.12 0.005" pos="0  0.26 0.03" mass="0.05" material="rotor"/>
+      <geom name="bravo_prop3" type="cylinder" size="0.12 0.005" pos="0 -0.26 0.03" mass="0.05" material="rotor"/>
+      <geom name="bravo_leg0" type="capsule" size="0.008" fromto=" 0.07  0.07 -0.03  0.10  0.10 -0.18" mass="0.02"/>
+      <geom name="bravo_leg1" type="capsule" size="0.008" fromto="-0.07  0.07 -0.03 -0.10  0.10 -0.18" mass="0.02"/>
+      <geom name="bravo_leg2" type="capsule" size="0.008" fromto=" 0.07 -0.07 -0.03  0.10 -0.10 -0.18" mass="0.02"/>
+      <geom name="bravo_leg3" type="capsule" size="0.008" fromto="-0.07 -0.07 -0.03 -0.10 -0.10 -0.18" mass="0.02"/>
+      <site name="bravo_imu" pos="0 0 0"/>
+      <site name="bravo_agl" pos="0 0 -0.04" zaxis="0 0 -1"/>
+      <camera name="cam_bravo" pos="0 0 -0.085" fovy="56.14"/>
+      <camera name="chase_bravo" pos="-2.3 0 0.45" xyaxes="0 -1 0 0.2 0 0.98" fovy="70"/>
+      <!-- forward-oblique camera, 30 deg below horizon: indoors a nadir camera at 2.4 m sees only ~2.5 m of floor -->
+      <camera name="cam_bravo_fwd" pos="0.16 0 -0.04" xyaxes="0 -1 0 0.5 0 0.866" fovy="56.14"/>
+      <site name="bravo_rotor0" pos=" 0.26 0 0.03"/>
+      <site name="bravo_rotor1" pos="-0.26 0 0.03"/>
+      <site name="bravo_rotor2" pos="0  0.26 0.03"/>
+      <site name="bravo_rotor3" pos="0 -0.26 0.03"/>
+      <!-- FR-18 range ring, 26 single-beam rangefinders from the airframe centre (beam = site +z):
+           8 horizontal (45 deg apart, body frame), 8 tilted +20 deg and 8 tilted -20 deg at the same
+           azimuths (catch lintels, slab edges and furniture just off the rotor plane), up, down.
+           Read by DualUAVSurveillanceController._sense -->
+      <site name="bravo_rf_h0" pos="0 0 0" zaxis="1.0000 0.0000 0"/>
+      <site name="bravo_rf_h1" pos="0 0 0" zaxis="0.7071 0.7071 0"/>
+      <site name="bravo_rf_h2" pos="0 0 0" zaxis="0.0000 1.0000 0"/>
+      <site name="bravo_rf_h3" pos="0 0 0" zaxis="-0.7071 0.7071 0"/>
+      <site name="bravo_rf_h4" pos="0 0 0" zaxis="-1.0000 0.0000 0"/>
+      <site name="bravo_rf_h5" pos="0 0 0" zaxis="-0.7071 -0.7071 0"/>
+      <site name="bravo_rf_h6" pos="0 0 0" zaxis="-0.0000 -1.0000 0"/>
+      <site name="bravo_rf_h7" pos="0 0 0" zaxis="0.7071 -0.7071 0"/>
+      <site name="bravo_rf_u0" pos="0 0 0" zaxis="0.9397 0.0000 0.3420"/>
+      <site name="bravo_rf_u1" pos="0 0 0" zaxis="0.6645 0.6645 0.3420"/>
+      <site name="bravo_rf_u2" pos="0 0 0" zaxis="0.0000 0.9397 0.3420"/>
+      <site name="bravo_rf_u3" pos="0 0 0" zaxis="-0.6645 0.6645 0.3420"/>
+      <site name="bravo_rf_u4" pos="0 0 0" zaxis="-0.9397 0.0000 0.3420"/>
+      <site name="bravo_rf_u5" pos="0 0 0" zaxis="-0.6645 -0.6645 0.3420"/>
+      <site name="bravo_rf_u6" pos="0 0 0" zaxis="-0.0000 -0.9397 0.3420"/>
+      <site name="bravo_rf_u7" pos="0 0 0" zaxis="0.6645 -0.6645 0.3420"/>
+      <site name="bravo_rf_d0" pos="0 0 0" zaxis="0.9397 0.0000 -0.3420"/>
+      <site name="bravo_rf_d1" pos="0 0 0" zaxis="0.6645 0.6645 -0.3420"/>
+      <site name="bravo_rf_d2" pos="0 0 0" zaxis="0.0000 0.9397 -0.3420"/>
+      <site name="bravo_rf_d3" pos="0 0 0" zaxis="-0.6645 0.6645 -0.3420"/>
+      <site name="bravo_rf_d4" pos="0 0 0" zaxis="-0.9397 0.0000 -0.3420"/>
+      <site name="bravo_rf_d5" pos="0 0 0" zaxis="-0.6645 -0.6645 -0.3420"/>
+      <site name="bravo_rf_d6" pos="0 0 0" zaxis="-0.0000 -0.9397 -0.3420"/>
+      <site name="bravo_rf_d7" pos="0 0 0" zaxis="0.6645 -0.6645 -0.3420"/>
+      <site name="bravo_rf_up" pos="0 0 0" zaxis="0 0 1"/>
+      <site name="bravo_rf_dn" pos="0 0 0" zaxis="0 0 -1"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <!-- opposite pairs spin together: rotor0/1 CCW, rotor2/3 CW -->
+    <motor name="alpha_m0" class="rotor_ccw" site="alpha_rotor0"/>
+    <motor name="alpha_m1" class="rotor_ccw" site="alpha_rotor1"/>
+    <motor name="alpha_m2" class="rotor_cw"  site="alpha_rotor2"/>
+    <motor name="alpha_m3" class="rotor_cw"  site="alpha_rotor3"/>
+    <motor name="bravo_m0" class="rotor_ccw" site="bravo_rotor0"/>
+    <motor name="bravo_m1" class="rotor_ccw" site="bravo_rotor1"/>
+    <motor name="bravo_m2" class="rotor_cw"  site="bravo_rotor2"/>
+    <motor name="bravo_m3" class="rotor_cw"  site="bravo_rotor3"/>
+  </actuator>
+
+  <sensor>
+    <!-- scaffold sensors (names unchanged) -->
+    <accelerometer name="alpha_accel" site="alpha_imu"/>
+    <gyro          name="alpha_gyro"  site="alpha_imu"/>
+    <accelerometer name="bravo_accel" site="bravo_imu"/>
+    <gyro          name="bravo_gyro"  site="bravo_imu"/>
+    <!-- added: state + altimeter channels for closed-loop control and telemetry -->
+    <framepos    name="alpha_pos"  objtype="site" objname="alpha_imu"/>
+    <framequat   name="alpha_quat" objtype="site" objname="alpha_imu"/>
+    <framelinvel name="alpha_vel"  objtype="site" objname="alpha_imu"/>
+    <rangefinder name="alpha_rf"   site="alpha_agl"/>
+    <framepos    name="bravo_pos"  objtype="site" objname="bravo_imu"/>
+    <framequat   name="bravo_quat" objtype="site" objname="bravo_imu"/>
+    <framelinvel name="bravo_vel"  objtype="site" objname="bravo_imu"/>
+    <rangefinder name="bravo_rf"   site="bravo_agl"/>
+  </sensor>
+</mujoco>

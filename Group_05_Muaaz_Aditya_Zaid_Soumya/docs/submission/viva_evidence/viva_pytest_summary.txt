@@ -1,0 +1,5 @@
+pytest counts at ce6862e (wall times vary by machine and load, so they are not quoted)
+python -m pytest tests -q -> 112 passed, 1 skipped
+python -m pytest tests/test_e051_vision.py -q -> 20 passed
+python -m pytest tests/test_e075_geofence_stats.py -q -> 20 passed
+python -m pytest tests/test_e077_economics.py -q -> 30 passed

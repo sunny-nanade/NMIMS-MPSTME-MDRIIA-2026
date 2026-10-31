@@ -1,90 +1,40 @@
 <mujoco model="campus_perimeter_patrol">
-  <compiler angle="radian" coordinate="local"/>
-  <option gravity="0 0 -9.81" timestep="0.004" solver="Newton" iterations="40"/>
+  <!-- ======================================================================
+       MDRIIA Group 05 | Collaborative Dual-UAV Surveillance
+       DEFAULT SCENE: INSIDE the NMIMS Main Building, Vile Parle (West), Mumbai
+         - central atrium (measured from the satellite skylight) with gallery
+           corridors on all ten floors
+         - ground floor: corridor ring, cafeteria, VIP Lounge (restricted zone),
+           Board Room, lift lobby, Wall of Fame, entry foyer
+       Alpha patrols the ground-floor corridor loop; Bravo sweeps the atrium.
+       Exterior perimeter variant: campus_perimeter_patrol_exterior.xml
+       Owner: E043 Muaaz Mohammed Iqbal Shaikh
 
-  <default>
-    <geom condim="3" friction="1.0 0.01 0.005"/>
-    <motor ctrllimited="true" ctrlrange="0 7.5"/>
-  </default>
+       Course scaffold names are preserved (uav_alpha/bravo, cam_alpha/bravo,
+       alpha_m0..3, alpha_accel/gyro, human_intruder, substation_zone), so
+       src/test_env.py runs unmodified. Fixes vs. the scaffold model are
+       documented in uav_fleet.xml and docs/planning/ (PRD section 7).
+       ====================================================================== -->
+  <compiler angle="radian" autolimits="true"/>
+  <option gravity="0 0 -9.81" timestep="0.002" integrator="implicitfast"
+          density="1.204" viscosity="1.8e-5" wind="0 0 0"/>
+  <statistic center="0 -18 12" extent="60" meansize="0.3"/>
+  <visual>
+    <headlight diffuse="0.42 0.42 0.42" ambient="0.42 0.41 0.40" specular="0 0 0"/>
+    <global azimuth="200" elevation="-35" offwidth="1600" offheight="900"/>
+    <!-- fractions of extent (60 m): near clip 2.4 cm -->
+    <map znear="0.0004" zfar="6"/>
+    <quality shadowsize="4096"/>
+  </visual>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.80 0.86 0.92" rgb2="0.55 0.64 0.74" width="512" height="3072"/>
+  </asset>
+
+  <include file="common.xml"/>
+  <include file="nmims_main_interior.xml"/>
+  <include file="uav_fleet.xml"/>
 
   <worldbody>
-    <!-- Campus Ground Plane -->
-    <geom name="ground" type="plane" size="45 45 0.1" rgba="0.3 0.35 0.3 1"/>
-    <light directional="true" pos="0 0 30" dir="0 0 -1" castshadow="false"/>
-
-    <!-- Campus Academic Buildings / Obstacles -->
-    <geom name="building_east" type="box" size="8 12 6" pos="18 0 6" rgba="0.65 0.6 0.55 1"/>
-    <geom name="building_west" type="box" size="8 12 6" pos="-18 0 6" rgba="0.65 0.6 0.55 1"/>
-
-    <!-- Perimeter Boundary Walls -->
-    <geom name="wall_north" type="box" size="32 0.4 1.5" pos="0 30 1.5" rgba="0.45 0.45 0.45 1"/>
-    <geom name="wall_south" type="box" size="32 0.4 1.5" pos="0 -30 1.5" rgba="0.45 0.45 0.45 1"/>
-    <geom name="wall_east"  type="box" size="0.4 30 1.5" pos="30 0 1.5" rgba="0.45 0.45 0.45 1"/>
-    <geom name="wall_west"  type="box" size="0.4 30 1.5" pos="-30 0 1.5" rgba="0.45 0.45 0.45 1"/>
-
-    <!-- Restricted Zone Marker (Electrical Substation) -->
-    <geom name="substation_zone" type="box" size="5 5 0.02" pos="18 20 0.02" rgba="0.85 0.2 0.2 0.5"/>
-
-    <!-- Simulated Human Intruder Avatar -->
-    <body name="human_intruder" pos="18 19 0.85">
-      <freejoint name="intruder_root"/>
-      <geom name="intruder_geom" type="cylinder" size="0.28 0.85" rgba="0.9 0.1 0.1 1" mass="75.0"/>
-      <site name="intruder_head" pos="0 0 0.85"/>
-    </body>
-
-    <!-- =================================================================== -->
-    <!-- UAV ALPHA (Patrol Sector Alpha: North-East Perimeter)               -->
-    <!-- =================================================================== -->
-    <body name="uav_alpha" pos="0 25 12">
-      <freejoint name="uav_alpha_root"/>
-      <geom name="alpha_chassis" type="box" size="0.18 0.18 0.05" rgba="0.15 0.45 0.85 1" mass="1.35"/>
-      <site name="alpha_imu" pos="0 0 0"/>
-      <!-- Downward Surveillance Camera -->
-      <camera name="cam_alpha" pos="0 0 -0.06" euler="3.1415 0 0" fovy="60"/>
-
-      <!-- 4 Rotors for Quadrotor Dynamics -->
-      <site name="alpha_rotor0" pos="0.20 0 0.02"/>
-      <site name="alpha_rotor1" pos="-0.20 0 0.02"/>
-      <site name="alpha_rotor2" pos="0 0.20 0.02"/>
-      <site name="alpha_rotor3" pos="0 -0.20 0.02"/>
-    </body>
-
-    <!-- =================================================================== -->
-    <!-- UAV BRAVO (Patrol Sector Bravo: South-West Perimeter)               -->
-    <!-- =================================================================== -->
-    <body name="uav_bravo" pos="0 -25 12">
-      <freejoint name="uav_bravo_root"/>
-      <geom name="bravo_chassis" type="box" size="0.18 0.18 0.05" rgba="0.2 0.7 0.3 1" mass="1.35"/>
-      <site name="bravo_imu" pos="0 0 0"/>
-      <!-- Downward Surveillance Camera -->
-      <camera name="cam_bravo" pos="0 0 -0.06" euler="3.1415 0 0" fovy="60"/>
-
-      <!-- 4 Rotors for Quadrotor Dynamics -->
-      <site name="bravo_rotor0" pos="0.20 0 0.02"/>
-      <site name="bravo_rotor1" pos="-0.20 0 0.02"/>
-      <site name="bravo_rotor2" pos="0 0.20 0.02"/>
-      <site name="bravo_rotor3" pos="0 -0.20 0.02"/>
-    </body>
+    <geom name="ground" type="plane" size="120 120 0.1" rgba="0.45 0.45 0.43 1"/>
   </worldbody>
-
-  <actuator>
-    <!-- UAV Alpha Rotors (Thrust 0 to 7.5 N each) -->
-    <motor name="alpha_m0" site="alpha_rotor0" gear="0 0 1 0 0 0"/>
-    <motor name="alpha_m1" site="alpha_rotor1" gear="0 0 1 0 0 0"/>
-    <motor name="alpha_m2" site="alpha_rotor2" gear="0 0 1 0 0 0"/>
-    <motor name="alpha_m3" site="alpha_rotor3" gear="0 0 1 0 0 0"/>
-
-    <!-- UAV Bravo Rotors -->
-    <motor name="bravo_m0" site="bravo_rotor0" gear="0 0 1 0 0 0"/>
-    <motor name="bravo_m1" site="bravo_rotor1" gear="0 0 1 0 0 0"/>
-    <motor name="bravo_m2" site="bravo_rotor2" gear="0 0 1 0 0 0"/>
-    <motor name="bravo_m3" site="bravo_rotor3" gear="0 0 1 0 0 0"/>
-  </actuator>
-
-  <sensor>
-    <accelerometer name="alpha_accel" site="alpha_imu"/>
-    <gyro name="alpha_gyro" site="alpha_imu"/>
-    <accelerometer name="bravo_accel" site="bravo_imu"/>
-    <gyro name="bravo_gyro" site="bravo_imu"/>
-  </sensor>
 </mujoco>

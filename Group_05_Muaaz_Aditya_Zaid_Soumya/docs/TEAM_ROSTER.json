@@ -34,7 +34,7 @@
       "name": "Soumya Subhankar Ranasingh",
       "role": "CSBS Campus Security Operations & OpEx Payback Analyst",
       "assigned_branch": "feat/e077-csbs-campus-security",
-      "viva_focus": "Guard labor substitution modeling, patrol cycle acceleration (from 45 to 8.5 min), and multi-year drone fleet OpEx payback analysis."
+      "viva_focus": "Guard labor substitution modeling, patrol revisit-time comparison against the guard baseline (measured in simulation), and multi-year drone fleet OpEx payback analysis."
     }
   ],
   "foundational_papers": [
@@ -95,10 +95,10 @@
   ],
   "project_showcase": {
     "platform": "LinkedIn Video",
-    "linkedin_url": "https://lnkd.in/p/d6ZwW_uJ",
+    "linkedin_url": "https://lnkd.in/p/ddww8s-J",
     "video_poster_path": "docs/figures/video_poster.png",
-    "video_duration_target": "60-90 seconds",
-    "submission_status": "SUBMITTED",
+    "video_duration_target": "3:00-4:00 minutes",
+    "submission_status": "PENDING",
     "submission_instructions": "Paste your published LinkedIn post URL into 'linkedin_url' and submit a Pull Request"
   }
 }

@@ -1,0 +1,198 @@
+[F-load] interior: MjModel.from_xml_path OK (models/campus_perimeter_patrol.xml), nu=8 actuators, nbody=19, ngeom=786, timestep=0.002 s (500 Hz), integrator=implicitfast
+[F-act] interior: actuators = ['alpha_m0', 'alpha_m1', 'alpha_m2', 'alpha_m3', 'bravo_m0', 'bravo_m1', 'bravo_m2', 'bravo_m3']
+[F-contact] interior: alpha_leg0 (class quad): friction=[1.0, 0.01, 0.005] condim=3 solref=[0.004, 1.0] solimp=[0.9, 0.95, 0.001, 0.5, 2.0]
+[F-contact] interior: ground plane: friction=[1.0, 0.01, 0.005] condim=3 solref=[0.02, 1.0] solimp=[0.9, 0.95, 0.001, 0.5, 2.0]
+[F-refsafe] interior: solref timeconst / timestep = 2.00 (MuJoCo clamps timeconst below 2 x timestep unless refsafe is off)
+[F-load] exterior: MjModel.from_xml_path OK (models/campus_perimeter_patrol_exterior.xml), nu=8 actuators, nbody=52, ngeom=509, timestep=0.002 s (500 Hz), integrator=implicitfast
+[F-act] exterior: actuators = ['alpha_m0', 'alpha_m1', 'alpha_m2', 'alpha_m3', 'bravo_m0', 'bravo_m1', 'bravo_m2', 'bravo_m3']
+[F-contact] exterior: alpha_leg0 (class quad): friction=[1.0, 0.01, 0.005] condim=3 solref=[0.004, 1.0] solimp=[0.9, 0.95, 0.001, 0.5, 2.0]
+[F-contact] exterior: ground plane: friction=[1.0, 0.01, 0.005] condim=3 solref=[0.02, 1.0] solimp=[0.9, 0.95, 0.001, 0.5, 2.0]
+[F-refsafe] exterior: solref timeconst / timestep = 2.00 (MuJoCo clamps timeconst below 2 x timestep unless refsafe is off)
+[F-mass] uav_alpha: body_subtreemass = 1.3500 kg; g = 9.81 m/s^2; W = m g = 1.3500 x 9.81 = 13.244 N; hover thrust per rotor = W/4 = 3.311 N; max thrust 4 x 7.5 = 30.0 N; T/W = 30.0 / 13.24 = 2.27
+[F-inertia] uav_alpha: principal inertia (kg m^2) = [0.02383, 0.01372, 0.01372]
+[F-mass] uav_bravo: body_subtreemass = 1.3500 kg; g = 9.81 m/s^2; W = m g = 1.3500 x 9.81 = 13.244 N; hover thrust per rotor = W/4 = 3.311 N; max thrust 4 x 7.5 = 30.0 N; T/W = 30.0 / 13.24 = 2.27
+[F-inertia] uav_bravo: principal inertia (kg m^2) = [0.02383, 0.01372, 0.01372]
+[F-solref-mix] interior: leg contact ground / alpha_leg0: geom solref [0.02, 1.0] and [0.004, 1.0] -> solref used by the solver [0.012, 1.0] (timestep 0.002 s, 2 x timestep = 0.004 s; refsafe enabled = True)
+[F-solref-mix] interior: leg contact ground / alpha_leg1: geom solref [0.02, 1.0] and [0.004, 1.0] -> solref used by the solver [0.012, 1.0] (timestep 0.002 s, 2 x timestep = 0.004 s; refsafe enabled = True)
+[F-solref-mix] interior: contacts seen 4; all used time constants [0.012]
+[F-solref-mix] exterior: leg contact alpha_leg0 / nmims_main_collision: geom solref [0.004, 1.0] and [0.02, 1.0] -> solref used by the solver [0.012, 1.0] (timestep 0.002 s, 2 x timestep = 0.004 s; refsafe enabled = True)
+[F-solref-mix] exterior: leg contact alpha_leg1 / nmims_main_collision: geom solref [0.004, 1.0] and [0.02, 1.0] -> solref used by the solver [0.012, 1.0] (timestep 0.002 s, 2 x timestep = 0.004 s; refsafe enabled = True)
+[F-solref-mix] exterior: contacts seen 4; all used time constants [0.012]
+[F-gain] KP_POS = 0.85 1/s (m/s of velocity command per m of position error)
+[F-gain] KP_VEL = 2.6 1/s (m/s^2 per m/s)
+[F-gain] KI_VEL = 0.55 1/s^2 (m/s^2 per m of integrated velocity error)
+[F-gain] I_CLAMP = 4.0 m (clamp on the integrated velocity error, per axis)
+[F-gain] KP_ATT [roll pitch yaw] = [44.0, 44.0, 14.0] 1/s^2 (rad/s^2 per rad; multiplied by the inertia matrix)
+[F-gain] KD_ATT [roll pitch yaw] = [11.5, 11.5, 5.5] 1/s (rad/s^2 per rad/s; multiplied by the inertia matrix)
+[F-gain] MAX_TILT_RATE = 110.0 deg/s
+[F-gain] V_MAX_Z = 1.5 m/s
+[F-gain] ARRIVE_R = 1.0 m
+[F-gain] K_REP = 8.5 N m^2 (APF gain)
+[F-gain] F_MAX = 7.5 N per rotor
+[F-gain] ARM_L = 0.26 m
+[F-gain] K_Q = 0.0201 m
+[F-scene-num] interior: cruise_speed=2.5 m/s, max_tilt_deg=15.0 deg, d_warn=4.5 m, sidestep=0.4 m/s, alt_layer_bravo=0.0 m, wind_scale=0.08
+[F-scene-num] exterior: cruise_speed=6.0 m/s, max_tilt_deg=28.0 deg, d_warn=14.0 m, sidestep=1.6 m/s, alt_layer_bravo=4.0 m, wind_scale=1.0
+[F-sep] separation: d_safe = 2.5 m (read from the source), APF F = K_REP (1/d - 1/d_safe) / d^2 for d < d_safe, layered governor between D_WARN and d_safe, sidestep to the right of the line of sight (src/aerial_patrol_swarm.py)
+[F-fr18] FR-18: RF_RANGE_M=8.0 m, RF_SIGMA_M=0.02 m, SENSE_HZ=100.0 Hz, D_STOP_H=0.6 m, D_STOP_V=0.35 m, BRAKE_FRAC=0.5, T_REACT=0.5 s, A_BRAKE_V=2.0 m/s^2, BACKOFF_MPS=0.5 m/s, H_BAND=0.6 m; beams per UAV = 26 (sites named *_rf_* in models/uav_fleet.xml)
+[F-fsm-consts] surveillance: VISION_HZ=10.0, VERIFY_K=3, VERIFY_GATE_M=3.0, TRACK_MAX_S=30.0, TRACK_LOST_S=2.0, TRACK_GATE_M=5.0, TRACK_LEASH_M=15.0, TRACK_STANDOFF_M=4.0, CLOSED_GATE_M=8.0
+[F-phases] flight phases (fsm_state while no incident): ['DESCEND', 'PATROL', 'TAKEOFF', 'TRANSIT']
+[F-fsm] FSM states in code: PATROL, DETECT, VERIFY, ALERT_0..ALERT_3, TRACK, RETURN_TO_PATROL (src/aerial_patrol_swarm.py, _fsm_step and _set_role)
+[F-snip-e043] src/aerial_patrol_swarm.py lines 1405-1423 (19 lines)
+ 1405          if self.surv_state in ("DETECT", "VERIFY"):
+ 1406              m = self._nearest_fix(fixes, inc["last_fix"], self.VERIFY_GATE_M)
+ 1407              if m is None:                                        # inconsistent / missing -> reject
+ 1408                  inc["t_close"], inc["close_reason"] = round(t, 3), "verify_reject"
+ 1409                  self._set_role(owner, None, f"verify_reject:{inc['id']}")
+ 1410                  self.surv_state, self._inc = "PATROL", None
+ 1411                  return
+ 1412              inc["hits"] += 1
+ 1413              inc["last_fix"], inc["t_last_fix"] = m[2].copy(), t
+ 1414              if inc["hits"] < self.VERIFY_K:
+ 1415                  self.surv_state = "VERIFY"
+ 1416                  self._set_role(owner, "VERIFY")
+ 1417                  return
+ 1418              status, tier = self.evaluate_geofence_status(m[2])
+ 1419              inc.update(t_verify=round(t, 3), fix_verify=[round(float(v), 3) for v in m[2]], tier_alert=int(tier),
+ 1420                         tier_max=int(tier))
+ 1421              self.alert_status = status
+ 1422              self.surv_state = f"ALERT_{tier}"
+ 1423              self._set_role(owner, f"ALERT_{tier}", f"verify:{inc['id']};alert:{tier}")
+[F-csv] analytics/campus_patrol_real_trials.csv: 180 rows; sha256 1ecc25f0be6d0a817fbe01ad74bd9e5438fedba7616180f90f5a57a430c06ca6 (equals provenance csv_sha256); code commit 8085b85
+[F-cell] interior/guard_baseline: N=30 seeds 1..30 dt=['0.002'] duration_s=['5000.0'] eqwin_s=['300.0'] detected=11/30 obstacle_contacts_total=0 uav_uav_contacts_total=0
+[F-stat] interior/guard_baseline/worst_revisit_ground_eqwin_s: right-censored at eqwin_s=300 s, no t test; censored runs 30 of 30; max=300.0000
+[F-stat] interior/guard_baseline/cycle_time_s: n=30 mean=2460.4638 sd=593.2051 min=1699.5370 max=3907.7020
+[F-stat] interior/guard_baseline/worst_revisit_ground_s: n=30 mean=2494.1635 sd=598.6991 min=1709.8900 max=3907.7020
+[F-stat] interior/guard_baseline/tracking_rmse_m: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/waypoint_rmse_m: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/control_effort_N2s: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/torque_effort_N2m2s: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/energy_wh: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/min_inter_uav_m: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/min_obstacle_clearance_m: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/detection_latency_s: n=11 mean=38.6726 sd=10.4276 min=15.5510 max=45.9270
+[F-stat] interior/guard_baseline/verify_time_s: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/n_ground_laps: n=30 mean=2.5000 sd=0.5085 min=2.0000 max=3.0000
+[F-stat] interior/guard_baseline/n_laps_alpha: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/n_laps_bravo: not applicable or not measured (no values)
+[F-stat] interior/guard_baseline/n_laps_guard: n=30 mean=2.5000 sd=0.5085 min=2.0000 max=3.0000
+[F-cell] interior/uav_sectors: N=30 seeds 1..30 dt=['0.002'] duration_s=['300.0'] eqwin_s=['300.0'] detected=10/30 obstacle_contacts_total=0 uav_uav_contacts_total=0
+[F-stat] interior/uav_sectors/worst_revisit_ground_eqwin_s: right-censored at eqwin_s=300 s, no t test; censored runs 0 of 30; max=108.6480 mean=68.1647 (lower bound where censored)
+[F-stat] interior/uav_sectors/cycle_time_s: n=30 mean=57.4086 sd=5.9314 min=53.3580 max=71.7960
+[F-stat] interior/uav_sectors/worst_revisit_ground_s: n=30 mean=67.1621 sd=17.8853 min=54.0720 max=108.6480
+[F-stat] interior/uav_sectors/tracking_rmse_m: n=30 mean=0.4972 sd=0.0712 min=0.4658 max=0.8655
+[F-stat] interior/uav_sectors/waypoint_rmse_m: n=30 mean=1.3434 sd=0.0350 min=1.3028 max=1.4315
+[F-stat] interior/uav_sectors/control_effort_N2s: n=30 mean=26742.7172 sd=13.3810 min=26712.5340 max=26766.0090
+[F-stat] interior/uav_sectors/torque_effort_N2m2s: n=30 mean=0.2244 sd=0.0136 min=0.2126 max=0.2543
+[F-stat] interior/uav_sectors/energy_wh: n=30 mean=22.3698 sd=0.0074 min=22.3528 max=22.3827
+[F-stat] interior/uav_sectors/min_inter_uav_m: n=30 mean=5.6981 sd=0.0505 min=5.6041 max=5.8234
+[F-stat] interior/uav_sectors/min_obstacle_clearance_m: n=30 mean=0.8606 sd=0.1000 min=0.4379 max=0.8982
+[F-stat] interior/uav_sectors/detection_latency_s: n=10 mean=25.0708 sd=5.6312 min=16.9640 max=35.4030
+[F-stat] interior/uav_sectors/verify_time_s: n=10 mean=0.1972 sd=0.0143 min=0.1700 max=0.2040
+[F-stat] interior/uav_sectors/n_ground_laps: n=30 mean=4.8000 sd=0.4068 min=4.0000 max=5.0000
+[F-stat] interior/uav_sectors/n_laps_alpha: n=30 mean=4.8000 sd=0.4068 min=4.0000 max=5.0000
+[F-stat] interior/uav_sectors/n_laps_bravo: n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000
+[F-stat] interior/uav_sectors/n_laps_guard: not applicable or not measured (no values)
+[F-cell] interior/uav_offset_ring: N=30 seeds 1..30 dt=['0.002'] duration_s=['300.0'] eqwin_s=['300.0'] detected=13/30 obstacle_contacts_total=0 uav_uav_contacts_total=0
+[F-stat] interior/uav_offset_ring/worst_revisit_ground_eqwin_s: right-censored at eqwin_s=300 s, no t test; censored runs 0 of 30; max=74.2320 mean=53.8402 (lower bound where censored)
+[F-stat] interior/uav_offset_ring/cycle_time_s: n=30 mean=37.9682 sd=2.2661 min=33.7310 max=43.6100
+[F-stat] interior/uav_offset_ring/worst_revisit_ground_s: n=30 mean=53.8402 sd=10.0045 min=43.3940 max=74.2320
+[F-stat] interior/uav_offset_ring/tracking_rmse_m: n=30 mean=0.3579 sd=0.1646 min=0.2648 max=0.8477
+[F-stat] interior/uav_offset_ring/waypoint_rmse_m: n=30 mean=1.5002 sd=0.0969 min=1.4251 max=1.7290
+[F-stat] interior/uav_offset_ring/control_effort_N2s: n=30 mean=26731.6104 sd=15.9118 min=26706.5710 max=26772.7170
+[F-stat] interior/uav_offset_ring/torque_effort_N2m2s: n=30 mean=0.2779 sd=0.0181 min=0.2610 max=0.3254
+[F-stat] interior/uav_offset_ring/energy_wh: n=30 mean=22.3666 sd=0.0082 min=22.3531 max=22.3871
+[F-stat] interior/uav_offset_ring/min_inter_uav_m: n=30 mean=8.0524 sd=3.6646 min=3.0525 max=11.6717
+[F-stat] interior/uav_offset_ring/min_obstacle_clearance_m: n=30 mean=0.7972 sd=0.1364 min=0.3651 max=0.8982
+[F-stat] interior/uav_offset_ring/detection_latency_s: n=13 mean=29.9085 sd=15.4352 min=15.5170 max=53.1330
+[F-stat] interior/uav_offset_ring/verify_time_s: n=13 mean=0.2014 sd=0.0094 min=0.1700 max=0.2040
+[F-stat] interior/uav_offset_ring/n_ground_laps: n=30 mean=7.3333 sd=0.5467 min=6.0000 max=8.0000
+[F-stat] interior/uav_offset_ring/n_laps_alpha: n=30 mean=4.9000 sd=0.3051 min=4.0000 max=5.0000
+[F-stat] interior/uav_offset_ring/n_laps_bravo: n=30 mean=4.6333 sd=0.4901 min=4.0000 max=5.0000
+[F-stat] interior/uav_offset_ring/n_laps_guard: not applicable or not measured (no values)
+[F-cell] exterior/guard_baseline: N=30 seeds 1..30 dt=['0.002'] duration_s=['1800.0'] eqwin_s=['300.0'] detected=30/30 obstacle_contacts_total=0 uav_uav_contacts_total=0
+[F-stat] exterior/guard_baseline/worst_revisit_ground_eqwin_s: right-censored at eqwin_s=300 s, no t test; censored runs 30 of 30; max=300.0000
+[F-stat] exterior/guard_baseline/cycle_time_s: n=30 mean=532.9093 sd=141.6419 min=327.1590 max=785.0700
+[F-stat] exterior/guard_baseline/worst_revisit_ground_s: n=30 mean=570.9600 sd=152.0636 min=338.0330 max=811.4970
+[F-stat] exterior/guard_baseline/tracking_rmse_m: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/waypoint_rmse_m: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/control_effort_N2s: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/torque_effort_N2m2s: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/energy_wh: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/min_inter_uav_m: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/min_obstacle_clearance_m: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/detection_latency_s: n=30 mean=281.0518 sd=116.5639 min=69.5250 max=473.6590
+[F-stat] exterior/guard_baseline/verify_time_s: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/n_ground_laps: n=30 mean=3.2000 sd=0.9965 min=2.0000 max=5.0000
+[F-stat] exterior/guard_baseline/n_laps_alpha: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/n_laps_bravo: not applicable or not measured (no values)
+[F-stat] exterior/guard_baseline/n_laps_guard: n=30 mean=3.2000 sd=0.9965 min=2.0000 max=5.0000
+[F-cell] exterior/uav_sectors: N=30 seeds 1..30 dt=['0.002'] duration_s=['300.0'] eqwin_s=['300.0'] detected=30/30 obstacle_contacts_total=0 uav_uav_contacts_total=0
+[F-stat] exterior/uav_sectors/worst_revisit_ground_eqwin_s: right-censored at eqwin_s=300 s, no t test; censored runs 0 of 30; max=133.6260 mean=113.1541 (lower bound where censored)
+[F-stat] exterior/uav_sectors/cycle_time_s: n=30 mean=71.8236 sd=8.2237 min=64.0930 max=85.6880
+[F-stat] exterior/uav_sectors/worst_revisit_ground_s: n=30 mean=112.3836 sd=13.4158 min=95.4600 max=133.6260
+[F-stat] exterior/uav_sectors/tracking_rmse_m: n=30 mean=0.2586 sd=0.0206 min=0.2339 max=0.3165
+[F-stat] exterior/uav_sectors/waypoint_rmse_m: n=30 mean=4.3312 sd=0.1596 min=4.0076 max=4.6102
+[F-stat] exterior/uav_sectors/control_effort_N2s: n=30 mean=28080.5400 sd=51.0277 min=27986.9450 max=28190.6900
+[F-stat] exterior/uav_sectors/torque_effort_N2m2s: n=30 mean=0.3504 sd=0.0081 min=0.3380 max=0.3678
+[F-stat] exterior/uav_sectors/energy_wh: n=30 mean=23.2063 sd=0.0313 min=23.1483 max=23.2740
+[F-stat] exterior/uav_sectors/min_inter_uav_m: n=30 mean=12.7415 sd=1.1468 min=9.2803 max=14.1667
+[F-stat] exterior/uav_sectors/min_obstacle_clearance_m: n=30 mean=2.2102 sd=0.0645 min=1.9807 max=2.3168
+[F-stat] exterior/uav_sectors/detection_latency_s: n=30 mean=12.7982 sd=7.1350 min=1.5040 max=23.0740
+[F-stat] exterior/uav_sectors/verify_time_s: n=30 mean=0.1972 sd=0.0138 min=0.1700 max=0.2040
+[F-stat] exterior/uav_sectors/n_ground_laps: n=30 mean=3.0000 sd=0.0000 min=3.0000 max=3.0000
+[F-stat] exterior/uav_sectors/n_laps_alpha: n=30 mean=3.0000 sd=0.0000 min=3.0000 max=3.0000
+[F-stat] exterior/uav_sectors/n_laps_bravo: n=30 mean=7.9000 sd=0.4026 min=7.0000 max=9.0000
+[F-stat] exterior/uav_sectors/n_laps_guard: not applicable or not measured (no values)
+[F-cell] exterior/uav_offset_ring: N=30 seeds 1..30 dt=['0.002'] duration_s=['300.0'] eqwin_s=['300.0'] detected=30/30 obstacle_contacts_total=0 uav_uav_contacts_total=0
+[F-stat] exterior/uav_offset_ring/worst_revisit_ground_eqwin_s: right-censored at eqwin_s=300 s, no t test; censored runs 0 of 30; max=126.3420 mean=113.2678 (lower bound where censored)
+[F-stat] exterior/uav_offset_ring/cycle_time_s: n=30 mean=35.5816 sd=6.3632 min=29.4520 max=48.9550
+[F-stat] exterior/uav_offset_ring/worst_revisit_ground_s: n=30 mean=82.6318 sd=3.9856 min=76.7220 max=95.7880
+[F-stat] exterior/uav_offset_ring/tracking_rmse_m: n=30 mean=0.9690 sd=0.2416 min=0.6660 max=1.6251
+[F-stat] exterior/uav_offset_ring/waypoint_rmse_m: n=30 mean=4.7281 sd=0.1644 min=4.4258 max=5.0862
+[F-stat] exterior/uav_offset_ring/control_effort_N2s: n=30 mean=28242.1907 sd=56.1372 min=28108.2580 max=28364.5970
+[F-stat] exterior/uav_offset_ring/torque_effort_N2m2s: n=30 mean=0.4589 sd=0.0159 min=0.4305 max=0.5070
+[F-stat] exterior/uav_offset_ring/energy_wh: n=30 mean=23.3046 sd=0.0343 min=23.2230 max=23.3779
+[F-stat] exterior/uav_offset_ring/min_inter_uav_m: n=30 mean=5.9318 sd=0.8300 min=4.0002 max=6.9332
+[F-stat] exterior/uav_offset_ring/min_obstacle_clearance_m: n=30 mean=2.7047 sd=0.8235 min=0.7316 max=3.8812
+[F-stat] exterior/uav_offset_ring/detection_latency_s: n=30 mean=24.8705 sd=16.3957 min=1.4920 max=50.7880
+[F-stat] exterior/uav_offset_ring/verify_time_s: n=30 mean=0.2006 sd=0.0104 min=0.1700 max=0.2040
+[F-stat] exterior/uav_offset_ring/n_ground_laps: n=30 mean=6.1333 sd=0.9732 min=4.0000 max=7.0000
+[F-stat] exterior/uav_offset_ring/n_laps_alpha: n=30 mean=3.7000 sd=0.4661 min=3.0000 max=4.0000
+[F-stat] exterior/uav_offset_ring/n_laps_bravo: n=30 mean=3.1000 sd=0.3051 min=3.0000 max=4.0000
+[F-stat] exterior/uav_offset_ring/n_laps_guard: not applicable or not measured (no values)
+[F-draw] interior/mean_wind_mps: n=60 min=0.024 max=0.459 mean=0.254
+[F-draw] interior/gust_sigma_mps: n=60 min=0.040 max=0.159 mean=0.104
+[F-draw] interior/intruder_appear_s: n=90 min=48.113 max=157.149 mean=93.631
+[F-draw] interior/dock_jitter_m: n=60 min=0.009 max=0.285 mean=0.107
+[F-draw] exterior/mean_wind_mps: n=60 min=0.043 max=5.879 mean=3.187
+[F-draw] exterior/gust_sigma_mps: n=60 min=0.554 max=1.883 mean=1.150
+[F-draw] exterior/intruder_appear_s: n=90 min=40.171 max=158.297 mean=93.665
+[F-draw] exterior/dock_jitter_m: n=60 min=0.004 max=0.290 mean=0.150
+[F-tel] 180 telemetry files in analytics/runs
+[F-tel-cell] exterior_guard_baseline: 30 runs with per-step telemetry
+[F-tel-cell] exterior_uav_offset_ring: 30 runs with per-step telemetry
+[F-tel-cell] exterior_uav_sectors: 30 runs with per-step telemetry
+[F-tel-cell] interior_guard_baseline: 30 runs with per-step telemetry
+[F-tel-cell] interior_uav_offset_ring: 30 runs with per-step telemetry
+[F-tel-cell] interior_uav_sectors: 30 runs with per-step telemetry
+[F-tel-rate] interior_uav_sectors_s1.csv.gz: header=['t', 'run_id', 'seed', 'condition', 'uav', 'x', 'y', 'z', 'vx', 'vy', 'vz', 'xref', 'yref', 'zref', 'ex', 'ey', 'ez', 'f0', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'fsm_state', 'event', 'roll', 'pitch', 'yaw']; alpha rows=150000; median dt=0.0020 s (max dt 0.0020 s) -> 500 Hz; fsm states seen=['DESCEND', 'PATROL', 'TAKEOFF', 'TRANSIT']
+[F-tel-hover] alpha total thrust f0+f1+f2+f3 while fsm_state == PATROL: median 13.245 N (n=146617 rows); columns f0..f3 are the per-rotor forces in N
+[F-git-tip] cd6caf6 data(e043): regenerate exterior figures from the 22 m exterior batch
+[F-git-count] commits main..HEAD touching this folder: 101
+[F-git-short] 102	Muaaz Shaikh <170370120+MuaazSM@users.noreply.github.com>
+[F-git-file] models/campus_perimeter_patrol.xml: 2 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: ddc6d13 feat(e043): run both scenes at the mandated 0.002 s timestep
+[F-git-file] models/campus_perimeter_patrol_exterior.xml: 2 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: ddc6d13 feat(e043): run both scenes at the mandated 0.002 s timestep
+[F-git-file] models/common.xml: 1 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05)
+[F-git-file] models/uav_fleet.xml: 2 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: 27d2078 feat(e043): sense and avoid every interior obstacle with an on-board range ring
+[F-git-file] src/aerial_patrol_swarm.py: 18 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: 63c2178 fix(e043): separation governor yields the other UAV's shortfall so a wall-pinned UAV cannot close the gap
+[F-git-file] src/foot_patrol_baseline.py: 3 commit(s); first: 4b39a07 feat(e043): add kinematic guard foot-patrol baseline in the same scene; last: 8803f8d feat(e043): move exterior patrol ring inside the campus boundary wall
+[F-git-file] src/patrol_metrics.py: 2 commit(s); first: 4b39a07 feat(e043): add kinematic guard foot-patrol baseline in the same scene; last: 4f8b046 feat(e043): per-condition durations, equal-window revisit, stale-cache rejection, new flight columns
+[F-git-file] src/run_telemetry.py: 2 commit(s); first: 4b52bfe feat(e043): log contract-B telemetry at every physics step; last: 4f8b046 feat(e043): per-condition durations, equal-window revisit, stale-cache rejection, new flight columns
+[F-git-file] src/view_live.py: 5 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: 5a74fd5 fix(e043): view_live --apf-only turns the separation layer off through layered_separation, so Shot 3b shows the APF-only contact again (D_WARN is no longer read)
+[F-git-file] analytics/run_benchmark.py: 8 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: 4a94c40 fix(e043): hand a stationary tier-0 target to ground staff after 5 s instead of holding TRACK for 30 s
+[F-git-file] analytics/generate_paper_figures.py: 6 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: 87b6585 fix(e075): treat the guard equal-window worst revisit as right-censored; drop t-tests on it, gate on every UAV run below the window, add tests
+[F-git-file] analytics/campus_security_economics.py: 6 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: 87b6585 fix(e075): treat the guard equal-window worst revisit as right-censored; drop t-tests on it, gate on every UAV run below the window, add tests
+[F-git-file] tests/test_e043_separation.py: 5 commit(s); first: c3fdea7 Initial commit: MPSTME GUARDIAN dual-UAV simulation (Group 05); last: 6602371 fix(e043): give each UAV its own waypoint copies so Bravo's altitude layer is not added to Alpha's route
+[F-git-file] tests/test_e043_surveillance_fsm.py: 4 commit(s); first: df9d7d9 test(e043): check surveillance FSM transitions, handoff and FR-18 in TRACK; last: 7f843c2 fix(e043): keep the stationary-handover reference out of reported incidents so run summaries stay JSON
+[F-git-file] tests/test_e043_obstacle_perception.py: 2 commit(s); first: 4e575b7 test(e043): prove FR-18 obstacle perception class by class; last: 4034619 fix(e043): see thin atrium trunks and hold 2.5 m separation in every geometry

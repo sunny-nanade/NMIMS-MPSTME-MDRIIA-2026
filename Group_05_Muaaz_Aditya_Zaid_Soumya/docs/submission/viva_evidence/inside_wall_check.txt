@@ -1,0 +1,78 @@
+wall segments 9
+patrol_cp0 inside=True dist_to_wall=3.04 m
+patrol_cp1 inside=True dist_to_wall=3.03 m
+patrol_cp2 inside=True dist_to_wall=3.03 m
+patrol_cp3 inside=True dist_to_wall=3.04 m
+patrol_cp4 inside=True dist_to_wall=3.01 m
+patrol_cp5 inside=True dist_to_wall=3.01 m
+patrol_cp6 inside=True dist_to_wall=3.06 m
+patrol_cp7 inside=True dist_to_wall=3.06 m
+patrol_cp8 inside=True dist_to_wall=3.01 m
+--- flown tracks (exterior UAV runs with telemetry)
+exterior_uav_offset_ring_s1.csv.gz: samples=30000 outside_wall=2245 (7.48 %), PATROL-outside=228, max distance outside=3.64 m
+exterior_uav_offset_ring_s10.csv.gz: samples=30000 outside_wall=3192 (10.64 %), PATROL-outside=375, max distance outside=3.84 m
+exterior_uav_offset_ring_s11.csv.gz: samples=30000 outside_wall=2149 (7.16 %), PATROL-outside=355, max distance outside=3.82 m
+exterior_uav_offset_ring_s12.csv.gz: samples=30000 outside_wall=1782 (5.94 %), PATROL-outside=0, max distance outside=3.56 m
+exterior_uav_offset_ring_s13.csv.gz: samples=30000 outside_wall=2683 (8.94 %), PATROL-outside=251, max distance outside=3.78 m
+exterior_uav_offset_ring_s14.csv.gz: samples=30000 outside_wall=2681 (8.94 %), PATROL-outside=545, max distance outside=3.62 m
+exterior_uav_offset_ring_s15.csv.gz: samples=30000 outside_wall=2679 (8.93 %), PATROL-outside=224, max distance outside=3.91 m
+exterior_uav_offset_ring_s16.csv.gz: samples=30000 outside_wall=1769 (5.90 %), PATROL-outside=0, max distance outside=3.58 m
+exterior_uav_offset_ring_s17.csv.gz: samples=30000 outside_wall=1823 (6.08 %), PATROL-outside=0, max distance outside=3.56 m
+exterior_uav_offset_ring_s18.csv.gz: samples=30000 outside_wall=1989 (6.63 %), PATROL-outside=0, max distance outside=3.95 m
+exterior_uav_offset_ring_s19.csv.gz: samples=30000 outside_wall=1886 (6.29 %), PATROL-outside=0, max distance outside=3.97 m
+exterior_uav_offset_ring_s2.csv.gz: samples=30000 outside_wall=2338 (7.79 %), PATROL-outside=59, max distance outside=3.96 m
+exterior_uav_offset_ring_s20.csv.gz: samples=30000 outside_wall=3839 (12.80 %), PATROL-outside=1475, max distance outside=6.66 m
+exterior_uav_offset_ring_s21.csv.gz: samples=30000 outside_wall=2080 (6.93 %), PATROL-outside=0, max distance outside=3.89 m
+exterior_uav_offset_ring_s22.csv.gz: samples=30000 outside_wall=2865 (9.55 %), PATROL-outside=545, max distance outside=3.35 m
+exterior_uav_offset_ring_s23.csv.gz: samples=30000 outside_wall=2210 (7.37 %), PATROL-outside=45, max distance outside=3.61 m
+exterior_uav_offset_ring_s24.csv.gz: samples=30000 outside_wall=2020 (6.73 %), PATROL-outside=0, max distance outside=3.91 m
+exterior_uav_offset_ring_s25.csv.gz: samples=30000 outside_wall=2505 (8.35 %), PATROL-outside=199, max distance outside=3.20 m
+exterior_uav_offset_ring_s26.csv.gz: samples=30000 outside_wall=1929 (6.43 %), PATROL-outside=0, max distance outside=3.72 m
+exterior_uav_offset_ring_s27.csv.gz: samples=30000 outside_wall=1933 (6.44 %), PATROL-outside=0, max distance outside=4.05 m
+exterior_uav_offset_ring_s28.csv.gz: samples=30000 outside_wall=2277 (7.59 %), PATROL-outside=63, max distance outside=3.86 m
+exterior_uav_offset_ring_s29.csv.gz: samples=30000 outside_wall=1745 (5.82 %), PATROL-outside=0, max distance outside=3.70 m
+exterior_uav_offset_ring_s3.csv.gz: samples=30000 outside_wall=1933 (6.44 %), PATROL-outside=0, max distance outside=3.79 m
+exterior_uav_offset_ring_s30.csv.gz: samples=30000 outside_wall=1878 (6.26 %), PATROL-outside=0, max distance outside=3.72 m
+exterior_uav_offset_ring_s4.csv.gz: samples=30000 outside_wall=1879 (6.26 %), PATROL-outside=0, max distance outside=3.91 m
+exterior_uav_offset_ring_s5.csv.gz: samples=30000 outside_wall=1842 (6.14 %), PATROL-outside=0, max distance outside=3.81 m
+exterior_uav_offset_ring_s6.csv.gz: samples=30000 outside_wall=2276 (7.59 %), PATROL-outside=54, max distance outside=3.83 m
+exterior_uav_offset_ring_s7.csv.gz: samples=30000 outside_wall=1776 (5.92 %), PATROL-outside=0, max distance outside=3.60 m
+exterior_uav_offset_ring_s8.csv.gz: samples=30000 outside_wall=2898 (9.66 %), PATROL-outside=794, max distance outside=4.49 m
+exterior_uav_offset_ring_s9.csv.gz: samples=30000 outside_wall=3431 (11.44 %), PATROL-outside=781, max distance outside=3.58 m
+exterior_uav_sectors_s1.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s10.csv.gz: samples=30000 outside_wall=1060 (3.53 %), PATROL-outside=0, max distance outside=3.82 m
+exterior_uav_sectors_s11.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s12.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s13.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s14.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s15.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s16.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s17.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s18.csv.gz: samples=30000 outside_wall=1035 (3.45 %), PATROL-outside=0, max distance outside=4.29 m
+exterior_uav_sectors_s19.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s2.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s20.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s21.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s22.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s23.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s24.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s25.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s26.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s27.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s28.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s29.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s3.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s30.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s4.csv.gz: samples=30000 outside_wall=840 (2.80 %), PATROL-outside=0, max distance outside=3.44 m
+exterior_uav_sectors_s5.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s6.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s7.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s8.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+exterior_uav_sectors_s9.csv.gz: samples=30000 outside_wall=0 (0.00 %), PATROL-outside=0, max distance outside=0.00 m
+--- outside-wall samples by fsm_state (all exterior UAV telemetry, 50 Hz subsample)
+  RETURN_TO_PATROL: 48481 samples, max 4.05 m outside
+  TRACK: 16969 samples, max 4.29 m outside
+  PATROL: 5993 samples, max 6.66 m outside
+  DETECT: 11 samples, max 0.11 m outside
+  VERIFY: 10 samples, max 0.07 m outside
+  ALERT_2: 3 samples, max 0.01 m outside

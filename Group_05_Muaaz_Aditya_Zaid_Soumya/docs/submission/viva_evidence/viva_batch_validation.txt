@@ -1,0 +1,10 @@
+rows = 180; trials_per_cell (provenance) = 30; git_commit (provenance) = 8085b85; timestep_s (provenance) = [0.002]
+csv sha256 file = 1ecc25f0be6d0a817fbe01ad74bd9e5438fedba7616180f90f5a57a430c06ca6 | provenance csv_sha256 = 1ecc25f0be6d0a817fbe01ad74bd9e5438fedba7616180f90f5a57a430c06ca6 | equal: True
+cells: 6 | run_id unique: True | identical seed sets in every cell: True | timestep values: ['0.002']
+exterior  guard_baseline   n=30 seeds 1..30
+exterior  uav_offset_ring  n=30 seeds 1..30 | obstacle_contacts total 0 in 0 runs [] | uav_uav_contacts total 0 | min_inter_uav_m min 4.000, runs below 2.5 m 0 | laps alpha min/median/max 3/4/4, bravo 3/3/4
+exterior  uav_sectors      n=30 seeds 1..30 | obstacle_contacts total 0 in 0 runs [] | uav_uav_contacts total 0 | min_inter_uav_m min 9.280, runs below 2.5 m 0 | laps alpha min/median/max 3/3/3, bravo 7/8/9
+interior  guard_baseline   n=30 seeds 1..30
+interior  uav_offset_ring  n=30 seeds 1..30 | obstacle_contacts total 0 in 0 runs [] | uav_uav_contacts total 0 | min_inter_uav_m min 3.053, runs below 2.5 m 0 | laps alpha min/median/max 4/5/5, bravo 4/5/5
+interior  uav_sectors      n=30 seeds 1..30 | obstacle_contacts total 0 in 0 runs [] | uav_uav_contacts total 0 | min_inter_uav_m min 5.604, runs below 2.5 m 0 | laps alpha min/median/max 4/5/5, bravo 0/0/0
+MANIFEST.csv rows 180 | dt_check values ['OK']

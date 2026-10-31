@@ -1,0 +1,42 @@
+VISION ILLUMINATION BENCHMARK (E051) -- opencv_hsv detector, real MuJoCo renders, GT from segmentation
+path samples per scene: 64; minimum GT mask 50 px; skipped (occluded/out of frame): interior=6, exterior=28
+twilight = noon values x 0.15 on headlight and scene lights (ASSUMPTION, not a measured lux)
+host: macOS-26.6.2-arm64-arm-64bit | python 3.12.13 | mujoco 3.13.0 | opencv 5.0.0
+definitions: IoU(all) counts a missed frame as 0; detection rate = detector flag raised; hit = detected and IoU >= 0.5;
+             miss rate = 1 - hit rate (no detection, or a blob that is not the intruder); latency = detector only (perf_counter)
+
+scene     lighting     n  IoU(all)  IoU(det)  det.rate  hit.rate  miss.rate  lat mean ms  lat p95 ms  proj err mean m   p95 m
+exterior  noon       100     0.942     0.942     1.000     0.990      0.010         3.78        5.57            0.062   0.105
+exterior  twilight   100     0.941     0.941     1.000     0.990      0.010         4.92        7.97            0.064   0.110
+interior  noon        58     0.985     0.985     1.000     1.000      0.000         4.08        7.25            0.470   1.537
+interior  twilight    58     0.862     0.862     1.000     0.862      0.138         5.21        7.97            0.333   0.389
+
+lighting values applied: {"interior": {"noon": {"scale": 1.0, "headlight_ambient": [0.42, 0.41, 0.4], "headlight_diffuse": [0.42, 0.42, 0.42], "light_diffuse": [[0.62, 0.62, 0.6], [0.38, 0.37, 0.35]]}, "twilight": {"scale": 0.15, "headlight_ambient": [0.063, 0.0615, 0.06], "headlight_diffuse": [0.063, 0.063, 0.063], "light_diffuse": [[0.093, 0.093, 0.09], [0.057, 0.0555, 0.0525]]}}, "exterior": {"noon": {"scale": 1.0, "headlight_ambient": [0.42, 0.42, 0.44], "headlight_diffuse": [0.55, 0.55, 0.55], "light_diffuse": [[0.55, 0.55, 0.53]]}, "twilight": {"scale": 0.15, "headlight_ambient": [0.063, 0.063, 0.066], "headlight_diffuse": [0.0825, 0.0825, 0.0825], "light_diffuse": [[0.0825, 0.0825, 0.0795]]}}}
+
+BRIGHTNESS SWEEP (same frames, scale x authored lighting; reported as measured)
+scene      scale    n  mean IoU  det.rate  hit.rate  miss.rate
+interior    0.70   58     0.863     1.000     0.862      0.138
+interior    0.50   58     0.862     1.000     0.862      0.138
+interior    0.35   58     0.862     1.000     0.862      0.138
+interior    0.25   58     0.863     1.000     0.862      0.138
+interior    0.15   58     0.862     1.000     0.862      0.138
+interior    0.10   58     0.864     1.000     0.862      0.138
+exterior    0.70  100     0.939     1.000     0.990      0.010
+exterior    0.50  100     0.939     1.000     0.990      0.010
+exterior    0.35  100     0.939     1.000     0.990      0.010
+exterior    0.25  100     0.935     1.000     0.990      0.010
+exterior    0.15  100     0.941     1.000     0.990      0.010
+exterior    0.10  100     0.939     1.000     0.990      0.010
+
+YOLO COMPARISON (yolov8n.pt, COCO-pretrained, class-agnostic, conf >= 0.25, CPU; same frames)
+yolo interior  noon      n= 58 mean IoU 0.122 detection rate 0.431 hit rate(IoU>=0.5) 0.121 latency mean 31.4 ms
+yolo interior  twilight  n= 58 mean IoU 0.022 detection rate 0.190 hit rate(IoU>=0.5) 0.017 latency mean 26.5 ms
+yolo exterior  noon      n=100 mean IoU 0.097 detection rate 0.330 hit rate(IoU>=0.5) 0.110 latency mean 28.3 ms
+yolo exterior  twilight  n=100 mean IoU 0.052 detection rate 0.340 hit rate(IoU>=0.5) 0.060 latency mean 25.7 ms
+
+AUTO-EXPOSURE ABLATION (same frames; detector without the low-light value gain, --no-auto-exposure; measured)
+scene     lighting     n  IoU(all)  IoU(det)  det.rate  hit.rate  miss.rate  lat mean ms  lat p95 ms  proj err mean m   p95 m
+exterior  noon       100     0.942     0.942     1.000     0.990      0.010         2.82        5.49            0.062   0.105
+exterior  twilight   100     0.425     0.447     0.950     0.230      0.770         2.50        4.32            0.063   0.324
+interior  noon        58     0.985     0.985     1.000     1.000      0.000         2.73        4.46            0.470   1.537
+interior  twilight    58     0.000       nan     0.000     0.000      1.000         2.37        3.86              nan     nan

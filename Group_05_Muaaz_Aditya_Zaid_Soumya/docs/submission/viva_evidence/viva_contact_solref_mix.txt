@@ -1,0 +1,18 @@
+interior: contact ('ground', 'alpha_leg0')  geom solref [0.02, 1.0] / [0.004, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+interior: contact ('ground', 'alpha_leg1')  geom solref [0.02, 1.0] / [0.004, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+interior: contact ('ground', 'alpha_leg2')  geom solref [0.02, 1.0] / [0.004, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+interior: contact ('ground', 'alpha_leg3')  geom solref [0.02, 1.0] / [0.004, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+interior: contact ('ground', 'bravo_leg0')  geom solref [0.02, 1.0] / [0.004, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+interior: contact ('ground', 'bravo_leg1')  geom solref [0.02, 1.0] / [0.004, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+interior: contact ('ground', 'bravo_leg2')  geom solref [0.02, 1.0] / [0.004, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+interior: contact ('ground', 'bravo_leg3')  geom solref [0.02, 1.0] / [0.004, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+interior: global opt.o_solref [0.02, 1.0]  refsafe flag enabled? True
+exterior: contact ('alpha_leg0', 'nmims_main_collision')  geom solref [0.004, 1.0] / [0.02, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+exterior: contact ('alpha_leg1', 'nmims_main_collision')  geom solref [0.004, 1.0] / [0.02, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+exterior: contact ('alpha_leg2', 'nmims_main_collision')  geom solref [0.004, 1.0] / [0.02, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+exterior: contact ('alpha_leg3', 'nmims_main_collision')  geom solref [0.004, 1.0] / [0.02, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+exterior: contact ('bravo_leg0', 'nmims_main_collision')  geom solref [0.004, 1.0] / [0.02, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+exterior: contact ('bravo_leg1', 'nmims_main_collision')  geom solref [0.004, 1.0] / [0.02, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+exterior: contact ('bravo_leg2', 'nmims_main_collision')  geom solref [0.004, 1.0] / [0.02, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+exterior: contact ('bravo_leg3', 'nmims_main_collision')  geom solref [0.004, 1.0] / [0.02, 1.0]  solmix 1.00/1.00  -> contact solref used [0.012, 1.0]  friction [1.0, 1.0]  mu geoms 1.00/1.00
+exterior: global opt.o_solref [0.02, 1.0]  refsafe flag enabled? True

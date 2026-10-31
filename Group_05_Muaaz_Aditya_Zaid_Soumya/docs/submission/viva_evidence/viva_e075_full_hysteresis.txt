@@ -1,0 +1,29 @@
+Geofence noise demo (false geofence alarm from position noise)
+
+=== scene: interior ===
+zone corners (m): (-21.40,-3.80) (-14.00,-3.80) (-14.00,15.40) (-21.40,15.40)
+tier 2 buffer 5.0 m, tier 1 advisory 15.0 m, hysteresis exit margin 2.0 m + tier-3 dwell 5 readings
+noise sigma 1.5 m per axis (ASSUMPTION, range 0.5-3.0 m), walker 1.35 m/s, sampling 10.0 Hz, 100 seeds per cell
+path      noise hyst   false alarms   per run   per min  tier changes/run
+crossing  off   off               0     0.000     0.000              6.00
+crossing  off   on                0     0.000     0.000              6.00
+crossing  on    off             632     6.320     8.901             75.52
+crossing  on    on                3     0.030     0.042             22.60
+skirt     off   off               0     0.000     0.000              3.00
+skirt     off   on                0     0.000     0.000              2.00
+skirt     on    off            1948    19.480    53.862             60.32
+skirt     on    on                1     0.010     0.028              4.17
+
+=== scene: exterior ===
+zone corners (m): (-30.00,24.50) (-12.00,24.50) (-12.00,32.50) (-30.00,32.50)
+tier 2 buffer 5.0 m, tier 1 advisory 15.0 m, hysteresis exit margin 2.0 m + tier-3 dwell 5 readings
+noise sigma 1.5 m per axis (ASSUMPTION, range 0.5-3.0 m), walker 1.35 m/s, sampling 10.0 Hz, 100 seeds per cell
+path      noise hyst   false alarms   per run   per min  tier changes/run
+crossing  off   off               0     0.000     0.000              6.00
+crossing  off   on                0     0.000     0.000              6.00
+crossing  on    off             603     6.030     7.179             76.95
+crossing  on    on                5     0.050     0.060             22.44
+skirt     off   off               0     0.000     0.000              3.00
+skirt     off   on                0     0.000     0.000              2.00
+skirt     on    off            1804    18.040    52.038             56.44
+skirt     on    on                1     0.010     0.029              4.25
