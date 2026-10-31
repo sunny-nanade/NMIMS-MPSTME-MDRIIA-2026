@@ -1,0 +1,13 @@
+# per-run telemetry and summaries are regenerable from seeds (see *.provenance.json); keep the repo small
+analytics/runs/*
+!analytics/runs/.gitkeep
+# G-05: one truncated telemetry sample per (scene, condition) cell and the manifest of every run are committed
+!analytics/runs/samples/
+!analytics/runs/MANIFEST.csv
+# rendered video is large and regenerable (src/render_scene_media.py); never committed
+*.mp4
+__pycache__/
+.DS_Store
+.venv/
+# backup video clips for the demo (docs/submission/video_shots.sh); regenerable, never committed
+docs/figures/video_backup/

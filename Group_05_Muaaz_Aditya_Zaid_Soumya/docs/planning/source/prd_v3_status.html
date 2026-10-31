@@ -1,0 +1,520 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>MPSTME GUARDIAN — PRD v3.0: Status &amp; Submission Requirements</title>
+<link rel="stylesheet" href="doc.css">
+<script src="mermaid.min.js"></script>
+<style>
+  .st{display:inline-block; min-width:74px; text-align:center}
+  td.c{text-align:center}
+  .chk td:first-child{white-space:nowrap}
+  .ac{color:#475467; font-size:.92em}
+  h3.wp{margin-top:18px}
+  .kpi.five{grid-template-columns:repeat(5,1fr)}
+  .note b{display:inline}
+</style>
+</head><body>
+
+<section class="cover">
+  <div class="kicker">Product Requirements Document &nbsp;·&nbsp; v3.0 &nbsp;·&nbsp; Status &amp; Submission Gap Analysis</div>
+  <h1>MPSTME GUARDIAN</h1>
+  <h2>What is built, what is left, and everything still owed<br>
+      for the course faculty’s MDRIIA Capstone submission<br>
+      MuJoCo · Dual-UAV Surveillance · MDRIIA Group 05</h2>
+  <div class="rule"></div>
+  <div class="quote">“To what extent can a collaborative dual-UAV surveillance system simulated
+  in MuJoCo optimize campus perimeter patrol cycle time and OpenCV human detection latency
+  compared to static security guard patrols?”</div>
+  <dl class="meta">
+    <dt>Course</dt><dd>MDRIIA — Modern Day Robotics &amp; Its Industrial Applications (702CO0E012) · Capstone ICA, 20 marks</dd>
+    <dt>Faculty</dt><dd>The course faculty, SVKM’s NMIMS MPSTME, Mumbai</dd>
+    <dt>Group</dt><dd>05 — E043 Muaaz Shaikh (Lead, owner of <code>main</code>) · E051 Aditya Rajkumar · E075 Zaid Rezaur Rahman · E077 Soumya Subhankar Ranasingh</dd>
+    <dt>Status as of</dt><dd>Thursday 29 October 2026 — <b>Dossier deadline (Mon 26 Oct, 23:59 IST) has passed · Expo &amp; Viva: Saturday 31 October 2026</b></dd>
+    <dt>Requirement sources</dt><dd>Grading Rubric &amp; Evaluation Policy · LinkedIn &amp; GitHub Showcase Guide · Group 05 Technical Dossier template · Academic &amp; Industry Standards Manual · Contributing / Branching guides · Group 05 scaffold README (course monorepo, read 29 Oct 2026)</dd>
+    <dt>Supersedes</dt><dd>PRD v2.0 (8 Oct 2026, exterior scene) for status and submission scope; v2.0 remains the design reference</dd>
+  </dl>
+</section>
+
+<div class="page">
+<h2 class="sec"><span class="n">§</span>Contents</h2>
+<nav class="toc">
+  <a href="#s1"><span class="n">1</span> Executive Summary</a>
+  <a href="#s2"><span class="n">2</span> What Sir Requires — the Submission Contract</a>
+  <a href="#s3"><span class="n">3</span> Marks Map: 20 Marks, Criterion by Criterion</a>
+  <a href="#s4"><span class="n">4</span> Product Requirements &amp; Status</a>
+  <a href="#s5"><span class="n">5</span> What Is Done (Evidence)</a>
+  <a href="#s6"><span class="n">6</span> What Is Left — Master Checklist (Prioritised)</a>
+  <a href="#s7"><span class="n">7</span> Work Packages per Member</a>
+  <a href="#s8"><span class="n">8</span> Technical Dossier — Field-by-Field Fill Plan</a>
+  <a href="#s9"><span class="n">9</span> Experimental Design Still to Run</a>
+  <a href="#s10"><span class="n">10</span> CSBS Business Model Still to Build</a>
+  <a href="#s11"><span class="n">11</span> Repository &amp; Git Compliance</a>
+  <a href="#s12"><span class="n">12</span> Integrity Risks &amp; Blockers</a>
+  <a href="#s13"><span class="n">13</span> Plan to Saturday 31 October</a>
+  <a href="#s14"><span class="n">14</span> Viva &amp; Expo Readiness</a>
+  <a href="#s15"><span class="n">15</span> Decisions Needed from the Course Faculty</a>
+</nav>
+
+<div class="note"><b>Legend.</b>
+<span class="pill p-done st">Done</span> implemented and checked ·
+<span class="pill p-should st">Partial</span> exists but does not yet meet the requirement ·
+<span class="pill p-must st">Not started</span> nothing usable yet ·
+<span class="pill p-z st">Decision</span> needs a ruling (team or faculty).
+Priorities: <b>P0</b> = marks are lost or the submission is invalid without it · <b>P1</b> = needed for full marks in a criterion · <b>P2</b> = quality / viva safety.</div>
+
+<!-- 1 -->
+<h2 class="sec break" id="s1"><span class="n">1</span>Executive Summary</h2>
+<p class="lead">The engineering core — a MuJoCo model of the NMIMS Main Building, two flying quadrotors with a
+cascaded controller, collision-safe coordination and a provenance-gated analytics pipeline — is built and
+working. What is missing is almost everything the rubric actually <i>grades</i> as evidence: the 500 Hz
+real-trial dataset, the statistics, the CSBS business model, the three teammates’ code regions, the
+LinkedIn video and the filled Technical Dossier. The dossier and video deadlines have already passed.</p>
+
+<div class="kpi five">
+  <div><b>2 days</b><span>to Expo &amp; Viva (Sat 31 Oct)</span></div>
+  <div><b>3 days</b><span>Dossier overdue (due 26 Oct)</span></div>
+  <div><b>1 / 4</b><span>student code regions done (E043 only)</span></div>
+  <div><b>0</b><span>real trials logged to <code>*_real_trials.csv</code></span></div>
+  <div><b>0 / 6</b><span>dossier sections filled</span></div>
+</div>
+
+<h3>The five things that decide the marks</h3>
+<table class="t-tight">
+<thead><tr><th>#</th><th>Item</th><th>Marks it feeds</th><th>Status</th><th>Owner</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Filled Technical Dossier (.docx + .pdf) committed to <code>docs/</code> and turned in on MS Teams by <b>each</b> member</td><td>All 20 (no turn-in ⇒ no marks for that student)</td><td><span class="pill p-must st">Not started</span></td><td>All · E043 compiles</td></tr>
+<tr><td>2</td><td>N ≥ 30 (manual: ≥ 50) seeded MuJoCo runs per condition, 500 Hz, in <code>analytics/campus_patrol_real_trials.csv</code>, with Welch t-test, Cohen’s d, 95 % CI</td><td>C1 Telemetry 2 + Statistics 2</td><td><span class="pill p-should st">Partial</span></td><td>E043 + E075</td></tr>
+<tr><td>3</td><td>CSBS script computing H_reclaimed, P_payback, NCRI/κ, M/M/c delay, FMEA, sensitivity graph — no hard-coded results, no currency</td><td>C2 — all 5</td><td><span class="pill p-must st">Not started</span></td><td>E077</td></tr>
+<tr><td>4</td><td>Surveillance FSM (PATROL → DETECT → VERIFY → ALERT → TRACK → RETURN) with E051 detector and E075 geofence implemented</td><td>C1 Control 2 + viva for E051/E075</td><td><span class="pill p-should st">Partial</span></td><td>E051, E075, E043</td></tr>
+<tr><td>5</td><td>3–4 min LinkedIn video (live sim, business graph, all four on webcam), AI audit ×3, peer review of Groups 06 &amp; 11</td><td>C3 — 2 of 5</td><td><span class="pill p-must st">Not started</span></td><td>All</td></tr>
+</tbody></table>
+
+<div class="note risk"><b>Immediate action (tonight):</b> message the course faculty that the dossier is late, state the
+new turn-in time, and ask the four questions in §15 (late acceptance, indoor scene vs “perimeter” title,
+N = 30 vs 50, OpenCV vs YOLO). Then every member works their P0 list in §6.</div>
+
+<!-- 2 -->
+<h2 class="sec break" id="s2"><span class="n">2</span>What Sir Requires — the Submission Contract</h2>
+<p>Consolidated from the Grading Rubric, the Showcase Guide and the Dossier template. These are the deliverables
+that are <i>checked</i>; anything not listed here earns no marks on its own.</p>
+
+<table class="t-tight">
+<thead><tr><th>#</th><th>Deliverable</th><th>Where it goes</th><th>Deadline</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>D1</td><td>Technical Dossier completed in <b>Microsoft Word desktop</b> (drop-downs and “type here” fields kept intact, not Google Docs), exported to PDF</td><td><code>Group_05_…/docs/MDRIIA_Group_05_Technical_Dossier.docx</code> <b>and</b> <code>.pdf</code>, original file name</td><td>Mon 26 Oct 23:59 — <b>passed</b></td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>D2</td><td>Dossier PDF attached and <b>“Turn in” clicked individually</b> by all four members</td><td>MS Teams assignment</td><td>Mon 26 Oct — <b>passed</b></td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>D3</td><td>Group folder in the <b>course monorepo</b>: MJCF model, controller, business script, <code>*_real_trials.csv</code></td><td><code>github.com/sunny-nanade/NMIMS-MPSTME-MDRIIA-2026</code> via PR into <code>main</code></td><td>With D1</td><td><span class="pill p-should st">Partial</span> — work is only in the private <code>MuaazSM/mdriia-project</code></td></tr>
+<tr><td>D4</td><td>3:00–4:00 LinkedIn video, uploaded natively, one post per group, teammates + MPSTME + the course faculty tagged, monorepo folder linked</td><td>LinkedIn; URL in dossier §5 and <code>docs/TEAM_ROSTER.json → linkedin_url</code></td><td>Sun 25 Oct 18:00 — <b>passed</b></td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>D5</td><td>Peer review of Group 06 and Group 11 videos (0–2 on Problem, Physics, Business, Data, Clarity + best moment + one viva question)</td><td>Dossier §5.2</td><td>With D1</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>D6</td><td>Live Expo demo: simulation running from a <b>fresh <code>git clone</code> + <code>pip install -r requirements.txt</code></b>, FSM states visible, one handled failure shown; business graphs; webcam PiP of every member; <b>no PPT</b></td><td>Studio Showcase</td><td>Sat 31 Oct</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td>D7</td><td>Individual viva: own role and code <i>and</i> the whole project including the business model</td><td>Viva voce</td><td>Sat 31 Oct</td><td><span class="pill p-should st">Partial</span></td></tr>
+</tbody></table>
+
+<h3>Rules that can zero a component</h3>
+<table class="t-tight">
+<thead><tr><th>Rule</th><th>What it means for us</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Data provenance — <code>SIMULATED_*</code> and starter figures are <code>np.random</code> targets</td><td>The scaffold CSV (still named <code>campus_patrol_benchmark.csv</code> in our repo) and the three starter PNGs must never be reported. Our figure script already refuses them.</td><td><span class="pill p-should st">Partial</span> rename pending</td></tr>
+<tr><td>No hard-coded results in the business script</td><td><code>campus_security_economics.py</code> still contains 48.72, 7.84, 72.0, 50.4, 0.66, 0.31, 35.8, 1.2 as constants</td><td><span class="pill p-must st">Violating</span></td></tr>
+<tr><td>Zero Currency Rule — ratios only (κ, NCRI, P_payback)</td><td>E077’s branch economics carries a currency code field</td><td><span class="pill p-must st">Violating</span> (branch)</td></tr>
+<tr><td>Every claim/citation verified at its primary source (§1.1)</td><td>72 % latency cut, 11-month payback, 90-s verification, “45 → 8.5 min” are untraceable</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>AI use logged (§5.1); undisclosed AI content = integrity breach</td><td>AI was used heavily (scene, controller, documents, E077 runtime). Must be declared in §5.1 and §6.</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>Attribution matches git history (checked with <code>git shortlog -sn -- Group_05_*/</code>)</td><td>Each member must commit their own work from their own account; ≥ 4 feature commits each (Standards Manual §5)</td><td><span class="pill p-must st">At risk</span></td></tr>
+</tbody></table>
+
+<!-- 3 -->
+<h2 class="sec break" id="s3"><span class="n">3</span>Marks Map: 20 Marks, Criterion by Criterion</h2>
+
+<h3>Component 1 — CDIO Robotics Engineering &amp; MuJoCo Physics (10)</h3>
+<table class="t-tight">
+<thead><tr><th>Criterion</th><th>Mk</th><th>Required evidence</th><th>Where we are</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Problem framing</td><td class="c">2</td><td>Authorised title; verified baseline friction; governing standards with clauses; claim verification table (§1)</td><td>Title fixed. No baseline metric with source; no standards decisions; three seeded claims unverified.</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>MuJoCo rigid-body model</td><td class="c">2</td><td><code>models/*.xml</code> loads; friction / <code>solref</code> / timestep justified; mechanism matches title</td><td>Loads (interior + exterior). Timestep <b>0.004 s</b> (sir wants 0.002 s). Friction 1.0/0.01/0.005 and solref 0.004 1 not yet justified in writing. Indoor scene vs “perimeter” wording — §15.</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td>Closed-loop control</td><td class="c">2</td><td>Controller with implemented FSM and stated control law; honest authorship table</td><td>Cascaded P → PI → PD control law implemented. FSM covers flight phases only (takeoff → transit → descend → patrol); surveillance FSM blocked on E051/E075. Authorship table empty.</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td>Telemetry &amp; Monte Carlo</td><td class="c">2</td><td>500 Hz logging; N ≥ 30 randomised runs per condition, seeds recorded; tracking RMSE; control effort ∫τ² dt</td><td>Seeded runner with provenance exists. Logging is once per outer step (≈ 30 Hz), not 500 Hz. RMSE and ∫τ² dt not computed. No batch run.</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td>Statistical validation</td><td class="c">2</td><td>Baseline vs proposed; t-test; Cohen’s d; 95 % CI; plots regenerate from <code>*_real_trials.csv</code></td><td>Baseline condition not defined; no statistics script; figures pending data.</td><td><span class="pill p-must st">Not started</span></td></tr>
+</tbody></table>
+
+<h3>Component 2 — CSBS Techno-Economic Business Systems (5) — owner E077</h3>
+<table class="t-tight">
+<thead><tr><th>Criterion</th><th>Mk</th><th>Required evidence</th><th>Where we are</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Labour reallocation &amp; payback</td><td class="c">1.5</td><td>H_reclaimed and dimensionless P_payback computed from sourced inputs</td><td>Scaffold prints them from typed constants.</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>Cost reduction</td><td class="c">1</td><td>NCRI = 1 − κ, dimensionless</td><td>Not in either economics file.</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>Queuing model</td><td class="c">1</td><td>M/M/1 or M/M/c with λ, μ, c, ρ stated</td><td>Not implemented.</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>Risk</td><td class="c">1</td><td>FMEA ≥ 4 modes, RPN pre/post, mitigation shown in sim or code</td><td>Strong evidence available for “UAV–UAV conflict” (separation test 0.40 m → 3.29 m). Table not written.</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>Sensitivity</td><td class="c">0.5</td><td>Graph on most uncertain input with break-even value</td><td>E077 branch has a sensitivity plot, but in currency and outside the graded script.</td><td><span class="pill p-must st">Not started</span></td></tr>
+</tbody></table>
+
+<h3>Component 3 — Studio Showcase &amp; Viva Voce (5)</h3>
+<table class="t-tight">
+<thead><tr><th>Criterion</th><th>Mk</th><th>Required evidence</th><th>Where we are</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>LinkedIn video (3–4 min)</td><td class="c">1</td><td>Live sim, business graph, every member on webcam PiP</td><td>Simulation footage tooling ready (<code>render_scene_media.py</code>, live viewer). No recording.</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>AI audit &amp; peer review</td><td class="c">1</td><td>Three verified AI-error cases; review of Groups 06 and 11</td><td>None recorded.</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>Live Expo demo</td><td class="c">1</td><td>Runs from fresh clone; FSM states shown; one handled failure</td><td>Live viewer works locally on macOS. Fresh-clone test not done; FSM overlay missing. Head-on conflict is a ready “handled failure”.</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td>Individual viva</td><td class="c">2</td><td>Each member defends own role, code, and the whole project</td><td>E043 ready on flight/control. E051/E075 code regions empty. E077’s committed work is outside her role.</td><td><span class="pill p-should st">Partial</span></td></tr>
+</tbody></table>
+
+<!-- 4 -->
+<h2 class="sec break" id="s4"><span class="n">4</span>Product Requirements &amp; Status</h2>
+<p>Functional (FR) and non-functional (NFR) requirements of the product as it must exist on Saturday. Each row
+names the acceptance test that closes it.</p>
+
+<table class="t-tight">
+<thead><tr><th>ID</th><th>Requirement</th><th>Acceptance test</th><th>Owner</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="id">FR-01</td><td>MJCF model of the NMIMS Main Building (interior default, exterior variant) with two quadrotors</td><td><code>mujoco.MjModel.from_xml_path(...)</code> loads; <code>src/test_env.py</code> passes</td><td class="owner">E043</td><td><span class="pill p-done st">Done</span></td></tr>
+<tr><td class="id">FR-02</td><td>MJCF timestep 0.002 s (500 Hz) with friction and solref justified</td><td>Option reads 0.002; hover, patrol and separation test still pass; justification text in dossier §2.1</td><td class="owner">E043</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td class="id">FR-03</td><td>Cascaded closed-loop flight control with stated gains (units)</td><td>Gains table in dossier §2.1; altitude hold within ±0.01 m on the ground loop</td><td class="owner">E043</td><td><span class="pill p-done st">Done</span> (gains table pending)</td></tr>
+<tr><td class="id">FR-04</td><td>Coordinated dual-UAV patrol (sectors / offset ring) covering the corridor loop and atrium galleries</td><td>Both policies run; revisit and coverage metrics reported</td><td class="owner">E043</td><td><span class="pill p-done st">Done</span></td></tr>
+<tr><td class="id">FR-05</td><td>Inter-UAV collision avoidance, d<sub>min</sub> ≥ 2.5 m</td><td><code>tests/test_e043_separation.py</code>: layered method passes head-on</td><td class="owner">E043</td><td><span class="pill p-done st">Done</span></td></tr>
+<tr><td class="id">FR-06</td><td>OpenCV HSV intruder detection on the onboard camera, bounding box + latency</td><td><code>detect_intruder_hsv</code> returns bbox; IoU ≥ 0.70 vs segmentation ground truth at noon; latency logged</td><td class="owner">E051</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td class="id">FR-07</td><td>Inverse pinhole projection pixel → world (f = 450 px, 640 × 480)</td><td>Projected intruder position within stated error of true position</td><td class="owner">E051</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td class="id">FR-08</td><td>Restricted-zone geofence (ray-casting point-in-polygon), 4-tier alert with hysteresis, GPS/IMU noise injection, breach log</td><td><code>evaluate_geofence_status</code> returns tiers 0–3 for test points; breach logged with timestamp</td><td class="owner">E075</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td class="id">FR-09</td><td>Surveillance FSM: PATROL → DETECT → VERIFY → ALERT(0–3) → TRACK → RETURN_TO_PATROL</td><td>State logged every row; state shown as overlay in the live viewer; one transition demonstrable live</td><td class="owner">E043 integrates</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td class="id">FR-10</td><td>500 Hz telemetry: t, run_id, seed, pose, velocity, reference, tracking error, actuator forces, FSM state, events</td><td>One CSV per run; row interval 0.002 s</td><td class="owner">E043 / E075 QA</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td class="id">FR-11</td><td>Per-run tracking RMSE and control effort ∫τ² dt</td><td>Columns present in <code>campus_patrol_real_trials.csv</code></td><td class="owner">E043</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td class="id">FR-12</td><td>Monte Carlo runner: N runs per condition, randomised wind / intruder timing / start, seeds recorded</td><td><code>analytics/campus_patrol_real_trials.csv</code> + provenance JSON</td><td class="owner">E043</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td class="id">FR-13</td><td>Statistics: Welch t-test, Cohen’s d, 95 % CI, baseline vs proposed</td><td><code>analytics/statistical_validation.py</code> prints t, df, p, d, CI from the CSV</td><td class="owner">E075 / E043</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td class="id">FR-14</td><td>Publication figures regenerate from real-trials CSV only</td><td><code>generate_paper_figures.py</code> produces 3 figures with no watermark</td><td class="owner">E043</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td class="id">FR-15</td><td>CSBS model: H_reclaimed, P_payback, T_payback, NCRI/κ, M/M/c, sensitivity ±30 %, break-even</td><td>Script re-run reproduces every number in dossier §3.1 from sourced inputs</td><td class="owner">E077</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td class="id">FR-16</td><td>FMEA ≥ 4 failure modes with RPN before/after mitigation</td><td>Each mitigation points to code or a simulation run</td><td class="owner">E077 + all</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td class="id">FR-17</td><td>Live viewer with FSM state and one handled failure</td><td><code>mjpython src/view_live.py</code> shows states; head-on conflict resolved on screen</td><td class="owner">E043</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td class="id">NFR-01</td><td>Runs from a fresh clone with <code>pip install -r requirements.txt</code></td><td>Clean-directory clone on a second laptop (Windows or macOS)</td><td class="owner">E043</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td class="id">NFR-02</td><td>Data provenance: no <code>SIMULATED_*</code> or <code>np.random</code> number reported as a result</td><td>Figure gate refuses unprovenanced CSV; dossier provenance boxes ticked honestly</td><td class="owner">All</td><td><span class="pill p-done st">Done</span> (gate)</td></tr>
+<tr><td class="id">NFR-03</td><td>Zero currency anywhere (code, dossier, video)</td><td>a case-insensitive grep of the deliverables for currency words, codes and symbols returns nothing</td><td class="owner">E077</td><td><span class="pill p-must st">Violating</span></td></tr>
+<tr><td class="id">NFR-04</td><td>REP-103 frames and SI units (m, rad, m/s, N·m)</td><td>Stated in dossier §2</td><td class="owner">E043</td><td><span class="pill p-done st">Done</span> (MuJoCo ENU, SI)</td></tr>
+<tr><td class="id">NFR-05</td><td>Each member ≥ 4 conventional feature commits from own account on own branch</td><td><code>git shortlog -sn -- Group_05_*/</code></td><td class="owner">All</td><td><span class="pill p-must st">At risk</span></td></tr>
+<tr><td class="id">NFR-06</td><td>No videos, venvs or large binaries in the monorepo</td><td>MP4s stay out of the PR; video lives on LinkedIn</td><td class="owner">E043</td><td><span class="pill p-should st">Partial</span> (two MP4s in our repo)</td></tr>
+</tbody></table>
+
+<!-- 5 -->
+<h2 class="sec break" id="s5"><span class="n">5</span>What Is Done (Evidence)</h2>
+
+<table class="t-tight">
+<thead><tr><th>Area</th><th>Delivered</th><th>Evidence in the repo</th></tr></thead>
+<tbody>
+<tr><td>Repository</td><td>Course scaffold layout preserved; pinned <code>requirements.txt</code>; README onboarding; private GitHub repo with <code>main</code> owned by E043</td><td><code>README.md</code>, <code>requirements.txt</code>, commit <code>c3fdea7</code></td></tr>
+<tr><td>Scene</td><td>NMIMS Main Building interior: 10 floors × 3.6 m, central atrium 21.6 × 38.5 m (satellite-measured), 132 m ground-floor corridor loop, galleries, VIP Lounge (restricted zone), cafeteria, lift lobby, Wall of Fame; exterior campus variant from OpenStreetMap</td><td><code>models/nmims_main_interior.xml</code>, <code>models/scene_source/*</code>, <code>interior_manifest.csv</code> (MEASURED vs ASSUMED)</td></tr>
+<tr><td>Vehicles</td><td>Two 1.35 kg “+” quadrotors, arm 0.26 m, four rotors 0–7.5 N each with yaw drag torque, nadir and forward cameras (640 × 480, f = 450 px), IMU sensors</td><td><code>models/uav_fleet.xml</code></td></tr>
+<tr><td>Control law</td><td>Position P → velocity PI → flat-output inversion → attitude PD with gyroscopic feed-forward; exact inverse mixer; tilt slew limiter; principal-frame inertia</td><td><code>src/aerial_patrol_swarm.py</code> (E043 region)</td></tr>
+<tr><td>Mission</td><td>Phases takeoff → transit → descend → patrol; policies <code>sectors</code> and <code>offset_ring</code>; per-UAV yaw modes</td><td>same</td></tr>
+<tr><td>Safety</td><td>Altitude layers + closing-speed governor + right-hand sidestep on top of the guide’s APF</td><td><code>tests/test_e043_separation.py</code>: APF alone 0.40 m (contact) → layered 3.29 m (pass)</td></tr>
+<tr><td>Disturbance</td><td>Ornstein–Uhlenbeck gust field written to MuJoCo wind</td><td><code>_gust_step</code></td></tr>
+<tr><td>Metrics</td><td>Revisit intervals, gallery coverage, energy (Wh), collisions, altitude error</td><td>console summary + telemetry CSV</td></tr>
+<tr><td>Analytics</td><td>Seeded batch runner with provenance (seeds, code/model hashes, versions); figure generator that refuses unprovenanced data</td><td><code>analytics/run_benchmark.py</code>, <code>generate_paper_figures.py</code></td></tr>
+<tr><td>Team tooling</td><td>Region-ownership PR gate; live viewer; stills + 2 × 2 patrol video renderer</td><td><code>src/check_region_ownership.py</code>, <code>view_live.py</code>, <code>render_scene_media.py</code></td></tr>
+<tr><td>Planning</td><td>PRD v2.0 and Implementation Plan v2.0 (exterior scene) with Mermaid sources</td><td><code>docs/planning/</code></td></tr>
+</tbody></table>
+
+<div class="note"><b>Development checks, not results.</b> Single 240 s interior runs (one seed) gave: <code>sectors</code> worst
+ground-loop revisit 53.4 s, 66.7 % gallery coverage, 0 collisions; <code>offset_ring</code> 36.7 s and 0 % gallery coverage.
+These show the pipeline works. They are <b>not</b> Monte Carlo evidence and must not appear in the dossier as results.</div>
+
+<h3>Work on other branches (reviewed, not merged)</h3>
+<p>E077’s <code>feat/e077-guardian-live-surveillance-upgrade</code> (10 commits, 381 files, ≈ 86 k lines) adds a YOLO/ByteTrack
+runtime, A* navigation, a control-room page and a currency-denominated economics module under <code>integrations/</code>. It is
+carefully caveated but: fails the ownership gate on all files, leaves <code>campus_security_economics.py</code> untouched, uses
+currency, is Windows/CUDA-tested only, and 8 of 10 commits carry a mistyped e-mail (<code>@mgail.com</code>) so GitHub does not
+attribute them to her account. Recommendation: park it; salvage only the “every assumption needs a provenance string” idea.</p>
+
+<!-- 6 -->
+<h2 class="sec break" id="s6"><span class="n">6</span>What Is Left — Master Checklist (Prioritised)</h2>
+
+<h3>P0 — submission is invalid or a component scores zero without it</h3>
+<table class="t-tight chk">
+<thead><tr><th>ID</th><th>Task</th><th>Owner</th><th>Done when</th></tr></thead>
+<tbody>
+<tr><td class="id">L-01</td><td>Tell the course faculty the dossier is late; agree a turn-in time; raise §15 questions</td><td class="owner">E043</td><td class="ac">Written reply received</td></tr>
+<tr><td class="id">L-02</td><td>Copy the official <code>MDRIIA_Group_05_Technical_Dossier.docx</code>, <code>docs/README.md</code>, <code>docs/figures/README.md</code> from the monorepo into our <code>docs/</code></td><td class="owner">E043</td><td class="ac">Files present, unmodified</td></tr>
+<tr><td class="id">L-03</td><td>Rename scaffold data to <code>analytics/SIMULATED_campus_patrol_benchmark.csv</code>; point runner output to <code>analytics/campus_patrol_real_trials.csv</code></td><td class="owner">E043</td><td class="ac">Figure script reads only the real-trials file</td></tr>
+<tr><td class="id">L-04</td><td>Rewrite <code>campus_security_economics.py</code>: delete every hard-coded result; compute from sourced inputs and the real-trials CSV; ratios only</td><td class="owner">E077</td><td class="ac">No literal outputs; <code>grep</code> finds no currency</td></tr>
+<tr><td class="id">L-05</td><td>Run the Monte Carlo batch (baseline + proposed, N ≥ 30 each, seeds recorded)</td><td class="owner">E043</td><td class="ac">CSV + provenance JSON committed</td></tr>
+<tr><td class="id">L-06</td><td>Fill all six dossier sections and sign-off in Word desktop; export PDF; commit both</td><td class="owner">All · E043 compiles</td><td class="ac">.docx + .pdf in <code>docs/</code></td></tr>
+<tr><td class="id">L-07</td><td>Each of the four members turns in the PDF on MS Teams</td><td class="owner">Each</td><td class="ac">Four “Turned in” confirmations</td></tr>
+<tr><td class="id">L-08</td><td>Open the PR of our group folder into the course monorepo (<code>github.com/sunny-nanade/NMIMS-MPSTME-MDRIIA-2026</code>), touching only <code>Group_05_…/</code></td><td class="owner">E043</td><td class="ac">PR open, checks green, no MP4/venv</td></tr>
+<tr><td class="id">L-09</td><td>Fill §1.1 claim table: verify or Correct/Delete “72 % latency”, “11-month CapEx recovery”, “90-s verification”; also drop the README/roster “45 → 8.5 min” unless measured</td><td class="owner">E077 + E043</td><td class="ac">Each row has source type + verdict</td></tr>
+<tr><td class="id">L-10</td><td>Declare all AI use (§5.1 three cases, §6 AI-drafted share per member)</td><td class="owner">All</td><td class="ac">Honest entries signed in sign-off</td></tr>
+</tbody></table>
+
+<h3>P1 — needed for full marks in a criterion</h3>
+<table class="t-tight chk">
+<thead><tr><th>ID</th><th>Task</th><th>Owner</th><th>Done when</th></tr></thead>
+<tbody>
+<tr><td class="id">L-11</td><td>Set timestep 0.002 s; re-check hover, patrol, separation test; write friction/solref justification</td><td class="owner">E043</td><td class="ac">Tests pass at 0.002 s</td></tr>
+<tr><td class="id">L-12</td><td>500 Hz per-run telemetry with reference, tracking error, actuator forces, FSM state</td><td class="owner">E043</td><td class="ac">Row interval = 0.002 s</td></tr>
+<tr><td class="id">L-13</td><td>Per-run tracking RMSE and ∫τ² dt in the trials CSV</td><td class="owner">E043</td><td class="ac">Two new columns</td></tr>
+<tr><td class="id">L-14</td><td>Implement <code>detect_intruder_hsv</code> + <code>inverse_pinhole_projection</code>; measure IoU and latency, noon vs twilight</td><td class="owner">E051</td><td class="ac"><code>vision_illumination_benchmark.csv</code> written</td></tr>
+<tr><td class="id">L-15</td><td>Implement <code>evaluate_geofence_status</code> (ray casting, 4 tiers, hysteresis, noise) + breach log</td><td class="owner">E075</td><td class="ac">Unit cases for tiers 0–3 pass</td></tr>
+<tr><td class="id">L-16</td><td>Wire the surveillance FSM; log state per row; overlay in viewer</td><td class="owner">E043</td><td class="ac">One live DETECT→ALERT transition</td></tr>
+<tr><td class="id">L-17</td><td><code>analytics/statistical_validation.py</code>: Welch t, df, p, Cohen’s d, 95 % CI</td><td class="owner">E075</td><td class="ac">Numbers match dossier §4 table</td></tr>
+<tr><td class="id">L-18</td><td>Regenerate the three figures from real data; replace starter PNGs</td><td class="owner">E043</td><td class="ac">No watermark</td></tr>
+<tr><td class="id">L-19</td><td>Business: H_reclaimed, P_payback/T_payback, NCRI/κ, M/M/c (λ, μ, c, ρ), sensitivity ±30 % + break-even, queue graph</td><td class="owner">E077</td><td class="ac">Two graphs + §3.1 table reproducible</td></tr>
+<tr><td class="id">L-20</td><td>FMEA ≥ 4 modes, RPN pre/post, each mitigation shown in sim/code</td><td class="owner">E077 + all</td><td class="ac">Table in §3.2</td></tr>
+<tr><td class="id">L-21</td><td>Record and post the 3–4 min LinkedIn video per Showcase Guide §7; add URL to dossier §5 and <code>TEAM_ROSTER.json</code></td><td class="owner">All · E043 edits</td><td class="ac">Live URL</td></tr>
+<tr><td class="id">L-22</td><td>Peer-review Group 06 and Group 11 videos</td><td class="owner">All</td><td class="ac">§5.2 filled</td></tr>
+<tr><td class="id">L-23</td><td>Standards decisions §1.2 (ISO 10218, ISO 3691-4, ANSI/RIA R15.06, IEC 60601-1, India Drone Rules 2021) + ISO 21384 / ASTM F3322 from the Standards Manual</td><td class="owner">E075 + E043</td><td class="ac">Yes/No + clause or reason for each</td></tr>
+<tr><td class="id">L-24</td><td>Baseline friction §1.3: today’s guard patrol metric with a primary source</td><td class="owner">E077</td><td class="ac">Value + unit + citation</td></tr>
+</tbody></table>
+
+<h3>P2 — quality and viva safety</h3>
+<table class="t-tight chk">
+<thead><tr><th>ID</th><th>Task</th><th>Owner</th><th>Done when</th></tr></thead>
+<tbody>
+<tr><td class="id">L-25</td><td>Fresh-clone rehearsal on a second laptop; fix anything missing</td><td class="owner">E043</td><td class="ac">Viewer runs from scratch</td></tr>
+<tr><td class="id">L-26</td><td>Reconcile SAP IDs: dossier template lists 70362400058 / …040 / 70362300055 / 70362300043; <code>TEAM_ROSTER.json</code> and README list …030 / …067 / …003 / …080</td><td class="owner">All</td><td class="ac">One set, confirmed with the official list</td></tr>
+<tr><td class="id">L-27</td><td>E077: fix git e-mail, re-author commits, move economics to <code>feat/e077-csbs-campus-security</code></td><td class="owner">E077</td><td class="ac">Commits show as Subhankar-Uro</td></tr>
+<tr><td class="id">L-28</td><td>Assigned branch names for all four members</td><td class="owner">All</td><td class="ac">Branches exist with ≥ 4 commits each</td></tr>
+<tr><td class="id">L-29</td><td>Update PRD/Implementation Plan to the interior scene (v2.1) — optional</td><td class="owner">E043</td><td class="ac">—</td></tr>
+<tr><td class="id">L-30</td><td>Each member rehearses the five standard viva questions (§14)</td><td class="owner">All</td><td class="ac">30-second whiteboard rule met</td></tr>
+</tbody></table>
+
+<h3>Dependency chain</h3>
+<figure><pre class="mermaid">
+flowchart TB
+  T["L-11 timestep 0.002 s"] --> LOG["L-12/13 500 Hz log<br/>RMSE · ∫τ² dt"]
+  V["L-14 E051 detector"] --> FSM["L-16 surveillance FSM"]
+  G["L-15 E075 geofence"] --> FSM
+  FSM --> LOG
+  LOG --> MC["L-05 Monte Carlo batch<br/>campus_patrol_real_trials.csv"]
+  MC --> ST["L-17 statistics"]
+  MC --> FIG["L-18 figures"]
+  MC --> EC["L-19/20 economics · FMEA"]
+  ST --> DOS["L-06 dossier"]
+  FIG --> DOS
+  EC --> DOS
+  FIG --> VID["L-21 LinkedIn video"]
+  EC --> VID
+  VID --> DOS
+  DOS --> TI["L-07 Teams turn-in ×4"]
+  DOS --> PR["L-08 monorepo PR"]
+</pre><figcaption><b>Figure 1 — Critical path.</b> The Monte Carlo batch is the bottleneck: statistics, figures,
+economics and the video all consume it. If E051/E075 slip, run the batch with detection disabled and
+report the cycle-time comparison first (see §9 fallback).</figcaption></figure>
+
+<!-- 7 -->
+<h2 class="sec break" id="s7"><span class="n">7</span>Work Packages per Member</h2>
+
+<h3 class="wp">E043 Muaaz — Lead, flight dynamics, integration, owner of <code>main</code></h3>
+<table class="t-tight"><tbody>
+<tr><td class="id">M-1</td><td>Timestep 0.002 s; re-tune if needed; justify friction 1.0/0.01/0.005 and solref 0.004 1 (§2.1)</td></tr>
+<tr><td class="id">M-2</td><td>500 Hz telemetry columns; per-run RMSE vs waypoint path; ∫τ² dt over the eight rotor actuators</td></tr>
+<tr><td class="id">M-3</td><td>Surveillance FSM integration + viewer overlay; merge E051/E075 regions after the ownership gate</td></tr>
+<tr><td class="id">M-4</td><td>Runner → <code>campus_patrol_real_trials.csv</code>; baseline and proposed conditions; N per §15 ruling</td></tr>
+<tr><td class="id">M-5</td><td>Repo format (L-02, L-03), monorepo PR (L-08), fresh-clone test (L-25)</td></tr>
+<tr><td class="id">M-6</td><td>Dossier §2: settings table, gains with units, FSM list, authorship table, ≤ 25-line snippet, FBD worked example (hover: m·g = 1.35 × 9.81 = 13.24 N ⇒ 3.31 N per rotor; max 4 × 7.5 = 30 N ⇒ thrust-to-weight 2.27)</td></tr>
+<tr><td class="id">M-7</td><td>Video edit and post; compile and export the dossier</td></tr>
+</tbody></table>
+
+<h3 class="wp">E051 Aditya — Computer vision (OpenCV), detection and tracking</h3>
+<table class="t-tight"><tbody>
+<tr><td class="id">A-1</td><td><code>detect_intruder_hsv</code>: HSV threshold → morphology → contours → largest bbox; return detected, bbox, latency (ms)</td></tr>
+<tr><td class="id">A-2</td><td><code>inverse_pinhole_projection</code>: (u, v) + camera pose + depth → world point; report error vs true intruder position</td></tr>
+<tr><td class="id">A-3</td><td>IoU vs MuJoCo segmentation mask (target ≥ 0.70) and latency at noon vs twilight lighting → <code>analytics/vision_illumination_benchmark.csv</code></td></tr>
+<tr><td class="id">A-4</td><td>FMEA row “missed intruder at twilight” with measured miss rate; AI-audit case from own work</td></tr>
+<tr><td class="id">A-5</td><td>≥ 4 commits on <code>feat/e051-computer-vision-open</code>, own account</td></tr>
+</tbody></table>
+
+<h3 class="wp">E075 Zaid — Geofencing, telemetry QA (owner of dossier §4)</h3>
+<table class="t-tight"><tbody>
+<tr><td class="id">Z-1</td><td><code>evaluate_geofence_status</code>: ray-casting point-in-polygon on the VIP Lounge zone; tiers 0–3 with hysteresis</td></tr>
+<tr><td class="id">Z-2</td><td>GPS/IMU noise injection (stated σ); JSON breach log with timestamps</td></tr>
+<tr><td class="id">Z-3</td><td>Optional handled failure for the demo: return-to-home after ≥ 2.5 s telemetry loss (ISO 21384 / ASTM F3322 per Standards Manual §2.4)</td></tr>
+<tr><td class="id">Z-4</td><td>QA of the batch: logging rate, seeds, N; <code>statistical_validation.py</code>; fill §4 table</td></tr>
+<tr><td class="id">Z-5</td><td>≥ 4 commits on <code>feat/e075-restricted-zone-geo-</code>, own account</td></tr>
+</tbody></table>
+
+<h3 class="wp">E077 Soumya — CSBS business and techno-economics (owner of dossier §3)</h3>
+<table class="t-tight"><tbody>
+<tr><td class="id">S-1</td><td>Rewrite <code>campus_security_economics.py</code> (see §10); delete constants 48.72, 7.84, 72.0, 50.4, 0.66, 0.31, 35.8, 1.2</td></tr>
+<tr><td class="id">S-2</td><td>Sourced guard-patrol inputs (walking speed, shift pattern, rounds per shift) or labelled assumptions</td></tr>
+<tr><td class="id">S-3</td><td>Sensitivity and queue graphs (PNG, 300 DPI) for the dossier and the video</td></tr>
+<tr><td class="id">S-4</td><td>FMEA table; §1.1 claim verification; §1.3 baseline friction</td></tr>
+<tr><td class="id">S-5</td><td>Fix commit e-mail; work on <code>feat/e077-csbs-campus-security</code>; park the runtime branch</td></tr>
+</tbody></table>
+
+<!-- 8 -->
+<h2 class="sec break" id="s8"><span class="n">8</span>Technical Dossier — Field-by-Field Fill Plan</h2>
+<p>Every field in the official template, who fills it, and where the value comes from. Fill in Word desktop; never
+delete a “Select ▾” or “type here” control.</p>
+
+<table class="t-tight">
+<thead><tr><th>Section · field</th><th>Owner</th><th>Source of the value</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Cover · roster check</td><td>All</td><td>Resolve SAP ID mismatch (L-26)</td><td><span class="pill p-z st">Decision</span></td></tr>
+<tr><td>§1.1 Claim verification (3 rows)</td><td>E077, E043</td><td>Primary sources or Correct/Delete; simulation measurement</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§1.2 Standards (5 rows)</td><td>E075, E043</td><td>Faculty hints: four “No”, India Drone Rules “check”; add ISO 21384 / ASTM F3322</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§1.3 Baseline friction</td><td>E077</td><td>Published guard-patrol metric with citation</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§2.1 Timestep, friction, solref, law, gains, FSM, loads?</td><td>E043</td><td>Final MJCF + controller constants</td><td><span class="pill p-should st">Partial</span></td></tr>
+<tr><td>§2.2 Authorship table</td><td>All</td><td>Git history; scaffold files = Modified, generators = Written</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§2.3 Code snippet ≤ 25 lines (text, Consolas 8 pt)</td><td>E043</td><td>FSM transition or attitude law with line numbers</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§2.4 FBD + worked equation</td><td>E043</td><td>Hover-thrust example (§7 M-6), telemetry column reference</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§3.1 Business table, queue model, λ μ c, T_payback, reproducible?</td><td>E077</td><td>Rewritten script</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§3.2 FMEA (2 seeded + ≥ 2 more) + two graphs</td><td>E077 + all</td><td>Separation test, vision benchmark, geofence log</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§4 Protocol: baseline, N, distributions, Hz, seeds, CSV path</td><td>E075</td><td>Runner provenance JSON</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§4 Results table: RMSE, ∫τ² dt, primary metric, test, t/df/p, d, CI</td><td>E075</td><td><code>statistical_validation.py</code></td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§4 Trajectory plot + box-plot</td><td>E043</td><td>Regenerated figures</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§4 Data Provenance Declaration (4 boxes)</td><td>All</td><td>Tick only what is true</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§5 Video URL, length, three yes/no checks</td><td>E043</td><td>LinkedIn post</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§5.1 AI audit AI-01…AI-03</td><td>All</td><td>Real cases caught by docs/paper/running code</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§5.2 Peer review: Group 06 (Crawler Solar Cleaner), Group 11 (Solar PV Inspection AMR)</td><td>All</td><td>Their LinkedIn videos</td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>§6 Learning record (hours, role match, commit share, AI share, …)</td><td>Each member own row</td><td><code>git shortlog -sn -- Group_05_*/</code></td><td><span class="pill p-must st">Not started</span></td></tr>
+<tr><td>Sign-off (original, code runs, viva-ready, signature, consent)</td><td>Each member</td><td>Personal</td><td><span class="pill p-must st">Not started</span></td></tr>
+</tbody></table>
+
+<div class="note warn"><b>Template facts to correct in §2.</b> The pre-filled text says “9 actuators (2 × 4 rotors + 1)” and
+“PATROL (Alpha NE / Bravo SW sectors)”. Our model has <b>8</b> rotor actuators and the interior patrol is Alpha on the
+ground-floor loop and Bravo on the atrium galleries. State the real values in the “type here” fields.</div>
+
+<!-- 9 -->
+<h2 class="sec break" id="s9"><span class="n">9</span>Experimental Design Still to Run</h2>
+
+<table class="t-tight">
+<thead><tr><th>Item</th><th>Specification</th></tr></thead>
+<tbody>
+<tr><td>Proposed condition</td><td>Dual-UAV, <code>sectors</code> policy, interior scene, surveillance FSM active</td></tr>
+<tr><td>Baseline condition (primary)</td><td>Modelled static-guard foot patrol of the same 132 m loop and galleries, walking speed and stops from a cited source — matches the title (“compared to static security guard patrols”)</td></tr>
+<tr><td>Secondary comparison</td><td><code>offset_ring</code> vs <code>sectors</code> (both already implemented)</td></tr>
+<tr><td>N</td><td>≥ 30 per condition (rubric); ≥ 50 recommended to also satisfy the Standards Manual §4 — ask sir (§15)</td></tr>
+<tr><td>Randomised inputs</td><td>Mean wind and gust σ (uniform range, stated), intruder appearance time, initial dock jitter; one seed per run, recorded</td></tr>
+<tr><td>Logging</td><td>500 Hz, one CSV per run (gitignored) + one summary row per run in <code>campus_patrol_real_trials.csv</code></td></tr>
+<tr><td>Measures</td><td>Patrol cycle time / worst revisit (primary), detection latency (s), IoU, inter-UAV d<sub>min</sub>, tracking RMSE, ∫τ² dt, energy Wh/km</td></tr>
+<tr><td>Statistics</td><td>Welch two-sided t-test α = 0.05, df, exact p, Cohen’s d, 95 % CI of the difference</td></tr>
+<tr><td>Run time budget</td><td>Batch length should be measured on the actual laptop before committing to 900 s runs; shorten runs (e.g. ≥ 2 full ground laps) if N × duration does not fit before Saturday — and say so in §4</td></tr>
+<tr><td>Fallback if E051/E075 slip</td><td>Run cycle-time and separation trials with detection disabled; report detection latency as “not measured” rather than estimating it</td></tr>
+</tbody></table>
+
+<!-- 10 -->
+<h2 class="sec break" id="s10"><span class="n">10</span>CSBS Business Model Still to Build</h2>
+<p>All quantities dimensionless or in hours; no currency anywhere. Every input is either sourced (author, year, DOI/URL)
+or labelled <i>assumption</i> and swept in the sensitivity graph.</p>
+
+<table class="t-tight">
+<thead><tr><th>Quantity</th><th>Definition (as in the dossier)</th><th>Inputs from</th></tr></thead>
+<tbody>
+<tr><td>H_reclaimed</td><td>Guard-hours per day moved from walking rounds to incident response</td><td>Shift pattern (sourced/assumed) × fraction of rounds replaced (from measured cycle times)</td></tr>
+<tr><td>P_payback</td><td>CapEx / (T_life · ΔOpEx_annual); P &lt; 1 ⇒ pays back within life</td><td>CapEx parity factor, T_life, ΔOpEx — all as ratios to the guard baseline</td></tr>
+<tr><td>T_payback</td><td>CapEx / ΔOpEx, in months</td><td>Same</td></tr>
+<tr><td>NCRI, κ</td><td>NCRI = (C_baseline − C_robot) / C_baseline; κ = 1 − NCRI (manual target κ ≤ 0.25)</td><td>Normalised cost components</td></tr>
+<tr><td>Queue</td><td>M/M/c: λ incidents/h, μ verifications/h per responder, c responders; ρ = λ/(cμ) &lt; 1; W_q via Erlang C</td><td>λ assumption; μ from simulated verification time</td></tr>
+<tr><td>ΔFTE (manual)</td><td>ΔFTE = annual reclaimed hours / 2080</td><td>H_reclaimed × 365</td></tr>
+<tr><td>Sensitivity</td><td>Most uncertain input ±30 %; plot P_payback and NCRI; mark break-even</td><td>Script sweep</td></tr>
+</tbody></table>
+
+<h3>FMEA seed list (≥ 4 required)</h3>
+<table class="t-tight">
+<thead><tr><th>Failure mode</th><th>Mitigation already in, or to add</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>UAV–UAV conflict at crossing (d &lt; 2.5 m) — seeded</td><td>Altitude layers + closing-speed governor + sidestep</td><td>Separation test 0.40 m → 3.29 m</td></tr>
+<tr><td>Missed intruder at twilight (low IoU) — seeded</td><td>HSV range / exposure tuning (E051)</td><td>Vision illumination benchmark</td></tr>
+<tr><td>Wind gust drives UAV into wall</td><td>Tilt limiter, velocity PI, corridor routing</td><td>Collision counter = 0 across trials</td></tr>
+<tr><td>Telemetry / link loss</td><td>Return-to-home after ≥ 2.5 s (E075, optional)</td><td>Demo run</td></tr>
+<tr><td>False geofence alarm from GPS noise</td><td>Hysteresis on tier changes (E075)</td><td>Breach log with noise on/off</td></tr>
+</tbody></table>
+
+<!-- 11 -->
+<h2 class="sec break" id="s11"><span class="n">11</span>Repository &amp; Git Compliance</h2>
+
+<table class="t-tight">
+<thead><tr><th>Required by sir</th><th>Our repo now</th><th>Action</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><code>analytics/campus_patrol_real_trials.csv</code></td><td>Absent</td><td>L-03, L-05</td><td><span class="pill p-must st">Missing</span></td></tr>
+<tr><td><code>analytics/SIMULATED_campus_patrol_benchmark.csv</code></td><td>Named <code>campus_patrol_benchmark.csv</code></td><td>Rename (L-03)</td><td><span class="pill p-must st">Missing</span></td></tr>
+<tr><td><code>docs/MDRIIA_Group_05_Technical_Dossier.docx</code> + <code>.pdf</code></td><td>Absent</td><td>L-02, L-06</td><td><span class="pill p-must st">Missing</span></td></tr>
+<tr><td><code>docs/README.md</code>, <code>docs/figures/README.md</code></td><td>Absent</td><td>Copy from monorepo</td><td><span class="pill p-must st">Missing</span></td></tr>
+<tr><td><code>models/campus_perimeter_patrol.xml</code>, <code>src/aerial_patrol_swarm.py</code>, <code>src/test_env.py</code>, <code>analytics/campus_security_economics.py</code>, <code>generate_paper_figures.py</code></td><td>Present (names preserved)</td><td>—</td><td><span class="pill p-done st">Done</span></td></tr>
+<tr><td>Extra files (scene generators, viewer, tests, planning)</td><td>Present</td><td>Allowed inside the group folder; keep MP4s out of the PR</td><td><span class="pill p-should st">Check</span></td></tr>
+<tr><td>Branches <code>feat/e043-lead-uav-flight-dyna</code>, <code>feat/e051-computer-vision-open</code>, <code>feat/e075-restricted-zone-geo-</code>, <code>feat/e077-csbs-campus-security</code></td><td>Only <code>main</code> + five non-standard e077 branches</td><td>L-28</td><td><span class="pill p-must st">Missing</span></td></tr>
+<tr><td>Conventional commits, ≥ 4 per student, own account</td><td>1 commit (E043); E077 commits mis-attributed</td><td>L-27, L-28</td><td><span class="pill p-must st">At risk</span></td></tr>
+<tr><td>Work submitted to the course monorepo via PR into <code>main</code></td><td>Only in private <code>MuaazSM/mdriia-project</code></td><td>L-08</td><td><span class="pill p-must st">Missing</span></td></tr>
+<tr><td>No direct commits to <code>main</code> (Standards Manual §5)</td><td>Initial commit made directly to our private <code>main</code></td><td>All further work via PRs</td><td><span class="pill p-should st">Note</span></td></tr>
+</tbody></table>
+
+<!-- 12 -->
+<h2 class="sec break" id="s12"><span class="n">12</span>Integrity Risks &amp; Blockers</h2>
+<table class="t-tight">
+<thead><tr><th>#</th><th>Risk</th><th>Impact</th><th>Response</th></tr></thead>
+<tbody>
+<tr><td>R1</td><td>Dossier and video deadlines passed</td><td>Possible late penalty or no marks</td><td>Contact sir tonight (L-01); submit as early as possible</td></tr>
+<tr><td>R2</td><td>Scaffold <code>np.random</code> numbers or the README’s “45 → 8.5 min” reused as results</td><td>Zero for the component (misconduct)</td><td>Figure gate; rename to <code>SIMULATED_</code>; quote only real-trials numbers</td></tr>
+<tr><td>R3</td><td>Hard-coded economics constants</td><td>C2 zero</td><td>L-04</td></tr>
+<tr><td>R4</td><td>Currency in E077’s work</td><td>Zero Currency Rule breach</td><td>Ratios only</td></tr>
+<tr><td>R5</td><td>Undeclared AI use</td><td>Integrity breach</td><td>Full §5.1 / §6 disclosure</td></tr>
+<tr><td>R6</td><td>Attribution mismatch: work in git ≠ declared role; commits from wrong e-mail</td><td>Viva marks; integrity question</td><td>Each member commits own region from own account; honest §2.2 and §6</td></tr>
+<tr><td>R7</td><td>E051/E075 regions still empty two days before viva</td><td>C1 control + two members’ viva</td><td>Start tonight; E043 reviews same day</td></tr>
+<tr><td>R8</td><td>Batch runtime too long for N ≥ 30–50 at 900 s each</td><td>No statistics</td><td>Measure one run; shorten duration with justification</td></tr>
+<tr><td>R9</td><td>Indoor scene vs “perimeter patrol” title</td><td>Problem-framing / mechanism-match marks</td><td>Ask sir (§15); exterior variant ready as fallback</td></tr>
+<tr><td>R10</td><td>YOLO (AGPL-3.0, PyTorch) instead of OpenCV</td><td>Changes the research question</td><td>Keep OpenCV HSV for the graded work</td></tr>
+<tr><td>R11</td><td>Disk space on the lead laptop is nearly full (≈ 0.3–0.5 GB free)</td><td>Batch runs / video export may fail</td><td>Free space before running the batch and recording</td></tr>
+</tbody></table>
+
+<!-- 13 -->
+<h2 class="sec break" id="s13"><span class="n">13</span>Plan to Saturday 31 October</h2>
+<figure><pre class="mermaid">
+gantt
+  dateFormat YYYY-MM-DD HH:mm
+  axisFormat %a %H:%M
+  section Coordination
+  Message sir, assign WPs (L-01)          :crit, c1, 2026-10-29 20:00, 1h
+  section E043
+  Repo format + timestep + 500 Hz log     :m1, 2026-10-29 21:00, 5h
+  FSM integration + merges                :m2, 2026-10-30 09:00, 4h
+  Monte Carlo batch                       :crit, m3, after m2, 5h
+  Figures + dossier §2 + compile          :m4, after m3, 3h
+  section E051
+  HSV detector + projection               :a1, 2026-10-29 21:00, 10h
+  Vision benchmark                        :a2, after a1, 3h
+  section E075
+  Geofence + noise + log                  :z1, 2026-10-29 21:00, 10h
+  Statistics + dossier §4                 :z2, after m3, 3h
+  section E077
+  Economics rewrite + FMEA                :s1, 2026-10-29 21:00, 12h
+  Graphs + dossier §1, §3                 :s2, after m3, 3h
+  section All
+  Video record + post                     :crit, v1, 2026-10-30 21:00, 3h
+  Peer review + AI audit + §6 + sign-off  :v2, 2026-10-31 00:00, 3h
+  Export PDF, commit, PR, Teams turn-in   :crit, v3, after v2, 2h
+  Fresh-clone rehearsal                   :v4, after v3, 2h
+</pre><figcaption><b>Figure 2 — Compressed schedule.</b> Start times are targets; the batch (M-4) gates the
+statistics, figures, economics graphs and video. If it slips, record the video with the cycle-time results only.</figcaption></figure>
+
+<!-- 14 -->
+<h2 class="sec break" id="s14"><span class="n">14</span>Viva &amp; Expo Readiness</h2>
+<table class="t-tight">
+<thead><tr><th>Question sir will ask (Showcase Guide §11)</th><th>Who answers</th><th>Prepared answer source</th></tr></thead>
+<tbody>
+<tr><td>Why that solref time constant and friction? What happens if you halve them?</td><td>E043</td><td>§2.1 justification; try it live in the viewer</td></tr>
+<tr><td>Show one FSM transition live and the line of code that triggers it</td><td>E043 (+ E051 DETECT, E075 ALERT)</td><td>Viewer overlay + §2.3 snippet</td></tr>
+<tr><td>Which input moves payback most, and where does its value come from?</td><td>E077</td><td>Sensitivity graph + source</td></tr>
+<tr><td>Why Welch’s t-test? What does Cohen’s d mean in plain words?</td><td>E075</td><td>Unequal variances; d = gap in pooled-SD units</td></tr>
+<tr><td>What did AI get wrong, and how did you prove it?</td><td>Each member</td><td>§5.1 cases</td></tr>
+</tbody></table>
+
+<h3>Expo checklist</h3>
+<table class="t-tight"><tbody>
+<tr><td>[ ]</td><td>Laptop with simulation running from a fresh <code>git clone</code> + <code>pip install -r requirements.txt</code></td></tr>
+<tr><td>[ ]</td><td>FSM states visible in the viewer; one handled failure (head-on UAV conflict resolved by the governor and sidestep)</td></tr>
+<tr><td>[ ]</td><td>Business sensitivity and queue graphs open</td></tr>
+<tr><td>[ ]</td><td>Webcam picture-in-picture of every member; no PPT slides</td></tr>
+<tr><td>[ ]</td><td>Each member can explain their code in 30 seconds on a whiteboard</td></tr>
+</tbody></table>
+
+<!-- 15 -->
+<h2 class="sec" id="s15"><span class="n">15</span>Decisions Needed from the Course Faculty</h2>
+<table class="t-tight">
+<thead><tr><th>#</th><th>Question</th><th>Our proposal</th></tr></thead>
+<tbody>
+<tr><td>Q1</td><td>Will a late dossier (after 26 Oct) be accepted, and by when?</td><td>Turn in by Saturday morning before the Expo</td></tr>
+<tr><td>Q2</td><td>Is an <b>indoor</b> patrol of the NMIMS Main Building acceptable under the “campus perimeter patrol” title?</td><td>Keep indoor as primary (corridor loop = guard round); exterior perimeter variant available</td></tr>
+<tr><td>Q3</td><td>N ≥ 30 (rubric) or N ≥ 50 (Standards Manual)?</td><td>Target 50 if run time allows, minimum 30</td></tr>
+<tr><td>Q4</td><td>Timestep 0.002 s mandatory, or 0.004 s with honest 250 Hz reporting?</td><td>Move to 0.002 s</td></tr>
+<tr><td>Q5</td><td>May detection use YOLO, or must it stay OpenCV as in the title?</td><td>OpenCV HSV for graded work</td></tr>
+<tr><td>Q6</td><td>Correct SAP IDs: dossier template vs <code>TEAM_ROSTER.json</code> disagree for all four members</td><td>Use the official list; fix the other file</td></tr>
+</tbody></table>
+
+<p class="small">Prepared by E043 for Group 05. Status reflects the repository at commit <code>c3fdea7</code> (main) and branch
+<code>feat/e077-guardian-live-surveillance-upgrade</code> at <code>be80886</code>, and the course monorepo as read on 29 Oct 2026.</p>
+</div>
+
+<script src="mermaid_boot.js"></script>
+</body></html>

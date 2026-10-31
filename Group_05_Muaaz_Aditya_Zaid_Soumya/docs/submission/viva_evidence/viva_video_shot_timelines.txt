@@ -1,0 +1,72 @@
+SHOT 1: --scene interior --seed 4 --appear 20 (sectors), 110 s, vision_hz 10
+  t =    1.84 s  alpha TAKEOFF -> TRANSIT
+  t =    3.74 s  bravo TAKEOFF -> TRANSIT
+  t =    6.02 s  bravo TRANSIT -> PATROL
+  t =    6.83 s  alpha TRANSIT -> PATROL
+  t =   36.30 s  alpha PATROL -> DETECT
+  t =   36.40 s  alpha DETECT -> PATROL
+  t =   36.51 s  alpha PATROL -> DETECT
+  t =   36.61 s  alpha DETECT -> VERIFY
+  t =   36.70 s  alpha VERIFY -> ALERT_0
+  t =   36.80 s  alpha ALERT_0 -> PATROL
+  t =   36.80 s  bravo PATROL -> TRACK
+  t =   44.51 s  bravo TRACK -> RETURN_TO_PATROL
+  t =   52.91 s  alpha PATROL -> DETECT
+  t =   53.01 s  alpha DETECT -> VERIFY
+  t =   53.10 s  alpha VERIFY -> ALERT_1
+  t =   53.20 s  alpha ALERT_1 -> TRACK
+  t =   55.31 s  bravo RETURN_TO_PATROL -> PATROL
+  t =   68.91 s  alpha TRACK -> RETURN_TO_PATROL
+  t =   68.91 s  bravo PATROL -> TRACK
+  t =   71.81 s  bravo TRACK -> RETURN_TO_PATROL
+  t =   78.00 s  bravo RETURN_TO_PATROL -> PATROL
+  t =   84.30 s  alpha RETURN_TO_PATROL -> PATROL
+  incident 1: owner alpha DETECT 36.304 VERIFY None tier None tracker None closed 36.4 (verify_reject) true_detection None
+  incident 2: owner alpha DETECT 36.512 VERIFY 36.704 tier 0 tracker bravo closed 44.512 (lost) true_detection True
+  incident 3: owner alpha DETECT 52.912 VERIFY 53.104 tier 1 tracker bravo closed 71.808 (lost) true_detection True
+  min centre distance 5.71 m at t = 6.30 s; UAV-UAV contacts 0; obstacle contacts 0
+SHOT 2: --scene exterior --seed 4 --appear 20 (sectors), 110 s, vision_hz 10
+  t =    5.49 s  alpha TAKEOFF -> TRANSIT
+  t =    5.49 s  bravo TAKEOFF -> TRANSIT
+  t =   17.06 s  bravo TRANSIT -> DESCEND
+  t =   19.33 s  alpha TRANSIT -> DESCEND
+  t =   29.09 s  bravo DESCEND -> PATROL
+  t =   29.10 s  bravo PATROL -> DETECT
+  t =   29.20 s  bravo DETECT -> VERIFY
+  t =   29.31 s  bravo VERIFY -> ALERT_2
+  t =   29.41 s  bravo ALERT_2 -> TRACK
+  t =   34.06 s  alpha DESCEND -> PATROL
+  t =   59.41 s  bravo TRACK -> RETURN_TO_PATROL
+  t =   60.21 s  alpha PATROL -> DETECT
+  t =   60.30 s  alpha DETECT -> VERIFY
+  t =   60.40 s  alpha VERIFY -> ALERT_0
+  t =   60.51 s  alpha ALERT_0 -> TRACK
+  t =   62.40 s  alpha TRACK -> RETURN_TO_PATROL
+  t =   67.81 s  alpha RETURN_TO_PATROL -> PATROL
+  t =   70.80 s  alpha PATROL -> DETECT
+  t =   70.91 s  alpha DETECT -> VERIFY
+  t =   71.01 s  alpha VERIFY -> ALERT_0
+  t =   71.10 s  alpha ALERT_0 -> TRACK
+  t =   71.31 s  bravo RETURN_TO_PATROL -> PATROL
+  t =   76.21 s  alpha TRACK -> RETURN_TO_PATROL
+  t =   80.70 s  alpha RETURN_TO_PATROL -> PATROL
+  t =   88.21 s  alpha PATROL -> DETECT
+  t =   88.30 s  alpha DETECT -> VERIFY
+  t =   88.40 s  alpha VERIFY -> ALERT_0
+  t =   88.51 s  alpha ALERT_0 -> TRACK
+  t =   93.71 s  alpha TRACK -> RETURN_TO_PATROL
+  t =  102.11 s  alpha RETURN_TO_PATROL -> PATROL
+  t =  105.60 s  alpha PATROL -> DETECT
+  t =  105.71 s  alpha DETECT -> VERIFY
+  t =  105.81 s  alpha VERIFY -> ALERT_0
+  t =  105.90 s  alpha ALERT_0 -> TRACK
+  incident 1: owner bravo DETECT 29.104 VERIFY 29.312 tier 2 tracker bravo closed 59.408 (track_timeout) true_detection True
+  incident 2: owner alpha DETECT 60.208 VERIFY 60.4 tier 0 tracker alpha closed 62.4 (lost) true_detection False
+  incident 3: owner alpha DETECT 70.8 VERIFY 71.008 tier 0 tracker alpha closed 76.208 (static_handover) true_detection False
+  incident 4: owner alpha DETECT 88.208 VERIFY 88.4 tier 0 tracker alpha closed 93.712 (static_handover) true_detection False
+  incident 5: owner alpha DETECT 105.6 VERIFY 105.808 tier 0 tracker alpha closed None (None) true_detection False
+  min centre distance 13.43 m at t = 9.78 s; UAV-UAV contacts 0; obstacle contacts 0
+SHOT 3: --demo headon, 15 s
+  min centre distance 7.12 m at t = 6.21 s; UAV-UAV contacts 0; obstacle contacts 0
+SHOT 3b: --demo headon --apf-only, 15 s
+  min centre distance 0.43 m at t = 5.71 s; UAV-UAV contacts 4; obstacle contacts 2

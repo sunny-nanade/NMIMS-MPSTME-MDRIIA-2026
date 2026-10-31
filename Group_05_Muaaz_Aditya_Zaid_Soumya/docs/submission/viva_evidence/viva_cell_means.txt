@@ -1,0 +1,133 @@
+file /Users/muaazshaikh/mdriia-overnight/Group_05_Muaaz_Aditya_Zaid_Soumya/docs/submission/viva_evidence/../../../analytics/campus_patrol_real_trials.csv rows 180
+interior guard_baseline n=30
+   tracking_rmse_m            (empty / not applicable)
+   control_effort_N2s         (empty / not applicable)
+   energy_wh                  (empty / not applicable)
+   min_inter_uav_m            (empty / not applicable)
+   min_obstacle_clearance_m   (empty / not applicable)
+   obstacle_contacts          (empty / not applicable)
+   uav_uav_contacts           (empty / not applicable)
+   cycle_time_s               n=30 mean=2460.4638 sd=593.2051 min=1699.5370 max=3907.7020
+   worst_revisit_ground_s     n=30 mean=2494.1635 sd=598.6991 min=1709.8900 max=3907.7020
+   detected                   n=30 mean=0.3667 sd=0.4901 min=0.0000 max=1.0000 sum=11
+   detection_latency_s        n=11 mean=38.6726 sd=10.4276 min=15.5510 max=45.9270
+   verify_time_s              (empty / not applicable)
+   duration_s                 n=30 mean=5000.0000 sd=0.0000 min=5000.0000 max=5000.0000
+   timestep_s                 n=30 mean=0.0020 sd=0.0000 min=0.0020 max=0.0020
+   gallery_coverage           n=30 mean=1.0000 sd=0.0000 min=1.0000 max=1.0000
+   n_laps_alpha               (empty / not applicable)
+   n_laps_bravo               (empty / not applicable)
+   n_ground_laps              n=30 mean=2.5000 sd=0.5085 min=2.0000 max=3.0000
+   worst_revisit_ground_eqwin_s n=30 censored (>= 300 s, no revisit inside the window) 30 of 30; max=300.0000 (guard value is a lower bound, no mean/sd)
+   torque_effort_N2m2s        (empty / not applicable)
+   waypoint_rmse_m            (empty / not applicable)
+interior uav_sectors n=30
+   tracking_rmse_m            n=30 mean=0.4972 sd=0.0712 min=0.4658 max=0.8655
+   control_effort_N2s         n=30 mean=26742.7172 sd=13.3810 min=26712.5340 max=26766.0090
+   energy_wh                  n=30 mean=22.3698 sd=0.0074 min=22.3528 max=22.3827
+   min_inter_uav_m            n=30 mean=5.6981 sd=0.0505 min=5.6041 max=5.8234
+   min_obstacle_clearance_m   n=30 mean=0.8606 sd=0.1000 min=0.4379 max=0.8982
+   obstacle_contacts          n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000 sum=0
+   uav_uav_contacts           n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000 sum=0
+   cycle_time_s               n=30 mean=57.4086 sd=5.9314 min=53.3580 max=71.7960
+   worst_revisit_ground_s     n=30 mean=67.1621 sd=17.8853 min=54.0720 max=108.6480
+   detected                   n=30 mean=0.3333 sd=0.4795 min=0.0000 max=1.0000 sum=10
+   detection_latency_s        n=10 mean=25.0708 sd=5.6312 min=16.9640 max=35.4030
+   verify_time_s              n=10 mean=0.1972 sd=0.0143 min=0.1700 max=0.2040
+   duration_s                 n=30 mean=300.0000 sd=0.0000 min=300.0000 max=300.0000
+   timestep_s                 n=30 mean=0.0020 sd=0.0000 min=0.0020 max=0.0020
+   gallery_coverage           n=30 mean=0.8139 sd=0.0264 min=0.7500 max=0.8333
+   n_laps_alpha               n=30 mean=4.8000 sd=0.4068 min=4.0000 max=5.0000
+   n_laps_bravo               n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000
+   n_ground_laps              n=30 mean=4.8000 sd=0.4068 min=4.0000 max=5.0000
+   worst_revisit_ground_eqwin_s n=30 censored (>= 300 s, no revisit inside the window) 0 of 30; max=108.6480 mean=68.1647 sd=17.1403
+   torque_effort_N2m2s        n=30 mean=0.2244 sd=0.0136 min=0.2126 max=0.2543
+   waypoint_rmse_m            n=30 mean=1.3434 sd=0.0350 min=1.3028 max=1.4315
+interior uav_offset_ring n=30
+   tracking_rmse_m            n=30 mean=0.3579 sd=0.1646 min=0.2648 max=0.8477
+   control_effort_N2s         n=30 mean=26731.6104 sd=15.9118 min=26706.5710 max=26772.7170
+   energy_wh                  n=30 mean=22.3666 sd=0.0082 min=22.3531 max=22.3871
+   min_inter_uav_m            n=30 mean=8.0524 sd=3.6646 min=3.0525 max=11.6717
+   min_obstacle_clearance_m   n=30 mean=0.7972 sd=0.1364 min=0.3651 max=0.8982
+   obstacle_contacts          n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000 sum=0
+   uav_uav_contacts           n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000 sum=0
+   cycle_time_s               n=30 mean=37.9682 sd=2.2661 min=33.7310 max=43.6100
+   worst_revisit_ground_s     n=30 mean=53.8402 sd=10.0045 min=43.3940 max=74.2320
+   detected                   n=30 mean=0.4333 sd=0.5040 min=0.0000 max=1.0000 sum=13
+   detection_latency_s        n=13 mean=29.9085 sd=15.4352 min=15.5170 max=53.1330
+   verify_time_s              n=13 mean=0.2014 sd=0.0094 min=0.1700 max=0.2040
+   duration_s                 n=30 mean=300.0000 sd=0.0000 min=300.0000 max=300.0000
+   timestep_s                 n=30 mean=0.0020 sd=0.0000 min=0.0020 max=0.0020
+   gallery_coverage           n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000
+   n_laps_alpha               n=30 mean=4.9000 sd=0.3051 min=4.0000 max=5.0000
+   n_laps_bravo               n=30 mean=4.6333 sd=0.4901 min=4.0000 max=5.0000
+   n_ground_laps              n=30 mean=7.3333 sd=0.5467 min=6.0000 max=8.0000
+   worst_revisit_ground_eqwin_s n=30 censored (>= 300 s, no revisit inside the window) 0 of 30; max=74.2320 mean=53.8402 sd=10.0045
+   torque_effort_N2m2s        n=30 mean=0.2779 sd=0.0181 min=0.2610 max=0.3254
+   waypoint_rmse_m            n=30 mean=1.5002 sd=0.0969 min=1.4251 max=1.7290
+exterior guard_baseline n=30
+   tracking_rmse_m            (empty / not applicable)
+   control_effort_N2s         (empty / not applicable)
+   energy_wh                  (empty / not applicable)
+   min_inter_uav_m            (empty / not applicable)
+   min_obstacle_clearance_m   (empty / not applicable)
+   obstacle_contacts          (empty / not applicable)
+   uav_uav_contacts           (empty / not applicable)
+   cycle_time_s               n=30 mean=532.9093 sd=141.6419 min=327.1590 max=785.0700
+   worst_revisit_ground_s     n=30 mean=570.9600 sd=152.0636 min=338.0330 max=811.4970
+   detected                   n=30 mean=1.0000 sd=0.0000 min=1.0000 max=1.0000 sum=30
+   detection_latency_s        n=30 mean=281.0518 sd=116.5639 min=69.5250 max=473.6590
+   verify_time_s              (empty / not applicable)
+   duration_s                 n=30 mean=1800.0000 sd=0.0000 min=1800.0000 max=1800.0000
+   timestep_s                 n=30 mean=0.0020 sd=0.0000 min=0.0020 max=0.0020
+   gallery_coverage           (empty / not applicable)
+   n_laps_alpha               (empty / not applicable)
+   n_laps_bravo               (empty / not applicable)
+   n_ground_laps              n=30 mean=3.2000 sd=0.9965 min=2.0000 max=5.0000
+   worst_revisit_ground_eqwin_s n=30 censored (>= 300 s, no revisit inside the window) 30 of 30; max=300.0000 (guard value is a lower bound, no mean/sd)
+   torque_effort_N2m2s        (empty / not applicable)
+   waypoint_rmse_m            (empty / not applicable)
+exterior uav_sectors n=30
+   tracking_rmse_m            n=30 mean=0.2586 sd=0.0206 min=0.2339 max=0.3165
+   control_effort_N2s         n=30 mean=28080.5400 sd=51.0277 min=27986.9450 max=28190.6900
+   energy_wh                  n=30 mean=23.2063 sd=0.0313 min=23.1483 max=23.2740
+   min_inter_uav_m            n=30 mean=12.7415 sd=1.1468 min=9.2803 max=14.1667
+   min_obstacle_clearance_m   n=30 mean=2.2102 sd=0.0645 min=1.9807 max=2.3168
+   obstacle_contacts          n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000 sum=0
+   uav_uav_contacts           n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000 sum=0
+   cycle_time_s               n=30 mean=71.8236 sd=8.2237 min=64.0930 max=85.6880
+   worst_revisit_ground_s     n=30 mean=112.3836 sd=13.4158 min=95.4600 max=133.6260
+   detected                   n=30 mean=1.0000 sd=0.0000 min=1.0000 max=1.0000 sum=30
+   detection_latency_s        n=30 mean=12.7982 sd=7.1350 min=1.5040 max=23.0740
+   verify_time_s              n=30 mean=0.1972 sd=0.0138 min=0.1700 max=0.2040
+   duration_s                 n=30 mean=300.0000 sd=0.0000 min=300.0000 max=300.0000
+   timestep_s                 n=30 mean=0.0020 sd=0.0000 min=0.0020 max=0.0020
+   gallery_coverage           (empty / not applicable)
+   n_laps_alpha               n=30 mean=3.0000 sd=0.0000 min=3.0000 max=3.0000
+   n_laps_bravo               n=30 mean=7.9000 sd=0.4026 min=7.0000 max=9.0000
+   n_ground_laps              n=30 mean=3.0000 sd=0.0000 min=3.0000 max=3.0000
+   worst_revisit_ground_eqwin_s n=30 censored (>= 300 s, no revisit inside the window) 0 of 30; max=133.6260 mean=113.1541 sd=13.3592
+   torque_effort_N2m2s        n=30 mean=0.3504 sd=0.0081 min=0.3380 max=0.3678
+   waypoint_rmse_m            n=30 mean=4.3312 sd=0.1596 min=4.0076 max=4.6102
+exterior uav_offset_ring n=30
+   tracking_rmse_m            n=30 mean=0.9690 sd=0.2416 min=0.6660 max=1.6251
+   control_effort_N2s         n=30 mean=28242.1907 sd=56.1372 min=28108.2580 max=28364.5970
+   energy_wh                  n=30 mean=23.3046 sd=0.0343 min=23.2230 max=23.3779
+   min_inter_uav_m            n=30 mean=5.9318 sd=0.8300 min=4.0002 max=6.9332
+   min_obstacle_clearance_m   n=30 mean=2.7047 sd=0.8235 min=0.7316 max=3.8812
+   obstacle_contacts          n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000 sum=0
+   uav_uav_contacts           n=30 mean=0.0000 sd=0.0000 min=0.0000 max=0.0000 sum=0
+   cycle_time_s               n=30 mean=35.5816 sd=6.3632 min=29.4520 max=48.9550
+   worst_revisit_ground_s     n=30 mean=82.6318 sd=3.9856 min=76.7220 max=95.7880
+   detected                   n=30 mean=1.0000 sd=0.0000 min=1.0000 max=1.0000 sum=30
+   detection_latency_s        n=30 mean=24.8705 sd=16.3957 min=1.4920 max=50.7880
+   verify_time_s              n=30 mean=0.2006 sd=0.0104 min=0.1700 max=0.2040
+   duration_s                 n=30 mean=300.0000 sd=0.0000 min=300.0000 max=300.0000
+   timestep_s                 n=30 mean=0.0020 sd=0.0000 min=0.0020 max=0.0020
+   gallery_coverage           (empty / not applicable)
+   n_laps_alpha               n=30 mean=3.7000 sd=0.4661 min=3.0000 max=4.0000
+   n_laps_bravo               n=30 mean=3.1000 sd=0.3051 min=3.0000 max=4.0000
+   n_ground_laps              n=30 mean=6.1333 sd=0.9732 min=4.0000 max=7.0000
+   worst_revisit_ground_eqwin_s n=30 censored (>= 300 s, no revisit inside the window) 0 of 30; max=126.3420 mean=113.2678 sd=4.0025
+   torque_effort_N2m2s        n=30 mean=0.4589 sd=0.0159 min=0.4305 max=0.5070
+   waypoint_rmse_m            n=30 mean=4.7281 sd=0.1644 min=4.4258 max=5.0862

@@ -1,0 +1,6 @@
+timestep 0.002
+shipped (solref 0.004, mu 1.0)     legs: n=12 solref0=0.0040 friction0=1.00  z_rest=36.1880 m  deepest contact dist=-2.416 mm  xy drift=0.000 mm
+solref halved to 0.002             legs: n=12 solref0=0.0020 friction0=1.00  z_rest=36.1880 m  deepest contact dist=-2.124 mm  xy drift=0.000 mm
+solref doubled to 0.008            legs: n=12 solref0=0.0080 friction0=1.00  z_rest=36.1879 m  deepest contact dist=-2.979 mm  xy drift=0.000 mm
+sliding friction halved to 0.5     legs: n=12 solref0=0.0040 friction0=0.50  z_rest=36.1880 m  deepest contact dist=-2.416 mm  xy drift=0.000 mm
+sliding friction cut to 0.1 (contrast) legs: n=12 solref0=0.0040 friction0=0.10  z_rest=36.1880 m  deepest contact dist=-2.416 mm  xy drift=0.000 mm

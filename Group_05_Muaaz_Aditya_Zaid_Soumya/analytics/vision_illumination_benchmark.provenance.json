@@ -1,0 +1,124 @@
+{
+  "script": "analytics/vision_illumination_benchmark.py",
+  "scenes": [
+    "interior",
+    "exterior"
+  ],
+  "n_frames_requested": 64,
+  "min_gt_pixels": 50,
+  "placement": "deterministic, no random numbers",
+  "skipped_frames": {
+    "interior": 6,
+    "exterior": 28
+  },
+  "lighting": {
+    "interior": {
+      "noon": {
+        "scale": 1.0,
+        "headlight_ambient": [
+          0.42,
+          0.41,
+          0.4
+        ],
+        "headlight_diffuse": [
+          0.42,
+          0.42,
+          0.42
+        ],
+        "light_diffuse": [
+          [
+            0.62,
+            0.62,
+            0.6
+          ],
+          [
+            0.38,
+            0.37,
+            0.35
+          ]
+        ]
+      },
+      "twilight": {
+        "scale": 0.15,
+        "headlight_ambient": [
+          0.063,
+          0.0615,
+          0.06
+        ],
+        "headlight_diffuse": [
+          0.063,
+          0.063,
+          0.063
+        ],
+        "light_diffuse": [
+          [
+            0.093,
+            0.093,
+            0.09
+          ],
+          [
+            0.057,
+            0.0555,
+            0.0525
+          ]
+        ]
+      }
+    },
+    "exterior": {
+      "noon": {
+        "scale": 1.0,
+        "headlight_ambient": [
+          0.42,
+          0.42,
+          0.44
+        ],
+        "headlight_diffuse": [
+          0.55,
+          0.55,
+          0.55
+        ],
+        "light_diffuse": [
+          [
+            0.55,
+            0.55,
+            0.53
+          ]
+        ]
+      },
+      "twilight": {
+        "scale": 0.15,
+        "headlight_ambient": [
+          0.063,
+          0.063,
+          0.066
+        ],
+        "headlight_diffuse": [
+          0.0825,
+          0.0825,
+          0.0825
+        ],
+        "light_diffuse": [
+          [
+            0.0825,
+            0.0825,
+            0.0795
+          ]
+        ]
+      }
+    }
+  },
+  "gt_source": "mujoco segmentation rendering of intruder_geom",
+  "detector_input": "RGB frame only",
+  "rows": 316,
+  "auto_exposure": true,
+  "detector_constants": {
+    "HSV_HUE_TOL": 6,
+    "HSV_SAT_FRAC": 0.75,
+    "HSV_VAL_MIN": 40,
+    "MIN_BLOB_AREA_PX": 16,
+    "AE_TARGET_V": 200,
+    "AE_PCTL": 99.0,
+    "AE_GAIN_MAX": 8.0
+  },
+  "command": "python analytics/vision_illumination_benchmark.py --sweep 0.7,0.5,0.35,0.25,0.15,0.1"
+}

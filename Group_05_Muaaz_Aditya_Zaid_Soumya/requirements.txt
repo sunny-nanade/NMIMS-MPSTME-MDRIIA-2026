@@ -1,0 +1,9 @@
+# MDRIIA Group 05 -- MPSTME GUARDIAN (tested versions, Python 3.12, macOS arm64)
+mujoco==3.13.0
+numpy==2.5.3
+scipy==1.18.1                      # src/test_env.py toolchain check, E075 statistics
+opencv-python-headless==5.0.0.93   # E051 vision pipeline
+matplotlib==3.11.2                 # analytics/generate_paper_figures.py
+pillow==12.3.0                     # src/render_scene_media.py
+pytest==9.2.0                      # tests/ (python -m pytest tests/)
+# external tools: ffmpeg (video), Google Chrome + Node >= 22 (planning PDF build only)

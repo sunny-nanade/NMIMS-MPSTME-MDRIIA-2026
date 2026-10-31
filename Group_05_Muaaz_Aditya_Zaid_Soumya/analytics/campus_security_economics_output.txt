@@ -1,0 +1,293 @@
+========================================================================
+MDRIIA GROUP 05 - CSBS CAMPUS SECURITY ECONOMICS (E077), dimensionless
+Data: analytics/campus_patrol_real_trials.csv, 180 rows, sha256 1ecc25f0be6d0a817fbe01ad74bd9e5438fedba7616180f90f5a57a430c06ca6 (matches provenance csv_sha256)
+Ablation: analytics/ablation_trials.csv, 80 rows
+========================================================================
+SOURCES (every input: sourced with citation, or a labelled ASSUMPTION range)
+  hours_per_shift        8            [h/shift]  sourced
+      source: OSH and Working Conditions Code 2020 s.25(1)(a), 8 h/day cap (docs/research/sources_verified.md); 3 x 8 h pattern itself is an ASSUMPTION
+  rounds_per_shift       4 to 8       [rounds/shift]  ASSUMPTION
+      source: no primary source found (sources_verified.md)
+  guards_per_round       1 to 2       [guards]  ASSUMPTION
+      source: no primary source found (sources_verified.md)
+  replacement_fraction   0.5 to 1     [ratio]  ASSUMPTION
+      source: share of guard rounds the UAV rounds replace
+  capex_ratio            0.2 to 1.1   [ratio to one year of guard patrol labour]  ASSUMPTION
+      source: no primary source
+  service_life_years     2 to 5       [years]  ASSUMPTION
+      source: no primary source found (sources_verified.md)
+  maintenance_fraction   0.05 to 0.2  [fraction of CapEx per year]  ASSUMPTION
+      source: no primary source found (sources_verified.md)
+  other_opex_fraction    0.02 to 0.1  [fraction of CapEx per year]  ASSUMPTION
+      source: insurance, connectivity, spares; no primary source
+  battery_cycle_life     400          [charge cycles]  sourced
+      source: DJI Enterprise Matrice 350 RTK product page, '400 Battery Cycles' (reference airframe, not our model)
+  battery_capex_share    0.03 to 0.08 [fraction of fleet CapEx per replacement of all packs]  ASSUMPTION
+      source: no primary source
+  endurance_min          15 to 30     [min per charge]  ASSUMPTION
+      source: no primary source
+  n_uav                  2            [vehicles]  sourced
+      source: project design: two UAVs in src/aerial_patrol_swarm.py
+  fte_hours_per_year     2080         [h/year]  sourced
+      source: course Academic & Industry Standards Manual s.3 (delta FTE formula)
+  kappa_target           0.25         [ratio]  sourced
+      source: course Academic & Industry Standards Manual s.3, as cited in docs/submission/viva_prep_E077.md (manual not in this repo)
+  incidents_per_month    1 to 10      [incidents/month]  ASSUMPTION
+      source: no primary source found (sources_verified.md)
+  guard_response_min     2 to 10      [min]  ASSUMPTION
+      source: no primary source found (sources_verified.md)
+  guard_responders       1 to 3       [responders (c)]  ASSUMPTION
+      source: no primary source
+  human_confirm_s        30 to 120    [s]  ASSUMPTION
+      source: human operator confirmation after the UAV verify step; used only in the queue stress cases, not the base-case queue
+
+Base case = midpoint of each range. Most uncertain cost input = capex_ratio (relative range 1.385); swept -30% .. +30% of its base value 0.65, and over the full range up to the break-even.
+
+SCENE: interior
+revisit gate metric: worst_revisit_ground_eqwin_s (equal window for guard and UAV)
+guard_baseline cycle_time_s mean 2460.46 s (95% t-CI 2238.96 to 2681.97, n=30)
+guard_baseline worst revisit >= 300 s (right-censored): 30 of 30 guard runs had no revisit inside 300 s (lower bound, not a mean)
+revisit gate reasoning: guard worst revisit is right-censored (>= window), a lower bound; the gate therefore passes only if every UAV worst revisit in the cell is below the window (a UAV run at the window is censored too)
+uav_sectors cycle_time_s mean 57.41 s (95% t-CI 55.19 to 59.62, n=30)  worst revisit mean 68.16 s (descriptive, no CI: equal-window metric), max 108.65 s
+  gate (every UAV worst revisit < 300 s; max 108.65 s): PASS
+  H_reclaimed 13.84 guard-hours/day  delta FTE = 13.84 x 365 / 2080 = 2.429
+  kappa 0.185  (target <= 0.25: met)
+  NCRI = 1 - kappa 0.815  envelope 0.217 .. 0.984
+  P_payback 0.304  envelope 0.041 .. 5.068  (0 of 512 corners never pay back)
+  T_payback 12.8 months  (battery cycles per UAV-year 210)
+  break-even on capex_ratio (P_payback = 1) inside the assumed range: none inside the assumed range (0.2, 1.1)
+  sweep capex_ratio 0.455: P 0.199 NCRI 0.870  0.552: P 0.250 NCRI 0.842  0.650: P 0.304 NCRI 0.815  0.747: P 0.362 NCRI 0.787  0.845: P 0.424 NCRI 0.759
+  break-even inside the +/-30 % sweep: none inside the +/-30 % sweep
+  break-even crossing (full search, P_payback = 1): capex_ratio = 1.501; distance from base +0.851 (+131.0%); outside the assumed range (0.2, 1.1), outside the +/-30 % sweep
+  capex_ratio at kappa = target: 0.877
+  M/M/c lambda low   lambda=0.00137/h mu=142.473/h c=2 rho=0.00000 P_wait=4.622e-11 W_q=5.840e-10 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  M/M/c lambda base  lambda=0.00753/h mu=142.473/h c=2 rho=0.00003 P_wait=1.398e-09 W_q=1.767e-08 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  M/M/c lambda high  lambda=0.01370/h mu=142.473/h c=2 rho=0.00005 P_wait=4.622e-09 W_q=5.840e-08 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  guard M/M/c base  lambda=0.00753/h mu=10.000/h c=2 rho=0.00038 P_wait=2.837e-07 W_q=5.109e-05 s  [guard_response_min and guard_responders midpoints, ASSUMPTION]
+uav_offset_ring cycle_time_s mean 37.97 s (95% t-CI 37.12 to 38.81, n=30)  worst revisit mean 53.84 s (descriptive, no CI: equal-window metric), max 74.23 s
+  gate (every UAV worst revisit < 300 s; max 74.23 s): PASS
+  H_reclaimed 13.84 guard-hours/day  delta FTE = 13.84 x 365 / 2080 = 2.429
+  kappa 0.177  (target <= 0.25: met)
+  NCRI = 1 - kappa 0.823  envelope 0.259 .. 0.985
+  P_payback 0.301  envelope 0.041 .. 4.252  (0 of 512 corners never pay back)
+  T_payback 12.6 months  (battery cycles per UAV-year 139)
+  break-even on capex_ratio (P_payback = 1) inside the assumed range: none inside the assumed range (0.2, 1.1)
+  sweep capex_ratio 0.455: P 0.198 NCRI 0.876  0.552: P 0.248 NCRI 0.850  0.650: P 0.301 NCRI 0.823  0.747: P 0.357 NCRI 0.797  0.845: P 0.418 NCRI 0.770
+  break-even inside the +/-30 % sweep: none inside the +/-30 % sweep
+  break-even crossing (full search, P_payback = 1): capex_ratio = 1.531; distance from base +0.881 (+135.6%); outside the assumed range (0.2, 1.1), outside the +/-30 % sweep
+  capex_ratio at kappa = target: 0.919
+  M/M/c lambda low   lambda=0.00137/h mu=119.562/h c=2 rho=0.00001 P_wait=6.563e-11 W_q=9.881e-10 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  M/M/c lambda base  lambda=0.00753/h mu=119.562/h c=2 rho=0.00003 P_wait=1.985e-09 W_q=2.989e-08 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  M/M/c lambda high  lambda=0.01370/h mu=119.562/h c=2 rho=0.00006 P_wait=6.563e-09 W_q=9.881e-08 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  guard M/M/c base  lambda=0.00753/h mu=10.000/h c=2 rho=0.00038 P_wait=2.837e-07 W_q=5.109e-05 s  [guard_response_min and guard_responders midpoints, ASSUMPTION]
+
+SCENE: exterior
+revisit gate metric: worst_revisit_ground_eqwin_s (equal window for guard and UAV)
+guard_baseline cycle_time_s mean 532.91 s (95% t-CI 480.02 to 585.80, n=30)
+guard_baseline worst revisit >= 300 s (right-censored): 30 of 30 guard runs had no revisit inside 300 s (lower bound, not a mean)
+revisit gate reasoning: guard worst revisit is right-censored (>= window), a lower bound; the gate therefore passes only if every UAV worst revisit in the cell is below the window (a UAV run at the window is censored too)
+uav_sectors cycle_time_s mean 71.82 s (95% t-CI 68.75 to 74.89, n=30)  worst revisit mean 113.15 s (descriptive, no CI: equal-window metric), max 133.63 s
+  gate (every UAV worst revisit < 300 s; max 133.63 s): PASS
+  H_reclaimed 3.00 guard-hours/day  delta FTE = 3.00 x 365 / 2080 = 0.526
+  kappa 0.192  (target <= 0.25: met)
+  NCRI = 1 - kappa 0.808  envelope 0.186 .. 0.983
+  P_payback 0.306  envelope 0.041 .. 5.908  (0 of 512 corners never pay back)
+  T_payback 12.9 months  (battery cycles per UAV-year 262)
+  break-even on capex_ratio (P_payback = 1) inside the assumed range: none inside the assumed range (0.2, 1.1)
+  sweep capex_ratio 0.455: P 0.200 NCRI 0.866  0.552: P 0.251 NCRI 0.837  0.650: P 0.306 NCRI 0.808  0.747: P 0.365 NCRI 0.780  0.845: P 0.429 NCRI 0.751
+  break-even inside the +/-30 % sweep: none inside the +/-30 % sweep
+  break-even crossing (full search, P_payback = 1): capex_ratio = 1.480; distance from base +0.830 (+127.7%); outside the assumed range (0.2, 1.1), outside the +/-30 % sweep
+  capex_ratio at kappa = target: 0.848
+  M/M/c lambda low   lambda=0.00137/h mu=277.021/h c=2 rho=0.00000 P_wait=1.223e-11 W_q=7.944e-11 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  M/M/c lambda base  lambda=0.00753/h mu=277.021/h c=2 rho=0.00001 P_wait=3.698e-10 W_q=2.403e-09 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  M/M/c lambda high  lambda=0.01370/h mu=277.021/h c=2 rho=0.00002 P_wait=1.223e-09 W_q=7.944e-09 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  guard M/M/c base  lambda=0.00753/h mu=10.000/h c=2 rho=0.00038 P_wait=2.837e-07 W_q=5.109e-05 s  [guard_response_min and guard_responders midpoints, ASSUMPTION]
+uav_offset_ring cycle_time_s mean 35.58 s (95% t-CI 33.21 to 37.96, n=30)  worst revisit mean 113.27 s (descriptive, no CI: equal-window metric), max 126.34 s
+  gate (every UAV worst revisit < 300 s; max 126.34 s): PASS
+  H_reclaimed 3.00 guard-hours/day  delta FTE = 3.00 x 365 / 2080 = 0.526
+  kappa 0.176  (target <= 0.25: met)
+  NCRI = 1 - kappa 0.824  envelope 0.264 .. 0.985
+  P_payback 0.300  envelope 0.041 .. 4.170  (0 of 512 corners never pay back)
+  T_payback 12.6 months  (battery cycles per UAV-year 130)
+  break-even on capex_ratio (P_payback = 1) inside the assumed range: none inside the assumed range (0.2, 1.1)
+  sweep capex_ratio 0.455: P 0.198 NCRI 0.877  0.552: P 0.247 NCRI 0.851  0.650: P 0.300 NCRI 0.824  0.747: P 0.357 NCRI 0.798  0.845: P 0.417 NCRI 0.771
+  break-even inside the +/-30 % sweep: none inside the +/-30 % sweep
+  break-even crossing (full search, P_payback = 1): capex_ratio = 1.535; distance from base +0.885 (+136.2%); outside the assumed range (0.2, 1.1), outside the +/-30 % sweep
+  capex_ratio at kappa = target: 0.924
+  M/M/c lambda low   lambda=0.00137/h mu=143.592/h c=2 rho=0.00000 P_wait=4.551e-11 W_q=5.704e-10 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  M/M/c lambda base  lambda=0.00753/h mu=143.592/h c=2 rho=0.00003 P_wait=1.377e-09 W_q=1.726e-08 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  M/M/c lambda high  lambda=0.01370/h mu=143.592/h c=2 rho=0.00005 P_wait=4.550e-09 W_q=5.704e-08 s  [UAV; mu = 1 / mean(detection_latency_s + verify_time_s), detected runs]
+  guard M/M/c base  lambda=0.00753/h mu=10.000/h c=2 rho=0.00038 P_wait=2.837e-07 W_q=5.109e-05 s  [guard_response_min and guard_responders midpoints, ASSUMPTION]
+
+TORNADO: every ASSUMPTION input of P_payback at -30% / +30% of its base value, others at base
+  interior uav_offset_ring: base P_payback 0.301
+    replacement_fraction   base 0.75  P at -30 %: 0.469   P at +30 %: 0.221
+    capex_ratio            base 0.65  P at -30 %: 0.198   P at +30 %: 0.418
+    service_life_years     base 3.5  P at -30 %: 0.430   P at +30 %: 0.231
+    maintenance_fraction   base 0.125  P at -30 %: 0.289   P at +30 %: 0.313
+    other_opex_fraction    base 0.06  P at -30 %: 0.295   P at +30 %: 0.307
+    endurance_min          base 22.5  P at -30 %: 0.303   P at +30 %: 0.299
+    rounds_per_shift       base 6  P at -30 %: 0.299   P at +30 %: 0.303
+    battery_capex_share    base 0.055  P at -30 %: 0.299   P at +30 %: 0.303
+    guards_per_round       base 1.5  P at -30 %: 0.301   P at +30 %: 0.301
+  exterior uav_offset_ring: base P_payback 0.300
+    replacement_fraction   base 0.75  P at -30 %: 0.468   P at +30 %: 0.221
+    capex_ratio            base 0.65  P at -30 %: 0.198   P at +30 %: 0.417
+    service_life_years     base 3.5  P at -30 %: 0.429   P at +30 %: 0.231
+    maintenance_fraction   base 0.125  P at -30 %: 0.289   P at +30 %: 0.313
+    other_opex_fraction    base 0.06  P at -30 %: 0.295   P at +30 %: 0.306
+    endurance_min          base 22.5  P at -30 %: 0.303   P at +30 %: 0.299
+    rounds_per_shift       base 6  P at -30 %: 0.299   P at +30 %: 0.302
+    battery_capex_share    base 0.055  P at -30 %: 0.299   P at +30 %: 0.302
+    guards_per_round       base 1.5  P at -30 %: 0.300   P at +30 %: 0.300
+TORNADO (queue): % change of W_q for -30% / +30% of each queue ASSUMPTION, at the stress operating point rho = 0.4 (ASSUMPTION), c as base
+  (UAV mu from interior; guard rows use the ASSUMPTION guard mu and c):
+    guard_responders (guard)     W_q change at -30 %: +2000.0 %   at +30 %: -87.6 %
+    guard_response_min (guard)   W_q change at -30 %: -68.7 %   at +30 %: +152.9 %
+    human_confirm_s (UAV)        W_q change at -30 %: -55.7 %   at +30 %: +99.7 %
+    incident rate (UAV)          W_q change at -30 %: -55.3 %   at +30 %: +94.6 %
+    incident rate (guard)        W_q change at -30 %: -55.3 %   at +30 %: +94.6 %
+
+QUEUE STRESS CASES (G-17): lambda raised until the queue is non-trivial; every input labelled
+  lambda range is an ASSUMPTION; base incident rate 5.5/month (0.00753/h)
+  UAV interior: measured latency + verify, plus human_confirm_s 75 s (ASSUMPTION midpoint); mu = 35.057/h
+    c = 1:
+      rho 0.50  lambda 17.529/h (12796 incidents/month)  P_wait 0.500  W_q 102.7 s
+      rho 0.80  lambda 28.046/h (20473 incidents/month)  P_wait 0.800  W_q 410.8 s
+      rho 0.90  lambda 31.552/h (23033 incidents/month)  P_wait 0.900  W_q 924.2 s
+      rho 0.95  lambda 33.304/h (24312 incidents/month)  P_wait 0.950  W_q 1951.1 s
+    c = 2:
+      rho 0.50  lambda 35.057/h (25592 incidents/month)  P_wait 0.333  W_q 34.2 s
+      rho 0.80  lambda 56.092/h (40947 incidents/month)  P_wait 0.711  W_q 182.6 s
+      rho 0.90  lambda 63.103/h (46065 incidents/month)  P_wait 0.853  W_q 437.8 s
+      rho 0.95  lambda 66.609/h (48625 incidents/month)  P_wait 0.926  W_q 950.5 s
+  UAV exterior: measured latency + verify, plus human_confirm_s 75 s (ASSUMPTION midpoint); mu = 38.284/h
+    c = 1:
+      rho 0.50  lambda 19.142/h (13974 incidents/month)  P_wait 0.500  W_q 94.0 s
+      rho 0.80  lambda 30.627/h (22358 incidents/month)  P_wait 0.800  W_q 376.1 s
+      rho 0.90  lambda 34.456/h (25153 incidents/month)  P_wait 0.900  W_q 846.3 s
+      rho 0.95  lambda 36.370/h (26550 incidents/month)  P_wait 0.950  W_q 1786.6 s
+    c = 2:
+      rho 0.50  lambda 38.284/h (27948 incidents/month)  P_wait 0.333  W_q 31.3 s
+      rho 0.80  lambda 61.255/h (44716 incidents/month)  P_wait 0.711  W_q 167.2 s
+      rho 0.90  lambda 68.912/h (50306 incidents/month)  P_wait 0.853  W_q 400.9 s
+      rho 0.95  lambda 72.740/h (53100 incidents/month)  P_wait 0.926  W_q 870.4 s
+  guard: guard_response_min 6 min (ASSUMPTION midpoint); mu = 10.000/h
+    c = 1:
+      rho 0.50  lambda 5.000/h (3650 incidents/month)  P_wait 0.500  W_q 360.0 s
+      rho 0.80  lambda 8.000/h (5840 incidents/month)  P_wait 0.800  W_q 1440.0 s
+      rho 0.90  lambda 9.000/h (6570 incidents/month)  P_wait 0.900  W_q 3240.0 s
+      rho 0.95  lambda 9.500/h (6935 incidents/month)  P_wait 0.950  W_q 6840.0 s
+    c = 2:
+      rho 0.50  lambda 10.000/h (7300 incidents/month)  P_wait 0.333  W_q 120.0 s
+      rho 0.80  lambda 16.000/h (11680 incidents/month)  P_wait 0.711  W_q 640.0 s
+      rho 0.90  lambda 18.000/h (13140 incidents/month)  P_wait 0.853  W_q 1534.7 s
+      rho 0.95  lambda 19.000/h (13870 incidents/month)  P_wait 0.926  W_q 3332.3 s
+
+DATA QUALITY of the main batch (computed from the CSV; the means above include every run)
+  interior uav_sectors: runs with obstacle_contacts > 0: 0/30; UAV laps < 2: 0; min_obstacle_clearance_m min 0.438
+  interior uav_offset_ring: runs with obstacle_contacts > 0: 0/30; UAV laps < 2: 0; min_obstacle_clearance_m min 0.365
+  exterior uav_sectors: runs with obstacle_contacts > 0: 0/30; UAV laps < 2: 0; min_obstacle_clearance_m min 1.981
+  exterior uav_offset_ring: runs with obstacle_contacts > 0: 0/30; UAV laps < 2: 0; min_obstacle_clearance_m min 0.732
+  interior uav_sectors Bravo laps are excluded from the lap check (known 300 s limitation).
+
+FMEA, scene = interior  (RPN = S x O x D; O and D from measured rates, S = team judgement)
+[uav_uav_conflict] UAV-UAV conflict at sector crossing (d < 2.5 m)
+  effect: airframe contact, both vehicles lost
+  S = 9 (judgement)
+  before: O=9 (6/10, 95% CI 0.26-0.88); D=7 (3/6, 95% CI 0.12-0.88) of hazard runs [arm off]  RPN_before = 567
+  after : O=1 (0/10, 95% CI 0.00-0.31); D=1 (no hazard run) [arm on]  RPN_after  = 9
+  failure rate before vs after, Fisher exact p = 0.0108
+  mitigation [implemented (E043)]: layered altitude separation plus distance governor on top of APF (ablation off arm = APF only)
+  evidence: tests/test_e043_separation.py; analytics/ablation_trials.csv mode=separation
+[missed_intruder_twilight] Missed intruder at twilight (low light)
+  effect: no ALERT; patrol continues past the intruder
+  S = 8 (judgement)
+  before: O=10 (10/10, 95% CI 0.69-1.00); D=10 (no hazard run) [arm off]  RPN_before = 800
+  after : O=8 (4/10, 95% CI 0.12-0.74); D=1 (0/6, 95% CI 0.00-0.46) of hazard runs [arm on]  RPN_after  = 64
+  failure rate before vs after, Fisher exact p = 0.0108
+  mitigation [implemented (E051)]: twilight exposure fix in the detector path (ablation off arm = fix disabled)
+  evidence: tests/test_e051_vision.py; analytics/ablation_trials.csv mode=twilight
+[false_geofence_alarm] False geofence alarm from position noise
+  effect: spurious tier escalation, guard sent for nothing
+  S = 4 (judgement)
+  before: O=10 (10/10, 95% CI 0.69-1.00); D=10 (10/10, 95% CI 0.69-1.00) of hazard runs [arm off]  RPN_before = 400
+  after : O=6 (1/10, 95% CI 0.00-0.45); D=1 (0/1, 95% CI 0.00-0.97) of hazard runs [arm on]  RPN_after  = 24
+  failure rate before vs after, Fisher exact p = 0.000119
+  residual (mean per run, off -> on): spurious tier escalations 12.8 -> 4.0; spurious breach events 7.6 -> 0.1 (the hysteresis lowers spurious tier rises but does not remove them)
+  mitigation [implemented (E075)]: exit margin plus tier-3 dwell on evaluate_geofence_status (ablation off arm = hysteresis disabled, noisy position)
+  evidence: tests/test_e075_geofence_stats.py; analytics/ablation_trials.csv mode=geofence
+[intruder_not_detected] Intruder not detected in a patrol run (any lighting)
+  effect: breach goes unnoticed
+  S = 8 (judgement)
+  before: O=9 (19/30, 95% CI 0.44-0.80) [guard_baseline; D = 6, team judgement]  RPN_before = 432
+  after : O=9 (37/60, 95% CI 0.48-0.74) [uav_sectors + uav_offset_ring; D = 4, team judgement]  RPN_after  = 288
+  failure rate before vs after, Fisher exact p = 1
+  mitigation [implemented (E043 with E051 detector)]: UAV patrol with camera detection replaces guard rounds
+  evidence: CSV column detected (guard_baseline = before, UAV conditions = after); D = team judgement
+[unseen_obstacle] Collision with an obstacle the UAV did not sense (FR-18)
+  effect: crash into furniture, column or wall; patrol aborted
+  S = 8 (judgement)
+  before: O=1 (0/10, 95% CI 0.00-0.31); D=1 (0/1, 95% CI 0.00-0.97) of hazard runs [arm off]  RPN_before = 8
+  after : O=1 (0/10, 95% CI 0.00-0.31); D=1 (no hazard run) [arm on]  RPN_after  = 8
+  failure rate before vs after, Fisher exact p = 1
+  mitigation [implemented (E043)]: range-ring sensing of all obstacles with avoidance never disabled (FR-18; ablation off arm = avoidance disabled)
+  evidence: tests/test_e043_obstacle_perception.py; analytics/ablation_trials.csv mode=fr18
+
+FMEA, scene = exterior  (RPN = S x O x D; O and D from measured rates, S = team judgement)
+[uav_uav_conflict] UAV-UAV conflict at sector crossing (d < 2.5 m)
+  effect: airframe contact, both vehicles lost
+  S = 9 (judgement)
+  before: not measured: ablation_trials.csv has no separation runs for both arms in scene exterior  RPN_before = not measured
+  after : not measured: ablation_trials.csv has no separation runs for both arms in scene exterior  RPN_after  = not measured
+  mitigation [implemented (E043)]: layered altitude separation plus distance governor on top of APF (ablation off arm = APF only)
+  evidence: tests/test_e043_separation.py; analytics/ablation_trials.csv mode=separation
+[missed_intruder_twilight] Missed intruder at twilight (low light)
+  effect: no ALERT; patrol continues past the intruder
+  S = 8 (judgement)
+  before: not measured: ablation_trials.csv has no twilight runs for both arms in scene exterior  RPN_before = not measured
+  after : not measured: ablation_trials.csv has no twilight runs for both arms in scene exterior  RPN_after  = not measured
+  mitigation [implemented (E051)]: twilight exposure fix in the detector path (ablation off arm = fix disabled)
+  evidence: tests/test_e051_vision.py; analytics/ablation_trials.csv mode=twilight
+[false_geofence_alarm] False geofence alarm from position noise
+  effect: spurious tier escalation, guard sent for nothing
+  S = 4 (judgement)
+  before: not measured: ablation_trials.csv has no geofence runs for both arms in scene exterior  RPN_before = not measured
+  after : not measured: ablation_trials.csv has no geofence runs for both arms in scene exterior  RPN_after  = not measured
+  mitigation [implemented (E075)]: exit margin plus tier-3 dwell on evaluate_geofence_status (ablation off arm = hysteresis disabled, noisy position)
+  evidence: tests/test_e075_geofence_stats.py; analytics/ablation_trials.csv mode=geofence
+[intruder_not_detected] Intruder not detected in a patrol run (any lighting)
+  effect: breach goes unnoticed
+  S = 8 (judgement)
+  before: O=1 (0/30, 95% CI 0.00-0.12) [guard_baseline; D = 6, team judgement]  RPN_before = 48
+  after : O=1 (0/60, 95% CI 0.00-0.06) [uav_sectors + uav_offset_ring; D = 4, team judgement]  RPN_after  = 32
+  failure rate before vs after, Fisher exact p = 1
+  mitigation [implemented (E043 with E051 detector)]: UAV patrol with camera detection replaces guard rounds
+  evidence: CSV column detected (guard_baseline = before, UAV conditions = after); D = team judgement
+[unseen_obstacle] Collision with an obstacle the UAV did not sense (FR-18)
+  effect: crash into furniture, column or wall; patrol aborted
+  S = 8 (judgement)
+  before: not measured: ablation_trials.csv has no fr18 runs for both arms in scene exterior  RPN_before = not measured
+  after : not measured: ablation_trials.csv has no fr18 runs for both arms in scene exterior  RPN_after  = not measured
+  mitigation [implemented (E043)]: range-ring sensing of all obstacles with avoidance never disabled (FR-18; ablation off arm = avoidance disabled)
+  evidence: tests/test_e043_obstacle_perception.py; analytics/ablation_trials.csv mode=fr18
+
+Rate-to-score mapping (ASSUMPTION of this script, not a cited table)
+  Occurrence O from failure rate p = k/n  (O = round(10 + 4 log10 p), 1 if k = 0):
+    O =  1  p in [0, 0.0075)   (and any p with k = 0)
+    O =  2  p in [0.0075, 0.0133)
+    O =  3  p in [0.0133, 0.0237)
+    O =  4  p in [0.0237, 0.0422)
+    O =  5  p in [0.0422, 0.0750)
+    O =  6  p in [0.0750, 0.1334)
+    O =  7  p in [0.1334, 0.2371)
+    O =  8  p in [0.2371, 0.4217)
+    O =  9  p in [0.4217, 0.7499)
+    O = 10  p in [0.7499, 1.0000]
+  Detection D from escape rate p_D = k_D/n_D:  p_D = 0 -> 1, <= 0.01 -> 2, <= 0.05 -> 3, <= 0.1 -> 4, <= 0.2 -> 5, <= 0.35 -> 6, <= 0.5 -> 7, <= 0.7 -> 8, <= 0.9 -> 9, <= 1 -> 10.
+  Near miss: obstacle clearance < 0.5 m; late detection: latency > 60 s (ASSUMPTIONS).
+  95 % CI = Clopper-Pearson. Ablation arms: before = mitigation off, after = production code path.
+figure: analytics/figures/campus_security_sensitivity.png
+figure: analytics/figures/campus_security_queue.png
+figure: analytics/figures/campus_security_breakeven.png
+figure: analytics/figures/campus_security_tornado.png

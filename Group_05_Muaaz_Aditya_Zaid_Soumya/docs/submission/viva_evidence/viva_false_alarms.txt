@@ -1,0 +1,5 @@
+run ids with surveillance records: 120 of 180
+exterior  uav_offset_ring  runs=30 false_alarms total=150 mean/run=5.00 max/run=5 verify_rejects total=  8 incidents total=188
+exterior  uav_sectors      runs=30 false_alarms total=150 mean/run=5.00 max/run=5 verify_rejects total=  1 incidents total=183
+interior  uav_offset_ring  runs=30 false_alarms total= 38 mean/run=1.27 max/run=3 verify_rejects total= 15 incidents total=67
+interior  uav_sectors      runs=30 false_alarms total= 12 mean/run=0.40 max/run=2 verify_rejects total= 10 incidents total=36

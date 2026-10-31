@@ -1,0 +1,44 @@
+osm_id,name,type,levels,levels_source,height_m,footprint_m2,representation
+791070239,NMIMS Main Building,college,10,ASSUMED (tour panorama count),36.0,3606,convex hull
+79670766,Narsee Monjee College of Commerce,school,4,ASSUMED (type=school),12.8,1216,10 convex pieces
+255383281,,yes,3,ASSUMED (type=yes),9.6,328,convex hull
+255383338,,apartments,6,ASSUMED (type=apartments),19.2,228,convex hull
+255383365,,apartments,6,ASSUMED (type=apartments),19.2,241,convex hull
+255383378,,apartments,6,ASSUMED (type=apartments),19.2,404,convex hull
+255383421,,yes,3,ASSUMED (type=yes),9.6,430,convex hull
+255383430,,apartments,6,ASSUMED (type=apartments),19.2,277,convex hull
+255383450,,apartments,6,ASSUMED (type=apartments),19.2,316,convex hull
+255383486,Hira Anand,residential,8,OSM building:levels,25.6,499,convex hull
+255383530,,yes,3,ASSUMED (type=yes),9.6,355,convex hull
+255383626,,yes,3,ASSUMED (type=yes),9.6,342,convex hull
+255383669,,apartments,6,ASSUMED (type=apartments),19.2,461,convex hull
+255383677,,yes,3,ASSUMED (type=yes),9.6,476,convex hull
+255383700,,apartments,6,ASSUMED (type=apartments),19.2,370,convex hull
+255383711,,apartments,6,ASSUMED (type=apartments),19.2,340,convex hull
+255383807,,yes,3,ASSUMED (type=yes),9.6,133,convex hull
+255383850,,yes,3,ASSUMED (type=yes),9.6,328,convex hull
+255383856,,yes,3,ASSUMED (type=yes),9.6,106,convex hull
+255383909,,yes,3,ASSUMED (type=yes),9.6,297,convex hull
+255383935,,apartments,6,ASSUMED (type=apartments),19.2,326,convex hull
+255383940,,apartments,6,ASSUMED (type=apartments),19.2,236,convex hull
+255383988,,apartments,6,ASSUMED (type=apartments),19.2,186,convex hull
+255384026,,apartments,6,ASSUMED (type=apartments),19.2,232,convex hull
+255384037,,yes,3,ASSUMED (type=yes),9.6,172,convex hull
+356467330,,yes,3,ASSUMED (type=yes),9.6,321,convex hull
+357373433,,yes,3,ASSUMED (type=yes),9.6,339,convex hull
+357373438,,yes,3,ASSUMED (type=yes),9.6,384,convex hull
+357373443,,apartments,6,ASSUMED (type=apartments),19.2,710,convex hull
+360286693,,apartments,6,ASSUMED (type=apartments),19.2,271,convex hull
+360286728,,apartments,6,ASSUMED (type=apartments),19.2,254,convex hull
+360286730,,apartments,6,ASSUMED (type=apartments),19.2,203,convex hull
+360286749,,apartments,6,ASSUMED (type=apartments),19.2,338,convex hull
+774171656,,yes,3,ASSUMED (type=yes),9.6,347,convex hull
+791070233,,apartments,6,ASSUMED (type=apartments),19.2,407,convex hull
+791070235,,apartments,6,ASSUMED (type=apartments),19.2,169,convex hull
+791070236,,apartments,6,ASSUMED (type=apartments),19.2,232,convex hull
+791070237,,apartments,6,ASSUMED (type=apartments),19.2,336,convex hull
+791070238,,apartments,6,ASSUMED (type=apartments),19.2,474,convex hull
+791070240,Mithibai College of Arts and Jitendra Chauhan College of Science,college,5,ASSUMED (type=college),16.0,4859,17 convex pieces
+791070241,,yes,3,ASSUMED (type=yes),9.6,339,convex hull
+791070242,,yes,3,ASSUMED (type=yes),9.6,339,convex hull
+960135834,,apartments,6,ASSUMED (type=apartments),19.2,322,convex hull

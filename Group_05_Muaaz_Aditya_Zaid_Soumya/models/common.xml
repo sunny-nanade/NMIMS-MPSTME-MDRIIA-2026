@@ -1,0 +1,82 @@
+<mujoco>
+  <!-- Shared materials and default classes for both NMIMS scenes | E043 -->
+  <asset>
+    <!-- overcast Mumbai sky, as in the tour panorama -->
+    <material name="facade_white"  rgba="0.95 0.95 0.93 1" specular="0.1"/>
+    <material name="glazing"       rgba="0.50 0.54 0.58 1" specular="0.3" reflectance="0.08"/>
+    <material name="roof"          rgba="0.80 0.80 0.78 1"/>
+    <material name="podium"        rgba="0.25 0.27 0.30 1"/>
+    <material name="paving"        rgba="0.68 0.67 0.64 1"/>
+    <material name="wall"          rgba="0.42 0.43 0.45 1"/>
+    <material name="asphalt"       rgba="0.36 0.36 0.37 1"/>
+    <material name="checkpoint"    rgba="0.10 0.85 0.55 0.6"/>
+    <material name="restricted"    rgba="0.85 0.15 0.15 0.35"/>
+    <material name="bark"          rgba="0.33 0.25 0.18 1"/>
+    <material name="foliage"       rgba="0.24 0.42 0.20 1"/>
+    <material name="foliage_dark"  rgba="0.16 0.32 0.16 1"/>
+    <material name="context"       rgba="0.74 0.72 0.68 1"/>
+    <material name="context_college" rgba="0.80 0.78 0.72 1"/>
+    <material name="pole"          rgba="0.22 0.22 0.24 1"/>
+    <material name="auto_black"    rgba="0.10 0.10 0.10 1"/>
+    <material name="auto_yellow"   rgba="0.95 0.78 0.10 1"/>
+    <material name="tempo"         rgba="0.92 0.92 0.90 1"/>
+    <material name="tempo_cab"     rgba="0.80 0.20 0.15 1"/>
+    <material name="car_silver"    rgba="0.72 0.74 0.76 1"/>
+    <material name="uav_alpha"     rgba="0.15 0.45 0.85 1"/>
+    <material name="uav_bravo"     rgba="0.20 0.70 0.30 1"/>
+    <material name="rotor"         rgba="0.12 0.12 0.14 0.7"/>
+    <material name="intruder"      rgba="0.90 0.10 0.10 1"/>
+  
+    <!-- interior finishes (NMIMS virtual tour references) -->
+    <texture name="cafe_floor" type="2d" builtin="checker" rgb1="0.95 0.74 0.20" rgb2="0.96 0.95 0.92" width="256" height="256"/>
+    <material name="cafe_floor" texture="cafe_floor" texrepeat="18 30" reflectance="0.12"/>
+    <texture name="lobby_floor" type="2d" builtin="checker" rgb1="0.86 0.36 0.14" rgb2="0.95 0.78 0.22" mark="cross" markrgb="0.12 0.12 0.12" width="256" height="256"/>
+    <material name="lobby_floor" texture="lobby_floor" texrepeat="22 20"/>
+    <material name="stone_floor"   rgba="0.86 0.83 0.77 1" reflectance="0.18"/>
+    <material name="marble_floor"  rgba="0.90 0.88 0.84 1" reflectance="0.25"/>
+    <material name="carpet"        rgba="0.62 0.42 0.28 1"/>
+    <material name="deck_wood"     rgba="0.72 0.52 0.32 1"/>
+    <material name="grass_turf"    rgba="0.28 0.55 0.22 1"/>
+    <material name="wall_cream"    rgba="0.93 0.90 0.83 1"/>
+    <material name="wall_white"    rgba="0.96 0.96 0.95 1"/>
+    <material name="wood_panel"    rgba="0.55 0.36 0.20 1"/>
+    <material name="dark_wood"     rgba="0.32 0.20 0.12 1"/>
+    <material name="stone_clad"    rgba="0.55 0.47 0.38 1"/>
+    <material name="slab_edge"     rgba="0.80 0.80 0.78 1"/>
+    <material name="soffit"        rgba="0.97 0.97 0.96 1"/>
+    <material name="glass_rail"    rgba="0.70 0.85 0.92 0.28" specular="0.6"/>
+    <material name="skylight"      rgba="0.75 0.88 0.95 0.18" specular="0.8"/>
+    <material name="steel"         rgba="0.62 0.64 0.66 1" specular="0.7" reflectance="0.2"/>
+    <material name="planter"       rgba="0.12 0.12 0.13 1"/>
+    <material name="piano"         rgba="0.04 0.04 0.05 1" specular="0.9" reflectance="0.3"/>
+    <material name="chair_pink"    rgba="0.93 0.70 0.68 1"/>
+    <material name="table_white"   rgba="0.97 0.97 0.97 1"/>
+    <material name="leather_black" rgba="0.09 0.09 0.10 1" specular="0.5"/>
+    <material name="counter"       rgba="0.40 0.30 0.24 1"/>
+    <material name="bench_wood"    rgba="0.80 0.62 0.38 1"/>
+    <material name="screen"        rgba="0.15 0.30 0.55 1" emission="0.4"/>
+    <material name="frame_photo"   rgba="0.82 0.80 0.76 1"/>
+    <material name="ceiling_light" rgba="1 1 0.96 1" emission="1"/>
+    <material name="door_dark"     rgba="0.22 0.15 0.10 1"/>
+    <material name="restricted_soft" rgba="0.9 0.15 0.15 0.16"/>
+    <material name="escalator"     rgba="0.55 0.58 0.35 1" specular="0.6"/>
+  </asset>
+
+  <default>
+    <geom condim="3" friction="1.0 0.01 0.005"/>
+    <!-- visual-only geometry: never collides, never perturbs the dynamics -->
+    <default class="visual">
+      <geom contype="0" conaffinity="0" group="1"/>
+    </default>
+    <default class="quad">
+      <geom condim="3" solref="0.004 1"/>
+      <site type="sphere" size="0.02" group="4"/>
+      <!-- 7.5 N per rotor (scaffold value); 4 x 7.5 = 30 N vs 13.24 N weight
+           -> thrust-to-weight 2.27. gear = (fx fy fz tx ty tz) in the rotor
+           site frame: fz = 1 thrust, tz = +/-kQ rotor drag reaction torque.
+           kQ = 0.0201 m (torque/thrust ratio, Skydio X2 MJCF, MuJoCo Menagerie). -->
+      <default class="rotor_ccw"><motor ctrlrange="0 7.5" gear="0 0 1 0 0  0.0201"/></default>
+      <default class="rotor_cw"> <motor ctrlrange="0 7.5" gear="0 0 1 0 0 -0.0201"/></default>
+    </default>
+  </default>
+</mujoco>

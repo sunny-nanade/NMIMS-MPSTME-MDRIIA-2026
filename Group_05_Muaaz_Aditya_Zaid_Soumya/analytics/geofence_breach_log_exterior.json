@@ -1,0 +1,2403 @@
+{
+  "scene": "exterior",
+  "events": [
+    {
+      "timestamp_s": 7.4,
+      "scene": "exterior",
+      "position": [
+        -44.996,
+        28.5,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 14.8,
+      "scene": "exterior",
+      "position": [
+        -34.992,
+        28.5,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 18.5,
+      "scene": "exterior",
+      "position": [
+        -29.99,
+        28.5,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 31.9,
+      "scene": "exterior",
+      "position": [
+        -11.875,
+        28.5,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 35.6,
+      "scene": "exterior",
+      "position": [
+        -6.873,
+        28.5,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 43.0,
+      "scene": "exterior",
+      "position": [
+        3.131,
+        28.5,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 7.4,
+      "scene": "exterior",
+      "position": [
+        -44.996,
+        28.5,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_on"
+    },
+    {
+      "timestamp_s": 14.8,
+      "scene": "exterior",
+      "position": [
+        -34.992,
+        28.5,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_on"
+    },
+    {
+      "timestamp_s": 18.9,
+      "scene": "exterior",
+      "position": [
+        -29.449,
+        28.5,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_on"
+    },
+    {
+      "timestamp_s": 33.3,
+      "scene": "exterior",
+      "position": [
+        -9.982,
+        28.5,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_on"
+    },
+    {
+      "timestamp_s": 37.0,
+      "scene": "exterior",
+      "position": [
+        -4.98,
+        28.5,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_on"
+    },
+    {
+      "timestamp_s": 44.4,
+      "scene": "exterior",
+      "position": [
+        5.024,
+        28.5,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": false,
+      "run": "crossing/noise_off/hyst_on"
+    },
+    {
+      "timestamp_s": 6.3,
+      "scene": "exterior",
+      "position": [
+        -44.639,
+        27.985,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 6.4,
+      "scene": "exterior",
+      "position": [
+        -45.624,
+        29.618,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 6.8,
+      "scene": "exterior",
+      "position": [
+        -44.73,
+        26.495,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 7.1,
+      "scene": "exterior",
+      "position": [
+        -45.799,
+        31.82,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 7.2,
+      "scene": "exterior",
+      "position": [
+        -44.58,
+        26.17,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 7.6,
+      "scene": "exterior",
+      "position": [
+        -45.235,
+        27.169,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 7.7,
+      "scene": "exterior",
+      "position": [
+        -44.058,
+        25.184,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 7.8,
+      "scene": "exterior",
+      "position": [
+        -45.862,
+        26.211,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 8.0,
+      "scene": "exterior",
+      "position": [
+        -42.685,
+        29.916,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 8.6,
+      "scene": "exterior",
+      "position": [
+        -45.501,
+        25.859,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 8.7,
+      "scene": "exterior",
+      "position": [
+        -42.602,
+        29.583,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.1,
+      "scene": "exterior",
+      "position": [
+        -34.361,
+        27.167,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.2,
+      "scene": "exterior",
+      "position": [
+        -35.267,
+        27.523,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.7,
+      "scene": "exterior",
+      "position": [
+        -32.197,
+        25.784,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.9,
+      "scene": "exterior",
+      "position": [
+        -35.473,
+        28.195,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.2,
+      "scene": "exterior",
+      "position": [
+        -34.909,
+        29.436,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.3,
+      "scene": "exterior",
+      "position": [
+        -35.768,
+        30.876,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.4,
+      "scene": "exterior",
+      "position": [
+        -33.607,
+        26.99,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.6,
+      "scene": "exterior",
+      "position": [
+        -35.829,
+        26.868,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.7,
+      "scene": "exterior",
+      "position": [
+        -33.894,
+        27.557,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 17.5,
+      "scene": "exterior",
+      "position": [
+        -28.155,
+        28.105,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 17.6,
+      "scene": "exterior",
+      "position": [
+        -31.498,
+        27.31,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 17.8,
+      "scene": "exterior",
+      "position": [
+        -29.247,
+        28.172,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 17.9,
+      "scene": "exterior",
+      "position": [
+        -31.601,
+        27.973,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 18.3,
+      "scene": "exterior",
+      "position": [
+        -29.724,
+        28.822,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 18.7,
+      "scene": "exterior",
+      "position": [
+        -33.216,
+        28.006,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 18.8,
+      "scene": "exterior",
+      "position": [
+        -29.372,
+        28.725,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 25.1,
+      "scene": "exterior",
+      "position": [
+        -21.523,
+        24.065,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 25.2,
+      "scene": "exterior",
+      "position": [
+        -22.803,
+        29.414,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 31.3,
+      "scene": "exterior",
+      "position": [
+        -11.495,
+        26.525,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 31.5,
+      "scene": "exterior",
+      "position": [
+        -14.958,
+        28.807,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 31.6,
+      "scene": "exterior",
+      "position": [
+        -10.623,
+        25.222,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 31.7,
+      "scene": "exterior",
+      "position": [
+        -14.141,
+        29.818,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 31.9,
+      "scene": "exterior",
+      "position": [
+        -11.796,
+        28.772,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 32.2,
+      "scene": "exterior",
+      "position": [
+        -14.04,
+        29.934,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 32.4,
+      "scene": "exterior",
+      "position": [
+        -9.616,
+        26.98,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 33.1,
+      "scene": "exterior",
+      "position": [
+        -12.994,
+        29.803,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 33.2,
+      "scene": "exterior",
+      "position": [
+        -10.025,
+        28.366,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 34.0,
+      "scene": "exterior",
+      "position": [
+        -12.004,
+        28.304,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 34.1,
+      "scene": "exterior",
+      "position": [
+        -7.112,
+        27.521,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 34.4,
+      "scene": "exterior",
+      "position": [
+        -5.917,
+        29.49,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 34.5,
+      "scene": "exterior",
+      "position": [
+        -9.28,
+        26.297,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 34.6,
+      "scene": "exterior",
+      "position": [
+        -6.653,
+        28.167,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 34.7,
+      "scene": "exterior",
+      "position": [
+        -7.563,
+        27.642,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 34.8,
+      "scene": "exterior",
+      "position": [
+        -6.343,
+        27.661,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 34.9,
+      "scene": "exterior",
+      "position": [
+        -8.491,
+        29.734,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 35.2,
+      "scene": "exterior",
+      "position": [
+        -6.754,
+        29.839,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 35.3,
+      "scene": "exterior",
+      "position": [
+        -9.359,
+        28.725,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 35.6,
+      "scene": "exterior",
+      "position": [
+        -5.352,
+        29.088,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 35.7,
+      "scene": "exterior",
+      "position": [
+        -8.864,
+        27.948,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 36.0,
+      "scene": "exterior",
+      "position": [
+        -6.817,
+        28.039,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 36.8,
+      "scene": "exterior",
+      "position": [
+        -7.049,
+        29.804,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 36.9,
+      "scene": "exterior",
+      "position": [
+        -6.114,
+        30.664,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 37.4,
+      "scene": "exterior",
+      "position": [
+        -7.274,
+        29.027,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 37.5,
+      "scene": "exterior",
+      "position": [
+        -4.553,
+        29.095,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 42.4,
+      "scene": "exterior",
+      "position": [
+        3.078,
+        28.913,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 42.5,
+      "scene": "exterior",
+      "position": [
+        1.349,
+        27.202,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 42.6,
+      "scene": "exterior",
+      "position": [
+        4.053,
+        31.229,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 42.7,
+      "scene": "exterior",
+      "position": [
+        2.46,
+        29.025,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 43.1,
+      "scene": "exterior",
+      "position": [
+        3.954,
+        27.529,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 43.2,
+      "scene": "exterior",
+      "position": [
+        0.738,
+        28.498,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 43.3,
+      "scene": "exterior",
+      "position": [
+        4.817,
+        30.765,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 43.5,
+      "scene": "exterior",
+      "position": [
+        2.186,
+        29.514,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 43.6,
+      "scene": "exterior",
+      "position": [
+        3.969,
+        28.563,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 43.7,
+      "scene": "exterior",
+      "position": [
+        1.083,
+        30.807,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 43.8,
+      "scene": "exterior",
+      "position": [
+        4.985,
+        27.943,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 44.2,
+      "scene": "exterior",
+      "position": [
+        1.421,
+        27.66,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 44.3,
+      "scene": "exterior",
+      "position": [
+        5.686,
+        27.897,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 44.4,
+      "scene": "exterior",
+      "position": [
+        2.09,
+        27.954,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 44.5,
+      "scene": "exterior",
+      "position": [
+        9.027,
+        28.827,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 44.6,
+      "scene": "exterior",
+      "position": [
+        2.823,
+        29.209,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 44.7,
+      "scene": "exterior",
+      "position": [
+        5.84,
+        27.957,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 6.3,
+      "scene": "exterior",
+      "position": [
+        -44.639,
+        27.985,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 6.5,
+      "scene": "exterior",
+      "position": [
+        -48.8,
+        25.505,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 6.8,
+      "scene": "exterior",
+      "position": [
+        -44.73,
+        26.495,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 14.1,
+      "scene": "exterior",
+      "position": [
+        -34.361,
+        27.167,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 19.2,
+      "scene": "exterior",
+      "position": [
+        -27.943,
+        27.0,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 32.0,
+      "scene": "exterior",
+      "position": [
+        -8.986,
+        30.167,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 36.1,
+      "scene": "exterior",
+      "position": [
+        -4.589,
+        29.039,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 36.8,
+      "scene": "exterior",
+      "position": [
+        -7.049,
+        29.804,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 37.5,
+      "scene": "exterior",
+      "position": [
+        -4.553,
+        29.095,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 43.9,
+      "scene": "exterior",
+      "position": [
+        5.011,
+        27.36,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 44.2,
+      "scene": "exterior",
+      "position": [
+        1.421,
+        27.66,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 44.3,
+      "scene": "exterior",
+      "position": [
+        5.686,
+        27.897,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 44.4,
+      "scene": "exterior",
+      "position": [
+        2.09,
+        27.954,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 44.5,
+      "scene": "exterior",
+      "position": [
+        9.027,
+        28.827,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 44.6,
+      "scene": "exterior",
+      "position": [
+        2.823,
+        29.209,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 44.7,
+      "scene": "exterior",
+      "position": [
+        5.84,
+        27.957,
+        0.0
+      ],
+      "tier": 0,
+      "status": "STATUS_0_ROUTINE_CLEAR",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "crossing/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 0.0,
+      "scene": "exterior",
+      "position": [
+        -35.0,
+        23.0,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": false,
+      "run": "skirt/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 0.2,
+      "scene": "exterior",
+      "position": [
+        -34.729,
+        23.0,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": false,
+      "run": "skirt/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 20.6,
+      "scene": "exterior",
+      "position": [
+        -7.135,
+        23.0,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": false,
+      "run": "skirt/noise_off/hyst_off"
+    },
+    {
+      "timestamp_s": 0.0,
+      "scene": "exterior",
+      "position": [
+        -35.0,
+        23.0,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": false,
+      "run": "skirt/noise_off/hyst_on"
+    },
+    {
+      "timestamp_s": 0.2,
+      "scene": "exterior",
+      "position": [
+        -34.729,
+        23.0,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": false,
+      "run": "skirt/noise_off/hyst_on"
+    },
+    {
+      "timestamp_s": 0.0,
+      "scene": "exterior",
+      "position": [
+        -36.056,
+        21.781,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 0.1,
+      "scene": "exterior",
+      "position": [
+        -32.235,
+        22.998,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 0.2,
+      "scene": "exterior",
+      "position": [
+        -36.084,
+        23.366,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 0.6,
+      "scene": "exterior",
+      "position": [
+        -33.948,
+        22.823,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 0.8,
+      "scene": "exterior",
+      "position": [
+        -35.623,
+        21.137,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 0.9,
+      "scene": "exterior",
+      "position": [
+        -33.283,
+        22.852,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 1.1,
+      "scene": "exterior",
+      "position": [
+        -35.398,
+        22.587,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 1.2,
+      "scene": "exterior",
+      "position": [
+        -34.232,
+        22.844,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 3.4,
+      "scene": "exterior",
+      "position": [
+        -30.39,
+        18.558,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 3.5,
+      "scene": "exterior",
+      "position": [
+        -30.556,
+        22.194,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 3.8,
+      "scene": "exterior",
+      "position": [
+        -27.55,
+        25.248,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 4.0,
+      "scene": "exterior",
+      "position": [
+        -31.224,
+        24.139,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 4.2,
+      "scene": "exterior",
+      "position": [
+        -26.775,
+        24.838,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 4.3,
+      "scene": "exterior",
+      "position": [
+        -30.293,
+        27.27,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 4.6,
+      "scene": "exterior",
+      "position": [
+        -26.409,
+        25.402,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 4.7,
+      "scene": "exterior",
+      "position": [
+        -29.182,
+        20.649,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 5.0,
+      "scene": "exterior",
+      "position": [
+        -31.183,
+        19.584,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 5.1,
+      "scene": "exterior",
+      "position": [
+        -27.128,
+        20.91,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 6.1,
+      "scene": "exterior",
+      "position": [
+        -27.07,
+        25.325,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 6.2,
+      "scene": "exterior",
+      "position": [
+        -28.925,
+        23.902,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 7.1,
+      "scene": "exterior",
+      "position": [
+        -25.793,
+        26.32,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 7.2,
+      "scene": "exterior",
+      "position": [
+        -24.575,
+        20.67,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 8.3,
+      "scene": "exterior",
+      "position": [
+        -24.456,
+        24.591,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 8.4,
+      "scene": "exterior",
+      "position": [
+        -24.295,
+        21.556,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 9.0,
+      "scene": "exterior",
+      "position": [
+        -24.171,
+        25.177,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 9.1,
+      "scene": "exterior",
+      "position": [
+        -20.272,
+        22.729,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 9.2,
+      "scene": "exterior",
+      "position": [
+        -23.173,
+        25.252,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 9.3,
+      "scene": "exterior",
+      "position": [
+        -22.046,
+        21.606,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 9.7,
+      "scene": "exterior",
+      "position": [
+        -24.131,
+        25.473,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 9.8,
+      "scene": "exterior",
+      "position": [
+        -22.81,
+        22.642,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 10.1,
+      "scene": "exterior",
+      "position": [
+        -20.593,
+        25.716,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 10.2,
+      "scene": "exterior",
+      "position": [
+        -20.391,
+        23.602,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 10.3,
+      "scene": "exterior",
+      "position": [
+        -19.663,
+        24.658,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 10.4,
+      "scene": "exterior",
+      "position": [
+        -21.049,
+        20.349,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 12.2,
+      "scene": "exterior",
+      "position": [
+        -19.755,
+        26.042,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 12.4,
+      "scene": "exterior",
+      "position": [
+        -17.142,
+        23.559,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 13.9,
+      "scene": "exterior",
+      "position": [
+        -15.724,
+        25.625,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.0,
+      "scene": "exterior",
+      "position": [
+        -16.894,
+        23.266,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.5,
+      "scene": "exterior",
+      "position": [
+        -15.575,
+        24.826,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.6,
+      "scene": "exterior",
+      "position": [
+        -16.549,
+        22.931,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.8,
+      "scene": "exterior",
+      "position": [
+        -14.8,
+        27.431,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 14.9,
+      "scene": "exterior",
+      "position": [
+        -15.462,
+        22.695,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.3,
+      "scene": "exterior",
+      "position": [
+        -15.756,
+        25.376,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.4,
+      "scene": "exterior",
+      "position": [
+        -13.595,
+        21.49,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.8,
+      "scene": "exterior",
+      "position": [
+        -12.321,
+        24.94,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 15.9,
+      "scene": "exterior",
+      "position": [
+        -14.199,
+        22.809,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 16.0,
+      "scene": "exterior",
+      "position": [
+        -13.717,
+        24.683,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 16.2,
+      "scene": "exterior",
+      "position": [
+        -13.746,
+        20.663,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 17.1,
+      "scene": "exterior",
+      "position": [
+        -14.78,
+        24.896,
+        0.0
+      ],
+      "tier": 3,
+      "status": "STATUS_3_CRITICAL_GEOFENCE_BREACH",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 17.2,
+      "scene": "exterior",
+      "position": [
+        -12.859,
+        21.684,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 19.0,
+      "scene": "exterior",
+      "position": [
+        -9.324,
+        20.146,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 19.1,
+      "scene": "exterior",
+      "position": [
+        -8.55,
+        26.075,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 19.2,
+      "scene": "exterior",
+      "position": [
+        -7.928,
+        21.5,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 19.3,
+      "scene": "exterior",
+      "position": [
+        -8.701,
+        24.609,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 19.4,
+      "scene": "exterior",
+      "position": [
+        -6.417,
+        25.933,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 19.5,
+      "scene": "exterior",
+      "position": [
+        -9.44,
+        22.68,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 19.7,
+      "scene": "exterior",
+      "position": [
+        -6.187,
+        22.057,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 20.0,
+      "scene": "exterior",
+      "position": [
+        -7.381,
+        23.415,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 20.1,
+      "scene": "exterior",
+      "position": [
+        -7.869,
+        19.924,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_off"
+    },
+    {
+      "timestamp_s": 0.0,
+      "scene": "exterior",
+      "position": [
+        -36.056,
+        21.781,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 0.1,
+      "scene": "exterior",
+      "position": [
+        -32.235,
+        22.998,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 19.9,
+      "scene": "exterior",
+      "position": [
+        -4.502,
+        22.087,
+        0.0
+      ],
+      "tier": 1,
+      "status": "STATUS_1_PERIMETER_ADVISORY",
+      "event": "de-escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_on"
+    },
+    {
+      "timestamp_s": 20.0,
+      "scene": "exterior",
+      "position": [
+        -7.381,
+        23.415,
+        0.0
+      ],
+      "tier": 2,
+      "status": "STATUS_2_RESTRICTED_ZONE_WARNING",
+      "event": "escalate",
+      "noisy": true,
+      "run": "skirt/noise_on/hyst_on"
+    }
+  ],
+  "noise_sigma_m": 1.5,
+  "noise_sigma_basis": "ASSUMPTION range 0.5-3.0 m",
+  "exit_margin_m": 2.0,
+  "rate_hz": 10.0,
+  "runs": [
+    {
+      "run": "crossing/noise_off/hyst_off",
+      "seed": 0,
+      "false_alarms": 0
+    },
+    {
+      "run": "crossing/noise_off/hyst_on",
+      "seed": 0,
+      "false_alarms": 0
+    },
+    {
+      "run": "crossing/noise_on/hyst_off",
+      "seed": 0,
+      "false_alarms": 6
+    },
+    {
+      "run": "crossing/noise_on/hyst_on",
+      "seed": 0,
+      "false_alarms": 0
+    },
+    {
+      "run": "skirt/noise_off/hyst_off",
+      "seed": 0,
+      "false_alarms": 0
+    },
+    {
+      "run": "skirt/noise_off/hyst_on",
+      "seed": 0,
+      "false_alarms": 0
+    },
+    {
+      "run": "skirt/noise_on/hyst_off",
+      "seed": 0,
+      "false_alarms": 19
+    },
+    {
+      "run": "skirt/noise_on/hyst_on",
+      "seed": 0,
+      "false_alarms": 0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+scene exterior, duration 60 s, intruder appears at 25 s, vision_hz 10
+  t =    5.51 s  alpha TAKEOFF -> TRANSIT
+  t =    5.51 s  bravo TAKEOFF -> TRANSIT
+  t =   17.07 s  bravo TRANSIT -> DESCEND
+  t =   19.35 s  alpha TRANSIT -> DESCEND
+  t =   29.10 s  bravo DESCEND -> DETECT
+  t =   29.21 s  bravo DETECT -> VERIFY
+  t =   29.31 s  bravo VERIFY -> ALERT_2
+  t =   29.41 s  bravo ALERT_2 -> TRACK
+  t =   34.07 s  alpha DESCEND -> PATROL
+  t =   59.43 s  bravo TRACK -> RETURN_TO_PATROL
+incident 1: owner bravo DETECT 29.104 VERIFY 29.308 tier 2 (max 3) tracker bravo closed 59.432 (track_timeout) true_detection True
+detected 1  detection_latency_s 4.103999999999999  verify_time_s 0.20400000000000063  false_alarms 0

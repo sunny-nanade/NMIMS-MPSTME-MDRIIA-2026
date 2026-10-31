@@ -1,0 +1,533 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>MPSTME GUARDIAN — Product Requirements Document v2.0</title>
+<link rel="stylesheet" href="doc.css">
+<script src="mermaid.min.js"></script>
+</head><body>
+
+<section class="cover">
+  <div class="kicker">Product Requirements Document &nbsp;·&nbsp; v2.0 &nbsp;·&nbsp; Course format</div>
+  <h1>MPSTME GUARDIAN</h1>
+  <h2>Collaborative Dual-UAV Perimeter Surveillance of the<br>
+      NMIMS Main Building, Vile Parle (West), Mumbai<br>
+      MuJoCo · Problem-Based Learning · MDRIIA Group 05</h2>
+  <div class="rule"></div>
+  <div class="quote">“To what extent can a collaborative dual-UAV surveillance system simulated
+  in MuJoCo optimize campus perimeter patrol cycle time and OpenCV human detection latency
+  compared to static security guard patrols?”</div>
+  <dl class="meta">
+    <dt>Course</dt><dd>MDRIIA — Modern Day Robotics &amp; Its Industrial Applications (702CO0E012)</dd>
+    <dt>Programme</dt><dd>B.Tech CSBS, Semester VI, AY 2026-27 · SVKM’s NMIMS MPSTME, Mumbai</dd>
+    <dt>Repository</dt><dd><code>Group_05_Muaaz_Aditya_Zaid_Soumya/</code> — course scaffold format (the course faculty)</dd>
+    <dt>Scene</dt><dd>NMIMS Main Building, V.L. Mehta Road × Gulmohar Road — OpenStreetMap geometry, official virtual-tour appearance</dd>
+    <dt>Tech Lead</dt><dd>E043 Muaaz Mohammed Iqbal Shaikh (SAP 70362400030) — flight, fleet, integration, owner of <code>main</code></dd>
+    <dt>Members</dt><dd>E051 Aditya Rajkumar · E075 Zaid Rezaur Rahman · E077 Soumya Subhankar Ranasingh</dd>
+    <dt>Supersedes</dt><dd>PRD v1.0 (pre-scaffold prototype, invented 120 × 90 m campus)</dd>
+    <dt>Date</dt><dd>8 October 2026</dd>
+  </dl>
+</section>
+
+<div class="page">
+<h2 class="sec"><span class="n">§</span>Contents</h2>
+<nav class="toc">
+  <a href="#s1"><span class="n">1</span> Executive Summary</a>
+  <a href="#s2"><span class="n">2</span> What Changed from v1.0</a>
+  <a href="#s3"><span class="n">3</span> Simulation Scene: NMIMS Main Building</a>
+  <a href="#s4"><span class="n">4</span> Problem &amp; Baseline Status</a>
+  <a href="#s5"><span class="n">5</span> Objectives &amp; Success Metrics</a>
+  <a href="#s6"><span class="n">6</span> System Architecture</a>
+  <a href="#s7"><span class="n">7</span> Scaffold Audit — Findings &amp; Resolutions</a>
+  <a href="#s8"><span class="n">8</span> Functional Requirements</a>
+  <a href="#s9"><span class="n">9</span> Non-Functional Requirements</a>
+  <a href="#s10"><span class="n">10</span> Data Specification</a>
+  <a href="#s11"><span class="n">11</span> Experimental Design</a>
+  <a href="#s12"><span class="n">12</span> CSBS Dimensionless Economics</a>
+  <a href="#s13"><span class="n">13</span> Risks</a>
+  <a href="#s14"><span class="n">14</span> Integrity, Licensing, Privacy</a>
+  <a href="#s15"><span class="n">15</span> Milestones</a>
+  <a href="#s16"><span class="n">16</span> Open Questions</a>
+</nav>
+
+<!-- 1 -->
+<h2 class="sec" id="s1"><span class="n">1</span>Executive Summary</h2>
+<p class="lead">MPSTME GUARDIAN simulates two cooperating quadrotors patrolling the real perimeter of
+the NMIMS Main Building in Vile Parle (West), and measures — rather than asserts — how much faster
+they revisit every point on that perimeter, and how quickly they detect an intruder, than a guard on
+foot. The repository now follows the course scaffold exactly: one MJCF model, one control file with a
+TODO region per student, and an analytics folder whose benchmark CSV feeds the 4-page IEEE manuscript.</p>
+
+<div class="kpi">
+  <div><b>342 m</b><span>real patrol ring (OSM)</span></div>
+  <div><b>±0.03 m</b><span>altitude hold in gusts</span></div>
+  <div><b>41.0 s</b><span>worst revisit, offset ring</span></div>
+  <div><b>0</b><span>collisions, all runs</span></div>
+</div>
+
+<p>Everything in that row is measured in MuJoCo on the generated NMIMS scene. Three further results
+from this revision change what the team must build:</p>
+<ul>
+<li><b>The guide’s APF does not guarantee separation at cruise speed.</b> In a measured head-on pass
+at 6 m/s per aircraft, APF alone (k<sub>rep</sub> = 8.5, d<sub>safe</sub> = 2.5 m) let the centres
+reach <b>0.40 m</b> — contact. A layered scheme (altitude layers + closing-speed governor + right-hand
+sidestep, APF kept as the inner layer) holds <b>3.29 m</b> and the pair passes cleanly.</li>
+<li><b>The level-camera pinhole formula is wrong by metres in flight.</b> Measured tilt during cruise
+is 7.2° median and 28.5° at p95, which displaces the projected ground point by 2.5–3.0 m median and
+<b>11–13 m at p95</b> — wider than the 5 m geofence warning buffer.</li>
+<li><b>The scaffold’s figure generator fabricates the benchmark CSV</b> from
+<code>np.random.normal</code>. It has been rewritten to read data only and to refuse any CSV that
+lacks a provenance record. The scaffold CSV is preserved untouched as a placeholder.</li>
+</ul>
+
+<!-- 2 -->
+<h2 class="sec" id="s2"><span class="n">2</span>What Changed from v1.0</h2>
+<table class="t-tight">
+<thead><tr><th style="width:24%">Area</th><th style="width:36%">v1.0 (prototype)</th><th>v2.0 (this document)</th></tr></thead>
+<tbody>
+<tr><td>Repository format</td><td>Own layout: <code>src/patrol.py</code>, <code>run_patrol.py</code>, one file per owner</td><td>Course scaffold: <code>src/aerial_patrol_swarm.py</code> with per-student TODO regions; <code>analytics/</code>; <code>models/campus_perimeter_patrol.xml</code></td></tr>
+<tr><td>Campus</td><td>Invented 120 × 90 m arena, 380 m ring</td><td>Real NMIMS Main Building campus from OpenStreetMap; 342 m ring</td></tr>
+<tr><td>Ownership unit</td><td>Whole files</td><td>Files <i>and</i> marked regions inside the shared control file, enforced by <code>src/check_region_ownership.py</code></td></tr>
+<tr><td>Branches</td><td><code>feat/&lt;roll&gt;-&lt;slug&gt;</code></td><td>Course-assigned: <code>feat/e043-lead-uav-flight-dyna</code>, <code>feat/e051-computer-vision-open</code>, <code>feat/e075-restricted-zone-geo-</code>, <code>feat/e077-csbs-campus-security</code></td></tr>
+<tr><td>Trial count</td><td>N = 25 per configuration</td><td>N ≥ 80 (guide §4), paired by seed across conditions</td></tr>
+<tr><td>Separation</td><td>14 m vertical deconfliction</td><td>Guide APF retained, plus altitude layering, governor and sidestep — with measured evidence for why</td></tr>
+<tr><td>Rotor layout</td><td>X-config, 0.22 m arms, 1.25 kg</td><td>“+” config, l = 0.26 m, m = 1.35 kg — matching the guide</td></tr>
+<tr><td>Economics</td><td>Currency-based CapEx/OpEx</td><td>Strictly dimensionless (course rule: no currency symbols)</td></tr>
+</tbody></table>
+
+<!-- 3 -->
+<h2 class="sec break" id="s3"><span class="n">3</span>Simulation Scene: NMIMS Main Building</h2>
+<p>The simulation should be recognisably MPSTME’s own institution. The NMIMS Main Building on
+V.L. Mehta Road was chosen over the MPSTME engineering block because NMIMS publishes an official
+virtual tour of it, which gives a photographic reference for appearance; the engineering block
+(OSM way 1056855968, 11 storeys, inside the SVKM compound on Gulmohar Road) remains available as a
+second scene using the same generator.</p>
+
+<figure class="img"><img src="../../figures/exterior/control_room.png">
+<figcaption><b>Figure 1 — Generated scene, overview camera.</b> NMIMS Main Building (white, ten bands),
+boundary wall, trees on the V.L. Mehta Road and Gulmohar Road frontages, autos and tempos parked along
+the wall, traffic signals at the junction, and 42 surrounding buildings for context and occlusion.
+Green discs are the nine patrol checkpoints.</figcaption></figure>
+
+<h3>3.1 Sources and what each contributes</h3>
+<figure><pre class="mermaid">
+flowchart LR
+  OSM["OpenStreetMap extract<br/>ODbL · 121 elements<br/>footprints · boundary · roads · signals"] --> GEN
+  TOUR["NMIMS official virtual tour<br/>exterior panorama only<br/>appearance reference"] -.->|"proportions, materials,<br/>trees, parked vehicles"| GEN
+  GEN["build_nmims_scene.py<br/>ENU metres, origin<br/>19.10344 N 72.83646 E"] --> XML["nmims_main_campus.xml<br/>GENERATED · static world"]
+  GEN --> MAN["building_manifest.csv<br/>every height tagged<br/>OSM or ASSUMED"]
+  XML --> MAIN["campus_perimeter_patrol.xml<br/>airframes · cameras ·<br/>intruder · zone"]
+  MAIN --> SIM["aerial_patrol_swarm.py"]
+  classDef src fill:#fff8ec,stroke:#b45309,color:#12161d
+  classDef gen fill:#eef3ff,stroke:#1d4ed8,color:#12161d
+  class OSM,TOUR src
+  class GEN,XML,MAN,MAIN gen
+</pre>
+<figcaption><b>Figure 2 — Scene build.</b> Geometry is measured (OSM); appearance is referenced (tour).
+No tour imagery is embedded in the simulation. The tour’s 16 interior panoramas are not used — a
+perimeter UAV never sees them, and a 360° photograph carries no depth from which to recover 3-D geometry.</figcaption></figure>
+
+<h3>3.2 Measured versus assumed</h3>
+<table class="t-tight">
+<thead><tr><th style="width:30%">Element</th><th style="width:22%">Value</th><th>Source / status</th></tr></thead>
+<tbody>
+<tr><td>Main Building footprint</td><td>3,606 m²</td><td>OSM way 791070239 — <span class="pill p-done">Measured</span></td></tr>
+<tr><td>Campus boundary</td><td>6,473 m², 320 m</td><td>OSM way 1170351966 — <span class="pill p-done">Measured</span></td></tr>
+<tr><td>Roads, junction signals</td><td>115 segments, 3 signals</td><td>OSM highways — <span class="pill p-done">Measured</span></td></tr>
+<tr><td>Main Building height</td><td>10 storeys × 3.6 m = 36 m</td><td>Storeys counted from the tour panorama (top partly cropped) — <span class="pill p-must">Assumed</span></td></tr>
+<tr><td>Surrounding building heights</td><td>By OSM type</td><td>Only a few carry <code>building:levels</code> in OSM — <span class="pill p-must">Assumed</span></td></tr>
+<tr><td>Tree canopy tops</td><td>≈ 15 m</td><td>Judged from the panorama — <span class="pill p-must">Assumed</span>; drives cruise altitude</td></tr>
+<tr><td>Boundary wall</td><td>2.4 m</td><td><span class="pill p-must">Assumed</span></td></tr>
+<tr><td>Electrical substation zone</td><td>18 × 8 m, north-west yard</td><td>Location not known — <span class="pill p-must">Assumed</span>; confirm with the estates office</td></tr>
+</tbody></table>
+
+<figure class="img"><img src="../../figures/exterior/real_vs_sim_tour_viewpoint.jpg">
+<figcaption><b>Figure 3 — Validation against the real campus.</b> Left: the official NMIMS virtual-tour
+exterior panorama (© NMIMS, reproduced for academic comparison). Right: the MuJoCo
+<code>tour_viewpoint</code> camera placed at the same junction. The real image is a panorama
+projection, so the comparison is qualitative: massing, facade rhythm, frontage trees and parked
+vehicles match; exact heights do not, and are flagged as assumed.</figcaption></figure>
+
+<h3>3.3 Patrol geometry</h3>
+<ul>
+<li><b>Ring:</b> <i>Superseded on 29 Oct 2026: all patrolling is inside the college. The ring is now the boundary-wall line offset 3.0 m <b>inward</b> (9 checkpoints, 298.6 m; models/scene_source/build_nmims_scene.py, PATROL_INSET; tests/test_e043_exterior_route_inside_campus.py).</i> The v2.0 design below this line (3 m outward, 342 m) is kept only as history.</li>
+<li><b>Altitude:</b> Alpha 20 m, Bravo 24 m. The guide’s 12 m would put both aircraft inside the
+≈ 15 m tree canopy on two frontages; the 4 m layer separation is the strategic layer of §6.3.</li>
+<li><b>Launch:</b> rooftop docks on the 36 m roof, transit at 44 m (clears the lift machine room),
+then descend to the patrol layer.</li>
+</ul>
+
+<!-- 4 -->
+<h2 class="sec break" id="s4"><span class="n">4</span>Problem &amp; Baseline Status</h2>
+<p>The course guide and scaffold supply target figures. Under the zero-hallucination mandate they are
+<b>targets to be replaced by measurement</b>, never results. On the real NMIMS perimeter several of
+them will not hold, and that is expected.</p>
+<table class="t-tight">
+<thead><tr><th style="width:32%">Figure (guide / scaffold)</th><th style="width:14%">Value</th><th style="width:16%">Status</th><th>Resolution</th></tr></thead>
+<tbody>
+<tr><td>Guard perimeter cycle T<sub>guard</sub></td><td>48.72 min</td><td><span class="pill p-must">Placeholder</span></td><td>E077 — define the comparator (perimeter-only walk vs. full building round) and measure it. A 342 m perimeter walk at 1.2 m/s takes ≈ 5 min; 48 min only makes sense for a round that includes floors.</td></tr>
+<tr><td>Dual-UAV cycle T<sub>UAV</sub></td><td>7.84 min</td><td><span class="pill p-should">Superseded</span></td><td>Measured on the real ring: <b>0.69 min</b> worst-case revisit (offset ring, 3 smoke trials).</td></tr>
+<tr><td>Speedup S = T<sub>guard</sub>/T<sub>UAV</sub></td><td>6.21×</td><td><span class="pill p-must">Placeholder</span></td><td>Recompute from both measured columns.</td></tr>
+<tr><td>Labour reallocation η</td><td>0.70 (50.4 / 72 guard-h/day)</td><td><span class="pill p-must">Placeholder</span></td><td>E077 — from the actual NMIMS security roster.</td></tr>
+<tr><td>Normalised OpEx C<sub>hybrid</sub>, CapEx K</td><td>0.66, 0.31</td><td><span class="pill p-must">Placeholder</span></td><td>E077 — sourced assumptions or a parametric sensitivity band.</td></tr>
+<tr><td>Payback P</td><td>10.94 months</td><td><span class="pill p-must">Placeholder</span></td><td>Derived from the above; reported as a band.</td></tr>
+<tr><td>Blind spots, CCTV → UAV</td><td>35.8 % → 1.2 %</td><td><span class="pill p-must">Placeholder</span></td><td>E075 — computed from camera footprints with tree and building occlusion.</td></tr>
+<tr><td>Vision latency, 1000 → 5 lx</td><td>28.42 → 49.24 ms</td><td><span class="pill p-must">Placeholder</span></td><td>E051 — wall-clock timing of the real detector per illumination tier.</td></tr>
+<tr><td>IoU across illumination</td><td>≥ 0.738</td><td><span class="pill p-must">Placeholder</span></td><td>E051 — against projected ground-truth boxes.</td></tr>
+<tr><td><code>campus_patrol_benchmark.csv</code></td><td>80 rows</td><td><span class="pill p-must">Synthetic</span></td><td>Generated by <code>np.random.seed(42)</code> in the scaffold. Replaced only by <code>run_benchmark.py</code>.</td></tr>
+</tbody></table>
+
+<!-- 5 -->
+<h2 class="sec" id="s5"><span class="n">5</span>Objectives &amp; Success Metrics</h2>
+<table class="t-tight">
+<thead><tr><th style="width:7%">ID</th><th style="width:31%">Objective</th><th style="width:28%">Metric (CSV column)</th><th style="width:20%">Target</th><th>Owner</th></tr></thead>
+<tbody>
+<tr><td class="id">O1</td><td>Shorten the time any perimeter node is unobserved</td><td><code>uav_cycle_min</code> vs <code>guard_cycle_min</code></td><td>Significant, paired by seed</td><td class="owner">E043 / E077</td></tr>
+<tr><td class="id">O2</td><td>Shorten time-to-detect an intrusion</td><td><code>uav_detect_lat_s</code> vs <code>guard_detect_lat_s</code></td><td>Significant; randomised appearance</td><td class="owner">E051 / E077</td></tr>
+<tr><td class="id">O3</td><td>Show the coordination policy drives the gain</td><td>offset ring vs sectors, equal energy</td><td>CI-separated</td><td class="owner">E043</td></tr>
+<tr><td class="id">O4</td><td>Never lose separation</td><td><code>min_sep_m</code></td><td>≥ 2.5 m in every trial</td><td class="owner">E043</td></tr>
+<tr><td class="id">O5</td><td>Real-time detection across illumination</td><td>latency (ms), IoU per lux tier</td><td>&lt; 50 ms (20 FPS); IoU &gt; 0.70</td><td class="owner">E051</td></tr>
+<tr><td class="id">O6</td><td>Correct, stable zone classification</td><td>4-tier FSM accuracy, chatter count</td><td>No chatter at the boundary</td><td class="owner">E075</td></tr>
+<tr><td class="id">O7</td><td>Close perimeter blind spots</td><td><code>blind_spot_pct</code></td><td>Reported with occlusion</td><td class="owner">E075</td></tr>
+<tr><td class="id">O8</td><td>Dimensionless operational case</td><td>S, η, ΔOpEx, P</td><td>Band, from measured inputs</td><td class="owner">E077</td></tr>
+</tbody></table>
+
+<!-- 6 -->
+<h2 class="sec break" id="s6"><span class="n">6</span>System Architecture</h2>
+<h3>6.1 Components and ownership in the course layout</h3>
+<figure><pre class="mermaid">
+flowchart TB
+  subgraph MOD["models/ — E043"]
+    XML["campus_perimeter_patrol.xml<br/>airframes · nadir cameras · intruder · zone"]
+    SCN["nmims_main_campus.xml<br/>generated NMIMS world"]
+  end
+  subgraph SRC["src/aerial_patrol_swarm.py — one class, four regions"]
+    R43["E043 region<br/>cascade · mixer · APF + layered separation<br/>sectors / offset ring · mission phases"]
+    R51["E051 region<br/>detect_intruder_hsv<br/>inverse_pinhole_projection"]
+    R75["E075 region<br/>evaluate_geofence_status<br/>4-tier FSM · hysteresis · RTL triggers"]
+    LOOP["E043 integration loop<br/>step_simulation · telemetry"]
+  end
+  subgraph ANA["analytics/"]
+    RB["run_benchmark.py — E043<br/>only producer of the CSV"]
+    CSV[("campus_patrol_benchmark.csv<br/>+ provenance.json")]
+    ECO["campus_security_economics.py — E077"]
+    FIG["generate_paper_figures.py — E043<br/>read-only"]
+  end
+  PAPER["docs/RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md<br/>all authors"]
+  XML --> LOOP
+  SCN --> XML
+  LOOP --> R43
+  LOOP -->|"640×480 frame"| R51
+  R51 -->|"ground point"| R75
+  LOOP --> RB --> CSV
+  CSV --> ECO
+  CSV --> FIG
+  ECO --> PAPER
+  FIG --> PAPER
+
+  classDef m fill:#dbeafe,stroke:#1e40af,color:#12161d
+  classDef a fill:#fde7cd,stroke:#8a4408,color:#12161d
+  classDef z fill:#e9d7fe,stroke:#5925a5,color:#12161d
+  classDef s fill:#ccfbef,stroke:#04635a,color:#12161d
+  classDef d fill:#fff8ec,stroke:#b45309,color:#12161d
+  class XML,SCN,R43,LOOP,RB,FIG m
+  class R51 a
+  class R75 z
+  class ECO s
+  class CSV,PAPER d
+</pre>
+<figcaption><b>Figure 4 — Components coloured by owner.</b> Blue E043 · orange E051 · purple E075 ·
+teal E077. The shared control file is split by <code>&gt;&gt;&gt; E0xx</code> / <code>&lt;&lt;&lt; E0xx</code>
+markers; a pull request may change only lines inside its author’s region.</figcaption></figure>
+
+<h3>6.2 Flight control</h3>
+<figure><pre class="mermaid">
+flowchart TB
+  WP["Waypoint<br/>route from patrol_cp sites"] --> P["P position loop<br/>6 m/s cap"]
+  P --> SEP["Separation layers<br/>governor + right-hand sidestep"]
+  SEP --> PI["PI velocity loop<br/>+ APF force / m"]
+  PI --> INV["Flat-output inversion<br/>thrust · roll* · pitch*<br/>yaw held at 0"]
+  INV --> LIM["28° tilt cap<br/>110°/s slew"]
+  LIM --> PD["PD attitude<br/>τ = I_body(Kp·e − Kd·ω) + ω × I_body ω"]
+  PD --> MIX["“+” mixer<br/>exact inverse of the MJCF gear matrix"]
+  MIX --> ROT["4 rotor thrusts, 0–7.5 N"] --> MJ["MuJoCo 3.13<br/>implicitfast, 4 ms"]
+  MJ -->|"pos, vel"| P
+  MJ -->|"quat, ω"| PD
+  W["OU gust field → opt.wind"] --> MJ
+  classDef c fill:#eef3ff,stroke:#1d4ed8,color:#12161d
+  class P,SEP,PI,INV,LIM,PD,MIX c
+</pre>
+<figcaption><b>Figure 5 — Cascade.</b> Two details that are easy to get wrong and will be probed at the
+viva: MuJoCo reports inertia in the body’s <i>principal</i> frame (here reordered so I<sub>zz</sub>
+is listed first), so it is rotated back to body axes before use; and yaw is held at zero so the nadir
+image axes stay aligned with East/North, which the pinhole projection relies on.</figcaption></figure>
+
+<h4>Allocation for the “+” layout</h4>
+<pre>τx = l (F2 − F3)        τy = l (F1 − F0)
+τz = kQ (F0 + F1 − F2 − F3)        T = F0 + F1 + F2 + F3
+
+guide notation:  τB = [ l(T4−T2),  l(T1−T3),  cQ(T1−T2+T3−T4) ]
+                 with T1 = rotor1, T2 = rotor3, T3 = rotor0, T4 = rotor2</pre>
+
+<h3>6.3 Separation: why three layers</h3>
+<figure><pre class="mermaid">
+flowchart LR
+  S1["Strategic<br/>altitude layers<br/>Alpha 20 m · Bravo 24 m"] --> S2["Tactical<br/>closing-speed governor<br/>active inside 14 m"]
+  S2 --> S3["Deadlock breaker<br/>right-hand sidestep<br/>1.6 m/s"]
+  S3 --> S4["Last resort<br/>guide APF<br/>k = 8.5, d_safe = 2.5 m"]
+  classDef c fill:#eef3ff,stroke:#1d4ed8,color:#12161d
+  class S1,S2,S3,S4 c
+</pre>
+<figcaption><b>Figure 6 — Layered separation.</b> Evidence (<code>tests/test_e043_separation.py</code>,
+head-on at 6 m/s each, layers disabled): APF alone reaches 0.40 m — contact; with governor and
+sidestep, 3.29 m and the pair passes. Analytically, the work APF can do from d<sub>safe</sub> to d is
+(k/2)(1/d − 1/d<sub>safe</sub>)²; equating it to the 48.6 J closing energy gives d = 0.26 m.</figcaption></figure>
+
+<h3>6.4 Mission and alert states</h3>
+<figure><pre class="mermaid">
+stateDiagram-v2
+  [*] --> Takeoff : rooftop dock
+  Takeoff --> Transit : altitude ≥ 42.5 m
+  Transit --> Descend : over first waypoint
+  Descend --> Patrol : within 1 m of layer altitude
+  Patrol --> Patrol : checkpoint serviced
+  Patrol --> RTL : SoC ≤ 20 % or heartbeat lost > 1.5 s
+  RTL --> [*]
+  state Patrol {
+    [*] --> S0
+    S0 --> S1 : person detected
+    S1 --> S2 : inside 5 m buffer
+    S2 --> S3 : inside zone by 0.5 m
+    S3 --> S1 : outside by 2.0 m for 3 frames
+    S1 --> S0 : no detection
+  }
+</pre>
+<figcaption><b>Figure 7 — Flight phases (E043, built) and the guide’s 4-tier alert FSM (E075, to build).</b>
+Hysteresis thresholds and RTL triggers are taken from the guide’s viva answers. RTL is triggered by
+E075’s FSM and executed by E043’s flight layer.</figcaption></figure>
+
+<h3>6.5 Detection and alert path</h3>
+<figure><pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant L as Loop (E043)
+  participant R as Renderer
+  participant D as detect_intruder_hsv (E051)
+  participant P as projection (E051)
+  participant G as geofence FSM (E075)
+  participant T as Telemetry / CSV
+  L->>R: cam_alpha, cam_bravo at 30 Hz
+  R-->>D: 640×480 RGB frame
+  D->>D: HSV threshold, morphology, contours
+  D-->>L: (u, v, bbox) or None — wall-clock timed
+  L->>P: (u, v) + full camera pose
+  P-->>G: ground point (X, Y)
+  G->>G: tier 0–3 with hysteresis
+  G-->>T: alert packet (JSON/CSV)
+  L-->>T: detected, latency_ms, status
+</pre>
+<figcaption><b>Figure 8 — Detection path.</b> Until <code>detect_intruder_hsv</code> exists it raises
+<code>NotImplementedError</code>; the loop then records “not implemented” and reports <b>no</b>
+detections. The scaffold instead logged <code>28.5 + N(0, 2)</code> ms whenever the aircraft came
+within 12 m — synthetic data, now removed.</figcaption></figure>
+
+<h3>6.6 Evidence pipeline</h3>
+<figure><pre class="mermaid">
+flowchart LR
+  SEED["seeds + commit"] --> RB["run_benchmark.py"]
+  RB --> CSV[("benchmark CSV")]
+  RB --> PROV[("provenance.json<br/>model, scene and code hashes")]
+  CSV --> FIG["generate_paper_figures.py"]
+  PROV -->|"required"| FIG
+  CSV --> ECO["economics (E077)"]
+  FIG --> MS["manuscript"]
+  ECO --> MS
+  X["scaffold CSV<br/>np.random, no provenance"] -.->|"REFUSED<br/>exit 2"| FIG
+  classDef bad fill:#fff5f4,stroke:#b42318,color:#12161d
+  class X bad
+</pre>
+<figcaption><b>Figure 9 — No path from invented numbers to the paper.</b> The figure script exits with code
+2 on any benchmark CSV without a provenance record; <code>--allow-placeholder</code> exists only for
+layout previews and watermarks every figure “PLACEHOLDER DATA — NOT FOR SUBMISSION”.</figcaption></figure>
+
+<!-- 7 -->
+<h2 class="sec break" id="s7"><span class="n">7</span>Scaffold Audit — Findings &amp; Resolutions</h2>
+<p>The course scaffold is a starting point with deliberate student boundaries. Working through it on
+the real scene surfaced the issues below. Each was checked empirically before being recorded; the
+original scaffold is preserved untouched in <code>_scaffold_original/</code> for comparison.</p>
+<table class="t-tight">
+<thead><tr><th style="width:4%">#</th><th style="width:30%">Finding</th><th style="width:33%">Evidence</th><th>Resolution / owner</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Nadir cameras point at the sky</td><td><code>euler="3.1415 0 0"</code> flips the camera’s −z view axis to +z; rendered frame is entirely black</td><td>Rotation removed — <span class="pill p-done">Fixed</span> E043</td></tr>
+<tr><td>2</td><td>No yaw authority</td><td>All rotor gears <code>0 0 1 0 0 0</code> — no drag torque, so no yaw moment can be produced</td><td>tz = ±0.0201 per rotor pair — <span class="pill p-done">Fixed</span> E043</td></tr>
+<tr><td>3</td><td>Arm length mismatch</td><td>Guide l = 0.26 m; MJCF sites at 0.20 m</td><td>Aligned to 0.26 m — <span class="pill p-done">Fixed</span> E043</td></tr>
+<tr><td>4</td><td>Focal length mismatch</td><td>fovy 60° → f = 415.7 px; guide uses f = 450 px</td><td>fovy 56.14° → 450 px — <span class="pill p-done">Fixed</span> E043</td></tr>
+<tr><td>5</td><td>Figure script fabricates the benchmark CSV</td><td><code>np.random.normal(loc=48.72 …)</code>, overwrites on every run</td><td>Read-only + provenance gate — <span class="pill p-done">Fixed</span> E043</td></tr>
+<tr><td>6</td><td>Synthetic detection latency in the loop</td><td><code>28.5 + np.random.normal(0, 2.0)</code> when within 12 m</td><td>Removed; latency is now wall-clock measured — <span class="pill p-done">Fixed</span> E043</td></tr>
+<tr><td>7</td><td>Kinematic “flight”</td><td><code>step_simulation</code> placed drones on a circle; no physics</td><td>Full MuJoCo closed loop — <span class="pill p-done">Fixed</span> E043</td></tr>
+<tr><td>8</td><td>APF separation claim</td><td>Head-on at cruise: 0.40 m, contact</td><td>Layered separation — <span class="pill p-done">Fixed</span> E043</td></tr>
+<tr><td>9</td><td>Level-camera projection</td><td>Ground error 2.5–3.0 m median, 11–13 m p95 at measured tilt</td><td>Use full camera pose — <span class="pill p-must">Open</span> E051</td></tr>
+<tr><td>10</td><td>Geofence bounds hard-coded to the old scene</td><td><code>(13, 15, 23, 25)</code> no longer matches any zone</td><td>Use <code>self.substation_bounds</code> read from the model — <span class="pill p-must">Open</span> E075</td></tr>
+<tr><td>11</td><td>Economics constants hard-coded</td><td>48.72, 7.84, 0.66, 0.31 typed into the model</td><td>Read inputs from the benchmark CSV — <span class="pill p-must">Open</span> E077</td></tr>
+<tr><td>12</td><td>Blueprint trial count</td><td>Abstract and §V say N = 50; guide §4 requires ≥ 80</td><td>Use N ≥ 80 — <span class="pill p-must">Open</span> all</td></tr>
+<tr><td>13</td><td>Related Work text does not match the papers</td><td>e.g. [5] Mittal is an object-detection survey but is described as collision avoidance; [3] Wu is task allocation, described as mechanical damping. All six DOIs verified genuine against Crossref.</td><td>Rewrite §II from the papers themselves — <span class="pill p-must">Open</span> all</td></tr>
+<tr><td>14</td><td>Pre-written conclusions</td><td>Blueprint states p &lt; 0.001 “across all metrics” before any data exists</td><td>Write results last, from the CSV — <span class="pill p-must">Open</span> all</td></tr>
+<tr><td>15</td><td>Red intruder avatar</td><td>Makes HSV detection trivially easy; real people are not red</td><td>Report as a limitation; the scene’s red tempo cabs and signal lamps are a built-in false-positive test — E051</td></tr>
+</tbody></table>
+
+<!-- 8 -->
+<h2 class="sec break" id="s8"><span class="n">8</span>Functional Requirements</h2>
+<table class="t-tight">
+<thead><tr><th style="width:8%">ID</th><th style="width:42%">Requirement</th><th style="width:7%">Owner</th><th>Verification / status</th></tr></thead>
+<tbody>
+<tr><td class="id">FR-01</td><td>The scene shall reproduce the NMIMS Main Building campus from measured footprints, with every assumed value listed in a manifest.</td><td>E043</td><td>Generator + manifest <span class="pill p-done">Met</span></td></tr>
+<tr><td class="id">FR-02</td><td>All scaffold element names shall be preserved so <code>src/test_env.py</code> passes unmodified.</td><td>E043</td><td>test_env passes <span class="pill p-done">Met</span></td></tr>
+<tr><td class="id">FR-03</td><td>Each airframe shall be actuated only by four rotor thrusts, with yaw from rotor drag torque.</td><td>E043</td><td>Mixer is the exact inverse of the gear matrix <span class="pill p-done">Met</span></td></tr>
+<tr><td class="id">FR-04</td><td>Altitude shall be held within ±0.5 m in gusts.</td><td>E043</td><td>±0.033 m measured <span class="pill p-done">Met</span></td></tr>
+<tr><td class="id">FR-05</td><td>Inter-UAV separation shall stay ≥ 2.5 m in every trial, including head-on encounters.</td><td>E043</td><td>3.29 m head-on; ≥ 6.3 m in patrol <span class="pill p-done">Met</span></td></tr>
+<tr><td class="id">FR-06</td><td>Both the guide’s sector policy and an offset-ring policy shall be selectable.</td><td>E043</td><td><code>--policy</code> <span class="pill p-done">Met</span></td></tr>
+<tr><td class="id">FR-07</td><td>The benchmark CSV shall be produced only by seeded simulation, with provenance.</td><td>E043</td><td><code>run_benchmark.py</code> <span class="pill p-done">Met</span></td></tr>
+<tr><td class="id">FR-08</td><td>Intruder appearance time shall be randomised per seed.</td><td>E043</td><td>Uniform 40–160 s <span class="pill p-done">Met</span></td></tr>
+<tr><td class="id">FR-09</td><td>An RTL behaviour shall return the aircraft to its dock when E075 raises the trigger.</td><td>E043</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-10</td><td>The scene shall offer four illumination tiers (1000, 250, 50, 5 lx equivalents).</td><td>E043</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-11</td><td>Detection shall use only the rendered RGB frame — never simulator state.</td><td>E051</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-12</td><td>Ground projection shall use the full camera pose (tilt and yaw), not the level-camera formula.</td><td>E051</td><td>Error budget: &lt; 1 m p95 <span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-13</td><td>IoU shall be scored against ground-truth boxes projected from the intruder geometry.</td><td>E051</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-14</td><td>Latency and IoU shall be reported per illumination tier in <code>vision_illumination_benchmark.csv</code>.</td><td>E051</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-15</td><td>The geofence shall read zone geometry from the model and test true polygons by ray casting.</td><td>E075</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-16</td><td>The 4-tier FSM shall apply hysteresis (enter 0.5 m inside, clear 2.0 m outside for 3 frames).</td><td>E075</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-17</td><td>RTL shall trigger at SoC ≤ 20 % or heartbeat loss &gt; 1.5 s.</td><td>E075</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-18</td><td>Alert packets shall be serialised to JSON/CSV with tier, time, aircraft and ground point.</td><td>E075</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-19</td><td><code>blind_spot_pct</code> shall be computed from camera footprints with tree and building occlusion.</td><td>E075</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-20</td><td>The guard comparator shall be defined and measured, filling <code>guard_cycle_min</code> and <code>guard_detect_lat_s</code>.</td><td>E077</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-21</td><td>The economics model shall read its inputs from the benchmark CSV and contain no currency symbols.</td><td>E077</td><td><span class="pill p-must">Open</span></td></tr>
+<tr><td class="id">FR-22</td><td>Every pull request shall pass <code>check_region_ownership.py</code> before merge.</td><td>E043</td><td>Gate built and self-tested <span class="pill p-done">Met</span></td></tr>
+</tbody></table>
+
+<!-- 9 -->
+<h2 class="sec" id="s9"><span class="n">9</span>Non-Functional Requirements</h2>
+<table class="t-tight">
+<thead><tr><th style="width:9%">ID</th><th style="width:20%">Attribute</th><th>Requirement</th></tr></thead>
+<tbody>
+<tr><td class="id">NFR-01</td><td>Reproducibility</td><td>A seed reproduces its trial; provenance records model, scene and controller hashes.</td></tr>
+<tr><td class="id">NFR-02</td><td>Runtime</td><td>Measured: 150 s simulated in 5.8 s with vision off. The 80-trial batch must fit in one sitting even with vision on.</td></tr>
+<tr><td class="id">NFR-03</td><td>Portability</td><td><code>pip install mujoco numpy scipy matplotlib opencv-python</code>; no GPU required.</td></tr>
+<tr><td class="id">NFR-04</td><td>Attribution</td><td>Every line in the shared file belongs to exactly one roll number (region markers).</td></tr>
+<tr><td class="id">NFR-05</td><td>Honesty of stand-ins</td><td>Unimplemented parts raise <code>NotImplementedError</code> or write NaN — never a plausible default.</td></tr>
+<tr><td class="id">NFR-06</td><td>Format fidelity</td><td>The course directory tree is preserved; additions are listed in the README tree.</td></tr>
+</tbody></table>
+
+<!-- 10 -->
+<h2 class="sec" id="s10"><span class="n">10</span>Data Specification</h2>
+<h4>analytics/campus_patrol_benchmark.csv — course schema, unchanged</h4>
+<table class="t-tight">
+<thead><tr><th style="width:24%">Column</th><th style="width:10%">Owner</th><th>Definition</th></tr></thead>
+<tbody>
+<tr><td><code>trial_id</code></td><td>E043</td><td>1…N; each maps to a seed in the provenance record</td></tr>
+<tr><td><code>uav_cycle_min</code></td><td>E043</td><td>Worst-case gap between consecutive services of any checkpoint, both aircraft merged, in minutes</td></tr>
+<tr><td><code>min_sep_m</code></td><td>E043</td><td>Minimum 3-D inter-UAV distance while both are on patrol</td></tr>
+<tr><td><code>uav_detect_lat_s</code></td><td>E051</td><td>First detection time minus intruder appearance time (simulated seconds)</td></tr>
+<tr><td><code>blind_spot_pct</code></td><td>E075</td><td>Share of the perimeter wall line never inside an unoccluded camera footprint during the trial</td></tr>
+<tr><td><code>guard_cycle_min</code></td><td>E077</td><td>Guard comparator cycle for the same perimeter, under the stated definition</td></tr>
+<tr><td><code>guard_detect_lat_s</code></td><td>E077</td><td>Guard time-to-detect for the same intrusion schedule</td></tr>
+</tbody></table>
+<p>Empty cells mean “owner’s code not yet merged”. They are never filled with a constant.</p>
+<h4>Other artefacts</h4>
+<ul>
+<li><code>campus_patrol_benchmark.provenance.json</code> — UTC time, commit, policy, trials, wind range, model/scene/controller hashes, Python and MuJoCo versions, per-trial seed, wind and appearance time.</li>
+<li><code>analytics/runs/telemetry_*.csv</code> — per-run flight telemetry at 30 Hz (gitignored; regenerable from seed).</li>
+<li><code>analytics/vision_illumination_benchmark.csv</code> (E051) — <code>lux, mean_latency_ms, std_latency_ms, iou_median, iou_iqr, n_frames</code>.</li>
+</ul>
+
+<!-- 11 -->
+<h2 class="sec break" id="s11"><span class="n">11</span>Experimental Design</h2>
+<table class="t-tight">
+<thead><tr><th style="width:24%">Factor</th><th style="width:34%">Levels</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Coordination policy</td><td>sectors (guide) · offset ring</td><td>Isolates the policy effect — the paper’s contribution</td></tr>
+<tr><td>Seed</td><td>≥ 80, shared across policies</td><td>Pairs trials, so a paired t-test is legitimate (blueprint specifies paired)</td></tr>
+<tr><td>Wind</td><td>mean 0–6 m/s, OU gusts</td><td>Rejects the “calm air only” criticism</td></tr>
+<tr><td>Intrusion time</td><td>uniform 40–160 s per seed</td><td>Latency must measure the system, not one lucky geometry</td></tr>
+<tr><td>Illumination</td><td>1000 · 250 · 50 · 5 lx tiers</td><td>Guide’s latency/IoU-versus-light analysis</td></tr>
+</tbody></table>
+<p><b>Statistics:</b> paired two-tailed t-test per metric, with mean difference, 95 % CI and effect size;
+IoU reported as median and IQR; every plotted mean carries a standard-error bar and its n.</p>
+
+<!-- 12 -->
+<h2 class="sec" id="s12"><span class="n">12</span>CSBS Dimensionless Economics</h2>
+<p>The course forbids currency. The guide’s structure is kept; its inputs change from typed constants to
+measurements and sourced ratios:</p>
+<pre>S_patrol   = guard_cycle_min / uav_cycle_min                       (both from the CSV)
+eta_labor  = H_reallocated / H_total                               (NMIMS roster; E077)
+dOpEx      = 1 − C_hybrid / C_guard-only     with C_guard-only ≡ 1.00
+P_payback  = K_CapEx,normalised / dOpEx      reported across a band of C_hybrid and K</pre>
+<div class="note warn"><b>The comparator decides the headline</b>
+A guard walking the 342 m perimeter needs about 5 minutes; a guard completing a full round of a
+ten-storey building needs far longer. S<sub>patrol</sub> can be 7× or 70× depending on which is
+chosen. E077 must fix the definition first, in writing, and the paper must state it.</div>
+
+<!-- 13 -->
+<h2 class="sec" id="s13"><span class="n">13</span>Risks</h2>
+<table class="t-tight">
+<thead><tr><th style="width:7%">ID</th><th style="width:34%">Risk</th><th style="width:8%">Owner</th><th>Mitigation</th></tr></thead>
+<tbody>
+<tr><td class="id">R-01</td><td>Scaffold placeholder numbers reach the manuscript</td><td>E043</td><td>Figure gate; review checklist; §4 status table at every merge</td></tr>
+<tr><td class="id">R-02</td><td>Detector not finished in time</td><td>E051</td><td>Starts day 1 with offline frame fixtures; loop already degrades honestly</td></tr>
+<tr><td class="id">R-03</td><td>Merge conflicts in the shared control file</td><td>E043</td><td>Region markers + ownership gate; daily integration</td></tr>
+<tr><td class="id">R-04</td><td>Assumed heights or zone location are wrong</td><td>E077 / E075</td><td>Site check; one-line change in the generator, then regenerate</td></tr>
+<tr><td class="id">R-05</td><td>Geofence misfires from projection error</td><td>E051 / E075</td><td>FR-12 pose-aware projection; hysteresis</td></tr>
+<tr><td class="id">R-06</td><td>A member cannot defend their region at the viva</td><td>All</td><td>Nobody writes inside another member’s region</td></tr>
+</tbody></table>
+
+<!-- 14 -->
+<h2 class="sec" id="s14"><span class="n">14</span>Integrity, Licensing, Privacy</h2>
+<ul>
+<li><b>COPE.</b> No number reaches the paper unless <code>run_benchmark.py</code> produced it with provenance.</li>
+<li><b>OpenStreetMap.</b> Geometry is ODbL 1.0; the attribution “© OpenStreetMap contributors” must appear in the paper and the README.</li>
+<li><b>NMIMS imagery.</b> The tour panorama is NMIMS’s photograph. It is used only for the side-by-side
+validation figure, with credit; confirm with faculty before including it in the public LinkedIn video.</li>
+<li><b>Privacy.</b> Detection is person-presence only — no identity, no faces, no biometric storage.</li>
+<li><b>Deployment.</b> Simulation only. Any physical flight over Vile Parle would fall under Indian civil
+UAS rules and the airport-vicinity airspace map; nothing here is a compliance determination.</li>
+</ul>
+
+<!-- 15 -->
+<h2 class="sec break" id="s15"><span class="n">15</span>Milestones</h2>
+<figure><pre class="mermaid">
+gantt
+  title Four-week CDIO sprint (pin to the academic calendar)
+  dateFormat YYYY-MM-DD
+  axisFormat %d %b
+  section Done
+  NMIMS scene + airframe fixes          :done, d1, 2026-10-05, 4d
+  Flight stack + separation evidence    :done, d2, 2026-10-07, 2d
+  Integrity gates + ownership gate      :done, d3, 2026-10-08, 1d
+  section Conceive
+  Guard comparator + site check         :crit, c1, 2026-10-12, 3d
+  section Design
+  Detector, projection, FSM             :crit, i1, 2026-10-12, 8d
+  Illumination tiers + RTL              :i2, 2026-10-14, 4d
+  section Implement
+  Coverage + economics wiring           :i3, 2026-10-19, 4d
+  80-trial paired batch                 :crit, i4, 2026-10-23, 2d
+  section Operate
+  Statistics + figures                  :o1, 2026-10-26, 3d
+  Manuscript + LinkedIn video           :o2, 2026-10-27, 5d
+  Viva rehearsal                        :milestone, o3, 2026-11-02, 0d
+</pre>
+<figcaption><b>Figure 10 — Milestones.</b> Dates are indicative from 12 October 2026.</figcaption></figure>
+
+<!-- 16 -->
+<h2 class="sec" id="s16"><span class="n">16</span>Open Questions</h2>
+<table class="t-tight">
+<thead><tr><th style="width:7%">ID</th><th style="width:55%">Question</th><th>Owner</th></tr></thead>
+<tbody>
+<tr><td class="id">Q-01</td><td>Does the course faculty accept the NMIMS Main Building scene in place of the scaffold’s generic 60 × 60 m campus?</td><td>E043</td></tr>
+<tr><td class="id">Q-02</td><td>Are the scaffold fixes in §7 (camera orientation, yaw torque, figure script) acceptable changes to “provided” files?</td><td>E043</td></tr>
+<tr><td class="id">Q-03</td><td>Guard comparator: perimeter-only walk, or the full security round including floors?</td><td>E077</td></tr>
+<tr><td class="id">Q-04</td><td>Where is the electrical substation on the NMIMS Main campus, and how many storeys does the building have?</td><td>E075 / E077</td></tr>
+<tr><td class="id">Q-05</td><td>May the tour panorama appear in the public LinkedIn video?</td><td>E043</td></tr>
+</tbody></table>
+
+<hr><p class="small">PRD v2.0 · companion: <i>Implementation &amp; Review Plan v2.0</i>.
+Contains information from OpenStreetMap, © OpenStreetMap contributors, ODbL 1.0.</p>
+</div>
+<script src="mermaid_boot.js"></script>
+</body></html>

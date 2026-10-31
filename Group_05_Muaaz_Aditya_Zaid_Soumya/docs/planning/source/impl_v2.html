@@ -1,0 +1,460 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>MPSTME GUARDIAN — Implementation &amp; Review Plan v2.0</title>
+<link rel="stylesheet" href="doc.css">
+<script src="mermaid.min.js"></script>
+</head><body>
+
+<section class="cover">
+  <div class="kicker">Implementation &amp; Review Plan &nbsp;·&nbsp; v2.0 &nbsp;·&nbsp; Course format</div>
+  <h1>Build, Review &amp;<br>Integration Protocol</h1>
+  <h2>MPSTME GUARDIAN — NMIMS Main Building scene<br>
+      Four members · one shared control file · one integrator on <code>main</code></h2>
+  <div class="rule"></div>
+  <div class="quote">The course format puts all four members’ code in one file. That is efficient
+  to read and dangerous to edit in parallel. This plan makes it safe: every line has one owner, every
+  pull request is checked against those lines, and Muaaz is the only person who merges.</div>
+  <dl class="meta">
+    <dt>Companion to</dt><dd>Product Requirements Document v2.0</dd>
+    <dt>Repository</dt><dd><code>Group_05_Muaaz_Aditya_Zaid_Soumya/</code></dd>
+    <dt>Integrator</dt><dd>E043 Muaaz Mohammed Iqbal Shaikh — owns <code>main</code>; pulls, gates, reviews and merges every branch</dd>
+    <dt>Branches</dt><dd>As assigned in <code>docs/TEAM_ROSTER.json</code></dd>
+    <dt>Gate</dt><dd><code>src/check_region_ownership.py</code> — built and self-tested</dd>
+    <dt>Date</dt><dd>8 October 2026</dd>
+  </dl>
+</section>
+
+<div class="page">
+<h2 class="sec"><span class="n">§</span>Contents</h2>
+<nav class="toc">
+  <a href="#s1"><span class="n">1</span> Where the Project Stands</a>
+  <a href="#s2"><span class="n">2</span> Team, Branches &amp; Ownership</a>
+  <a href="#s3"><span class="n">3</span> Repository Layout</a>
+  <a href="#s4"><span class="n">4</span> Git Workflow</a>
+  <a href="#s5"><span class="n">5</span> Muaaz’s Integration Procedure</a>
+  <a href="#s6"><span class="n">6</span> Working in Parallel</a>
+  <a href="#s7"><span class="n">7</span> Backlog — E043 Muaaz</a>
+  <a href="#s8"><span class="n">8</span> Backlog — E051 Aditya</a>
+  <a href="#s9"><span class="n">9</span> Backlog — E075 Zaid</a>
+  <a href="#s10"><span class="n">10</span> Backlog — E077 Soumya</a>
+  <a href="#s11"><span class="n">11</span> Dependencies &amp; Merge Order</a>
+  <a href="#s12"><span class="n">12</span> Sprint Schedule</a>
+  <a href="#s13"><span class="n">13</span> Quality Gates</a>
+  <a href="#s14"><span class="n">14</span> Definition of Done</a>
+  <a href="#s15"><span class="n">15</span> Contingencies</a>
+  <a href="#s16"><span class="n">16</span> Viva Preparation</a>
+</nav>
+
+<!-- 1 -->
+<h2 class="sec" id="s1"><span class="n">1</span>Where the Project Stands</h2>
+<p class="lead">The scene, the airframes, the flight stack and every integrity gate are built and
+measured. What remains is each member’s own region — and those can now start in parallel on day one.</p>
+<table class="t-tight">
+<thead><tr><th style="width:36%">Item</th><th style="width:12%">Owner</th><th style="width:14%">Status</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>NMIMS Main Building scene from OSM</td><td>E043</td><td><span class="pill p-done">Done</span></td><td>342 m ring, 42 context buildings, real-vs-sim figure</td></tr>
+<tr><td>Scaffold model fixes (camera, yaw, l, f)</td><td>E043</td><td><span class="pill p-done">Done</span></td><td><code>test_env.py</code> passes</td></tr>
+<tr><td>Physics flight loop + cascade + mixer</td><td>E043</td><td><span class="pill p-done">Done</span></td><td>±0.033 m altitude, 0 collisions</td></tr>
+<tr><td>Layered separation</td><td>E043</td><td><span class="pill p-done">Done</span></td><td>head-on 3.29 m vs 0.40 m APF-only</td></tr>
+<tr><td>Benchmark runner + provenance</td><td>E043</td><td><span class="pill p-done">Done</span></td><td>smoke batch, 3 trials</td></tr>
+<tr><td>Read-only figure generator</td><td>E043</td><td><span class="pill p-done">Done</span></td><td>refuses scaffold CSV, exit 2</td></tr>
+<tr><td>Region ownership gate</td><td>E043</td><td><span class="pill p-done">Done</span></td><td>self-test: allow own region, block cross-region</td></tr>
+<tr><td>HSV detector, pose-aware projection, IoU</td><td>E051</td><td><span class="pill p-must">Open</span></td><td>stub raises <code>NotImplementedError</code></td></tr>
+<tr><td>Polygon geofence, hysteresis FSM, RTL triggers, coverage</td><td>E075</td><td><span class="pill p-must">Open</span></td><td>scaffold code still uses old-scene bounds</td></tr>
+<tr><td>Guard comparator, economics from CSV</td><td>E077</td><td><span class="pill p-must">Open</span></td><td>constants still typed in</td></tr>
+</tbody></table>
+
+<!-- 2 -->
+<h2 class="sec" id="s2"><span class="n">2</span>Team, Branches &amp; Ownership</h2>
+<table class="t-tight">
+<thead><tr><th style="width:9%">Roll</th><th style="width:13%">SAP ID</th><th style="width:21%">Member</th><th style="width:27%">Course branch</th><th>Owns</th></tr></thead>
+<tbody>
+<tr><td class="id">E043</td><td>70362400030</td><td>Muaaz M. I. Shaikh<br><span class="pill p-m">Lead · Integrator</span></td><td><code>feat/e043-lead-uav-flight-dyna</code></td><td><code>models/</code>; E043 regions + integration loop; <code>run_benchmark.py</code>; <code>generate_paper_figures.py</code>; <code>main</code></td></tr>
+<tr><td class="id">E051</td><td>70362400067</td><td>Aditya Rajkumar<br><span class="pill p-a">Vision</span></td><td><code>feat/e051-computer-vision-open</code></td><td>E051 region; <code>analytics/vision_*</code>; <code>tests/test_e051_*</code></td></tr>
+<tr><td class="id">E075</td><td>70362400003</td><td>Zaid Rezaur Rahman<br><span class="pill p-z">Geofence</span></td><td><code>feat/e075-restricted-zone-geo-</code></td><td>E075 region; <code>analytics/coverage_*</code>; <code>tests/test_e075_*</code></td></tr>
+<tr><td class="id">E077</td><td>70362400080</td><td>Soumya S. Ranasingh<br><span class="pill p-s">CSBS</span></td><td><code>feat/e077-csbs-campus-security</code></td><td><code>campus_security_economics.py</code>; <code>analytics/guard_patrol_baseline*</code>; <code>tests/test_e077_*</code></td></tr>
+</tbody></table>
+
+<h3>2.1 Regions inside the shared control file</h3>
+<pre># ======================================================================
+# >>> E051 ADITYA -- COMPUTER VISION  >>>
+# ======================================================================
+    def detect_intruder_hsv(self, rgb_frame): ...
+    def inverse_pinhole_projection(self, u_px, v_px, uav_pos, ...): ...
+# ======================================================================
+# <<< E051 ADITYA <<<
+# ======================================================================</pre>
+<p>Lines between a member’s markers are theirs. Lines outside any region — imports, the class
+constructor, <code>main()</code> — and the marker lines themselves belong to E043 as shared
+plumbing. The gate reads these markers from both the base and the branch version of the file, so a
+change that moves a marker is caught too.</p>
+
+<div class="note warn"><b>The rule that protects everyone’s viva marks</b>
+Muaaz reviews, requests changes and merges — he does not write inside anyone else’s region. If a
+member is stuck, the fix is a pairing session or a smaller scope, never a commit under the wrong name.
+The viva asks each student to modify and re-run their own code live.</div>
+
+<!-- 3 -->
+<h2 class="sec break" id="s3"><span class="n">3</span>Repository Layout</h2>
+<p>The course tree is preserved. Additions are marked <b>+</b>; nothing from the scaffold was deleted.</p>
+<pre>Group_05_Muaaz_Aditya_Zaid_Soumya/
+├── README.md                                  tree + scene section updated            [E043]
+├── RESEARCH_AND_IMPLEMENTATION_GUIDE.md       FROZEN — course-provided
+├── docs/
+│   ├── TEAM_ROSTER.json                       LinkedIn URL goes here                  [E043]
+│   ├── LITERATURE_REVIEW_AND_FOUNDATIONAL_PAPERS.md                                   [all]
+│   ├── RESEARCH_PAPER_MANUSCRIPT_BLUEPRINT.md the 4-page paper                        [all]
+│ + ├── planning/                              PRD v2.0 + this plan                    [E043]
+│   └── figures/
+│       ├── figure1..3_*.png                   regenerated from data only
+│     + └── scene/                             control_room, tour_viewpoint, real-vs-sim
+├── models/
+│   ├── campus_perimeter_patrol.xml            airframes, cameras, intruder, zone      [E043]
+│ + ├── nmims_main_campus.xml                  GENERATED — do not hand-edit
+│ + └── scene_source/                          generator, OSM extract, manifest        [E043]
+├── src/
+│   ├── test_env.py                            unchanged
+│   ├── aerial_patrol_swarm.py                 4 regions: E043 · E051 · E075 · E043-loop
+│ + └── check_region_ownership.py              the PR gate                             [E043]
+│ + tests/
+│ +   └── test_e043_separation.py              head-on regression                      [E043]
+└── analytics/
+    ├── campus_security_economics.py                                                    [E077]
+  + ├── run_benchmark.py                       only producer of the benchmark CSV      [E043]
+    ├── generate_paper_figures.py              rewritten: read-only, provenance gate    [E043]
+    ├── campus_patrol_benchmark.csv            scaffold placeholder until the first real batch
+  + └── runs/                                  per-run telemetry (gitignored)</pre>
+
+<!-- 4 -->
+<h2 class="sec" id="s4"><span class="n">4</span>Git Workflow</h2>
+<figure><pre class="mermaid">
+gitGraph
+  commit id: "course scaffold"
+  commit id: "NMIMS scene + flight" tag: "BASELINE"
+  branch feat-e051-computer-vision-open
+  checkout feat-e051-computer-vision-open
+  commit id: "HSV detector"
+  checkout main
+  branch feat-e075-restricted-zone-geo-
+  checkout feat-e075-restricted-zone-geo-
+  commit id: "polygon geofence"
+  checkout main
+  branch feat-e077-csbs-campus-security
+  checkout feat-e077-csbs-campus-security
+  commit id: "guard baseline"
+  checkout main
+  branch feat-e043-lead-uav-flight-dyna
+  checkout feat-e043-lead-uav-flight-dyna
+  commit id: "frame fixtures"
+  checkout main
+  merge feat-e043-lead-uav-flight-dyna
+  checkout feat-e051-computer-vision-open
+  commit id: "pose-aware projection"
+  checkout main
+  merge feat-e051-computer-vision-open
+  checkout feat-e075-restricted-zone-geo-
+  commit id: "hysteresis FSM"
+  checkout main
+  merge feat-e075-restricted-zone-geo-
+  checkout feat-e077-csbs-campus-security
+  commit id: "economics from CSV"
+  checkout main
+  merge feat-e077-csbs-campus-security
+  commit id: "80-trial batch" tag: "RESULTS"
+</pre>
+<figcaption><b>Figure 1 — Branch model with the course-assigned branch names.</b> (Mermaid cannot draw
+“/” in a branch label, so it is shown as “-”.) Every merge is a reviewed pull request that has passed
+the gates in §13. Branches are rebased on <code>main</code> daily so they never drift for long.</figcaption></figure>
+
+<table class="t-tight">
+<thead><tr><th style="width:26%">Rule</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Each member sets their own <code>user.name</code> / <code>user.email</code></td><td>The viva audits individual commit history.</td></tr>
+<tr><td>Merge commits, never squash</td><td>Squashing reattributes a member’s commits to whoever pressed the button.</td></tr>
+<tr><td>Commit subject <code>&lt;area&gt;: &lt;imperative&gt;</code></td><td><code>detector: reject blobs under 40 px</code> reads cleanly in <code>git log</code>.</td></tr>
+<tr><td>Commit body cites the FR</td><td>“Satisfies FR-16” links code to requirement for the reviewer.</td></tr>
+<tr><td>Nobody pushes to <code>main</code> except Muaaz</td><td>One integrator, one place where things can break.</td></tr>
+</tbody></table>
+
+<!-- 5 -->
+<h2 class="sec break" id="s5"><span class="n">5</span>Muaaz’s Integration Procedure</h2>
+<figure><pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant B as Member branches
+  participant M as Muaaz
+  participant G as Gates
+  participant R as main
+  Note over B,M: Morning standup, 15 min: merged · working on · blocked by
+  B->>M: pull request opened
+  M->>M: git fetch, check out the branch
+  M->>G: check_region_ownership --author E0xx
+  M->>G: test_env · tests/ · 60 s flight smoke
+  alt any gate fails
+    G-->>B: returned with the exact failing line
+  else all gates pass
+    M->>M: review against the §5.1 checklist
+    M->>R: merge commit
+    M->>G: evening 300 s reference flight on main
+    alt regression
+      M->>R: revert the merge immediately
+      M-->>B: reopen with the failing telemetry attached
+    else green
+      M-->>B: post the metrics delta in the group chat
+    end
+  end
+</pre>
+<figcaption><b>Figure 2 — Daily loop.</b> Revert first, debug second: a broken <code>main</code> blocks
+three people.</figcaption></figure>
+
+<h3>5.1 Review checklist (cheapest rejections first)</h3>
+<table class="t-tight">
+<thead><tr><th style="width:5%">#</th><th style="width:24%">Check</th><th>Reject if…</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Region gate</td><td><code>check_region_ownership.py</code> reports any line outside the author’s region.</td></tr>
+<tr><td>2</td><td>Frozen files</td><td>The diff touches <code>RESEARCH_AND_IMPLEMENTATION_GUIDE.md</code> or the generated <code>nmims_main_campus.xml</code> by hand.</td></tr>
+<tr><td>3</td><td>Smoke</td><td><code>test_env.py</code>, <code>tests/</code>, or a 60 s flight fails.</td></tr>
+<tr><td>4</td><td>Synthetic data</td><td>Any <code>np.random</code> appears outside the seeded gust field and intruder schedule, or a metric has a constant default.</td></tr>
+<tr><td>5</td><td>Ground truth leakage</td><td>The detector reads <code>self.data</code>, <code>qpos</code> or any simulator state.</td></tr>
+<tr><td>6</td><td>Hard-coded geometry</td><td>Zone bounds, ring points or building positions are typed in rather than read from the model.</td></tr>
+<tr><td>7</td><td>Units and sources</td><td>A constant has no name, unit or source comment.</td></tr>
+<tr><td>8</td><td>Honest stand-ins</td><td>Unfinished code returns a plausible value instead of raising or writing NaN.</td></tr>
+<tr><td>9</td><td>Test</td><td>Behaviour changed and no test would have caught the old bug.</td></tr>
+<tr><td>10</td><td>Authorship</td><td>The author cannot explain the change when asked.</td></tr>
+</tbody></table>
+
+<!-- 6 -->
+<h2 class="sec" id="s6"><span class="n">6</span>Working in Parallel</h2>
+<p>Nobody waits for anybody, because every interface already exists in a form you can code against:</p>
+<ul>
+<li><b>Aditya</b> — the loop already renders <code>cam_alpha</code>/<code>cam_bravo</code> at 640×480 and
+calls <code>detect_intruder_hsv</code>. Until M-09 lands, render frames yourself with
+<code>mujoco.Renderer</code> from the same model.</li>
+<li><b>Zaid</b> — <code>self.substation_bounds</code> is already read from the model. The FSM and polygon
+test can be developed against plain coordinates in <code>tests/test_e075_*.py</code> with no detector at all.</li>
+<li><b>Soumya</b> — the CSV schema is fixed and <code>analytics/runs/bench_smoke.csv</code> already
+has real rows. Write the economics against those columns now; it picks up new data automatically.</li>
+</ul>
+<div class="note ok"><b>The daily test</b>
+Ask each member “what are you waiting for?” If the answer names a person, the missing stub or
+fixture for that dependency is the highest-priority task on the team.</div>
+
+<!-- 7 -->
+<h2 class="sec break" id="s7"><span class="n">7</span>Backlog — E043 Muaaz <span class="pill p-m">Flight · Fleet · Integration</span></h2>
+<table class="t-tight">
+<thead><tr><th style="width:7%">ID</th><th style="width:27%">Feature</th><th style="width:7%">FR</th><th style="width:6%">Est.</th><th>Definition of done</th></tr></thead>
+<tbody>
+<tr><td class="id">M-01</td><td>NMIMS scene generator <span class="pill p-done">Done</span></td><td>01</td><td>—</td><td>OSM footprints → MJCF; manifest; real-vs-sim figure.</td></tr>
+<tr><td class="id">M-02</td><td>Scaffold model fixes <span class="pill p-done">Done</span></td><td>02–03</td><td>—</td><td>Nadir cameras, yaw torque, l = 0.26 m, f = 450 px; names preserved.</td></tr>
+<tr><td class="id">M-03</td><td>Physics loop, cascade, “+” mixer <span class="pill p-done">Done</span></td><td>03–04</td><td>—</td><td>±0.033 m altitude; principal-frame inertia handled.</td></tr>
+<tr><td class="id">M-04</td><td>Layered separation <span class="pill p-done">Done</span></td><td>05</td><td>—</td><td>Head-on regression test 3.29 m.</td></tr>
+<tr><td class="id">M-05</td><td>Sectors + offset ring <span class="pill p-done">Done</span></td><td>06</td><td>—</td><td>58.5 s vs 41.0 s worst revisit.</td></tr>
+<tr><td class="id">M-06</td><td>Benchmark runner + provenance <span class="pill p-done">Done</span></td><td>07</td><td>—</td><td>Course schema; NaN for pending columns.</td></tr>
+<tr><td class="id">M-07</td><td>Figure integrity + ownership gate <span class="pill p-done">Done</span></td><td>22</td><td>—</td><td>Placeholder refused; gate self-tested.</td></tr>
+<tr><td class="id">M-08</td><td><b>Initialise the git repo and branches</b></td><td>—</td><td>0.5 d</td><td>Baseline commit on <code>main</code>; four course branches created; members cloned and committed once each.</td></tr>
+<tr><td class="id">M-09</td><td>Frame fixtures for Aditya</td><td>11</td><td>1 d</td><td>300 nadir frames at known intruder positions, both cameras, with camera pose and projected ground-truth boxes in <code>tests/fixtures/</code>.</td></tr>
+<tr><td class="id">M-10</td><td>Illumination tiers</td><td>10</td><td>1 d</td><td>Four lighting presets (1000/250/50/5 lx equivalents) selectable per trial; rendered samples committed.</td></tr>
+<tr><td class="id">M-11</td><td>RTL execution</td><td>09</td><td>1 d</td><td>On Zaid’s trigger the aircraft climbs to transit altitude and lands on its dock; logged phase change.</td></tr>
+<tr><td class="id">M-12</td><td>Battery state-of-charge model</td><td>09</td><td>0.5 d</td><td>SoC from integrated rotor energy against a stated capacity, so the 20 % trigger has an input.</td></tr>
+<tr><td class="id">M-13</td><td>80-trial paired batch</td><td>07</td><td>1 d</td><td>Same seeds under both policies; provenance committed; runs unattended.</td></tr>
+<tr><td class="id">M-14</td><td>Paired statistics + figures</td><td>—</td><td>1 d</td><td>Paired t-tests with CI and effect size; Figures 1–3 regenerated with no watermark.</td></tr>
+<tr><td class="id">M-15</td><td>LinkedIn demo footage</td><td>—</td><td>0.5 d</td><td>60–90 s render from <code>control_room</code>, <code>chase_*</code> and <code>tour_viewpoint</code>; URL into <code>TEAM_ROSTER.json</code>.</td></tr>
+<tr><td class="id">M-16</td><td><b>Integration duty</b></td><td>all</td><td>½ d/day</td><td>Gates, reviews, merges, evening reference flight, metrics delta.</td></tr>
+</tbody></table>
+
+<!-- 8 -->
+<h2 class="sec" id="s8"><span class="n">8</span>Backlog — E051 Aditya <span class="pill p-a">Computer Vision</span></h2>
+<table class="t-tight">
+<thead><tr><th style="width:7%">ID</th><th style="width:27%">Feature</th><th style="width:7%">FR</th><th style="width:6%">Est.</th><th>Definition of done</th></tr></thead>
+<tbody>
+<tr><td class="id">A-01</td><td>HSV detector</td><td>11</td><td>2 d</td><td><code>detect_intruder_hsv</code>: HSV threshold, morphological open/close, contours, largest blob → (u, v, bbox). Uses the frame only.</td></tr>
+<tr><td class="id">A-02</td><td><b>Pose-aware projection</b></td><td>12</td><td>1.5 d</td><td>Intersect the pixel ray with the ground using the full camera pose (<code>data.cam_xpos</code>, <code>data.cam_xmat</code>). Report the error of the guide’s level-camera formula against it — measured tilt makes that error 11–13 m at p95.</td></tr>
+<tr><td class="id">A-03</td><td>IoU against ground truth</td><td>13</td><td>1 d</td><td>Project the intruder cylinder into the image for a GT box; IoU per frame; median and IQR.</td></tr>
+<tr><td class="id">A-04</td><td>Illumination benchmark</td><td>14</td><td>1 d</td><td><code>analytics/vision_illumination_benchmark.csv</code>: latency and IoU per lux tier, wall-clock timed.</td></tr>
+<tr><td class="id">A-05</td><td>False-alarm mitigation</td><td>—</td><td>1 d</td><td>The scene contains red tempo cabs and red signal lamps — a built-in false-positive test. Report the false-alarm rate before and after shape/size filtering.</td></tr>
+<tr><td class="id">A-06</td><td>Target hand-off between cameras</td><td>—</td><td>1 d</td><td>When the intruder leaves Alpha’s footprint and enters Bravo’s, one track continues.</td></tr>
+</tbody></table>
+<div class="note risk"><b>Boundary Aditya must hold</b>
+The detector must never read simulator state. If it does, detection latency becomes a property of the
+simulator instead of the vision system, and objective O2 can no longer be falsified.</div>
+
+<!-- 9 -->
+<h2 class="sec break" id="s9"><span class="n">9</span>Backlog — E075 Zaid <span class="pill p-z">Geofencing &amp; Telemetry</span></h2>
+<table class="t-tight">
+<thead><tr><th style="width:7%">ID</th><th style="width:27%">Feature</th><th style="width:7%">FR</th><th style="width:6%">Est.</th><th>Definition of done</th></tr></thead>
+<tbody>
+<tr><td class="id">Z-01</td><td><b>Use the new scene’s zone</b></td><td>15</td><td>0.5 d</td><td>Replace the scaffold’s <code>(13, 15, 23, 25)</code> with <code>self.substation_bounds</code>, which is read from the model. Until then every tier is computed against a zone that no longer exists.</td></tr>
+<tr><td class="id">Z-02</td><td>Ray-casting point-in-polygon</td><td>15</td><td>1 d</td><td>General polygons, not just rectangles; tests for inside, outside, on-edge, on-vertex and concave cases.</td></tr>
+<tr><td class="id">Z-03</td><td>Hysteresis</td><td>16</td><td>1 d</td><td>Enter 0.5 m inside; clear only 2.0 m outside for 3 consecutive frames; a walk along the border produces no chatter.</td></tr>
+<tr><td class="id">Z-04</td><td>4-tier FSM incl. 5 m buffer</td><td>16</td><td>1 d</td><td>Tier transitions logged with time and aircraft.</td></tr>
+<tr><td class="id">Z-05</td><td>RTL triggers</td><td>17</td><td>0.5 d</td><td>SoC ≤ 20 % or heartbeat loss &gt; 1.5 s raises the trigger Muaaz’s M-11 executes.</td></tr>
+<tr><td class="id">Z-06</td><td>Alert packets</td><td>18</td><td>1 d</td><td>JSON/CSV with tier, time, aircraft and ground point.</td></tr>
+<tr><td class="id">Z-07</td><td>GPS/IMU noise injection</td><td>—</td><td>1 d</td><td>Configurable noise on the position used by the geofence; tier stability reported versus noise level.</td></tr>
+<tr><td class="id">Z-08</td><td><code>blind_spot_pct</code></td><td>19</td><td>1.5 d</td><td>Sample the wall line; mark a point covered when it falls inside an unoccluded camera footprint (ray-cast against trees and buildings); fill the CSV column.</td></tr>
+</tbody></table>
+
+<!-- 10 -->
+<h2 class="sec" id="s10"><span class="n">10</span>Backlog — E077 Soumya <span class="pill p-s">CSBS Operations</span></h2>
+<table class="t-tight">
+<thead><tr><th style="width:7%">ID</th><th style="width:27%">Feature</th><th style="width:7%">FR</th><th style="width:6%">Est.</th><th>Definition of done</th></tr></thead>
+<tbody>
+<tr><td class="id">S-01</td><td><b>Define the guard comparator</b></td><td>20</td><td>1 d</td><td>Written definition — perimeter-only walk, or full security round including floors — agreed with faculty. It decides whether the speedup is roughly 7× or 70×.</td></tr>
+<tr><td class="id">S-02</td><td>Guard baseline</td><td>20</td><td>1.5 d</td><td><code>analytics/guard_patrol_baseline.py</code> fills <code>guard_cycle_min</code> and <code>guard_detect_lat_s</code> from a measured round or a stated walking model on the same 342 m ring and intrusion schedule.</td></tr>
+<tr><td class="id">S-03</td><td>Site facts</td><td>—</td><td>0.5 d</td><td>Storey count, substation location and guard roster from the NMIMS estates/security office; feeds the scene manifest.</td></tr>
+<tr><td class="id">S-04</td><td>Economics from the CSV</td><td>21</td><td>1 d</td><td><code>campus_security_economics.py</code> reads cycle times and latencies from the benchmark CSV; no typed-in results remain.</td></tr>
+<tr><td class="id">S-05</td><td>Sourced normalised costs</td><td>21</td><td>1 d</td><td>C<sub>hybrid</sub> and K<sub>CapEx</sub> argued from stated assumptions, or swept parametrically.</td></tr>
+<tr><td class="id">S-06</td><td>Payback band</td><td>21</td><td>1 d</td><td>Payback across the assumption range, with the break-even point stated.</td></tr>
+<tr><td class="id">S-07</td><td>Manuscript tables</td><td>—</td><td>1 d</td><td>Every table generated from the CSV; none typed by hand.</td></tr>
+</tbody></table>
+
+<!-- 11 -->
+<h2 class="sec break" id="s11"><span class="n">11</span>Dependencies &amp; Merge Order</h2>
+<figure><pre class="mermaid">
+flowchart TB
+  M08["M-08 git repo + branches<br/>FIRST"] --> A01["A-01 HSV detector"]
+  M08 --> Z01["Z-01 new-scene zone"]
+  M08 --> S01["S-01 guard comparator"]
+  M09["M-09 frame fixtures"] --> A01
+  A01 --> A02["A-02 pose-aware projection"] --> Z03["Z-03 hysteresis"]
+  A01 --> A03["A-03 IoU"]
+  Z01 --> Z02["Z-02 polygon test"] --> Z03 --> Z04["Z-04 4-tier FSM"]
+  M12["M-12 SoC model"] --> Z05["Z-05 RTL triggers"] --> M11["M-11 RTL execution"]
+  M10["M-10 illumination tiers"] --> A04["A-04 lux benchmark"]
+  Z04 --> Z08["Z-08 blind spots"]
+  S01 --> S02["S-02 guard baseline"]
+  A03 --> M13["M-13 80-trial batch"]
+  Z08 --> M13
+  S02 --> M13
+  M13 --> M14["M-14 statistics + figures"]
+  M13 --> S04["S-04 economics from CSV"] --> S06["S-06 payback band"]
+  M14 --> PAPER["4-page manuscript"]
+  S06 --> PAPER
+  A04 --> PAPER
+  classDef crit fill:#fff5f4,stroke:#b42318,color:#12161d,stroke-width:2px
+  classDef m fill:#dbeafe,stroke:#1e40af,color:#12161d
+  classDef a fill:#fde7cd,stroke:#8a4408,color:#12161d
+  classDef z fill:#e9d7fe,stroke:#5925a5,color:#12161d
+  classDef s fill:#ccfbef,stroke:#04635a,color:#12161d
+  class M08,S01 crit
+  class M09,M10,M11,M12,M13,M14 m
+  class A01,A02,A03,A04 a
+  class Z01,Z02,Z03,Z04,Z05,Z08 z
+  class S02,S04,S06 s
+</pre>
+<figcaption><b>Figure 3 — Dependencies.</b> Red items gate everything: without the repository no
+one can open a pull request, and without the guard comparator the headline speedup has no
+denominator.</figcaption></figure>
+<ol>
+<li><b>Fixes before features.</b> Z-01 merges before any FSM work — it removes the stale zone.</li>
+<li><b>Projection before tiers.</b> A-02 merges before Z-03, or the hysteresis is tuned against metres of projection error.</li>
+<li><b>Scene changes are serialised.</b> Only Muaaz edits <code>models/</code>; others request changes.</li>
+<li><b>Batch last.</b> M-13 runs only after A-03, Z-08 and S-02 are merged, so no column is NaN.</li>
+</ol>
+
+<!-- 12 -->
+<h2 class="sec" id="s12"><span class="n">12</span>Sprint Schedule</h2>
+<figure><pre class="mermaid">
+gantt
+  title Four-week sprint by owner (from 12 Oct 2026)
+  dateFormat YYYY-MM-DD
+  axisFormat %d %b
+  section E043 Muaaz
+  Repo + branches              :crit, m8, 2026-10-12, 1d
+  Frame fixtures               :m9, 2026-10-13, 1d
+  Illumination tiers           :m10, 2026-10-14, 1d
+  SoC + RTL execution          :m11, 2026-10-15, 2d
+  80-trial paired batch        :crit, m13, 2026-10-23, 2d
+  Statistics + figures         :m14, 2026-10-26, 2d
+  Demo footage                 :m15, 2026-10-28, 1d
+  Integration duty             :active, m16, 2026-10-12, 18d
+  section E051 Aditya
+  HSV detector                 :crit, a1, 2026-10-12, 3d
+  Pose-aware projection        :a2, 2026-10-15, 2d
+  IoU + false alarms           :a3, 2026-10-19, 2d
+  Lux benchmark + hand-off     :a4, 2026-10-21, 2d
+  section E075 Zaid
+  New-scene zone + polygon     :z1, 2026-10-12, 2d
+  Hysteresis + 4-tier FSM      :z2, 2026-10-14, 3d
+  RTL triggers + packets       :z3, 2026-10-19, 2d
+  Noise + blind spots          :z4, 2026-10-21, 2d
+  section E077 Soumya
+  Guard comparator             :crit, s1, 2026-10-12, 1d
+  Site facts                   :s3, 2026-10-13, 1d
+  Guard baseline               :s2, 2026-10-14, 2d
+  Economics from CSV           :s4, 2026-10-19, 2d
+  Costs + payback band         :s5, 2026-10-26, 2d
+  Tables                       :s7, 2026-10-28, 1d
+  section Gates
+  All regions merged           :milestone, g1, 2026-10-22, 0d
+  Results frozen               :milestone, g2, 2026-10-28, 0d
+  Viva rehearsal               :milestone, g3, 2026-11-02, 0d
+</pre>
+<figcaption><b>Figure 4 — Schedule.</b> Every member has productive work on day one. Pin the dates to
+the academic calendar.</figcaption></figure>
+
+<!-- 13 -->
+<h2 class="sec break" id="s13"><span class="n">13</span>Quality Gates</h2>
+<pre># before every merge, run by Muaaz on the PR branch
+python src/check_region_ownership.py --author E0xx      # line-level ownership
+python src/test_env.py                                  # course toolchain check
+python tests/test_e043_separation.py                    # head-on separation >= 2.5 m
+python -m pytest tests -q                               # everyone's tests
+python src/aerial_patrol_swarm.py --duration 60 --tag ci --no-vision
+python analytics/generate_paper_figures.py              # must refuse placeholder data (exit 2)</pre>
+<table class="t-tight">
+<thead><tr><th style="width:24%">Gate</th><th style="width:14%">When</th><th>Passes if</th></tr></thead>
+<tbody>
+<tr><td>Pre-merge</td><td>Every PR</td><td>All commands above succeed (the last one by refusing).</td></tr>
+<tr><td>Evening reference flight</td><td>Daily on <code>main</code></td><td>300 s, zero collisions, altitude error under 0.1 m, separation ≥ 2.5 m.</td></tr>
+<tr><td>Regions merged</td><td>22 Oct</td><td>No <code>NotImplementedError</code> remains; no CSV column is NaN in a smoke batch.</td></tr>
+<tr><td>Evidence audit</td><td>28 Oct</td><td>Fresh clone → <code>run_benchmark.py</code> → figures and tables regenerate identically.</td></tr>
+</tbody></table>
+
+<!-- 14 -->
+<h2 class="sec" id="s14"><span class="n">14</span>Definition of Done</h2>
+<ol>
+<li>The FR’s verification passes and its status in PRD §8 is updated in the same PR.</li>
+<li>Every changed line lies in the author’s region or owned files (gate passes).</li>
+<li>A test fails if the feature regresses.</li>
+<li>Any number it produces lands in a CSV via <code>run_benchmark.py</code>.</li>
+<li>Constants are named, carry units and cite a source.</li>
+<li>The author can explain every line, unprepared, in two minutes.</li>
+<li>Merged to <code>main</code>, and the evening reference flight is green afterwards.</li>
+</ol>
+
+<!-- 15 -->
+<h2 class="sec" id="s15"><span class="n">15</span>Contingencies</h2>
+<table class="t-tight">
+<thead><tr><th style="width:30%">If…</th><th style="width:11%">Decide by</th><th>Then</th></tr></thead>
+<tbody>
+<tr><td>The detector isn’t working by 19 Oct</td><td>19 Oct</td><td>Publish patrol-cycle and separation results (O1, O3, O4) — they stand alone — and report detection as in-progress. Never substitute geometric visibility for detection.</td></tr>
+<tr><td>Site facts (storeys, substation) unobtainable</td><td>16 Oct</td><td>Keep the assumed values, state them in the methods section, and run a sensitivity check on building height.</td></tr>
+<tr><td>Faculty rejects the NMIMS scene</td><td>On reply</td><td>The generator can emit the scaffold’s 60 × 60 m campus; the flight stack is scene-agnostic because it reads checkpoints and zones from the model.</td></tr>
+<tr><td>Batch does not fit the calendar</td><td>21 Oct</td><td>Cut illumination tiers to two before cutting seeds — seeds are what produce confidence intervals.</td></tr>
+<tr><td>A member becomes unavailable</td><td>Immediately</td><td>Cut their scope to the Must items and say so in the paper. Their region is not completed under another name.</td></tr>
+<tr><td>Offset ring does not beat sectors significantly</td><td>27 Oct</td><td>Report it. A well-instrumented null result is publishable; a massaged one is a course failure.</td></tr>
+</tbody></table>
+
+<!-- 16 -->
+<h2 class="sec break" id="s16"><span class="n">16</span>Viva Preparation</h2>
+<p>The guide supplies model answers. Two of Muaaz’s are contradicted by measurement, and saying so
+with evidence is a stronger answer than repeating them.</p>
+<table class="t-tight">
+<thead><tr><th style="width:12%">Member</th><th style="width:36%">Likely question</th><th>Answer grounded in this repository</th></tr></thead>
+<tbody>
+<tr><td class="owner">E043</td><td>Does your APF guarantee d ≥ 2.5 m at the sector hand-off?</td><td>Not on its own. Measured head-on at 6 m/s each: 0.40 m — contact. The closing energy is 48.6 J; the field can only absorb it by d = 0.26 m, and rotor thrust saturates long before the force “diverges”. Separation therefore comes from altitude layers, a closing-speed governor and a right-hand sidestep, with APF as the inner layer — 3.29 m in the same test.</td></tr>
+<tr><td class="owner">E043</td><td>How does yaw control work with four upward thrusts?</td><td>Through rotor drag torque: opposite pairs spin opposite ways, encoded as ±k<sub>Q</sub> in each rotor’s gear vector. The scaffold had k<sub>Q</sub> = 0, which gives no yaw authority at all.</td></tr>
+<tr><td class="owner">E043</td><td>Why read inertia carefully?</td><td>MuJoCo reports it in the principal frame, reordered here so I<sub>zz</sub> comes first; using it raw would control roll with the yaw inertia.</td></tr>
+<tr><td class="owner">E051</td><td>Derive the inverse pinhole projection — when is it valid?</td><td>Only for a level, North-aligned camera. In flight the tilt is 7° median and 28° at p95, giving 11–13 m error at p95; the ray must be intersected with the ground using the full camera pose.</td></tr>
+<tr><td class="owner">E051</td><td>Would HSV work on a real person?</td><td>No — the avatar is red by design. The scene’s red tempo cabs and signal lamps measure how quickly colour-only detection produces false alarms.</td></tr>
+<tr><td class="owner">E075</td><td>How does hysteresis prevent chatter?</td><td>Enter at 0.5 m inside, clear only 2.0 m outside for 3 frames; demonstrated by a test walk along the border.</td></tr>
+<tr><td class="owner">E075</td><td>How is blind-spot percentage computed?</td><td>Wall-line samples ray-cast from each camera with tree and building occlusion — not a typed-in figure.</td></tr>
+<tr><td class="owner">E077</td><td>Is a 6.21× speedup real?</td><td>It was a placeholder. The measured value depends on the comparator definition, which is stated in the paper.</td></tr>
+<tr><td class="owner">E077</td><td>How is payback computed without currency?</td><td>Normalised to the guard-only budget ≡ 1.00, inputs from the CSV, reported as a band with the break-even point.</td></tr>
+</tbody></table>
+<p><b>Rehearsal (2 Nov):</b> each member is questioned for ten minutes by the other three, live-editing
+their own region and re-running it. Muaaz goes last and is questioned on the whole system.</p>
+
+<hr><p class="small">Implementation &amp; Review Plan v2.0 · companion: <i>PRD v2.0</i>.</p>
+</div>
+<script src="mermaid_boot.js"></script>
+</body></html>

@@ -1,0 +1,61 @@
+<mujoco model="campus_perimeter_patrol_exterior">
+  <!-- ======================================================================
+       MDRIIA Group 05 | Collaborative Dual-UAV Campus Perimeter Patrol
+       EXTERIOR variant: perimeter patrol around the NMIMS Main Building
+              campus (V.L. Mehta Rd x Gulmohar Rd) -- see nmims_main_campus.xml.
+       The default scene (campus_perimeter_patrol.xml) is the INTERIOR.
+       Owner: E043 Muaaz Mohammed Iqbal Shaikh (airframes, scene integration)
+
+       Element names from the course scaffold are preserved so test_env.py
+       and the scaffold API keep working: uav_alpha / uav_bravo, *_root,
+       cam_alpha / cam_bravo, alpha_rotor0..3, alpha_m0..3, alpha_accel,
+       alpha_gyro, human_intruder, intruder_root, substation_zone.
+
+       Changes vs. the scaffold model, each needed for correct physics:
+         1. Rotor gear vectors now include the drag-torque term (tz = +/-kQ).
+            The scaffold used "0 0 1 0 0 0" on all four rotors, which gives
+            the airframe ZERO yaw authority -- it cannot hold or change heading.
+         2. Cameras no longer carry euler="3.1415 0 0". MuJoCo cameras look
+            along their local -z, so that rotation pointed the "downward"
+            cameras at the sky. Identity orientation = true nadir view.
+         3. fovy 56.14 deg so that f = 240 / tan(fovy/2) = 450 px, matching
+            the guide's pinhole model (scaffold's 60 deg gives f = 415.7 px).
+         4. Arm length l = 0.26 m to match the guide (scaffold sites were 0.20).
+         5. Air density/viscosity set so model.opt.wind produces real drag.
+       ====================================================================== -->
+
+  <compiler angle="radian" autolimits="true"/>
+  <option gravity="0 0 -9.81" timestep="0.002" integrator="implicitfast"
+          density="1.204" viscosity="1.8e-5" wind="0 0 0"/>
+
+  <statistic center="0 -15 18" extent="150" meansize="0.5"/>
+
+  <visual>
+    <headlight diffuse="0.55 0.55 0.55" ambient="0.42 0.42 0.44" specular="0 0 0"/>
+    <rgba haze="0.78 0.80 0.82 1"/>
+    <global azimuth="215" elevation="-24" offwidth="1600" offheight="900"/>
+    <!-- znear/zfar are FRACTIONS of model extent (150 m): 0.0004 -> 6 cm near clip.
+         0.05 here clipped everything within 7.5 m of every camera, drones included. -->
+    <map znear="0.0004" zfar="4" haze="0.3"/>
+    <quality shadowsize="4096"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.86 0.88 0.90" rgb2="0.62 0.67 0.72" width="512" height="3072"/>
+    <texture name="groundtex" type="2d" builtin="checker" mark="edge" rgb1="0.52 0.52 0.50"
+             rgb2="0.55 0.55 0.53" markrgb="0.60 0.60 0.58" width="512" height="512"/>
+    <material name="ground" texture="groundtex" texrepeat="60 60" reflectance="0.02"/>
+  </asset>
+
+  <include file="common.xml"/>
+  <include file="nmims_main_campus.xml"/>
+  <include file="uav_fleet.xml"/>
+
+  <worldbody>
+    <geom name="ground" type="plane" size="260 260 0.1" material="ground"/>
+    <light name="sun" directional="true" pos="-60 -80 120" dir="0.35 0.45 -1"
+           diffuse="0.55 0.55 0.53" specular="0.05 0.05 0.05" castshadow="true"/>
+    <camera name="control_room" pos="95 -165 85" xyaxes="0.87 0.49 0 -0.27 0.48 0.83"/>
+    <camera name="tour_viewpoint" pos="40 -88 1.6" xyaxes="0.78 0.62 0 -0.17 0.22 0.96" fovy="88"/>
+  </worldbody>
+</mujoco>

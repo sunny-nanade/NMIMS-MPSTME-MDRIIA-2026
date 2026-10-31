@@ -1,0 +1,2 @@
+APF only (guide parameters): min centre distance  0.43 m  -> CONTACT
+APF + governor + sidestep  : min centre distance  7.12 m  -> clear; pair passed each other: True
