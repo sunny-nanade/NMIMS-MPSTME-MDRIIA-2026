@@ -7,9 +7,9 @@ def fresnel_reflectance(theta_rad: np.ndarray, n: float = 1.5) -> np.ndarray:
     si = np.sqrt(np.clip(1.0 - ci ** 2, 0.0, 1.0))
     st = si / n
     ct = np.sqrt(np.clip(1.0 - st ** 2, 0.0, 1.0))
-    rs = ((ci - n * ct) / (ci + n * ct)) ** 2
-    rp_ = ((n * ci - ct) / (n * ci + ct)) ** 2
-    return 0.5 * (rs + rp_)
+    r_s = ((ci - n * ct) / (ci + n * ct)) ** 2
+    r_p = ((n * ci - ct) / (n * ci + ct)) ** 2
+    return 0.5 * (r_s + r_p)
 
 
 def emissivity(theta_rad: np.ndarray, n: float = 1.5) -> np.ndarray:
