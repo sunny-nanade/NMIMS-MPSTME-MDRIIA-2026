@@ -1,0 +1,28 @@
+# Section 4 (held-out seeds 3000-3029)
+Runs: 30 per condition; deferred (proposed): 3; seeds recorded in the CSV `seed` column
+Randomised: weather preset, start time U(10,14) h, defect count/kind/cell/severity, confounders, wheel-calibration and gyro-bias draws, noise
+Logging: 500 Hz (one row per 0.002 s physics step); full CSV written for demo runs (results/telemetry)
+                                         label  n  mean_base  sd_base  mean_prop  sd_prop    diff    ci_lo    ci_hi  p_welch       d
+              Recall (defects found / present) 27     0.5816   0.2498     0.9728   0.0983  0.3913   0.2863   0.4963   0.0000  2.0612
+            Precision (true flags / all flags) 27     0.2589   0.1127     0.9947   0.0275  0.7358   0.6902   0.7815   0.0000  8.9724
+            False alarms per mission (modules) 27     9.6667   2.8956     0.0370   0.1925 -9.6296 -10.7771  -8.4821   0.0000 -4.6927
+          Missed defective modules per mission 27     2.4074   1.3939     0.1481   0.5338 -2.2593  -2.8434  -1.6751   0.0000 -2.1406
+Mean localisation error of true detections [m] 26     0.2239   0.1611     0.1313   0.0585 -0.0926  -0.1611  -0.0240   0.0097 -0.7637
+                          Defect-type accuracy 26     0.6564   0.2846     0.9945   0.0280  0.3381   0.2227   0.4535   0.0000  1.6719
+                        Lane tracking RMSE [m] 27     0.1305   0.0341     0.0071   0.0030 -0.1234  -0.1369  -0.1099   0.0000 -5.1055
+                   Pose estimate RMS error [m] 27     0.2494   0.0717     0.0598   0.0142 -0.1895  -0.2183  -0.1607   0.0000 -3.6696
+     Control effort  int tau^2 dt  [N^2 m^2 s] 27   889.2117   6.1608   887.0684   7.7163 -2.1433  -5.9609   1.6743   0.2648 -0.3070
+                              Mission time [s] 27   237.5183   0.5879   315.8453 154.8201 78.3270  17.0818 139.5721   0.0142  0.7155
+                 Inspection time per MW [h/MW] 27     4.1236   0.0102     5.4834   2.6878  1.3598   0.2966   2.4231   0.0142  0.7155
+
+# Section 3
+{'n_modules': 125000.0, 'c_base_u_per_yr': 1000.0, 'robot_hours_per_yr': 548.342, 'capex_u': 3000.0, 'flagged_per_survey': 1350.853, 'c_robot_u_per_yr': 463.303, 'labour_supervision': 82.251, 'labour_verify': 81.051, 'maintenance': 300.0, 'delta_opex_u_per_yr': 536.697, 'NCRI': 0.537, 'kappa': 0.463, 'T_payback_months': 67.077, 'P_payback': 0.699, 'H_reclaimed_h_per_MW': 8.367, 'reallocation_fraction': 0.837}
+{'lam_per_day': 6.663, 'mu_per_tech_per_day': 8.0, 'rho_mm1': 0.833, 'rho_mmc': 0.416, 'Wq_mm1_days': 0.623, 'Wq_mmc_days': 0.026}
+break-even manual h/MW (P=1): 8.38
+                                                                                       failure_mode  S  O_pre  D_pre  RPN_pre  O_post  D_post  RPN_post
+Missed / mislocated hotspot, false alarm: sun glint or poor sensor angle corrupts the thermal image  8     10      8      640       4       4       128
+                                         AMR drifts into inter-row gap or kerb (localisation drift)  9     10      7      630       4       3       108
+                     Wrong module identified / geotag on the wrong module (dock or odometry offset)  7     10      8      560       7       4       196
+                               Thermal assessment made below the valid irradiance (low sun / cloud)  6     10      7      420       4       2        48
+                                                    Thermal sensor noise, spikes or frame drop-outs  6     10      7      420      10       3       180
+                                             External shadow (confounder) triggers a false 'defect'  5      9      7      315       4       3        60

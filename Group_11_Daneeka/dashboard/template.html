@@ -1,0 +1,123 @@
+<title>Solar Inspection AMR Results</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* layout: one scannable column; summary strip first, then farm map, evidence tables, business, risk */
+:root{
+  --bg:#f3f5f7; --surface:#ffffff; --ink:#14202b; --ink2:#52606d; --line:#d8dee4;
+  --prop:#0b6e8a; --base:#b4532a; --ok:#2f7d4f; --warn:#b7791f; --bad:#b42318; --chip:#e8edf1;
+  --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f161c; --surface:#17212a; --ink:#e6edf2; --ink2:#9aa8b4; --line:#2a3743; --prop:#4cc3df; --base:#e08a5f;
+  --ok:#5cc58a; --warn:#e3b04b; --bad:#f07a70; --chip:#22303b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f161c; --surface:#17212a; --ink:#e6edf2; --ink2:#9aa8b4; --line:#2a3743; --prop:#4cc3df; --base:#e08a5f;
+  --ok:#5cc58a; --warn:#e3b04b; --bad:#f07a70; --chip:#22303b; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;
+  padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:1080px;margin:0 auto;display:grid;gap:28px}
+h1{font-size:24px;font-weight:600;margin:0;text-wrap:balance}
+h2{font-size:15px;font-weight:600;margin:0 0 10px;letter-spacing:.02em}
+.sub{color:var(--ink2);margin:4px 0 0;max-width:70ch}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0}
+.kpi .l{color:var(--ink2);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.kpi .v{display:flex;gap:14px;align-items:baseline;margin-top:6px;flex-wrap:wrap}
+.kpi .v b{font-family:var(--mono);font-size:22px;font-weight:500}
+.b{color:var(--base)}.p{color:var(--prop)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;min-width:0}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{font:inherit;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:5px 12px;border-radius:4px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button:focus-visible{outline:2px solid var(--prop);outline-offset:2px}
+.map{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;max-width:720px}
+.m{aspect-ratio:1.5;border:1px solid var(--line);border-radius:3px;display:flex;flex-direction:column;justify-content:space-between;padding:3px 4px;font-family:var(--mono);font-size:10px;background:var(--chip);min-width:0;overflow:hidden}
+.m.tp{background:color-mix(in srgb,var(--ok) 30%,var(--surface));border-color:var(--ok)}
+.m.fp{background:color-mix(in srgb,var(--bad) 28%,var(--surface));border-color:var(--bad)}
+.m.fn{background:color-mix(in srgb,var(--warn) 30%,var(--surface));border-color:var(--warn)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;color:var(--ink2);font-size:12px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;border:1px solid var(--line)}
+.rowlab{font-family:var(--mono);font-size:10px;color:var(--ink2)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--ink2);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.note{color:var(--ink2);font-size:12.5px;max-width:80ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.rpn{font-family:var(--mono);font-weight:500}
+svg text{fill:var(--ink2);font-family:var(--mono);font-size:11px}
+</style>
+<main>
+  <header>
+    <h1>Solar inspection AMR results</h1>
+    <p class="sub">Group 11, E057. Baseline (fixed route, fixed 15 K threshold) against the proposed controller on the same randomised 40-module test array. Every number is read from the controller's own run files.</p>
+  </header>
+  <section class="kpis" id="kpis" aria-label="Headline results"></section>
+  <section class="panel">
+    <h2>Seeded defects against what each controller flagged <span class="mono" id="demoMeta" style="font-weight:400;color:var(--ink2)"></span></h2>
+    <div class="tabs" role="group" aria-label="Controller"><button id="tb" aria-pressed="false">Baseline</button><button id="tp" aria-pressed="true">Proposed</button></div>
+    <div class="map" id="map"></div>
+    <div class="legend"><span><i style="background:color-mix(in srgb,var(--ok) 30%,var(--surface))"></i>defect found</span><span><i style="background:color-mix(in srgb,var(--warn) 30%,var(--surface))"></i>defect missed</span><span><i style="background:color-mix(in srgb,var(--bad) 28%,var(--surface))"></i>false alarm</span><span><i></i>healthy, not flagged</span></div>
+    <p class="note">Rows are lanes R01 (bottom) to R04. Shadow confounders are healthy modules; flagging one counts as a false alarm.</p>
+  </section>
+  <section class="panel tw"><h2>Monte Carlo statistics <span class="mono" id="nmeta" style="font-weight:400;color:var(--ink2)"></span></h2><table id="stats"></table>
+    <p class="note">Welch two-sided t-test, alpha 0.05, Cohen's d with pooled SD, 95% CI of the difference (proposed minus baseline). Missions the proposed controller deferred for weak sun are excluded together with their baseline twins.</p></section>
+  <section class="panel tw"><h2>Stress scenarios</h2><table id="scen"></table></section>
+  <section class="two">
+    <div class="panel"><h2>Business case (dimensionless)</h2><div id="biz"></div><p class="note">Costs are in technician-hour units. Only the 10 h/MW manual figure has a (secondary) source; every other input is a labelled assumption varied by 30% on the right.</p></div>
+    <div class="panel"><h2>NCRI sensitivity, inputs varied by 30%</h2><div id="tornado"></div></div>
+  </section>
+  <section class="panel tw"><h2>FMEA</h2><table id="fmea"></table><p class="note">Occurrence comes from the scenario runs. Severity and detection are judgement, tied to the named code in the dossier.</p></section>
+</main>
+<script>
+const DATA = __DATA__;
+const $ = id => document.getElementById(id);
+const f = (x, d=2) => (x==null||isNaN(x)) ? '–' : Number(x).toFixed(d);
+const st = {}; DATA.stats.forEach(s => st[s.metric] = s);
+function kpi(label, m, d, unit){ const s = st[m]; return `<div class="kpi"><div class="l">${label}</div><div class="v"><span><span class="b mono" style="font-size:11px">BASE</span> <b class="b">${f(s.mean_base,d)}</b></span><span><span class="p mono" style="font-size:11px">PROP</span> <b class="p">${f(s.mean_prop,d)}</b></span></div><div class="note">${unit}</div></div>`; }
+$('kpis').innerHTML = kpi('Recall','recall',2,'defects found / present') + kpi('Precision','precision',2,'true flags / all flags') +
+  kpi('False alarms','fp',1,'modules per mission') + kpi('Tracking RMSE','track_rmse_m',3,'metres, row following') +
+  `<div class="kpi"><div class="l">Deferred missions</div><div class="v"><b class="p">${DATA.deferred}</b><span class="note">of ${DATA.n_missions} (sun below 600 W/m²)</span></div></div>`;
+$('nmeta').textContent = `N = ${st.recall.n} paired missions`;
+// map
+function renderMap(cond){
+  const d = DATA.demo[cond]; $('tb').setAttribute('aria-pressed', cond==='baseline'); $('tp').setAttribute('aria-pressed', cond==='proposed');
+  const rows = [4,3,2,1]; let h='';
+  rows.forEach(r => { for(let c=1;c<=10;c++){ const id=`PV_R0${r}_C${String(c).padStart(2,'0')}`; const m=d.modules.find(x=>x.id===id);
+    const defect=m.truth.length>0; let cls='';
+    if(defect&&m.flagged) cls='tp'; else if(defect) cls='fn'; else if(m.flagged) cls='fp';
+    const tag = defect? m.truth[0].replace('HOT_MODULE','HOT MOD').slice(0,7) : (m.confounder?'shadow':'');
+    h+=`<div class="m ${cls}" title="${id}"><span>${id.slice(-6).replace('_','·')}</span><span>${tag}</span></div>`; }});
+  $('map').innerHTML=h;
+  $('demoMeta').textContent = `seed ${DATA.demo_seed}, ${d.weather}, ${f(d.start_h,1)} h`;
+}
+$('tb').onclick=()=>renderMap('baseline'); $('tp').onclick=()=>renderMap('proposed'); renderMap('proposed');
+// stats table
+let t='<tr><th>Measure</th><th>Baseline</th><th>Proposed</th><th>Diff</th><th>95% CI</th><th>p (Welch)</th><th>d</th></tr>';
+DATA.stats.forEach(s=>{ t+=`<tr><td>${s.label}</td><td class="n">${f(s.mean_base,3)} ± ${f(s.sd_base,3)}</td><td class="n">${f(s.mean_prop,3)} ± ${f(s.sd_prop,3)}</td><td class="n">${f(s.diff,3)}</td><td class="n">[${f(s.ci_lo,3)}, ${f(s.ci_hi,3)}]</td><td class="n">${s.p_welch<0.001?'<0.001':f(s.p_welch,3)}</td><td class="n">${f(s.d,2)}</td></tr>`;});
+$('stats').innerHTML=t;
+// scenarios
+const names={glint_stress:'Sun glint at the camera (stress site, 6° N)',nav_drift:'Gyro bias and wheel-calibration error',misassociation:'Start offset 0.4 to 0.8 m',low_irradiance:'Low sun (16:15 to 16:45)',sensor_stress:'Thermal noise ×3, spikes, drop-outs'};
+let sc='<tr><th>Scenario</th><th>Controller</th><th>Recall</th><th>False alarms</th><th>Missed</th><th>Obstacle contact [s]</th><th>Completed</th><th>Deferred</th></tr>';
+(DATA.scenarios||[]).forEach(r=>{ sc+=`<tr><td>${names[r.scenario]||r.scenario}</td><td class="${r.condition==='baseline'?'b':'p'}">${r.condition}</td><td class="n">${f(r.recall,2)}</td><td class="n">${f(r.fp,1)}</td><td class="n">${f(r.fn,1)}</td><td class="n">${f(r.contact_s,1)}</td><td class="n">${f(r.completed*100,0)}%</td><td class="n">${f(r.deferred*100,0)}%</td></tr>`;});
+$('scen').innerHTML=sc;
+// business
+const B=DATA.business, e=B.proposed.economics, q=B.proposed.queue, eb=B.baseline_controller.economics;
+const row=(a,b)=>`<tr><td>${a}</td><td class="n">${b}</td></tr>`;
+$('biz').innerHTML=`<table>${row('NCRI (proposed robot)',f(e.NCRI,2))}${row('Cost-parity ratio κ',f(e.kappa,2))}${row('P_payback (life 8 y; <1 pays back)',f(e.P_payback,2))}${row('T_payback',f(e.T_payback_months,0)+' months')}${row('Technician hours freed',f(e.H_reclaimed_h_per_MW,1)+' h/MW')}${row('NCRI if the baseline controller were deployed',f(eb.NCRI,2))}${row('Repair queue ρ (c = '+q.c+')',f(q.rho_mmc,2))}${row('Mean wait W_q (M/M/c)',f(q.Wq_mmc_days*24,1)+' h')}${row('Break-even manual effort (P = 1)',f(B.break_even_h_manual_P1,1)+' h/MW')}</table>`;
+// tornado
+(function(){ const rows=B.sensitivity.map(r=>({n:r.param,lo:r.NCRI_lo,hi:r.NCRI_hi,span:Math.abs(r.NCRI_hi-r.NCRI_lo)})).sort((a,b)=>b.span-a.span);
+  const base=e.NCRI, W=520, rh=26, L=150, Rm=16, H=rows.length*rh+34; const all=rows.flatMap(r=>[r.lo,r.hi,base]); const mn=Math.min(...all)-0.02, mx=Math.max(...all)+0.02;
+  const x=v=>L+(v-mn)/(mx-mn)*(W-L-Rm); let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Tornado chart of NCRI sensitivity">`;
+  [0,0.25,0.5,0.75].filter(v=>v>=mn&&v<=mx).forEach(v=>{ s+=`<line x1="${x(v)}" x2="${x(v)}" y1="14" y2="${H-18}" stroke="var(--line)"/><text x="${x(v)}" y="${H-4}" text-anchor="middle">${v}</text>`;});
+  rows.forEach((r,i)=>{ const y=18+i*rh; const a=Math.min(r.lo,r.hi), b=Math.max(r.lo,r.hi);
+    s+=`<text x="${L-8}" y="${y+10}" text-anchor="end">${r.n.replace(/_/g,' ')}</text><rect x="${x(a)}" y="${y}" width="${Math.max(2,x(b)-x(a))}" height="14" rx="2" fill="var(--prop)"/>`; });
+  s+=`<line x1="${x(base)}" x2="${x(base)}" y1="10" y2="${H-18}" stroke="var(--ink)" stroke-width="1.5"/></svg>`; $('tornado').innerHTML=s; })();
+// fmea
+let fm='<tr><th>Failure mode</th><th>S</th><th>O pre</th><th>D pre</th><th>RPN pre</th><th>O post</th><th>D post</th><th>RPN post</th></tr>';
+(DATA.fmea||[]).forEach(r=>{ fm+=`<tr><td>${r.failure_mode}</td><td class="n">${r.S}</td><td class="n">${r.O_pre}</td><td class="n">${r.D_pre}</td><td class="n rpn b">${r.RPN_pre}</td><td class="n">${r.O_post}</td><td class="n">${r.D_post}</td><td class="n rpn p">${r.RPN_post}</td></tr>`;});
+$('fmea').innerHTML=fm;
+</script>

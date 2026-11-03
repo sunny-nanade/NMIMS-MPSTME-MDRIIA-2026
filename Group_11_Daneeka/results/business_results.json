@@ -1,0 +1,172 @@
+{
+  "proposed": {
+    "sim": {
+      "h_robot_per_mw": 5.483424639920525,
+      "recall": 0.9728395061728394,
+      "fp_rate": 0.0010893246187363833,
+      "modules_per_mw": 2500.0
+    },
+    "economics": {
+      "n_modules": 125000.0,
+      "c_base_u_per_yr": 1000.0,
+      "robot_hours_per_yr": 548.3424639920524,
+      "fleet": 2,
+      "capex_u": 3000.0,
+      "flagged_per_survey": 1350.8533042846766,
+      "c_robot_u_per_yr": 463.30256785588847,
+      "labour_supervision": 82.25136959880787,
+      "labour_verify": 81.0511982570806,
+      "maintenance": 300.0,
+      "delta_opex_u_per_yr": 536.6974321441115,
+      "NCRI": 0.5366974321441116,
+      "kappa": 0.46330256785588847,
+      "T_payback_months": 67.07690002573638,
+      "P_payback": 0.6987177086014206,
+      "H_reclaimed_h_per_MW": 8.366974321441116,
+      "reallocation_fraction": 0.8366974321441116
+    },
+    "queue": {
+      "lam_per_day": 6.663284288855064,
+      "mu_per_tech_per_day": 8.0,
+      "c": 2,
+      "rho_mm1": 0.832910536106883,
+      "rho_mmc": 0.4164552680534415,
+      "Wq_mm1_days": 0.6231022267206473,
+      "Wq_mmc_days": 0.026228274281505228
+    }
+  },
+  "baseline_controller": {
+    "sim": {
+      "h_robot_per_mw": 4.124814814821869,
+      "recall": 0.5555555555555555,
+      "fp_rate": 0.28335625159154565,
+      "modules_per_mw": 2500.0
+    },
+    "economics": {
+      "n_modules": 125000.0,
+      "c_base_u_per_yr": 1000.0,
+      "robot_hours_per_yr": 412.48148148218695,
+      "fleet": 2,
+      "capex_u": 3000.0,
+      "flagged_per_survey": 35759.78057889822,
+      "c_robot_u_per_yr": 2507.4590569562215,
+      "labour_supervision": 61.87222222232804,
+      "labour_verify": 2145.5868347338933,
+      "maintenance": 300.0,
+      "delta_opex_u_per_yr": -1507.4590569562215,
+      "NCRI": -1.5074590569562214,
+      "kappa": 2.5074590569562214,
+      "T_payback_months": Infinity,
+      "P_payback": Infinity,
+      "H_reclaimed_h_per_MW": -12.074590569562215,
+      "reallocation_fraction": -1.2074590569562216
+    },
+    "queue": {
+      "lam_per_day": 3.80517503805175,
+      "mu_per_tech_per_day": 8.0,
+      "c": 2,
+      "rho_mm1": 0.47564687975646874,
+      "rho_mmc": 0.23782343987823437,
+      "Wq_mm1_days": 0.11338896952104498,
+      "Wq_mmc_days": 0.007493850678025382
+    }
+  },
+  "break_even_h_manual_P1": 8.383025678558885,
+  "break_even_h_manual_NCRI0": 4.633025678558885,
+  "sensitivity": [
+    {
+      "param": "h_manual_per_mw",
+      "NCRI_lo": 0.3381391887773022,
+      "P_lo": 1.5843010910726059,
+      "T_lo": 152.09290474297018,
+      "NCRI_hi": 0.6436134093416243,
+      "P_hi": 0.4481906906765916,
+      "T_hi": 43.0263063049528
+    },
+    {
+      "param": "robot_cost_u",
+      "NCRI_lo": 0.6266974321441116,
+      "P_lo": 0.4188624151560862,
+      "T_lo": 40.21079185498427,
+      "NCRI_hi": 0.4466974321441115,
+      "P_hi": 1.0913427410138434,
+      "T_hi": 104.76890313732898
+    },
+    {
+      "param": "defect_prevalence",
+      "NCRI_lo": 0.5585618112290788,
+      "P_lo": 0.671367058150354,
+      "T_lo": 64.45123758243399,
+      "NCRI_hi": 0.5148330530591443,
+      "P_hi": 0.728391461604389,
+      "T_hi": 69.92558031402135
+    },
+    {
+      "param": "supervision_frac",
+      "NCRI_lo": 0.5613728430237538,
+      "P_lo": 0.668005238693266,
+      "T_lo": 64.12850291455354,
+      "NCRI_hi": 0.5120220212644693,
+      "P_hi": 0.7323903746833289,
+      "T_hi": 70.30947596959957
+    },
+    {
+      "param": "verify_h_per_flag",
+      "NCRI_lo": 0.5610127916212357,
+      "P_lo": 0.6684339565882464,
+      "T_lo": 64.16965983247167,
+      "NCRI_hi": 0.5123820726669873,
+      "P_hi": 0.7318757232236809,
+      "T_hi": 70.26006942947336
+    },
+    {
+      "param": "valid_hours_per_year",
+      "NCRI_lo": 0.5366974321441116,
+      "P_lo": 0.6987177086014206,
+      "T_lo": 67.07690002573638,
+      "NCRI_hi": 0.5366974321441116,
+      "P_hi": 0.6987177086014206,
+      "T_hi": 67.07690002573638
+    },
+    {
+      "param": "maint_frac",
+      "NCRI_lo": 0.6266974321441116,
+      "P_lo": 0.5983748787944089,
+      "T_lo": 57.44398836426325,
+      "NCRI_hi": 0.4466974321441115,
+      "P_hi": 0.8394944161644949,
+      "T_hi": 80.59146395179151
+    },
+    {
+      "param": "life_years",
+      "NCRI_lo": 0.5366974321441116,
+      "P_lo": 0.9981681551448865,
+      "T_lo": 67.07690002573638,
+      "NCRI_hi": 0.5366974321441116,
+      "P_hi": 0.5374751604626311,
+      "T_hi": 67.07690002573638
+    }
+  ],
+  "inputs": {
+    "plant_mw": 50.0,
+    "module_wp": 400.0,
+    "inspections_per_year": 2.0,
+    "h_manual_per_mw": 10.0,
+    "supervision_frac": 0.15,
+    "verify_h_per_flag": 0.03,
+    "defect_prevalence": 0.01,
+    "robot_cost_u": 1500.0,
+    "maint_frac": 0.1,
+    "life_years": 8.0,
+    "valid_hours_per_year": 1000.0,
+    "fleet_availability": 0.8,
+    "spare_robots": 1,
+    "repair_h_per_module": 1.0,
+    "tech_hours_per_day": 8.0,
+    "technicians": 2
+  },
+  "source_notes": {
+    "h_manual_per_mw": "SOURCE (secondary, trade press, NOT peer-reviewed): Solar Builder magazine, 'This Drone for Hire: Meeting the Challenges of Solar O&M with Aerial Thermography' - G. Shambo (Borrego O&M) quotes an unnamed study: manual inspection 10 h/MW; drone 15-18 min/MW. Read 30-Oct-2026.",
+    "everything_else_tagged_ASSUMPTION": "see the Inputs dataclass comments; each is varied in the sensitivity graph"
+  }
+}

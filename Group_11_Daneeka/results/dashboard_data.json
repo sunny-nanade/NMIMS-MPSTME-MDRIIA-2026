@@ -1,0 +1,1241 @@
+{
+ "stats": [
+  {
+   "metric": "recall",
+   "label": "Recall (defects found / present)",
+   "n": 27,
+   "mean_base": 0.5815696649,
+   "sd_base": 0.2498120631,
+   "mean_prop": 0.9728395062,
+   "sd_prop": 0.098291837,
+   "diff": 0.3912698413,
+   "ci_lo": 0.2862603336,
+   "ci_hi": 0.496279349,
+   "t": 7.5733664861,
+   "p_welch": 8.7e-09,
+   "d": 2.0612092807,
+   "p_paired": 9e-10
+  },
+  {
+   "metric": "precision",
+   "label": "Precision (true flags / all flags)",
+   "n": 27,
+   "mean_base": 0.2588934916,
+   "sd_base": 0.1126717914,
+   "mean_prop": 0.9947089947,
+   "sd_prop": 0.02749287,
+   "diff": 0.7358155032,
+   "ci_lo": 0.6901720098,
+   "ci_hi": 0.7814589965,
+   "t": 32.9668090076,
+   "p_welch": 1.37084815e-24,
+   "d": 8.9724289463,
+   "p_paired": 3.577129809e-23
+  },
+  {
+   "metric": "fp",
+   "label": "False alarms per mission (modules)",
+   "n": 27,
+   "mean_base": 9.6666666667,
+   "sd_base": 2.8956200346,
+   "mean_prop": 0.037037037,
+   "sd_prop": 0.1924500897,
+   "diff": -9.6296296296,
+   "ci_lo": -10.7771368169,
+   "ci_hi": -8.4821224424,
+   "t": -17.242205197,
+   "p_welch": 7.864040325e-16,
+   "d": -4.6927338637,
+   "p_paired": 9.144195725e-16
+  },
+  {
+   "metric": "fn",
+   "label": "Missed defective modules per mission",
+   "n": 27,
+   "mean_base": 2.4074074074,
+   "sd_base": 1.3939225025,
+   "mean_prop": 0.1481481481,
+   "sd_prop": 0.5337605127,
+   "diff": -2.2592592593,
+   "ci_lo": -2.8433766182,
+   "ci_hi": -1.6751419003,
+   "t": -7.8649892731,
+   "p_welch": 4.1e-09,
+   "d": -2.1405789502,
+   "p_paired": 9e-10
+  },
+  {
+   "metric": "loc_err_mean_m",
+   "label": "Mean localisation error of true detections [m]",
+   "n": 26,
+   "mean_base": 0.2238809171,
+   "sd_base": 0.1611179048,
+   "mean_prop": 0.1313255683,
+   "sd_prop": 0.0584722234,
+   "diff": -0.0925553488,
+   "ci_lo": -0.1610704559,
+   "ci_hi": -0.0240402417,
+   "t": -2.7534502206,
+   "p_welch": 0.0097083371,
+   "d": -0.7636696888,
+   "p_paired": 0.0097612196
+  },
+  {
+   "metric": "kind_accuracy",
+   "label": "Defect-type accuracy",
+   "n": 26,
+   "mean_base": 0.6564102564,
+   "sd_base": 0.2846079925,
+   "mean_prop": 0.9945054945,
+   "sd_prop": 0.0280165907,
+   "diff": 0.3380952381,
+   "ci_lo": 0.2226951917,
+   "ci_hi": 0.4534952845,
+   "t": 6.0281569055,
+   "p_welch": 2.4847e-06,
+   "d": 1.6719099092,
+   "p_paired": 2.034e-06
+  },
+  {
+   "metric": "track_rmse_m",
+   "label": "Lane tracking RMSE [m]",
+   "n": 27,
+   "mean_base": 0.1305234553,
+   "sd_base": 0.0340543331,
+   "mean_prop": 0.0070922696,
+   "sd_prop": 0.0030413903,
+   "diff": -0.1234311857,
+   "ci_lo": -0.1369459225,
+   "ci_hi": -0.1099164489,
+   "t": -18.7589813157,
+   "p_welch": 8.583860916e-17,
+   "d": -5.1055480353,
+   "p_paired": 3.337167154e-16
+  },
+  {
+   "metric": "pose_err_rms_m",
+   "label": "Pose estimate RMS error [m]",
+   "n": 27,
+   "mean_base": 0.2493682081,
+   "sd_base": 0.0716570068,
+   "mean_prop": 0.0598400804,
+   "sd_prop": 0.014151121,
+   "diff": -0.1895281277,
+   "ci_lo": -0.2183208968,
+   "ci_hi": -0.1607353586,
+   "t": -13.4830803344,
+   "p_welch": 0.0,
+   "d": -3.6696296645,
+   "p_paired": 0.0
+  },
+  {
+   "metric": "control_effort",
+   "label": "Control effort  int tau^2 dt  [N^2 m^2 s]",
+   "n": 27,
+   "mean_base": 889.2116792773,
+   "sd_base": 6.1608188922,
+   "mean_prop": 887.0683658706,
+   "sd_prop": 7.7162842099,
+   "diff": -2.1433134067,
+   "ci_lo": -5.9609189994,
+   "ci_hi": 1.674292186,
+   "t": -1.1279050327,
+   "p_welch": 0.2647897974,
+   "d": -0.3069768676,
+   "p_paired": 0.2687672366
+  },
+  {
+   "metric": "duration_s",
+   "label": "Mission time [s]",
+   "n": 27,
+   "mean_base": 237.5182962967,
+   "sd_base": 0.5878523372,
+   "mean_prop": 315.8452592594,
+   "sd_prop": 154.8200854838,
+   "diff": 78.3269629627,
+   "ci_lo": 17.0818213725,
+   "ci_hi": 139.572104553,
+   "t": 2.6288314157,
+   "p_welch": 0.01419352,
+   "d": 0.7154772876,
+   "p_paired": 0.0142989202
+  },
+  {
+   "metric": "time_per_mw_h",
+   "label": "Inspection time per MW [h/MW]",
+   "n": 27,
+   "mean_base": 4.1235815329,
+   "sd_base": 0.0102057697,
+   "mean_prop": 5.4834246399,
+   "sd_prop": 2.6878487063,
+   "diff": 1.359843107,
+   "ci_lo": 0.2965593988,
+   "ci_hi": 2.4231268152,
+   "t": 2.6288314157,
+   "p_welch": 0.01419352,
+   "d": 0.7154772876,
+   "p_paired": 0.0142989202
+  }
+ ],
+ "n_missions": 30,
+ "deferred": 3,
+ "business": {
+  "proposed": {
+   "sim": {
+    "h_robot_per_mw": 5.483424639920525,
+    "recall": 0.9728395061728394,
+    "fp_rate": 0.0010893246187363833,
+    "modules_per_mw": 2500.0
+   },
+   "economics": {
+    "n_modules": 125000.0,
+    "c_base_u_per_yr": 1000.0,
+    "robot_hours_per_yr": 548.3424639920524,
+    "fleet": 2,
+    "capex_u": 3000.0,
+    "flagged_per_survey": 1350.8533042846766,
+    "c_robot_u_per_yr": 463.30256785588847,
+    "labour_supervision": 82.25136959880787,
+    "labour_verify": 81.0511982570806,
+    "maintenance": 300.0,
+    "delta_opex_u_per_yr": 536.6974321441115,
+    "NCRI": 0.5366974321441116,
+    "kappa": 0.46330256785588847,
+    "T_payback_months": 67.07690002573638,
+    "P_payback": 0.6987177086014206,
+    "H_reclaimed_h_per_MW": 8.366974321441116,
+    "reallocation_fraction": 0.8366974321441116
+   },
+   "queue": {
+    "lam_per_day": 6.663284288855064,
+    "mu_per_tech_per_day": 8.0,
+    "c": 2,
+    "rho_mm1": 0.832910536106883,
+    "rho_mmc": 0.4164552680534415,
+    "Wq_mm1_days": 0.6231022267206473,
+    "Wq_mmc_days": 0.026228274281505228
+   }
+  },
+  "baseline_controller": {
+   "sim": {
+    "h_robot_per_mw": 4.124814814821869,
+    "recall": 0.5555555555555555,
+    "fp_rate": 0.28335625159154565,
+    "modules_per_mw": 2500.0
+   },
+   "economics": {
+    "n_modules": 125000.0,
+    "c_base_u_per_yr": 1000.0,
+    "robot_hours_per_yr": 412.48148148218695,
+    "fleet": 2,
+    "capex_u": 3000.0,
+    "flagged_per_survey": 35759.78057889822,
+    "c_robot_u_per_yr": 2507.4590569562215,
+    "labour_supervision": 61.87222222232804,
+    "labour_verify": 2145.5868347338933,
+    "maintenance": 300.0,
+    "delta_opex_u_per_yr": -1507.4590569562215,
+    "NCRI": -1.5074590569562214,
+    "kappa": 2.5074590569562214,
+    "T_payback_months": Infinity,
+    "P_payback": Infinity,
+    "H_reclaimed_h_per_MW": -12.074590569562215,
+    "reallocation_fraction": -1.2074590569562216
+   },
+   "queue": {
+    "lam_per_day": 3.80517503805175,
+    "mu_per_tech_per_day": 8.0,
+    "c": 2,
+    "rho_mm1": 0.47564687975646874,
+    "rho_mmc": 0.23782343987823437,
+    "Wq_mm1_days": 0.11338896952104498,
+    "Wq_mmc_days": 0.007493850678025382
+   }
+  },
+  "break_even_h_manual_P1": 8.383025678558885,
+  "break_even_h_manual_NCRI0": 4.633025678558885,
+  "sensitivity": [
+   {
+    "param": "h_manual_per_mw",
+    "NCRI_lo": 0.3381391887773022,
+    "P_lo": 1.5843010910726059,
+    "T_lo": 152.09290474297018,
+    "NCRI_hi": 0.6436134093416243,
+    "P_hi": 0.4481906906765916,
+    "T_hi": 43.0263063049528
+   },
+   {
+    "param": "robot_cost_u",
+    "NCRI_lo": 0.6266974321441116,
+    "P_lo": 0.4188624151560862,
+    "T_lo": 40.21079185498427,
+    "NCRI_hi": 0.4466974321441115,
+    "P_hi": 1.0913427410138434,
+    "T_hi": 104.76890313732898
+   },
+   {
+    "param": "defect_prevalence",
+    "NCRI_lo": 0.5585618112290788,
+    "P_lo": 0.671367058150354,
+    "T_lo": 64.45123758243399,
+    "NCRI_hi": 0.5148330530591443,
+    "P_hi": 0.728391461604389,
+    "T_hi": 69.92558031402135
+   },
+   {
+    "param": "supervision_frac",
+    "NCRI_lo": 0.5613728430237538,
+    "P_lo": 0.668005238693266,
+    "T_lo": 64.12850291455354,
+    "NCRI_hi": 0.5120220212644693,
+    "P_hi": 0.7323903746833289,
+    "T_hi": 70.30947596959957
+   },
+   {
+    "param": "verify_h_per_flag",
+    "NCRI_lo": 0.5610127916212357,
+    "P_lo": 0.6684339565882464,
+    "T_lo": 64.16965983247167,
+    "NCRI_hi": 0.5123820726669873,
+    "P_hi": 0.7318757232236809,
+    "T_hi": 70.26006942947336
+   },
+   {
+    "param": "valid_hours_per_year",
+    "NCRI_lo": 0.5366974321441116,
+    "P_lo": 0.6987177086014206,
+    "T_lo": 67.07690002573638,
+    "NCRI_hi": 0.5366974321441116,
+    "P_hi": 0.6987177086014206,
+    "T_hi": 67.07690002573638
+   },
+   {
+    "param": "maint_frac",
+    "NCRI_lo": 0.6266974321441116,
+    "P_lo": 0.5983748787944089,
+    "T_lo": 57.44398836426325,
+    "NCRI_hi": 0.4466974321441115,
+    "P_hi": 0.8394944161644949,
+    "T_hi": 80.59146395179151
+   },
+   {
+    "param": "life_years",
+    "NCRI_lo": 0.5366974321441116,
+    "P_lo": 0.9981681551448865,
+    "T_lo": 67.07690002573638,
+    "NCRI_hi": 0.5366974321441116,
+    "P_hi": 0.5374751604626311,
+    "T_hi": 67.07690002573638
+   }
+  ],
+  "inputs": {
+   "plant_mw": 50.0,
+   "module_wp": 400.0,
+   "inspections_per_year": 2.0,
+   "h_manual_per_mw": 10.0,
+   "supervision_frac": 0.15,
+   "verify_h_per_flag": 0.03,
+   "defect_prevalence": 0.01,
+   "robot_cost_u": 1500.0,
+   "maint_frac": 0.1,
+   "life_years": 8.0,
+   "valid_hours_per_year": 1000.0,
+   "fleet_availability": 0.8,
+   "spare_robots": 1,
+   "repair_h_per_module": 1.0,
+   "tech_hours_per_day": 8.0,
+   "technicians": 2
+  },
+  "source_notes": {
+   "h_manual_per_mw": "SOURCE (secondary, trade press, NOT peer-reviewed): Solar Builder magazine, 'This Drone for Hire: Meeting the Challenges of Solar O&M with Aerial Thermography' - G. Shambo (Borrego O&M) quotes an unnamed study: manual inspection 10 h/MW; drone 15-18 min/MW. Read 30-Oct-2026.",
+   "everything_else_tagged_ASSUMPTION": "see the Inputs dataclass comments; each is varied in the sensitivity graph"
+  }
+ },
+ "fmea": [
+  {
+   "failure_mode": "Missed / mislocated hotspot, false alarm: sun glint or poor sensor angle corrupts the thermal image",
+   "effect": "Defective module missed (energy loss, fire risk) or healthy module sent for repair",
+   "S": 8,
+   "O_pre": 10,
+   "D_pre": 8,
+   "RPN_pre": 640,
+   "mitigation": "glint-risk model picks mast height with the lowest specular risk; pixels within 10 deg of the mirror direction are masked; verification view at another height",
+   "O_post": 4,
+   "D_post": 4,
+   "RPN_post": 128,
+   "p_event_pre": 1.0,
+   "p_event_post": 0.017,
+   "N": 30,
+   "shown_in": "src/solar_defect_detector.py _choose_lift / defect_detection.py glint mask; analytics/run_scenarios.py glint_stress",
+   "S_basis": "undetected hot cell can lead to module loss / fire (judgement)",
+   "D_basis": "baseline has no check (D=8); proposed raises RECHECK and a second view, so the error is usually caught before geotagging (D=4)"
+  },
+  {
+   "failure_mode": "AMR drifts into inter-row gap or kerb (localisation drift)",
+   "effect": "Collision with kerb / module frame, mission aborted, equipment damage",
+   "S": 9,
+   "O_pre": 10,
+   "D_pre": 7,
+   "RPN_pre": 630,
+   "mitigation": "side range-pair feedback on the module plane + surveyed fiducials every 5 modules replace pure dead reckoning",
+   "O_post": 4,
+   "D_post": 3,
+   "RPN_post": 108,
+   "p_event_pre": 1.0,
+   "p_event_post": 0.017,
+   "N": 30,
+   "shown_in": "src/navigation.py PoseEstimator.update_range / update_fiducial; analytics/run_scenarios.py nav_drift",
+   "S_basis": "contact with a live PV row can damage glass / robot (judgement)",
+   "D_basis": "baseline can only see the error when it hits something (D=7); proposed measures lateral gap every 20 ms (D=3)"
+  },
+  {
+   "failure_mode": "Wrong module identified / geotag on the wrong module (dock or odometry offset)",
+   "effect": "Technician sent to the wrong module; real defect left unrepaired",
+   "S": 7,
+   "O_pre": 10,
+   "D_pre": 8,
+   "RPN_pre": 560,
+   "mitigation": "fiducial position fixes (every 5 modules) re-anchor the module index",
+   "O_post": 7,
+   "D_post": 4,
+   "RPN_post": 196,
+   "p_event_pre": 1.0,
+   "p_event_post": 0.133,
+   "N": 30,
+   "shown_in": "src/navigation.py update_fiducial; analytics/run_scenarios.py misassociation",
+   "S_basis": "repair effort wasted and defect persists (judgement)",
+   "D_basis": "no cross-check in baseline (D=8); proposed re-anchors at each fiducial (D=4)"
+  },
+  {
+   "failure_mode": "Thermal assessment made below the valid irradiance (low sun / cloud)",
+   "effect": "Temperature excess misread: false alarms or missed defects",
+   "S": 6,
+   "O_pre": 10,
+   "D_pre": 7,
+   "RPN_pre": 420,
+   "mitigation": "reference-cell irradiance gate (>= 600 W/m2, to be checked against IEC TS 62446-3 Table 3), wait-and-retry, abort and reschedule",
+   "O_post": 4,
+   "D_post": 2,
+   "RPN_post": 48,
+   "p_event_pre": 1.0,
+   "p_event_post": 0.017,
+   "N": 30,
+   "shown_in": "src/defect_detection.py gate; src/solar_defect_detector.py consec_gated / deferral",
+   "S_basis": "mis-prioritised repairs, no safety consequence (judgement)",
+   "D_basis": "baseline never checks irradiance (D=7); proposed refuses to assess (D=2)"
+  },
+  {
+   "failure_mode": "Thermal sensor noise, spikes or frame drop-outs",
+   "effect": "False alarms from single hot pixels / missed anomalies from lost frames",
+   "S": 6,
+   "O_pre": 10,
+   "D_pre": 7,
+   "RPN_pre": 420,
+   "mitigation": "3-frame temporal median, cluster (>=2 pixel) rule, repeat on dropout",
+   "O_post": 10,
+   "D_post": 3,
+   "RPN_post": 180,
+   "p_event_pre": 1.0,
+   "p_event_post": 0.7,
+   "N": 30,
+   "shown_in": "src/defect_detection.py median + _neighbour_cluster",
+   "S_basis": "wasted dispatches / missed finding (judgement)",
+   "D_basis": "baseline trusts one frame (D=7); proposed median rejects spikes (D=3)"
+  },
+  {
+   "failure_mode": "External shadow (confounder) triggers a false 'defect'",
+   "effect": "Healthy module sent for repair",
+   "S": 5,
+   "O_pre": 9,
+   "D_pre": 7,
+   "RPN_pre": 315,
+   "mitigation": "optical shadow score + hot-cluster coincidence rule classifies SHADOW_CONFOUNDER",
+   "O_post": 4,
+   "D_post": 3,
+   "RPN_post": 60,
+   "p_event_pre": 0.3,
+   "p_event_post": 0.017,
+   "N": 30,
+   "shown_in": "src/defect_detection.py shadow branch; src/fault_injection.py EXT_SHADOW",
+   "S_basis": "one wasted repair visit (judgement)",
+   "D_basis": "baseline has no optical cross-check (D=7); proposed has one (D=3)"
+  }
+ ],
+ "scenarios": [
+  {
+   "scenario": "glint_stress",
+   "condition": "baseline",
+   "n": 30,
+   "recall": 0.9469047619,
+   "precision": 0.1456968507,
+   "fp": 31.2666666667,
+   "fn": 0.3,
+   "contact_s": 0.0,
+   "completed": 1.0,
+   "deferred": 0.0
+  },
+  {
+   "scenario": "glint_stress",
+   "condition": "proposed",
+   "n": 30,
+   "recall": 1.0,
+   "precision": 1.0,
+   "fp": 0.0,
+   "fn": 0.0,
+   "contact_s": 0.0,
+   "completed": 1.0,
+   "deferred": 0.0
+  },
+  {
+   "scenario": "low_irradiance",
+   "condition": "baseline",
+   "n": 30,
+   "recall": 0.2331746032,
+   "precision": 0.123978984,
+   "fp": 9.1666666667,
+   "fn": 4.2666666667,
+   "contact_s": 0.0,
+   "completed": 1.0,
+   "deferred": 0.0
+  },
+  {
+   "scenario": "low_irradiance",
+   "condition": "proposed",
+   "n": 30,
+   "recall": 0.0,
+   "precision": null,
+   "fp": 0.0,
+   "fn": 5.6,
+   "contact_s": 0.0,
+   "completed": 1.0,
+   "deferred": 1.0
+  },
+  {
+   "scenario": "misassociation",
+   "condition": "baseline",
+   "n": 30,
+   "recall": 0.2794444444,
+   "precision": 0.1290486365,
+   "fp": 10.3333333333,
+   "fn": 4.0,
+   "contact_s": 0.3786666667,
+   "completed": 1.0,
+   "deferred": 0.0
+  },
+  {
+   "scenario": "misassociation",
+   "condition": "proposed",
+   "n": 30,
+   "recall": 0.9752380952,
+   "precision": 1.0,
+   "fp": 0.0,
+   "fn": 0.1333333333,
+   "contact_s": 0.0,
+   "completed": 1.0,
+   "deferred": 0.0
+  },
+  {
+   "scenario": "nav_drift",
+   "condition": "baseline",
+   "n": 30,
+   "recall": 0.3398412698,
+   "precision": 0.232542365,
+   "fp": 6.3333333333,
+   "fn": 3.7,
+   "contact_s": 749.3026666667,
+   "completed": 0.0,
+   "deferred": 0.0
+  },
+  {
+   "scenario": "nav_drift",
+   "condition": "proposed",
+   "n": 30,
+   "recall": 1.0,
+   "precision": 1.0,
+   "fp": 0.0,
+   "fn": 0.0,
+   "contact_s": 0.0,
+   "completed": 1.0,
+   "deferred": 0.0
+  },
+  {
+   "scenario": "sensor_stress",
+   "condition": "baseline",
+   "n": 30,
+   "recall": 0.8302380952,
+   "precision": 0.1470368745,
+   "fp": 27.2333333333,
+   "fn": 0.9333333333,
+   "contact_s": 0.0,
+   "completed": 1.0,
+   "deferred": 0.0
+  },
+  {
+   "scenario": "sensor_stress",
+   "condition": "proposed",
+   "n": 30,
+   "recall": 1.0,
+   "precision": 0.8563756614,
+   "fp": 1.0,
+   "fn": 0.0,
+   "contact_s": 0.0,
+   "completed": 1.0,
+   "deferred": 0.0
+  }
+ ],
+ "demo": {
+  "baseline": {
+   "modules": [
+    {
+     "id": "PV_R01_C01",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C02",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C03",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R01_C04",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C05",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C06",
+     "truth": [],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R01_C07",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R01_C08",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C09",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C10",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C01",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C02",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C03",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C04",
+     "truth": [],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R02_C05",
+     "truth": [],
+     "confounder": true,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R02_C06",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C07",
+     "truth": [],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R02_C08",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C09",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C10",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C01",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C02",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R03_C03",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C04",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C05",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C06",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C07",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C08",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R03_C09",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C10",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C01",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R04_C02",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C03",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C04",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C05",
+     "truth": [],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R04_C06",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C07",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C08",
+     "truth": [
+      "CRACK"
+     ],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C09",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C10",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    }
+   ],
+   "metrics": {
+    "seed": 3009,
+    "condition": "baseline",
+    "completed": 1,
+    "duration_s": 237.98200000040822,
+    "wall_s": 10.245731830596924,
+    "n_defects": 7,
+    "n_confounders": 1,
+    "tp": 5,
+    "fp": 5,
+    "fn": 2,
+    "tn": 28,
+    "precision": 0.5,
+    "recall": 0.7142857142857143,
+    "conf_fp": 1,
+    "kind_accuracy": 1.0,
+    "loc_err_mean_m": 0.07940887446349439,
+    "loc_err_max_m": 0.17025120596771742,
+    "modules_scanned": 40,
+    "unassessed": 0,
+    "deferred": 0,
+    "farm_mw": 0.016,
+    "time_per_mw_h": 4.131631944451532,
+    "control_effort": 886.2511962859563,
+    "obstacle_contact_s": 0.0
+   },
+   "weather": "clear",
+   "start_h": 12.576464221308363
+  },
+  "proposed": {
+   "modules": [
+    {
+     "id": "PV_R01_C01",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C02",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C03",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R01_C04",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C05",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C06",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C07",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R01_C08",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C09",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R01_C10",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C01",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C02",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C03",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C04",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C05",
+     "truth": [],
+     "confounder": true,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C06",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C07",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C08",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C09",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R02_C10",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C01",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C02",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R03_C03",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C04",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C05",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C06",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R03_C07",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C08",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R03_C09",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R03_C10",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C01",
+     "truth": [
+      "HOTSPOT"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "HOTSPOT"
+    },
+    {
+     "id": "PV_R04_C02",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C03",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C04",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C05",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C06",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C07",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C08",
+     "truth": [
+      "CRACK"
+     ],
+     "confounder": false,
+     "flagged": true,
+     "est_kind": "CRACK"
+    },
+    {
+     "id": "PV_R04_C09",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    },
+    {
+     "id": "PV_R04_C10",
+     "truth": [],
+     "confounder": false,
+     "flagged": false,
+     "est_kind": null
+    }
+   ],
+   "metrics": {
+    "seed": 3009,
+    "condition": "proposed",
+    "completed": 1,
+    "duration_s": 254.14200000048538,
+    "wall_s": 11.32941722869873,
+    "n_defects": 7,
+    "n_confounders": 1,
+    "tp": 7,
+    "fp": 0,
+    "fn": 0,
+    "tn": 33,
+    "precision": 1.0,
+    "recall": 1.0,
+    "conf_fp": 0,
+    "kind_accuracy": 1.0,
+    "loc_err_mean_m": 0.08552775833946279,
+    "loc_err_max_m": 0.25849691318569445,
+    "modules_scanned": 40,
+    "unassessed": 0,
+    "deferred": 0,
+    "farm_mw": 0.016,
+    "time_per_mw_h": 4.412187500008427,
+    "control_effort": 892.7833333009988,
+    "obstacle_contact_s": 0.0
+   },
+   "weather": "clear",
+   "start_h": 12.576464221308363
+  }
+ },
+ "demo_seed": 3009
+}

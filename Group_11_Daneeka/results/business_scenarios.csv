@@ -1,0 +1,4 @@
+scenario,h_manual,capex,c_base,c_robot,NCRI,T_payback_months,P_payback
+pessimistic,7.0,3900.0,700.0,719.293,-0.028,inf,inf
+base,10.0,3000.0,1000.0,463.303,0.537,67.077,0.699
+optimistic,13.0,2100.0,1300.0,261.312,0.799,24.261,0.253

@@ -1,0 +1,21 @@
+
+[proposed]  robot hours/MW (SIM) = 5.48  recall = 0.97  false-flag rate = 0.001
+  fleet=2  CapEx=3000 u  C_base=1000 u/yr  C_robot=463 u/yr
+  NCRI=0.537  kappa=0.463  P_payback=0.699  T_payback=67.1 months  H_reclaimed=8.37 h/MW (83.7 %)
+  queue: lambda=6.66/day  mu=8.0/tech/day  c=2  rho=0.42  Wq(M/M/1)=0.62 d  Wq(M/M/c)=0.63 h
+
+[baseline_controller]  robot hours/MW (SIM) = 4.12  recall = 0.56  false-flag rate = 0.283
+  fleet=2  CapEx=3000 u  C_base=1000 u/yr  C_robot=2507 u/yr
+  NCRI=-1.507  kappa=2.507  P_payback=inf  T_payback=inf months  H_reclaimed=-12.07 h/MW (-120.7 %)
+  queue: lambda=3.81/day  mu=8.0/tech/day  c=2  rho=0.24  Wq(M/M/1)=0.11 d  Wq(M/M/c)=0.18 h
+
+break-even manual hours/MW: P=1 at 8.38; NCRI=0 at 4.63
+               param  NCRI_lo  P_lo    T_lo  NCRI_hi  P_hi    T_hi
+     h_manual_per_mw    0.338 1.584 152.093    0.644 0.448  43.026
+        robot_cost_u    0.627 0.419  40.211    0.447 1.091 104.769
+   defect_prevalence    0.559 0.671  64.451    0.515 0.728  69.926
+    supervision_frac    0.561 0.668  64.129    0.512 0.732  70.309
+   verify_h_per_flag    0.561 0.668  64.170    0.512 0.732  70.260
+valid_hours_per_year    0.537 0.699  67.077    0.537 0.699  67.077
+          maint_frac    0.627 0.598  57.444    0.447 0.839  80.591
+          life_years    0.537 0.998  67.077    0.537 0.537  67.077
